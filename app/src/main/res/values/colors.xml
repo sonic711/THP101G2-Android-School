@@ -19,3 +19,25 @@
     <color name="john">#9D50DA</color>
     <color name="transparent">#00</color>
 </resources>
+
+<!--        John & Mary-->
+<!--        是用來設置樣式用的顏色-->
+<!--        我們的app 顔色就用purple系列、grav系列、red系列、black、white還有transparent (純-->
+<!--        透明）就好嘍-->
+<!--        Teal系列-->
+<!--        teal 系列的顏色是系統預設的-->
+<!--        可能有些地方 android預設就是帶這組顏色-->
+<!--        如果移除掉怕會造成一些影響-->
+<!--        所以先放置不動-->
+<!--        Purple系列-->
+<!--        我們的primary color是白色-->
+<!--        secondary color是purple 400-->
+<!--        普通情況下大家應該都是只會用到purple_400-->
+<!--        Red系列-->
+<!--        red_700 用於警告文字-->
+<!--        red_50  用於背景（例如輸入的背景）-->
+<!--        Grav系列-->
+<!--        gray_50 用於背景-->
+<!--        gray_109用於背景（會員主頁-設定中的背景）-->
+<!--        gray_500 用於icon-->
+<!--        gray_700 用於次要文字-->
