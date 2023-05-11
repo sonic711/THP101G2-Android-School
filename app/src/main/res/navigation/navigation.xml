@@ -5,5 +5,16 @@
             app:startDestination="@id/mainFragment">
 
     <fragment android:id="@+id/mainFragment" android:name="com.example.thp101g2_android_school.MainFragment"
-              android:label="fragment_main" tools:layout="@layout/fragment_main"/>
+              android:label="fragment_main" tools:layout="@layout/fragment_main">
+        <action android:id="@+id/action_mainFragment_to_comMainFragment" app:destination="@id/comMainFragment"/>
+    </fragment>
+    <fragment android:id="@+id/comMainFragment" android:name="com.example.thp101g2_android_school.community.controller.ComMainFragment"
+              android:label="fragment_com_main" tools:layout="@layout/fragment_com_main"/>
+    <fragment android:id="@+id/comFollowFragment" android:name="com.example.thp101g2_android_school.community.controller.ComFollowFragment"
+              android:label="fragment_com_follow" tools:layout="@layout/fragment_com_follow"/>
+    <fragment android:id="@+id/comAllClassFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComAllClassFragment"
+              android:label="fragment_com_all_class" tools:layout="@layout/fragment_com_all_class"/>
+    <fragment android:id="@+id/comAllPostFragment" android:name="com.example.thp101g2_android_school.community.controller.ComAllPostFragment"
+              android:label="fragment_com_all_post" tools:layout="@layout/fragment_com_all_post"/>
 </navigation>

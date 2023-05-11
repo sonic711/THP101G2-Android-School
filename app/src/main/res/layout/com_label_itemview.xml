@@ -19,7 +19,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/tvLabelName"
-                    tools:text="中文" android:background="#C7C7C7"
+                    tools:text="中文" android:background="@color/gray_500"
                     android:gravity="center"/>
         </androidx.cardview.widget.CardView>
 </layout>
