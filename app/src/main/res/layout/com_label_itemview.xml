@@ -8,8 +8,11 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
-                app:cardCornerRadius="6dp"
+                android:layout_margin="4dp"
+                android:foreground="?selectableItemBackground"
+                app:cardBackgroundColor="#DDDDDD"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
                 android:id="@+id/cardView" app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
             <TextView
@@ -17,6 +20,6 @@
                     android:layout_height="match_parent"
                     android:id="@+id/tvLabelName"
                     tools:text="中文" android:background="#C7C7C7"
-            />
+                    android:gravity="center"/>
         </androidx.cardview.widget.CardView>
 </layout>
