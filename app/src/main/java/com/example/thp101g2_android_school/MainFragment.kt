@@ -26,10 +26,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding){
-            comBtn.setOnClickListener {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_mainFragment_to_comMainFragment)
-            }
+
         }
     }
 }
