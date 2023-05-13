@@ -7,7 +7,7 @@
     </data>
     <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,7 +59,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="16dp" app:layout_constraintStart_toEndOf="@+id/tvDate"
                     android:layout_marginStart="16dp" android:id="@+id/postRecyclerView"
-                    tools:listitem="@layout/com_title_itemview" tools:itemCount="3"
+                    tools:listitem="@layout/com_label_itemview" tools:itemCount="3"
                     app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
