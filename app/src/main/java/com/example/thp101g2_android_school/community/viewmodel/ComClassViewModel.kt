@@ -18,16 +18,16 @@ class ComClassViewModel : ViewModel() {
         val childItems1 = ArrayList<ChildItem>()
         childItems1.add(ChildItem("C", R.drawable.com_c))
         childItems1.add(ChildItem("C++", R.drawable.com_cplusplus))
-        childItems1.add(ChildItem("Java", R.drawable.java))
+        childItems1.add(ChildItem("Java", R.drawable.com_java))
         childItems1.add(ChildItem("C#", R.drawable.com_csharp))
 
         parentList.add(ParentItem("Game Development", R.drawable.com_console, childItems1))
 
 
         val childItem2 = ArrayList<ChildItem>()
-        childItem2.add(ChildItem("Kotlin", R.drawable.kotlin))
+        childItem2.add(ChildItem("Kotlin", R.drawable.com_kotlin))
         childItem2.add(ChildItem("XML", R.drawable.com_xml))
-        childItem2.add(ChildItem("Java", R.drawable.java))
+        childItem2.add(ChildItem("Java", R.drawable.com_java))
         parentList.add(
             ParentItem(
                 "Android Development",
@@ -48,7 +48,7 @@ class ComClassViewModel : ViewModel() {
         )
         val childItem4 = ArrayList<ChildItem>()
         childItem4.add(ChildItem("Julia", R.drawable.com_julia))
-        childItem4.add(ChildItem("Python", R.drawable.python))
+        childItem4.add(ChildItem("Python", R.drawable.com_python))
         childItem4.add(ChildItem("R", R.drawable.com_r))
         parentList.add(
             ParentItem(
@@ -58,8 +58,8 @@ class ComClassViewModel : ViewModel() {
             )
         )
         val childItem5 = ArrayList<ChildItem>()
-        childItem5.add(ChildItem("Java", R.drawable.java))
-        childItem5.add(ChildItem("Python", R.drawable.python))
+        childItem5.add(ChildItem("Java", R.drawable.com_java))
+        childItem5.add(ChildItem("Python", R.drawable.com_python))
         childItem5.add(ChildItem("PHP", R.drawable.com_c))
         childItem5.add(ChildItem("JavaScript", R.drawable.com_javascript))
         parentList.add(
