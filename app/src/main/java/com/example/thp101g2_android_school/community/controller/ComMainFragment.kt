@@ -34,7 +34,10 @@ class ComMainFragment : Fragment() {
             )
 
         with(binding) {
+
             viewPager2.adapter = MyFragmentStateAdapter(this@ComMainFragment, pages)
+            // 預設頁面為全部文章
+            viewPager2.setCurrentItem(1, false)
             TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
                 // 設定tab標題文字
                 tab.text = pages[position].title
