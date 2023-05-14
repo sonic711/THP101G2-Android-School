@@ -25,40 +25,44 @@
                     android:layout_marginStart="16dp">
                 <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
+                        android:layout_height="wrap_content"
+                        tools:srcCompat="@tools:sample/avatars"
+                        app:imageResource="@{viewModel.post.memberImg}"
                         android:id="@+id/imageView"/>
             </androidx.cardview.widget.CardView>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvMemberName"
                     app:layout_constraintTop_toTopOf="@+id/childCardView"
-                    app:layout_constraintStart_toEndOf="@+id/childCardView" tools:text="NickName"
+                    app:layout_constraintStart_toEndOf="@+id/childCardView"
+                    tools:text="@{viewModel.post.memberName}"
                     android:layout_marginStart="10dp"/>
             <TextView
-                    android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvClass"
                     app:layout_constraintTop_toBottomOf="@+id/tvMemberName"
-                    app:layout_constraintStart_toEndOf="@+id/childCardView" tools:text="程式語言"
+                    app:layout_constraintStart_toEndOf="@+id/childCardView"
+                    tools:text="@{viewModel.post.secClass}"
                     android:layout_marginStart="10dp"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvDate"
                     app:layout_constraintTop_toTopOf="@+id/tvClass"
-                    app:layout_constraintStart_toEndOf="@+id/tvClass" android:layout_marginStart="16dp"
-                    tools:text="4/23"/>
+                    app:layout_constraintStart_toEndOf="@+id/tvClass"
+                    android:layout_marginStart="16dp"
+                    tools:text="@{viewModel.post.time}"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvTitle"
                     app:layout_constraintTop_toBottomOf="@+id/childCardView"
-                    app:layout_constraintStart_toStartOf="@+id/childCardView" android:layout_marginTop="16dp"
-                    tools:text="這是一篇測試用的標題" android:textSize="24dp"/>
+                    app:layout_constraintStart_toStartOf="@+id/childCardView" android:layout_marginTop="8dp"
+                    tools:text="@{viewModel.post.postTitle}" android:textSize="24dp"/>
             <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="209dp"
                     android:layout_height="55dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="16dp" app:layout_constraintStart_toEndOf="@+id/tvDate"
-                    android:layout_marginStart="16dp" android:id="@+id/postRecyclerView"
+                    android:layout_marginTop="8dp" app:layout_constraintStart_toEndOf="@+id/tvMemberName"
+                    android:id="@+id/labelRecyclerView"
                     tools:listitem="@layout/com_label_itemview" tools:itemCount="3"
                     app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
