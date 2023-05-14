@@ -18,6 +18,18 @@
     <color name="mary">#7517F8</color>
     <color name="john">#9D50DA</color>
     <color name="transparent">#00000000</color>
+
+    <!-- 以下是日曆用標籤顏色 -->
+    <color name="Tag_HOTPink">#FFFF66C2</color>
+    <color name="Tag_Rose">#FFF72585</color>
+    <color name="Tag_Heliotrope">#FFCF69FF</color>
+    <color name="Tag_PalatinateBlue">#FF5B35D3</color>
+    <color name="Tag_NeonBlue">#FF6978FF</color>
+    <color name="Tag_SkyBlue">#FF4CC9F0</color>
+    <color name="Tag_Turquoise">#FF53E9D0</color>
+    <color name="Tag_LightGreen">#FFA2F7A3</color>
+    <color name="Tag_Mustard">#FFFFD951</color>
+
 </resources>
 
 <!--        John & Mary-->
