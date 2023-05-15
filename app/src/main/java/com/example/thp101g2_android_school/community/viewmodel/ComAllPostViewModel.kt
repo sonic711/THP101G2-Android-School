@@ -36,6 +36,20 @@ class ComAllPostViewModel : ViewModel() {
         childItems3.add(Label("文章標籤"))
         postList.add(Post("3","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems3))
 
+        val childItems4 = ArrayList<Label>()
+        childItems4.add(Label("English"))
+        childItems4.add(Label("文章標籤"))
+        postList.add(Post("4","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems4))
+
+        val childItems5 = ArrayList<Label>()
+        childItems5.add(Label("English"))
+        childItems5.add(Label("文章標籤"))
+        postList.add(Post("5","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems5))
+
+        val childItems6 = ArrayList<Label>()
+        childItems6.add(Label("English"))
+        childItems6.add(Label("文章標籤"))
+        postList.add(Post("6","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems6))
 
         this.postList = postList
         this.posts.value = this.postList
