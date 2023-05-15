@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.community.controller
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.community.model.Post
 import com.example.thp101g2_android_school.community.viewmodel.ComMainViewModel
 import com.example.thp101g2_android_school.databinding.ComMainItemviewBinding
-import kotlinx.coroutines.NonDisposableHandle.parent
+
 
 class PostAdapter(private var posts: List<Post>) :
     RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
@@ -48,7 +47,7 @@ class PostAdapter(private var posts: List<Post>) :
             if (getViewedArticleIdFromSharedPreferences(itemView.context, post.postId) == 1) {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.gray_500))
             }else{
-//                itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.black))
+                itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.black))
             }
             // 載入labelRecyclerView文章標籤
             with(itemViewBinding.labelRecyclerView) {
@@ -70,6 +69,7 @@ class PostAdapter(private var posts: List<Post>) :
      *  @author Sean
      */
     private fun saveArticleIdToSharedPreferences(context: Context, articleId: String) {
+        // TODO 之後改成用JSON存
         val sharedPrefs = context.getSharedPreferences("com_app_prefs", Context.MODE_PRIVATE)
         sharedPrefs.edit()
             .putInt("viewed_article_id$articleId", 1)
@@ -84,6 +84,7 @@ class PostAdapter(private var posts: List<Post>) :
      *  @author Sean
      */
     private fun getViewedArticleIdFromSharedPreferences(context: Context, articleId: String): Int? {
+        // TODO 之後改成取JSON
         val sharedPrefs = context.getSharedPreferences("com_app_prefs", Context.MODE_PRIVATE)
         // 如果找不到Key，就回傳 null。如果找到Key，就檢查值是否為預設值 -1。如果不是，就回傳實際值；否則回傳 null。
         return sharedPrefs.getInt("viewed_article_id$articleId", -1).takeIf { it != -1 }
