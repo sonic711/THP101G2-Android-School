@@ -1,16 +1,19 @@
 package com.example.thp101g2_android_school.community.controller
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.thp101g2_android_school.MainFragment
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.community.model.Page
 import com.example.thp101g2_android_school.databinding.FragmentComMainBinding
+import com.example.thp101g2_android_school.shop.controller.ShopMainFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ComMainFragment : Fragment() {
@@ -25,6 +28,12 @@ class ComMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         handleViews()
+        with(binding){
+            floatingBtn.setOnClickListener{
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_comMainFragment_to_comPostFragment)
+            }
+        }
     }
     private fun handleViews() {
         val pages = listOf(

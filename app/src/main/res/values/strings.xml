@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">THP101G2-Android-School</string>
     <string name="back">返回</string>
+    <string name="text_com_input_title">請輸入標題 ...</string>
+    <string name="text_com_input_content">請輸入內容 ...</string>
 </resources>

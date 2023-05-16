@@ -9,7 +9,11 @@
         <action android:id="@+id/action_mainFragment_to_comMainFragment" app:destination="@id/comMainFragment"/>
     </fragment>
     <fragment android:id="@+id/comMainFragment" android:name="com.example.thp101g2_android_school.community.controller.ComMainFragment"
-              android:label="fragment_com_main" tools:layout="@layout/fragment_com_main"/>
+              android:label="fragment_com_main" tools:layout="@layout/fragment_com_main">
+        <action android:id="@+id/action_comMainFragment_to_comPostFragment" app:destination="@id/comPostFragment"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
     <fragment android:id="@+id/comFollowFragment" android:name="com.example.thp101g2_android_school.community.controller.ComFollowFragment"
               android:label="fragment_com_follow" tools:layout="@layout/fragment_com_follow"/>
     <fragment android:id="@+id/comAllClassFragment"
@@ -41,4 +45,11 @@
         android:name="com.example.thp101g2_android_school.member.controller.MemMainFragment"
         android:label="fragment_mem_main"
         tools:layout="@layout/fragment_mem_main" />
+    <fragment
+            android:id="@+id/couMainFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouMainFragment"
+            android:label="fragment_cou_main"
+            tools:layout="@layout/fragment_cou_main" />
+    <fragment android:id="@+id/comPostFragment" android:name="com.example.thp101g2_android_school.community.controller.ComPostFragment"
+              android:label="fragment_com_post" tools:layout="@layout/fragment_com_post"/>
 </navigation>
