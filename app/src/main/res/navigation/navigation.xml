@@ -31,4 +31,14 @@
         android:name="com.example.thp101g2_android_school.shop.controller.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail" />
+    <fragment
+        android:id="@+id/calMainFragment"
+        android:name="com.example.thp101g2_android_school.calendar.controller.calMainFragment"
+        android:label="fragment_cal_main"
+        tools:layout="@layout/fragment_cal_main" />
+    <fragment
+        android:id="@+id/memMainFragment"
+        android:name="com.example.thp101g2_android_school.member.controller.MemMainFragment"
+        android:label="fragment_mem_main"
+        tools:layout="@layout/fragment_mem_main" />
 </navigation>
