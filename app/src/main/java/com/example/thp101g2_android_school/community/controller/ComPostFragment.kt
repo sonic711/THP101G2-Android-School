@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.community.viewmodel.ComPostViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentComPostBinding
@@ -23,6 +25,7 @@ class ComPostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (requireActivity() as MainActivity).supportActionBar?.title = "發表貼文"
         binding = FragmentComPostBinding.inflate(inflater, container, false)
         val viewModel: ComPostViewModel by viewModels()
         binding.viewModel = viewModel
@@ -44,8 +47,9 @@ class ComPostFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        // TODO 應該是要寫一個popout 問要不要儲存草稿嗎？，但如果閃退怎麼辦
+        // TODO 應該是要寫一個彈出視窗 問要不要儲存草稿嗎？，但如果閃退怎麼辦
         saveInternal()
+
     }
 
     private fun saveInternal() {

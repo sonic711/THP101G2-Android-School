@@ -13,6 +13,8 @@
         <action android:id="@+id/action_comMainFragment_to_comPostFragment" app:destination="@id/comPostFragment"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/action_comMainFragment_to_postDetailFragment"
+                app:destination="@id/postDetailFragment"/>
     </fragment>
     <fragment android:id="@+id/comFollowFragment" android:name="com.example.thp101g2_android_school.community.controller.ComFollowFragment"
               android:label="fragment_com_follow" tools:layout="@layout/fragment_com_follow"/>
@@ -52,4 +54,6 @@
             tools:layout="@layout/fragment_cou_main" />
     <fragment android:id="@+id/comPostFragment" android:name="com.example.thp101g2_android_school.community.controller.ComPostFragment"
               android:label="fragment_com_post" tools:layout="@layout/fragment_com_post"/>
+    <fragment android:id="@+id/postDetailFragment" android:name="com.example.thp101g2_android_school.community.controller.PostDetailFragment"
+              android:label="fragment_post_detail" tools:layout="@layout/fragment_post_detail"/>
 </navigation>
