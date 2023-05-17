@@ -52,6 +52,11 @@ class ComPostFragment : Fragment() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        println("發表文章頁面銷毀")
+    }
+
     private fun saveInternal() {
         with(binding) {
             if (!inputValid()) {

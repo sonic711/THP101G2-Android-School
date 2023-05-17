@@ -3,8 +3,12 @@ package com.example.thp101g2_android_school.community.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.community.model.ChildItem
+import com.example.thp101g2_android_school.community.model.Classes
 import com.example.thp101g2_android_school.community.model.ParentItem
+import com.google.gson.reflect.TypeToken
+import org.json.JSONArray
 
 class ComClassViewModel : ViewModel() {
     private var parentList = mutableListOf<ParentItem>()
@@ -14,7 +18,39 @@ class ComClassViewModel : ViewModel() {
     }
 
     private fun loadData() {
+        // TODO 可以抓到資料 但還沒處理好
+//        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/community/class"
+//        val type = object : TypeToken<List<Classes>>(){}.type
+//        val list = requestTask<List<Classes>>(url, respBodyType = type)
+//        val childItems = ArrayList<ChildItem>()
+//
+//        for(classes in list!!){
+//            val comMainClassId = classes.comMainClassId
+//            val comMainClassName = classes.comMainClassName
+//            val comSecClassId = classes.comSecClassId
+//            val comSecClassName = classes.comSecClassName
+//            // 如果主分類編號 = 上一個的主分類編號 就新增到childItems
+//            if(comMainClassId == (list.get(comSecClassId.toInt() - 1)).comMainClassId) {
+//                childItems.add(ChildItem(comSecClassName, R.drawable.com_c))
+//                continue
+//            // 如果不等於，就新增一個List，並新增到該List之中
+//            }else{
+//                val childItems = ArrayList<ChildItem>()
+//                childItems.add(ChildItem(comSecClassName, R.drawable.com_c))
+//
+//            }
+//
+//            parentList.add(ParentItem(comMainClassName, R.drawable.com_console, childItems))
+//        }
+//
+//        this.parents.value = parentList
 
+
+
+
+
+
+        // 假資料
         val childItems1 = ArrayList<ChildItem>()
         childItems1.add(ChildItem("C", R.drawable.com_c))
         childItems1.add(ChildItem("C++", R.drawable.com_cplusplus))

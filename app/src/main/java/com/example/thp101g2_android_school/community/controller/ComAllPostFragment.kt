@@ -44,6 +44,10 @@ class ComAllPostFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        println("所有文章頁面銷毀")
+    }
 
 
     // 將指定文章的標題設置為灰色
