@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.thp101g2_android_school.member.viewModel.LoginMainViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        tools:context=".member.controller.LoginMainFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="150dp"
+                android:src="@drawable/fakelogo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="310dp"
+                android:text="Back to"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="350dp"
+                android:text="SCHOOL"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="100dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Button
+                    android:id="@+id/btStudent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/button_secondary"
+                    android:backgroundTint="@null"
+                    android:text="@string/txtIamStudent"
+                    android:textColor="@color/purple_400"
+                    app:backgroundTint="@null" />
+
+                <Button
+                    android:id="@+id/btFirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_secondary"
+                    android:text="@string/txtIamFirm"
+                    android:textColor="@color/purple_400"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

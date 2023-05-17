@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.thp101g2_android_school.member.viewModel.RegisterVerificationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/txtRegister"
+                android:textColor="@color/purple_400"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvVerificationDescribe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/txtVerificationDescribe"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvPhoneNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.phone}"
+                    android:textColor="@color/purple_400"
+                    tools:text="09xxxxxxxx" />
+
+                <TextView
+                    android:id="@+id/tvResent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@string/txtResent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvVerification"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tvVerification" />
+
+                    <EditText
+                        android:id="@+id/etVerification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/txtVerification"
+                        android:inputType="none|number" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_primary"
+                android:text="@string/btSubmit"
+                app:backgroundTint="@null" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvValidityPeriod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvValidityPeriod1" />
+
+                <TextView
+                    android:id="@+id/tvSec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="59" />
+
+                <TextView
+                    android:id="@+id/tvValidityPeriod2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txtValidityPeriod2" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>
