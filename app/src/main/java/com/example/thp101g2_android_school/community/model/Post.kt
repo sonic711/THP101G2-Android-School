@@ -2,7 +2,7 @@ package com.example.thp101g2_android_school.community.model
 
 import java.io.Serializable
 
-class Post(
+data class Post(
     var postId: String,
     var memberId : String,
     var memberName: String,
