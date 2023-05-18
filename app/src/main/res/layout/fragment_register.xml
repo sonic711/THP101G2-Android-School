@@ -147,6 +147,8 @@
                     android:layout_marginTop="32dp"
                     android:background="@drawable/button_primary"
                     android:text="@string/btRegister"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     app:backgroundTint="@null" />
 
             </LinearLayout>
