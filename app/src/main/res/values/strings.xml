@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">THP101G2-Android-School</string>
-    <string name="back">返回</string>
+    <string name="ShopBack">返回</string>
+    <string name="ShopFav">加入我的最愛</string>
+    <string name="ShopCar">加入購物車</string>
 </resources>
