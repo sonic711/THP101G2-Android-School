@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.thp101g2_android_school.R
-import com.example.thp101g2_android_school.databinding.ShopMainItemviewBinding
+import com.example.thp101g2_android_school.databinding.FragmentShopFavoriteItemviewBinding
 import com.example.thp101g2_android_school.shop.model.Product
-import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
+import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteViewModel
 
-class ProductAdapter(private var products: List<Product>) :
-    RecyclerView.Adapter<ProductAdapter.FriendViewHolder>() {
+class ShopFavoriteAdapter(private var products: List<Product>) :
+    RecyclerView.Adapter<ShopFavoriteAdapter.ShopFavoriteViewHolder>() {
 
 
     fun updateProduct(products: List<Product>) {
@@ -20,34 +18,30 @@ class ProductAdapter(private var products: List<Product>) :
         notifyDataSetChanged()
     }
 
-    class FriendViewHolder(val itemViewBinding: ShopMainItemviewBinding) :
+    class ShopFavoriteViewHolder(val itemViewBinding: FragmentShopFavoriteItemviewBinding) :
         RecyclerView.ViewHolder(itemViewBinding.root)
 
     override fun getItemCount(): Int {
         return products.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
-        val itemViewBinding = ShopMainItemviewBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopFavoriteViewHolder{
+        val itemViewBinding =  FragmentShopFavoriteItemviewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        itemViewBinding.viewModel = ShopMainViewModel()
+        itemViewBinding.viewModel = ShopFavoriteViewModel()
         // 設定lifecycleOwner方能監控LiveData資料變化，layout檔案的view才會更新顯示
         itemViewBinding.lifecycleOwner = parent.findViewTreeLifecycleOwner()
-        return FriendViewHolder(itemViewBinding)
+        return ShopFavoriteViewHolder(itemViewBinding)
     }
 
-    override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShopFavoriteViewHolder, position: Int) {
         val product = products[position]
         with(holder) {
             // 將欲顯示的product物件指派給LiveData，就會自動更新layout檔案的view顯示
             itemViewBinding.viewModel?.product?.value = product
             val bundle = Bundle()
             bundle.putSerializable("product", product)
-            itemView.setOnClickListener {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_shopFrontFragment_to_productDetailFragment, bundle)
-            }
 
         }
     }
