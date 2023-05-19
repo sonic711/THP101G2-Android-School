@@ -5,5 +5,5 @@ import java.io.Serializable
 /**
  * 社群次類別
  * */
-class ChildItem(var childName: String, var childImg: Int): Serializable {
+data class ChildItem(var childName: String, var childImg: Int): Serializable {
 }

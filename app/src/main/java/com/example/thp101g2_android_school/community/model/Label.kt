@@ -5,5 +5,5 @@ import java.io.Serializable
 /**
  * 社群文章標籤
  */
-class Label(var labelName: String): Serializable {
+data class Label(var labelName: String): Serializable {
 }
