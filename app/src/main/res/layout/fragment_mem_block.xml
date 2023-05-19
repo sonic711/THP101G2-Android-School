@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.MemBlockViewModel" />
+            type="com.example.thp101g2_android_school.member.viewModel.MemBlockViewModel" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
-        tools:context=".MemBlockFragment">
+        tools:context=".member.controller.MemBlockFragment">
 
         <ScrollView
             android:layout_width="match_parent"
