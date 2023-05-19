@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="">
+        <item android:title="課程">
+            <menu>
+
+                <item
+                    android:id="@+id/myCourse"
+                    android:icon="@drawable/ic_bookmark_added_24"
+                    android:title="@string/tvMyCourse" />
+                <item
+                    android:id="@+id/myFavorite"
+                    android:icon="@drawable/ic_favorite_border_24"
+                    android:title="@string/tvMyFavorite" />
+                <item
+                    android:id="@+id/myPoint"
+                    android:icon="@drawable/ic_attach_money_24"
+                    android:title="@string/tvMyPoint" />
+            </menu>
+        </item>
+        <item android:title="教室">
+            <menu>
+                <item
+                    android:id="@+id/myClassroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_school_24"
+                    android:title="@string/tvMyClassroom" />
+                <item
+                    android:id="@+id/teacherCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_class_24"
+                    android:title="@string/tvTeacherCourse" />
+            </menu>
+
+        </item>
+        <item android:title="社群">
+
+            <menu>
+                <item
+                    android:id="@+id/blackList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_person_off_24"
+                    android:title="@string/tvBlackList" />
+            </menu>
+
+        </item>
+        <item android:title="設定">
+            <menu>
+                <item
+                    android:id="@+id/settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_settings_24"
+                    android:title="@string/tvSettings" />
+                <item
+                    android:id="@+id/contactCS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_contact_support_24"
+                    android:title="@string/tvContactCS" />
+
+            </menu>
+
+        </item>
+    </group>
+
+</menu>
