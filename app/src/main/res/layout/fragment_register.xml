@@ -53,17 +53,17 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvUsername"
+                            android:id="@+id/tvUserID"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="@string/tvUsername" />
+                            android:text="@string/tvUserID" />
 
                         <EditText
                             android:id="@+id/etUsername"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:hint="@string/txtUsername"
+                            android:hint="@string/txtUserID"
                             android:inputType="textPersonName" />
                     </LinearLayout>
 
