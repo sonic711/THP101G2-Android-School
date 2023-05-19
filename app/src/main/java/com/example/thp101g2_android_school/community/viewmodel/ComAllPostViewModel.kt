@@ -23,33 +23,33 @@ class ComAllPostViewModel : ViewModel() {
         childItems1.add(Label("Chinese"))
         childItems1.add(Label("Easy"))
         childItems1.add(Label("Damnnn"))
-        postList.add(Post("1","Sean", R.drawable.com_julia, "Java", "1/2","Java Basic","Testing",childItems1))
+        postList.add(Post("1", "1", "Sean", R.drawable.com_julia, "Java", "1/2","Java Basic","Testing",childItems1))
 
         val childItems2 = ArrayList<Label>()
         childItems2.add(Label("English"))
         childItems2.add(Label("文章標籤"))
         childItems2.add(Label("履歷"))
-        postList.add(Post("2","Mary",R.drawable.com_mary, "Resume", "12/25","piano","Testing", childItems2))
+        postList.add(Post("2","1","Mary",R.drawable.com_mary, "Resume", "12/25","piano","Testing", childItems2))
 
         val childItems3 = ArrayList<Label>()
         childItems3.add(Label("English"))
         childItems3.add(Label("文章標籤"))
-        postList.add(Post("3","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems3))
+        postList.add(Post("3","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems3))
 
         val childItems4 = ArrayList<Label>()
         childItems4.add(Label("English"))
         childItems4.add(Label("文章標籤"))
-        postList.add(Post("4","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems4))
+        postList.add(Post("4","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems4))
 
         val childItems5 = ArrayList<Label>()
         childItems5.add(Label("English"))
         childItems5.add(Label("文章標籤"))
-        postList.add(Post("5","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems5))
+        postList.add(Post("5","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems5))
 
         val childItems6 = ArrayList<Label>()
         childItems6.add(Label("English"))
         childItems6.add(Label("文章標籤"))
-        postList.add(Post("6","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems6))
+        postList.add(Post("6","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems6))
 
         this.postList = postList
         this.posts.value = this.postList

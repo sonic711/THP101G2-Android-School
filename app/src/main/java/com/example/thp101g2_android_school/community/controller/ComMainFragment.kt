@@ -28,19 +28,26 @@ class ComMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         handleViews()
-        with(binding){
-            floatingBtn.setOnClickListener{
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_comMainFragment_to_comPostFragment)
+        with(binding) {
+            floatingBtn.setOnClickListener {
+                val navController = Navigation.findNavController(it)
+                /**
+                 *  TODO 這邊可能會有問題，先記錄一下
+                 *  回到上一頁會失效，因為主頁被pop掉了，解決辦法可能是之後要倒回ComMainFragment
+                 */
+                navController.popBackStack()
+                navController.navigate(R.id.comPostFragment)
+
             }
         }
     }
+
     private fun handleViews() {
         val pages = listOf(
             Page("追蹤", ContextCompat.getColor(requireContext(), R.color.purple_200), ComFollowFragment()),
             Page("全部文章", ContextCompat.getColor(requireContext(), R.color.teal_200), ComAllPostFragment()),
             Page("全部分類", ContextCompat.getColor(requireContext(), R.color.white), ComAllClassFragment()),
-            )
+        )
 
         with(binding) {
 
