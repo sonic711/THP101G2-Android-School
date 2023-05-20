@@ -55,4 +55,12 @@
     <string name="ShopFav">加入我的最愛</string>
     <string name="ShopCar">加入購物車</string>
     <string name="textCourseName">搜尋課程</string>
+    <string name="txtManageMember">會員管理</string>
+    <string name="txtManageClass">課程管理</string>
+    <string name="txtManageFirm">商城管理</string>
+    <string name="txtManageCom">社群管理</string>
+    <string name="txtManageMa">管理員系統</string>
+    <string name="txtManageReport">檢舉管理</string>
+    <string name="txtManage">主頁</string>
+    <string name="textClassName">請輸入要找的課程ID</string>
 </resources>
