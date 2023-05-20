@@ -1,11 +1,14 @@
 package com.example.thp101g2_android_school.community.controller
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.community.viewmodel.ComAllPostViewModel
@@ -40,4 +43,22 @@ class ComAllPostFragment : Fragment() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("所有文章頁面銷毀")
+    }
+
+
+    // 將指定文章的標題設置為灰色
+    fun setArticleTitleGray(context: Context, articleId: Int) {
+        val sharedPrefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val lastViewedArticleId = sharedPrefs.getInt("last_viewed_article_id", -1)
+        if (lastViewedArticleId == articleId) {
+            // 如果點擊過這篇文章，則將其標題設置為灰色
+//            val textView = findViewById<TextView>(R.id.article_title)
+//            textView.setTextColor(ContextCompat.getColor(context, R.color.gray))
+        }
+    }
+
 }

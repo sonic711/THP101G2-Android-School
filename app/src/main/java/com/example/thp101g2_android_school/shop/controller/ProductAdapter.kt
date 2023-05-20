@@ -46,7 +46,7 @@ class ProductAdapter(private var products: List<Product>) :
             bundle.putSerializable("product", product)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_shopMainFragment_to_productDetailFragment2, bundle)
+                    .navigate(R.id.action_shopFrontFragment_to_productDetailFragment, bundle)
             }
 
         }
