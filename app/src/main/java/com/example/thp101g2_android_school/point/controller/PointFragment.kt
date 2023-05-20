@@ -6,28 +6,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.databinding.FragmentPointBinding
 import com.example.thp101g2_android_school.point.viewmodel.PointViewModel
 
 class PointFragment : Fragment() {
+    private lateinit var binding:FragmentPointBinding
 
-    companion object {
-        fun newInstance() = PointFragment()
-    }
 
-    private lateinit var viewModel: PointViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_point, container, false)
+        val viewModel:PointViewModel by viewModels()
+        binding = FragmentPointBinding.inflate(inflater, container,false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        return  binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PointViewModel::class.java)
-        // TODO: Use the ViewModel
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+       with(binding){
+           recyclerView.layoutManager = LinearLayoutManager(requireContext())
+           viewModel?.reasons?.observe(viewLifecycleOwner){
+                   reasons -> recyclerView.adapter = PointAdapter(reasons)
+           }
+       }
+
+
     }
+
+
 
 }

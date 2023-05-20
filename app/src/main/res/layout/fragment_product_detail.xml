@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
             <ImageButton
@@ -23,7 +23,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/back"
+                android:contentDescription="@string/ShopBack"
                 android:src="@drawable/ic_back"
                 tools:ignore="MissingConstraints" />
 
@@ -36,17 +36,66 @@
                 android:src="@drawable/java"
                 app:imageResource="@{viewModel.product.imageId}" />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@{viewModel.product.name}"
-                android:textColor="#0000FF"
-                android:textSize="30sp"
-                tools:text="JAVA" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{viewModel.product.name}"
+                    android:textColor="#0000FF"
+                    android:textSize="48sp"
+                    tools:text="java" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvName"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_weight="10"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:text="@{viewModel.product.name}"-->
+<!--                    android:textColor="#0000FF"-->
+<!--                    android:textSize="24sp"-->
+<!--                    tools:text="JAVA" />-->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnFav"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/ShopFav"
+                    android:src="@drawable/ic_back"
+                    tools:ignore="MissingConstraints" />
+
+                <ImageButton
+                    android:id="@+id/btnCar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/ShopFav"
+                    android:src="@drawable/ic_back"
+                    tools:ignore="MissingConstraints" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvAuthor"
