@@ -148,23 +148,23 @@
             android:id="@+id/couCourseDetailFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouCourseDetailFragment"
             android:label="CouCourseDetailFragment"/>
-<!--    -->
+    <!--    -->
     <fragment
             android:id="@+id/manageHomeFragment"
             android:name="com.example.thp101g2_android_school.manage.controller.ManageHomeFragment"
             android:label="fragment_manage_home"
-            tools:layout="@layout/fragment_manage_home" />
+            tools:layout="@layout/fragment_manage_home"/>
     <fragment
             android:id="@+id/manageClassFragment"
             android:name="com.example.thp101g2_android_school.manage.controller.ManageClassesFragment"
-            android:label="ManageClassFragment" >
+            android:label="ManageClassFragment">
         <action
                 android:id="@+id/action_manageClassFragment_to_classDetailFragment"
-                app:destination="@id/classDetailFragment" />
+                app:destination="@id/classDetailFragment"/>
     </fragment>
     <fragment
             android:id="@+id/classDetailFragment"
             android:name="com.example.thp101g2_android_school.manage.controller.ClassDetailFragment"
-            android:label="ClassDetailFragment" />
-<!--    -->
+            android:label="ClassDetailFragment"/>
+    <!--    -->
 </navigation>

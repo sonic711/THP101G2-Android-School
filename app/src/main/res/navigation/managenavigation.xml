@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/managenavigation"
+            app:startDestination="@id/TManageMainFragment">
+
+    <fragment android:id="@+id/TManageMainFragment"
+              android:name="com.example.thp101g2_android_school.TManageMainFragment"
+              android:label="fragment_t_manage_main" tools:layout="@layout/fragment_t_manage_main"/>
+</navigation>
