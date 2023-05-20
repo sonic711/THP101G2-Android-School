@@ -54,4 +54,5 @@
     <string name="ShopBack">返回</string>
     <string name="ShopFav">加入我的最愛</string>
     <string name="ShopCar">加入購物車</string>
+    <string name="textCourseName">搜尋課程</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.thp101g2_android_school.community.controller
 
 import android.content.Context
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.MainActivity
@@ -18,6 +20,10 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import java.io.File
 
+/*
+*  日期要用比較新版
+* */
+@RequiresApi(Build.VERSION_CODES.O)
 class ComPostFragment : Fragment() {
     private val myTag = "TAG_${javaClass.simpleName}"
     private lateinit var binding: FragmentComPostBinding
@@ -86,13 +92,12 @@ class ComPostFragment : Fragment() {
                     // TODO 這邊應該還要存入會員的編號，避免換帳號之後代錯草稿，先寫死會員編號1
                     val jsonStr = lines.fold("") { text, line -> "$text$line" }
                     val jsonObject = Gson().fromJson(jsonStr, JsonObject::class.java)
-                    // TODO 判斷目前登入的會員id跟存入的會員id 有無一至，有的話才取出內容
+                    // TODO 判斷目前登入的會員id跟存入的會員id 有無一至，有的話才取出內容，先寫死會員編號1
                     // 如果目前登入的會員編號 屬於 草稿屬於的會員編號的話
-                    if(jsonObject.get("memberId")?.asString == "1"){
+                    if (jsonObject.get("memberId")?.asString == "1") {
                         viewModel?.title?.value = jsonObject.get("title").asString
                         viewModel?.content?.value = jsonObject.get("content").asString
-                    }
-                    else return
+                    } else return
                 }
                 Toast.makeText(requireContext(), "從草稿載入內容", Toast.LENGTH_SHORT).show()
             }
