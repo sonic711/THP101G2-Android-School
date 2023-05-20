@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationView,
             navHostFragment.navController
         )
-        // 先預設用MainFragment空白頁當首頁，之後再更改
-        binding.bottomNavigationView.selectedItemId = R.id.mainFragment
+        // 課程當登入後的首頁
+        binding.bottomNavigationView.selectedItemId = R.id.couMainFragment
     }
 }

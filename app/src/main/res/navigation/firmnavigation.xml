@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/firmnavigation"
+            app:startDestination="@id/TFirmMainFragment">
+
+    <fragment android:id="@+id/TFirmMainFragment" android:name="com.example.thp101g2_android_school.TFirmMainFragment"
+              android:label="fragment_t_firm_main" tools:layout="@layout/fragment_t_firm_main"/>
+</navigation>

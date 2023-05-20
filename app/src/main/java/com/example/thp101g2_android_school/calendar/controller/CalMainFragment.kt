@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.calendar.viewModel.CalMainViewModel
+import com.example.thp101g2_android_school.R
 
-class calMainFragment : Fragment() {
+class CalMainFragment : Fragment() {
 
     companion object {
-        fun newInstance() = calMainFragment()
+        fun newInstance() = CalMainFragment()
     }
 
     private lateinit var viewModel: CalMainViewModel

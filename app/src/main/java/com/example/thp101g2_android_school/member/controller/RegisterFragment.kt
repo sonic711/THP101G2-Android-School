@@ -1,4 +1,4 @@
-package com.example.thp101g2_android_school.manage.controller
+package com.example.thp101g2_android_school.member.controller
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,27 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.thp101g2_android_school.manage.viewmodel.ManageViewModel
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.member.viewModel.RegisterViewModel
 
-class ManageFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ManageFragment()
+        fun newInstance() = RegisterFragment()
     }
 
-    private lateinit var viewModel: ManageViewModel
+    private lateinit var viewModel: RegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_manage, container, false)
+        return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ManageViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

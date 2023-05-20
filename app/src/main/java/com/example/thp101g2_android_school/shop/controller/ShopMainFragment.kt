@@ -1,5 +1,6 @@
 package com.example.thp101g2_android_school.shop.controller
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.thp101g2_android_school.MainActivity
+import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.shop.model.ShopPage
 import com.example.thp101g2_android_school.databinding.FragmentShopMainBinding
 import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ShopMainFragment : Fragment() {
 
@@ -28,7 +34,6 @@ class ShopMainFragment : Fragment() {
         binding.viewModel = viewModel
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             //沒有layoutManager會沒recyclerview畫面

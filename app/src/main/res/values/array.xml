@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="repeatPattern">
+        <item>無重複</item>
+        <item>每天</item>
+        <item>每週</item>
+        <item>每月</item>
+    </string-array>
+
+    <string-array name="remindType">
+        <item>無提醒</item>
+        <item>半小時前</item>
+        <item>一小時前</item>
+        <item>兩小時前</item>
+    </string-array>
+
+</resources>
