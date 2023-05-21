@@ -6,28 +6,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.member.viewModel.MemSettingViewModel
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.databinding.FragmentMemSettingBinding
 
 class MemSettingFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MemSettingFragment()
-    }
-
-    private lateinit var viewModel: MemSettingViewModel
+    private lateinit var binding: FragmentMemSettingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_mem_setting, container, false)
+    ): View {
+        binding = FragmentMemSettingBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MemSettingViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            llAccountSetting.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_memSettingFragment_to_memEditAccountFragment)
+            }
+            llNotificationSetting.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_memSettingFragment_to_memNotificationSettingFragment)
+            }
+            llEditPasswordSetting.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_memSettingFragment_to_memEditPasswordFragment)
+            }
+            llApplyToTeacher.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_memSettingFragment_to_memApplyToTeacherFragment)
+            }
+        }
     }
 
 }

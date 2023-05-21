@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.calendar.viewModel.CalMainViewModel" />
+            type="com.example.thp101g2_android_school.calendar.viewModel.SchedulesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,6 +72,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </ScrollView>
