@@ -9,193 +9,227 @@
             type="com.example.thp101g2_android_school.member.viewModel.RegisterViewModel" />
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="56dp"
+            android:padding="16dp">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_gravity="start"
+                app:srcCompat="@drawable/ic_arrow_back_24" />
+        </FrameLayout>
 
-                <TextView
-                    android:id="@+id/tvRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/txtRegister"
-                    android:textColor="@color/purple_400"
-                    android:textSize="36sp"
-                    android:textStyle="bold" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/txtRegister"
+                        android:textColor="@color/purple_400"
+                        android:textSize="36sp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="16dp"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvUserID"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="@string/tvUserID" />
+                            android:layout_marginBottom="16dp"
+                            android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/etUsername"
+                            <TextView
+                                android:id="@+id/tvUserID"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/tvUserID" />
+
+                            <EditText
+                                android:id="@+id/etUsername"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/txtUserID"
+                                android:inputType="textPersonName" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/txtUserID"
-                            android:inputType="textPersonName" />
-                    </LinearLayout>
+                            android:layout_marginBottom="16dp"
+                            android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tvEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/tvEmail" />
 
-                        <TextView
-                            android:id="@+id/tvEmail"
+                            <EditText
+                                android:id="@+id/etEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/txtEmail"
+                                android:inputType="textEmailAddress" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvPassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/tvPassword" />
+
+                            <EditText
+                                android:id="@+id/etPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/txtPassword"
+                                android:inputType="textPassword" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="@string/tvEmail" />
+                            android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/etEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/txtEmail"
-                            android:inputType="textEmailAddress" />
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/tvConPassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/tvConPassword" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:orientation="vertical">
+                            <EditText
+                                android:id="@+id/etConPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/txtConPassword"
+                                android:inputType="textPassword" />
+                        </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/tvPassword"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/tvPassword" />
-
-                        <EditText
-                            android:id="@+id/etPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/txtPassword"
-                            android:inputType="textPassword" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tvConPassword"
+                            android:id="@+id/tvQuestion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/txtHaveAccount"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tvHaveAccount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/tvConPassword" />
-
-                        <EditText
-                            android:id="@+id/etConPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/txtConPassword"
-                            android:inputType="textPassword" />
+                            android:layout_gravity="end"
+                            android:clickable="true"
+                            android:onClick="haveAccountOnClick"
+                            android:text="@string/txtLogin"
+                            android:textColor="@color/purple_400"
+                            android:textStyle="bold" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:background="@drawable/button_primary"
+                        android:text="@string/btRegister"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvForgetPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:onClick="forgetPasswordOnClick"
-                    android:text="@string/btForgetPassword"
-                    android:textColor="@color/purple_400" />
-
-                <Button
-                    android:id="@+id/btRegister"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
-                    android:background="@drawable/button_primary"
-                    android:text="@string/btRegister"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="@null" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <TextView
-                    android:id="@+id/tvSSO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/txtSSO" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/icon_google" />
+                    <TextView
+                        android:id="@+id/tvSSO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/txtSSO" />
 
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:layout_marginLeft="16dp"
-                        android:src="@drawable/icon_facebook" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginRight="16dp"
+                            android:src="@drawable/icon_google" />
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginLeft="16dp"
+                            android:src="@drawable/icon_facebook" />
+                    </LinearLayout>
+
                 </LinearLayout>
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </layout>

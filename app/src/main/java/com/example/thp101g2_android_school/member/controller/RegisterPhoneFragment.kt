@@ -6,28 +6,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.databinding.FragmentRegisterPhoneBinding
 import com.example.thp101g2_android_school.member.viewModel.RegisterPhoneViewModel
 
 class RegisterPhoneFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RegisterPhoneFragment()
-    }
-
-    private lateinit var viewModel: RegisterPhoneViewModel
+    private lateinit var binding: FragmentRegisterPhoneBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_register_phone, container, false)
+        val viewModel: RegisterPhoneViewModel by viewModels()
+        binding = FragmentRegisterPhoneBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RegisterPhoneViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            btGetCaptcha.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_registerPhoneFragment_to_registerVerificationFragment)
+            }
+            ivBack.setOnClickListener {
+                Navigation.findNavController(it).popBackStack()
+            }
+        }
     }
+
 
 }

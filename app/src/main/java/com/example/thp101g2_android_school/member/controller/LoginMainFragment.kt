@@ -13,7 +13,6 @@ import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentLoginMainBinding
 
 class LoginMainFragment : Fragment() {
-
     private lateinit var binding: FragmentLoginMainBinding
 
     override fun onCreateView(
@@ -28,9 +27,10 @@ class LoginMainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btStudent.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_loginMainFragment_to_loginFragment)
+                Navigation.findNavController(it).navigate(R.id.action_loginMainFragment_to_registerFragment)
             }
         }
     }

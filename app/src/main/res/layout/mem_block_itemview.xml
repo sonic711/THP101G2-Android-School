@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <data>
         <variable
@@ -17,14 +17,14 @@
             android:id="@+id/ivUserPhoto"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            app:srcCompat="@={viewModel.member.imgId}" />
+            app:srcCompat="@drawable/mem_userphoto" />
 
         <TextView
             android:id="@+id/tvUserID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@={viewModel.member.UserId}"
+            android:text="Adam"
             android:textSize="20sp"
             android:textColor="@color/black" />
 

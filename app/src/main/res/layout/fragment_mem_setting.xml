@@ -35,14 +35,13 @@
                 android:layout_weight="1"
                 android:text="@string/tvAccountSetting"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/ivNext"
+                android:id="@+id/ivNext1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_navigate_next_24"
-                tools:ignore="DuplicateIds" />
+                android:src="@drawable/ic_navigate_next_24" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,14 +64,13 @@
                 android:layout_weight="1"
                 android:text="@string/tvNotificationSetting"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/ivNext"
+                android:id="@+id/ivNext2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_navigate_next_24"
-                tools:ignore="DuplicateIds" />
+                android:src="@drawable/ic_navigate_next_24" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,14 +93,13 @@
                 android:layout_weight="1"
                 android:text="@string/tvEditPW"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/ivEditPW"
+                android:id="@+id/ivNext3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_navigate_next_24"
-                tools:ignore="DuplicateIds" />
+                android:src="@drawable/ic_navigate_next_24" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,14 +122,13 @@
                 android:layout_weight="1"
                 android:text="@string/tvApplyToTeacher"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/ivNext"
+                android:id="@+id/ivNext4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_navigate_next_24"
-                tools:ignore="DuplicateIds" />
+                android:src="@drawable/ic_navigate_next_24" />
         </LinearLayout>
 
     </LinearLayout>
