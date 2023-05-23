@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.thp101g2_android_school.FirmMainActivity
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.firm.viewmodel.FirmMainViewModel
 import com.example.thp101g2_android_school.R
@@ -21,7 +22,7 @@ class FirmMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (requireActivity() as MainActivity).supportActionBar?.hide()
+        (requireActivity() as FirmMainActivity).supportActionBar?.hide()
         val viewModel : FirmProductsViewModel by viewModels()
         binding = FragmentFirmMainBinding.inflate(inflater,container,false)
         binding.viewModel = viewModel
