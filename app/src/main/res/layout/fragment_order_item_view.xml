@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.thp101g2_android_school.firm.viewmodel.FirmOrderViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:foreground="?selectableItemBackground"
+
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".OrderItemViewFragment">
+
+            <ImageView
+                android:id="@+id/ivOrderPicture"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:scaleType="centerInside"
+                app:imageResource="@{viewModel.firmOrder.imageId}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvOrderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text='@{"訂單編號:"+viewModel.firmOrder.orderId}'
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/ivOrderPicture"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvOrderTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text='@{"訂單時間:"+ viewModel.firmOrder.orderTime}'
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/ivOrderPicture"
+                app:layout_constraintTop_toBottomOf="@+id/tvOrderId" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

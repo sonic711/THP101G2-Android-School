@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/firmProductManagerFragment"
+        android:icon="@drawable/goodsbar"
+        android:title="商品管理" />
+    <item
+        android:id="@+id/frimOrderManagerFragment"
+        android:icon="@drawable/orderbar"
+        android:title="訂單管理" />
+    <item
+        android:id="@+id/firmMainFragment"
+        android:icon="@drawable/firmhomepage"
+        android:title="首頁" />
+    <item
+        android:id="@+id/firmDataCenterFragment"
+        android:icon="@drawable/databar"
+        android:title="數據中心" />
+    <item
+        android:id="@+id/firmSettingFragment"
+        android:icon="@drawable/firmsettingbar"
+        android:title="設定" />
+</menu>
