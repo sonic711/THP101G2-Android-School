@@ -23,10 +23,6 @@ class ComAllPostViewModel : ViewModel() {
         viewModelScope.launch { loadPosts() }
     }
 
-    private fun loadFakeMemberImg() {
-
-    }
-
     private fun loadPosts() {
 
         val url = "$url/community/post"
