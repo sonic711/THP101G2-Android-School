@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.thp101g2_android_school.firm.viewmodel.FirmProductManagerViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".firm.controller.FirmProductEditDetailFragment">
+
+
+            <ImageView
+                android:id="@+id/ivFirmProductEdit"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerInside"
+                app:imageResource="@{viewModel.productEdit.imageId}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductName"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivFirmProductEdit" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:text="@={viewModel.productEdit.name}"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditName"
+                app:layout_constraintTop_toBottomOf="@+id/ivFirmProductEdit" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductPrice"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditName" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditPrice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="number"
+                android:text="@{viewModel.productEdit.price}"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditPrice"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditName" />
+
+            <TextView
+                android:id="@+id/tvFirnProductEditAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductAuthor"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/etFirmProductEditPrice"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditName" />
+
+            <EditText
+                android:id="@+id/etFirnProductEditAuthor"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@{viewModel.productEdit.author}"
+                app:layout_constraintStart_toEndOf="@+id/tvFirnProductEditAuthor"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditName" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditPub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductPublish"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditTag" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditPub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:text="@={viewModel.productEdit.publish}"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditPub"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditTag" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductPTime"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditPub" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:text="@{viewModel.productEdit.publishTime}"
+                android:inputType="date"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditTime"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditPub" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductClass"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditPrice" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:text="@={viewModel.productEdit.productClass}"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditClass"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditPrice" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductTag"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditClass" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:text="@={viewModel.productEdit.productTag}"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditTag"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditClass" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmEditProductInfo"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditTime" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:text="@={viewModel.productEdit.pinfo}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditInfo" />
+
+            <Button
+                android:id="@+id/btFirmCancelEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button_secondary"
+                android:text="@string/txtFirmCancelEdit"
+                android:textColor="@color/purple_400"
+                app:backgroundTint="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditInfo" />
+
+            <Button
+                android:id="@+id/btFirmConEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="80dp"
+                android:background="@drawable/button_secondary"
+                android:text="@string/txtFirmConEdit"
+                android:textColor="@color/purple_400"
+                app:backgroundTint="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditInfo" />
+
+            <ImageButton
+                android:id="@+id/ibProductEditToBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="?attr/homeAsUpIndicator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btFirmProductPictureEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/txtFirmEditProductPicture"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
