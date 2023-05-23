@@ -51,7 +51,12 @@
 
     <fragment android:id="@+id/comPostFragment"
               android:name="com.example.thp101g2_android_school.community.controller.ComPostFragment"
-              android:label="fragment_com_post" tools:layout="@layout/fragment_com_post"/>
+              android:label="fragment_com_post" tools:layout="@layout/fragment_com_post">
+        <action android:id="@+id/action_comPostFragment_to_comAllClassForPostFragment"
+                app:destination="@id/comAllClassForPostFragment"/>
+        <action android:id="@+id/action_comPostFragment_to_comLabelForPostFragment"
+                app:destination="@id/comLabelForPostFragment"/>
+    </fragment>
     <fragment android:id="@+id/postDetailFragment"
               android:name="com.example.thp101g2_android_school.community.controller.PostDetailFragment"
               android:label="fragment_post_detail" tools:layout="@layout/fragment_post_detail"/>
@@ -148,6 +153,12 @@
             android:id="@+id/couCourseDetailFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouCourseDetailFragment"
             android:label="CouCourseDetailFragment"/>
+    <fragment android:id="@+id/comAllClassForPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComAllClassForPostFragment"
+              android:label="ComAllClassForPostFragment"/>
+    <fragment android:id="@+id/comLabelForPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComLabelForPostFragment"
+              android:label="fragment_com_label_for_post" tools:layout="@layout/fragment_com_label_for_post"/>
     <!--    -->
 
     <!--    -->

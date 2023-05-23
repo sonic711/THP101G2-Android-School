@@ -4,11 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.ChildItem
 import com.example.thp101g2_android_school.community.model.Classes
 import com.example.thp101g2_android_school.community.model.ParentItem
 import com.google.gson.reflect.TypeToken
-import org.json.JSONArray
 
 class ComClassViewModel : ViewModel() {
     private var parentList = mutableListOf<ParentItem>()
@@ -19,12 +19,17 @@ class ComClassViewModel : ViewModel() {
     }
 
     private fun loadData() {
-        // TODO 可以抓到資料 但還沒處理好
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/community/class"
+//        // TODO 可以抓到資料 但還沒處理好
+        val url = "$url/community/class"
         val type = object : TypeToken<List<Classes>>() {}.type
         val list = requestTask<List<Classes>>(url, respBodyType = type)
         val childItems = mutableListOf<ChildItem>()
+        for (item in list!!) {
+            if (item.comMainClassName == "程式語言") {
+                childItems.add(ChildItem(item.comSecClassName, R.drawable.com_c))
+            }
 
+        }
 
         for (i in 0 until list!!.size - 1) {
             val comMainClassId = list[i].comMainClassId
@@ -32,28 +37,37 @@ class ComClassViewModel : ViewModel() {
             val comSecClassId = list[i].comSecClassId
             val comSecClassName = list[i].comSecClassName
             println(parentList)
-            // 第一筆資料，裝進子分類集合中，並創立一個主分類集合
+            // 第一筆資料
             if (i == 0) {
-                childItems.add(ChildItem(comSecClassName, R.drawable.com_c))
+                // 建立第一個主分類
+                val childItems = mutableListOf<ChildItem>()
+                // 遍歷資料庫所有資料
+                for (item in list) {
+                    // 如果該次分類的主分類id與第一個主分類id相同的話
+                    if (item.comMainClassId == comMainClassId) {
+                        // 把該次分類放入該主分類的屬性中
+                        childItems.add(ChildItem(item.comSecClassName, R.drawable.com_c))
+                    }
+                }
                 parentList.add(ParentItem(comMainClassName, R.drawable.com_console, childItems))
                 continue
-            }
-            // 第二筆資料開始，如果此筆跟上一筆的主分類不一樣
-            // 就新增一個主分類集合，並把子分類裝進該集合中
-            if (comMainClassId != list[i - 1].comMainClassId) {
-
-                val newchildItems = mutableListOf<ChildItem>()
-                parentList.add(ParentItem(comMainClassName, R.drawable.com_console, newchildItems))
-                newchildItems.add(ChildItem(comSecClassName, R.drawable.com_c))
-                // 如果兩筆資料分類一致，就把該資料放入子分類集合中
             } else {
-                // TODO 這邊有問題 ...
-                childItems.add(ChildItem(comSecClassName, R.drawable.com_c))
+                if (comMainClassId != list[i - 1].comMainClassId) {
+                    val newchildItems = mutableListOf<ChildItem>()
+
+                    for (item in list) {
+                        if (item.comMainClassId == comMainClassId) {
+                            newchildItems.add(ChildItem(item.comSecClassName, R.drawable.com_c))
+                        }
+                    }
+                    parentList.add(ParentItem(comMainClassName, R.drawable.com_console, newchildItems))
+                    // 如果兩筆資料分類一致，就把該資料放入子分類集合中
+                }
             }
         }
         this.parents.value = parentList
 
-        // 假資料
+//        // 假資料
 //        val childItems1 = ArrayList<ChildItem>()
 //        childItems1.add(ChildItem("C", R.drawable.com_c))
 //        childItems1.add(ChildItem("C++", R.drawable.com_cplusplus))

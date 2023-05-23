@@ -15,7 +15,7 @@
             android:title="課程"/>
     <item
             android:id="@+id/comMainFragment"
-            android:icon="@drawable/common_google_signin_btn_icon_dark"
+            android:icon="@drawable/baseline_people_24"
             android:title="社群"/>
     <item
             android:id="@+id/member"

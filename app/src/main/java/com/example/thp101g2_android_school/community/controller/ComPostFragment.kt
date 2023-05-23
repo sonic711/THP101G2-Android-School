@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.community.viewmodel.ComPostViewModel
 import com.example.thp101g2_android_school.R
@@ -31,17 +32,35 @@ class ComPostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (requireActivity() as MainActivity).supportActionBar?.title = "發表貼文"
+        val actionBar = (requireActivity() as MainActivity).supportActionBar
+        actionBar?.title = "發表貼文"
+        actionBar?.show()
+
         binding = FragmentComPostBinding.inflate(inflater, container, false)
         val viewModel: ComPostViewModel by viewModels()
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
 
+            val navController = Navigation.findNavController(requireView())
+            val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
+            savedStateHandle?.getLiveData<Bundle>("bundle")?.observe(viewLifecycleOwner) { bundle ->
+                val data = bundle?.getString("child") // 从Bundle中获取传回的数据
+                viewModel?.secClass?.value = data
+            }
+            // 按下選擇看板後，跳去下個Fragment選擇次分類
+            cardView.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.action_comPostFragment_to_comAllClassForPostFragment)
+            }
+            nextStepBtn.setOnClickListener {
+                // TODO 去搜尋標籤頁面
+                Navigation.findNavController(it).navigate(R.id.action_comPostFragment_to_comLabelForPostFragment)
+            }
         }
     }
 
@@ -54,13 +73,14 @@ class ComPostFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         // TODO 應該是要寫一個彈出視窗 問要不要儲存草稿嗎？，但如果閃退怎麼辦
-        saveInternal()
+//        saveInternal()
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
         println("發表文章頁面銷毀")
+        saveInternal()
     }
 
     private fun saveInternal() {
