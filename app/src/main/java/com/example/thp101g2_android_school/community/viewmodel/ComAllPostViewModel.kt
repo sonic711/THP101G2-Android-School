@@ -2,83 +2,84 @@ package com.example.thp101g2_android_school.community.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thp101g2_android_school.R
-import com.example.thp101g2_android_school.community.model.ChildItem
+import androidx.lifecycle.viewModelScope
+import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.Label
-import com.example.thp101g2_android_school.community.model.ParentItem
 import com.example.thp101g2_android_school.community.model.Post
+import com.example.thp101g2_android_school.community.model.PostBean
+import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.launch
 
 class ComAllPostViewModel : ViewModel() {
 
     // 原始Post列表
     private var postList = mutableListOf<Post>()
+
     // 受監控的LiveData，一旦指派新值就會更新畫面
     val posts: MutableLiveData<List<Post>> by lazy { MutableLiveData<List<Post>>() }
 
     init {
-        loadPosts()
+        viewModelScope.launch { loadPosts() }
     }
-    private fun loadPosts(){
-        val childItems1 = ArrayList<Label>()
-        childItems1.add(Label("1", "1","中文", "2"))
-        childItems1.add(Label("1", "1","簡單", "2"))
-        childItems1.add(Label("1", "1","免費", "2"))
 
-        postList.add(Post(
-            "1",
-            "1",
-            "Sean",
-            R.drawable.com_julia,
-            "secClassId1",
-            "Java板",
-            "這是一篇Java教學",
-            "Post Content 1",
-            childItems1,
-            "2023-05-21 12:00:00",
-            true,
-            true
-        ))
+    private fun loadFakeMemberImg() {
 
-        val childItems2 = ArrayList<Label>()
-        childItems2.add(Label("1", "1","英文", "2"))
-        childItems2.add(Label("1", "1","高難度", "2"))
-        childItems2.add(Label("1", "1","商用", "2"))
+    }
 
-        postList.add(Post(
-            "2",
-            "2",
-            "Mary",
-            R.drawable.com_mary,
-            "secClassId1",
-            "英文板",
-            "這是一篇英文教學",
-            "Post Content 2",
-            childItems2,
-            "2023-05-21 12:00:00",
-            true,
-            true
-        ))
+    private fun loadPosts() {
 
-        val childItems3 = ArrayList<Label>()
-        childItems3.add(Label("1", "1","爆料", "2"))
-        childItems3.add(Label("1", "1","推爆", "2"))
-        postList.add(Post(
-            "3",
-            "3",
-            "老闆",
-            R.drawable.com_android,
-            "secClassId1",
-            "八卦板",
-            "這一一篇爆料文章！",
-            "爆料爆料爆料爆料爆料爆料",
-            childItems3,
-            "2023-05-21 12:00:00",
-            true,
-            true
-        ))
+        val url = "$url/community/post"
+        val type = object : TypeToken<List<PostBean>>() {}.type
+        val list = requestTask<List<PostBean>>(url, respBodyType = type) ?: return
 
-
-
+        for (i in 0 until list.size - 1) {
+            val comPostId = list[i].comPostId
+            // 第一筆資料
+            if (i == 0) {
+                // 建立第一個主分類
+                val labels = mutableListOf<Label>()
+                // 遍歷資料庫所有資料
+                for (item in list) {
+                    // 如果該次分類的主分類id與第一個主分類id相同的話
+                    if (item.comPostId == comPostId) {
+                        // 把該次分類放入該主分類的屬性中
+                        labels.add(
+                            Label(
+                                item.comPostLabelId,
+                                item.comPostId,
+                                item.comPostLabelName,
+                                item.comPostLabelTime
+                            )
+                        )
+                    }
+                }
+                postList.add(Post(list[i], labels))
+                continue
+            } else {
+                // 如果這一個主分類id 不等於 上一個主分類 id
+                if (comPostId != list[i - 1].comPostId) {
+                    // 建立新的子類別集合
+                    val newchildItems = mutableListOf<Label>()
+                    for (item in list) {
+                        // 如果主類別id一樣
+                        if (item.comPostId == comPostId) {
+                            // 就把該分類放進集合
+                            newchildItems.add(
+                                Label(
+                                    item.comPostLabelId,
+                                    item.comPostId,
+                                    item.comPostLabelName,
+                                    item.comPostLabelTime
+                                )
+                            )
+                        }
+                    }
+                    postList.add(Post(list[i], newchildItems))
+                    // 如果兩筆資料分類一致，就把該資料放入子分類集合中
+                }
+            }
+        }
         this.postList = postList
         this.posts.value = this.postList
     }

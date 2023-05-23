@@ -2,34 +2,33 @@ package com.example.thp101g2_android_school.community.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thp101g2_android_school.R
+import androidx.lifecycle.viewModelScope
+import com.example.thp101g2_android_school.app.getStringResourceId
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.ChildItem
-import com.example.thp101g2_android_school.community.model.Classes
+import com.example.thp101g2_android_school.community.model.ClassBean
 import com.example.thp101g2_android_school.community.model.ParentItem
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.launch
 
 class ComClassViewModel : ViewModel() {
     private var parentList = mutableListOf<ParentItem>()
     val parents: MutableLiveData<List<ParentItem>> by lazy { MutableLiveData<List<ParentItem>>() }
 
     init {
-        loadData()
+        viewModelScope.launch { loadData() }
     }
 
     private fun loadData() {
-        // TODO 可以抓到資料 但圖片還沒處理好
-        val url = "$url/community/class"
-        val type = object : TypeToken<List<Classes>>() {}.type
-        val list = requestTask<List<Classes>>(url, respBodyType = type)
 
-        for (i in 0 until list!!.size - 1) {
+        val url = "$url/community/class"
+        val type = object : TypeToken<List<ClassBean>>() {}.type
+        val list = requestTask<List<ClassBean>>(url, respBodyType = type) ?: return
+
+        for (i in 0 until list.size - 1) {
             val comMainClassId = list[i].comMainClassId
             val comMainClassName = list[i].comMainClassName
-            val comSecClassId = list[i].comSecClassId
-            val comSecClassName = list[i].comSecClassName
-
             // 第一筆資料
             if (i == 0) {
                 // 建立第一個主分類
@@ -39,21 +38,34 @@ class ComClassViewModel : ViewModel() {
                     // 如果該次分類的主分類id與第一個主分類id相同的話
                     if (item.comMainClassId == comMainClassId) {
                         // 把該次分類放入該主分類的屬性中
-                        childItems.add(ChildItem(item.comSecClassName, R.drawable.com_c))
+                        childItems.add(
+                            ChildItem(
+                                item.comSecClassName,
+                                getStringResourceId(item.comSecClassName)
+                            )
+                        )
                     }
                 }
-                parentList.add(ParentItem(comMainClassName, R.drawable.com_console, childItems))
+                parentList.add(ParentItem(comMainClassName, getStringResourceId(comMainClassName), childItems))
                 continue
             } else {
+                // 如果這一個主分類id 不等於 上一個主分類 id
                 if (comMainClassId != list[i - 1].comMainClassId) {
+                    // 建立新的子類別集合
                     val newchildItems = mutableListOf<ChildItem>()
-
                     for (item in list) {
+                        // 如果主類別id一樣
                         if (item.comMainClassId == comMainClassId) {
-                            newchildItems.add(ChildItem(item.comSecClassName, R.drawable.com_c))
+                            // 就把該分類放進集合
+                            newchildItems.add(
+                                ChildItem(
+                                    item.comSecClassName,
+                                    getStringResourceId(item.comSecClassName)
+                                )
+                            )
                         }
                     }
-                    parentList.add(ParentItem(comMainClassName, R.drawable.com_console, newchildItems))
+                    parentList.add(ParentItem(comMainClassName, getStringResourceId(comMainClassName), newchildItems))
                     // 如果兩筆資料分類一致，就把該資料放入子分類集合中
                 }
             }

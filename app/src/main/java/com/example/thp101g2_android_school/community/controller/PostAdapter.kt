@@ -8,6 +8,7 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.byteArrayToBitmap
 import com.example.thp101g2_android_school.community.model.Post
 import com.example.thp101g2_android_school.community.viewmodel.ComMainViewModel
 import com.example.thp101g2_android_school.databinding.ComMainItemviewBinding
@@ -33,7 +34,14 @@ class PostAdapter(private var posts: List<Post>) :
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = posts[position]
         with(holder) {
+
             itemViewBinding.viewModel?.post?.value = post
+            if (post.post.profilePhoto != null) {
+                val img = byteArrayToBitmap(post.post.profilePhoto)
+                itemViewBinding.imageView.setImageBitmap(img)
+            }else{
+                itemViewBinding.imageView.setBackgroundResource(R.drawable.com_user)
+            }
             // TODO 按下會員資料後跳轉到該會員主頁
             val bundle = Bundle()
             bundle.putSerializable("post", post)
@@ -41,16 +49,18 @@ class PostAdapter(private var posts: List<Post>) :
             itemView.setOnClickListener {
                 // TODO 按下CardView後把資料送到下一頁
                 // 按下CardView後把該文章編號存入偏好設定檔，做瀏覽記錄用
-                saveArticleIdToSharedPreferences(itemView.context, post.comPostId)
+                saveArticleIdToSharedPreferences(itemView.context, post.post.comPostId)
             }
             // 如果是Value是1，代表已讀過，就改變標題顏色
-            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.comPostId) == 1) {
+            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.post.comPostId) == 1) {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.gray_500))
-            }else{
+            } else {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.black))
             }
             // 載入labelRecyclerView文章標籤
             with(itemViewBinding.labelRecyclerView) {
+                // 如果第一個標籤的id = 0 就不載入adapter
+                if (post.labels[0].comLabelId == "0") return
                 layoutManager = GridLayoutManager(holder.itemView.context, 3)
                 adapter = LabelAdapter(post.labels)
             }

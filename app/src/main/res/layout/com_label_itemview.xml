@@ -19,8 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/tvLabelName"
-                android:hint="中文"
-                tools:text="@{viewModel.label.comLabelName}" android:background="@color/gray_500"
+                tools:text="@{viewModel.label.comLabelName}" android:background="@color/gray_300"
                 android:gravity="center"/>
     </androidx.cardview.widget.CardView>
 </layout>

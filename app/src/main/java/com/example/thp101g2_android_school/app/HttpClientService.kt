@@ -1,9 +1,10 @@
 package com.example.thp101g2_android_school.app
 
-import com.example.thp101g2_android_school.community.model.Classes
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import com.example.thp101g2_android_school.R
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 import java.lang.reflect.Type
 import java.net.CookieHandler
@@ -14,11 +15,43 @@ import java.net.URL
 
 const val url: String = "http://10.0.2.2:8080/THP101G2-WebServer-School/"
 
-fun main() {
-    val url = "http://localhost:8080/THP101G2-WebServer-School/community/class"
-    val type = object : TypeToken<List<Classes>>(){}.type
-    val list = requestTask<List<Classes>>(url, respBodyType = type)
-    println(list)
+/**
+ *  資料庫抓圖片出來用：
+ *  後端Java型別為byte[]，Kotlin用ByteArray接受後
+ *  用此方法將 ByteArray 轉成Bitmap 就可以imageView.setImageBitmap(放進來)
+ *  @param ByteArray
+ *  @return Bitmap物件
+ *  @author Sean
+ * */
+fun byteArrayToBitmap(byteArray: ByteArray): Bitmap? {
+    return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+}
+
+
+/** 社群用
+ *  用字串尋找對應的圖片檔
+ *  @param str 資源的字串名稱
+ *  @return R.drawable的 id
+ *  @author Sean
+ */
+inline fun getStringResourceId(str: String): Int {
+    return when (str) {
+        "程式語言" -> R.drawable.com_android
+        "Java" -> R.drawable.com_java
+        "Kotlin" -> R.drawable.com_kotlin
+        "Swift" -> R.drawable.com_swift
+        "音樂" -> R.drawable.com_music_note
+        "鋼琴" -> R.drawable.com_piano
+        "爵士鼓" -> R.drawable.com_drum
+        "烹飪" -> R.drawable.com_cooking
+        "中餐" -> R.drawable.com_buns
+        "西餐" -> R.drawable.com_dish
+        "語言" -> R.drawable.world
+        "中文" -> R.drawable.com_language
+        "西班牙文" -> R.drawable.com_hola
+        "英文" -> R.drawable.com_eng
+        else -> R.drawable.com_mary
+    }
 }
 
 inline fun <reified T> requestTask(

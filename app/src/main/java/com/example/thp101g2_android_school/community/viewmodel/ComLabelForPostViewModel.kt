@@ -2,10 +2,12 @@ package com.example.thp101g2_android_school.community.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.community.model.Label
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.launch
 
 class ComLabelForPostViewModel : ViewModel() {
     // 資料庫抓出來的
@@ -15,17 +17,17 @@ class ComLabelForPostViewModel : ViewModel() {
     val labels: MutableLiveData<List<Label>> by lazy { MutableLiveData<List<Label>>() }
 
     init {
-        loadData()
+        viewModelScope.launch { loadData() }
     }
 
     private fun loadData() {
 
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/community/postLabel"
         val type = object : TypeToken<List<Label>>() {}.type
-        val list = requestTask<List<Label>>(url, respBodyType = type)
+        val list = requestTask<List<Label>>(url, respBodyType = type) ?: return
         val labelList = mutableListOf<Label>()
         println(list)
-        for(label in list!!){
+        for (label in list!!) {
             labelList.add(label)
         }
 

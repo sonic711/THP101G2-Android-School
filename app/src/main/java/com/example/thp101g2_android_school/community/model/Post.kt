@@ -7,16 +7,7 @@ import java.io.Serializable
 * */
 
 data class Post(
-    var comPostId: String,
-    var memberNo : String,
-    var memberName: String,
-    var memberImg: Int,
-    var comSecClassId: String,
-    var comSecClassName: String,
-    var comPostTitle: String,
-    var comPostContent: String,
+    var post: PostBean,
     var labels: List<Label>,
-    var comPostTime: String,
-    var comPostStatus: Boolean,
-    var comPostAccessSetting: Boolean
+
 ) : Serializable

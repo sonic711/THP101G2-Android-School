@@ -27,7 +27,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:srcCompat="@tools:sample/avatars"
-                        app:imageResource="@{viewModel.post.memberImg}"
                         android:id="@+id/imageView"/>
             </androidx.cardview.widget.CardView>
             <TextView
@@ -35,28 +34,28 @@
                     android:layout_height="wrap_content" android:id="@+id/tvMemberName"
                     app:layout_constraintTop_toTopOf="@+id/childCardView"
                     app:layout_constraintStart_toEndOf="@+id/childCardView"
-                    tools:text="@{viewModel.post.memberName}"
+                    tools:text="@{viewModel.post.post.nickName}"
                     android:layout_marginStart="10dp" android:hint="memberName"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvMemberId"
                     app:layout_constraintTop_toBottomOf="@+id/tvMemberName"
                     app:layout_constraintStart_toEndOf="@+id/childCardView"
-                    tools:text="@{viewModel.post.comSecClassName}"
-                    android:layout_marginStart="10dp" android:hint="comSecClassName"/>
+                    tools:text="@{viewModel.post.post.comSecClassName}"
+                    android:layout_marginStart="10dp" android:hint="mme"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvDate"
                     app:layout_constraintTop_toTopOf="@+id/tvMemberId"
                     app:layout_constraintStart_toEndOf="@+id/tvMemberId"
                     android:layout_marginStart="16dp"
-                    tools:text="@{viewModel.post.comPostTime}" android:hint="11/22"/>
+                    tools:text="@{viewModel.post.post.comPostTime}" android:hint="11/22"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvTitle"
                     app:layout_constraintTop_toBottomOf="@+id/childCardView"
                     app:layout_constraintStart_toStartOf="@+id/childCardView" android:layout_marginTop="6dp"
-                    tools:text="@{viewModel.post.comPostTitle}" android:textSize="24dp"
+                    tools:text="@{viewModel.post.post.comPostTitle}" android:textSize="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="8dp" android:hint="GGGGGGGGGG"/>
             <androidx.recyclerview.widget.RecyclerView
