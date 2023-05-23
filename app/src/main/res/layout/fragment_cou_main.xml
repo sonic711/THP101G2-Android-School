@@ -5,14 +5,16 @@
     tools:context=".CouMainFragment">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel"/>
+            type="com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="0dp"

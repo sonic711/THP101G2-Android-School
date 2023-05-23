@@ -40,7 +40,7 @@ class CouMainAdapter(private var courses: List<Course>) :
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val course = courses[position]
-        with(holder){
+        with(holder) {
             itemViewBinding.viewModel?.course?.value = course
             val bundle = Bundle()
             bundle.putSerializable("course", course)
