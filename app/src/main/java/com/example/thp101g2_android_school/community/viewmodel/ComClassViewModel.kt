@@ -19,24 +19,17 @@ class ComClassViewModel : ViewModel() {
     }
 
     private fun loadData() {
-//        // TODO 可以抓到資料 但還沒處理好
+        // TODO 可以抓到資料 但圖片還沒處理好
         val url = "$url/community/class"
         val type = object : TypeToken<List<Classes>>() {}.type
         val list = requestTask<List<Classes>>(url, respBodyType = type)
-        val childItems = mutableListOf<ChildItem>()
-        for (item in list!!) {
-            if (item.comMainClassName == "程式語言") {
-                childItems.add(ChildItem(item.comSecClassName, R.drawable.com_c))
-            }
-
-        }
 
         for (i in 0 until list!!.size - 1) {
             val comMainClassId = list[i].comMainClassId
             val comMainClassName = list[i].comMainClassName
             val comSecClassId = list[i].comSecClassId
             val comSecClassName = list[i].comSecClassName
-            println(parentList)
+
             // 第一筆資料
             if (i == 0) {
                 // 建立第一個主分類

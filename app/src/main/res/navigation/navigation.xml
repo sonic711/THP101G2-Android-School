@@ -149,10 +149,7 @@
                 android:id="@+id/action_couMainFragment_to_couCourseDetailFragment"
                 app:destination="@id/couCourseDetailFragment"/>
     </fragment>
-    <fragment
-            android:id="@+id/couCourseDetailFragment"
-            android:name="com.example.thp101g2_android_school.course.controller.CouCourseDetailFragment"
-            android:label="CouCourseDetailFragment"/>
+
     <fragment android:id="@+id/comAllClassForPostFragment"
               android:name="com.example.thp101g2_android_school.community.controller.ComAllClassForPostFragment"
               android:label="ComAllClassForPostFragment"/>
@@ -160,6 +157,39 @@
               android:name="com.example.thp101g2_android_school.community.controller.ComLabelForPostFragment"
               android:label="fragment_com_label_for_post" tools:layout="@layout/fragment_com_label_for_post"/>
     <!--    -->
-
+    <fragment
+            android:id="@+id/couCourseDetailFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouCourseDetailFragment"
+            android:label="CouCourseDetailFragment">
+        <action
+                android:id="@+id/action_couCourseDetailFragment_to_couFavoriteFragment"
+                app:destination="@id/couFavoriteFragment" />
+        <action
+                android:id="@+id/action_couCourseDetailFragment_to_couMyCourseFragment"
+                app:destination="@id/couMyCourseFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couMyCourseFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouMyCourseFragment"
+            android:label="fragment_cou_my_course"
+            tools:layout="@layout/fragment_cou_my_course" >
+        <action
+                android:id="@+id/action_couMyCourseFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couFavoriteFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouFavoriteFragment"
+            android:label="fragment_cou_favorite"
+            tools:layout="@layout/fragment_cou_favorite" >
+        <action
+                android:id="@+id/action_couFavoriteFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couClassroomFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouClassroomFragment"
+            android:label="fragment_cou_classroom"
+            tools:layout="@layout/fragment_cou_classroom" />
     <!--    -->
 </navigation>
