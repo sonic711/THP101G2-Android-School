@@ -110,6 +110,7 @@ class CalMainFragment : Fragment() {
                     datePickerDialog.show()
 
                 }
+
                 bsvAddSchedule.findViewById<View>(R.id.etStartTime).setOnClickListener {
                     val calendar = Calendar.getInstance()
                     TimePickerDialog(

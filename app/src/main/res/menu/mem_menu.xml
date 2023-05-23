@@ -40,7 +40,7 @@
 
             <menu>
                 <item
-                    android:id="@+id/blackList"
+                    android:id="@+id/memBlockFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:icon="@drawable/ic_person_off_24"
@@ -51,7 +51,7 @@
         <item android:title="設定">
             <menu>
                 <item
-                    android:id="@+id/settings"
+                    android:id="@+id/memSettingFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:icon="@drawable/ic_settings_24"
