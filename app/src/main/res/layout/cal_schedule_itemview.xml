@@ -11,7 +11,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,11 +21,12 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvColorBar"
+            <View
+                android:id="@+id/vColorBar"
                 android:layout_width="8dp"
                 android:layout_height="80dp"
-                android:background="@color/Tag_HotPink" />
+                tools:background="@color/Tag_HotPink" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
                     android:id="@+id/tvDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.day}"
+                    android:text="@={viewModel.schedule.day}"
                     android:textColor="@color/Tag_HotPink"
                     android:textSize="36sp"
                     tools:text="20" />
@@ -48,7 +49,7 @@
                     android:id="@+id/tvMonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.month}"
+                    android:text="@={viewModel.schedule.month}"
                     android:textColor="@color/Tag_HotPink"
                     android:textSize="20sp"
                     tools:text="APR" />
@@ -66,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="@={viewModel.tag}"
+                    android:text="@={viewModel.schedule.tagName}"
                     tools:text="課業" />
 
                 <TextView
@@ -74,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="@={viewModel.task}"
+                    android:text="@={viewModel.schedule.task}"
                     android:textColor="@color/Tag_HotPink"
                     android:textSize="20sp"
                     tools:text="Do homework" />
@@ -83,14 +84,14 @@
                     android:id="@+id/tvTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.time}"
+                    android:text="@={viewModel.schedule.time}"
                     tools:text="10:00 - 12:00" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivNext"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="8dp"
                 app:srcCompat="@drawable/icon_next" />
         </LinearLayout>

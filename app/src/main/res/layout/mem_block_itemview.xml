@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.thp101g2_android_school.member.viewModel.MemberViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/ivUserPhoto"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:srcCompat="@drawable/mem_userphoto" />
+
+        <TextView
+            android:id="@+id/tvUserID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Adam"
+            android:textSize="20sp"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btUnblock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_primary"
+            android:text="@string/btUnblock"
+            android:textSize="16sp"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+</layout>
