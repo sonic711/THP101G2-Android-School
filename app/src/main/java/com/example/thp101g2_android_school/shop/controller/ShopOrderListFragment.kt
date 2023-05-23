@@ -10,46 +10,49 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
-import com.example.thp101g2_android_school.databinding.FragmentShopFavoriteBinding
-import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewModel
+import com.example.thp101g2_android_school.databinding.FragmentShopOrderListBinding
+import com.example.thp101g2_android_school.databinding.FragmentShopingCartBinding
+import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
+import com.example.thp101g2_android_school.shop.viewmodel.ShopOrderListViewModel
+import com.example.thp101g2_android_school.shop.viewmodel.ShopOrderViewModel
+import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 
+class ShopOrderListFragment : Fragment() {
 
-class ShopFavoriteFragment : Fragment() {
-
-    private lateinit var binding: FragmentShopFavoriteBinding
+    private lateinit var binding: FragmentShopOrderListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity() as MainActivity).supportActionBar?.hide()
-        val viewModel: ShopFavoriteFgViewModel by viewModels()
-        binding = FragmentShopFavoriteBinding.inflate(inflater, container, false)
+        val viewModel: ShopOrderViewModel by viewModels()
+        binding = FragmentShopOrderListBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //這裡註解要問老師關於SearchView的顯示跟關閉
         val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
-//        if(searchView.visibility == View.GONE){
-//            searchView.visibility = View.VISIBLE
+//        if(searchView.visibility == View.VISIBLE){
+//            searchView.visibility = View.GONE
 //        }
         with(binding) {
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            viewModel?.favoriteproducts?.observe(viewLifecycleOwner) { favoriteproducts ->
+            viewModel?.orders?.observe(viewLifecycleOwner) { orders ->
+                // adapter為null要建立新的adapter
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ShopFavoriteAdapter(favoriteproducts)
+                    recyclerView.adapter = ShopOrderListAdapter(orders)
                 } else {
-                    (recyclerView.adapter as ShopFavoriteAdapter).updateProduct(favoriteproducts)
-                    if (favoriteproducts.isEmpty()) {
-                        tvSearchnull.text = "搜尋無資料"
-                        tvSearchnull.visibility = View.VISIBLE // 顯示 tvSearchnull
+                    (recyclerView.adapter as ShopOrderListAdapter).updateProduct(orders)
+                    if (orders.isEmpty()) {
+                        tvOrdernull.text = "目前沒有任何訂單呦"
+                        tvOrdernull.visibility = View.VISIBLE // 顯示 tvSearchnull
                     } else {
-                        tvSearchnull.text = "" // 將文字設為空字串
-                        tvSearchnull.visibility = View.GONE // 隱藏 tvSearchnull
+                        tvOrdernull.text = "" // 將文字設為空字串
+                        tvOrdernull.visibility = View.GONE // 隱藏 tvSearchnull
                     }
                 }
             }
@@ -68,7 +71,6 @@ class ShopFavoriteFragment : Fragment() {
 
             })
         }
-
-
     }
+
 }
