@@ -20,36 +20,64 @@ class ComAllPostViewModel : ViewModel() {
     }
     private fun loadPosts(){
         val childItems1 = ArrayList<Label>()
-        childItems1.add(Label("Chinese"))
-        childItems1.add(Label("Easy"))
-        childItems1.add(Label("Damnnn"))
-        postList.add(Post("1", "1", "Sean", R.drawable.com_julia, "Java", "1/2","Java Basic","Testing",childItems1))
+        childItems1.add(Label("1", "1","中文", "2"))
+        childItems1.add(Label("1", "1","簡單", "2"))
+        childItems1.add(Label("1", "1","免費", "2"))
+
+        postList.add(Post(
+            "1",
+            "1",
+            "Sean",
+            R.drawable.com_julia,
+            "secClassId1",
+            "Java板",
+            "這是一篇Java教學",
+            "Post Content 1",
+            childItems1,
+            "2023-05-21 12:00:00",
+            true,
+            true
+        ))
 
         val childItems2 = ArrayList<Label>()
-        childItems2.add(Label("English"))
-        childItems2.add(Label("文章標籤"))
-        childItems2.add(Label("履歷"))
-        postList.add(Post("2","1","Mary",R.drawable.com_mary, "Resume", "12/25","piano","Testing", childItems2))
+        childItems2.add(Label("1", "1","英文", "2"))
+        childItems2.add(Label("1", "1","高難度", "2"))
+        childItems2.add(Label("1", "1","商用", "2"))
+
+        postList.add(Post(
+            "2",
+            "2",
+            "Mary",
+            R.drawable.com_mary,
+            "secClassId1",
+            "英文板",
+            "這是一篇英文教學",
+            "Post Content 2",
+            childItems2,
+            "2023-05-21 12:00:00",
+            true,
+            true
+        ))
 
         val childItems3 = ArrayList<Label>()
-        childItems3.add(Label("English"))
-        childItems3.add(Label("文章標籤"))
-        postList.add(Post("3","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems3))
+        childItems3.add(Label("1", "1","爆料", "2"))
+        childItems3.add(Label("1", "1","推爆", "2"))
+        postList.add(Post(
+            "3",
+            "3",
+            "老闆",
+            R.drawable.com_android,
+            "secClassId1",
+            "八卦板",
+            "這一一篇爆料文章！",
+            "爆料爆料爆料爆料爆料爆料",
+            childItems3,
+            "2023-05-21 12:00:00",
+            true,
+            true
+        ))
 
-        val childItems4 = ArrayList<Label>()
-        childItems4.add(Label("English"))
-        childItems4.add(Label("文章標籤"))
-        postList.add(Post("4","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems4))
 
-        val childItems5 = ArrayList<Label>()
-        childItems5.add(Label("English"))
-        childItems5.add(Label("文章標籤"))
-        postList.add(Post("5","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems5))
-
-        val childItems6 = ArrayList<Label>()
-        childItems6.add(Label("English"))
-        childItems6.add(Label("文章標籤"))
-        postList.add(Post("6","1","John",R.drawable.com_sue, "Language", "2/22","This is how you eat big-mac","Testing", childItems6))
 
         this.postList = postList
         this.posts.value = this.postList

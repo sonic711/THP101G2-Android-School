@@ -7,6 +7,7 @@ import com.example.thp101g2_android_school.community.model.Reply
 
 class PostDetailViewModel : ViewModel() {
     val post: MutableLiveData<Post> by lazy { MutableLiveData<Post>() }
+    val reply: MutableLiveData<Reply> by lazy { MutableLiveData<Reply>() }
     val replys: MutableLiveData<List<Reply>> by lazy { MutableLiveData<List<Reply>>() }
 
 }
