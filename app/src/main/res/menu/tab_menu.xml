@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/shopMainFragment"
+            android:id="@+id/shopFrontFragment"
             android:icon="@drawable/common_google_signin_btn_icon_dark"
             android:title="商城"/>
 
@@ -10,12 +10,12 @@
             android:icon="@drawable/common_google_signin_btn_icon_dark"
             android:title="日曆"/>
     <item
-            android:id="@+id/course"
+            android:id="@+id/couMainFragment"
             android:icon="@drawable/common_google_signin_btn_icon_dark"
             android:title="課程"/>
     <item
             android:id="@+id/comMainFragment"
-            android:icon="@drawable/common_google_signin_btn_icon_dark"
+            android:icon="@drawable/baseline_people_24"
             android:title="社群"/>
     <item
             android:id="@+id/member"

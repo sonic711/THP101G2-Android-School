@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".manage.controller.ManageHomeFragment">
+
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav">
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <Button
+        android:id="@+id/btManageMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginEnd="159dp"
+        android:text="會員管理"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btManageClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="課程管理"
+        app:layout_constraintEnd_toEndOf="@+id/btManageMember"
+        app:layout_constraintStart_toStartOf="@+id/btManageMember"
+        app:layout_constraintTop_toBottomOf="@+id/btManageMember" />
+
+    <Button
+        android:id="@+id/btManageFirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="商城管理"
+        app:layout_constraintEnd_toEndOf="@+id/btManageClass"
+        app:layout_constraintStart_toStartOf="@+id/btManageClass"
+        app:layout_constraintTop_toBottomOf="@+id/btManageClass" />
+
+    <Button
+        android:id="@+id/btManageCom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="社群管理"
+        app:layout_constraintEnd_toEndOf="@+id/btManageFirm"
+        app:layout_constraintStart_toStartOf="@+id/btManageFirm"
+        app:layout_constraintTop_toBottomOf="@+id/btManageFirm" />
+
+    <Button
+        android:id="@+id/btManageMa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="管理者系統"
+        app:layout_constraintEnd_toEndOf="@+id/btManageCom"
+        app:layout_constraintStart_toStartOf="@+id/btManageCom"
+        app:layout_constraintTop_toBottomOf="@+id/btManageCom" />
+
+    <Button
+        android:id="@+id/btManageReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="檢舉管理"
+        app:layout_constraintEnd_toEndOf="@+id/btManageMa"
+        app:layout_constraintStart_toStartOf="@+id/btManageMa"
+        app:layout_constraintTop_toBottomOf="@+id/btManageMa" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,9 @@
     <fragment android:id="@+id/mainFragment" android:name="com.example.thp101g2_android_school.MainFragment"
               android:label="fragment_main" tools:layout="@layout/fragment_main">
         <action android:id="@+id/action_mainFragment_to_comMainFragment" app:destination="@id/comMainFragment"/>
+        <action
+                android:id="@+id/action_mainFragment_to_shopFrontFragment"
+                app:destination="@id/shopFrontFragment"/>
     </fragment>
     <fragment android:id="@+id/comMainFragment"
               android:name="com.example.thp101g2_android_school.community.controller.ComMainFragment"
@@ -32,11 +35,11 @@
             android:label="fragment_shop_main"
             tools:layout="@layout/fragment_shop_main">
         <action
-                android:id="@+id/action_shopMainFragment_to_productDetailFragment2"
-                app:destination="@id/productDetailFragment2"/>
+                android:id="@+id/action_shopMainFragment_to_productDetailFragment"
+                app:destination="@id/productDetailFragment"/>
     </fragment>
     <fragment
-            android:id="@+id/productDetailFragment2"
+            android:id="@+id/productDetailFragment"
             android:name="com.example.thp101g2_android_school.shop.controller.ProductDetailFragment"
             android:label="fragment_product_detail"
             tools:layout="@layout/fragment_product_detail"/>
@@ -45,18 +48,18 @@
             android:name="com.example.thp101g2_android_school.member.controller.MemMainFragment"
             android:label="fragment_mem_main"
             tools:layout="@layout/fragment_mem_main"/>
-    <fragment
-            android:id="@+id/couMainFragment"
-            android:name="com.example.thp101g2_android_school.course.controller.CouMainFragment"
-            android:label="fragment_cou_main"
-            tools:layout="@layout/fragment_cou_main"/>
+
     <fragment android:id="@+id/comPostFragment"
               android:name="com.example.thp101g2_android_school.community.controller.ComPostFragment"
-              android:label="fragment_com_post" tools:layout="@layout/fragment_com_post"/>
+              android:label="fragment_com_post" tools:layout="@layout/fragment_com_post">
+        <action android:id="@+id/action_comPostFragment_to_comAllClassForPostFragment"
+                app:destination="@id/comAllClassForPostFragment"/>
+        <action android:id="@+id/action_comPostFragment_to_comLabelForPostFragment"
+                app:destination="@id/comLabelForPostFragment"/>
+    </fragment>
     <fragment android:id="@+id/postDetailFragment"
               android:name="com.example.thp101g2_android_school.community.controller.PostDetailFragment"
               android:label="fragment_post_detail" tools:layout="@layout/fragment_post_detail"/>
-    <!--    -->
     <fragment
             android:id="@+id/loginMainFragment"
             android:name="com.example.thp101g2_android_school.member.controller.LoginMainFragment"
@@ -113,15 +116,80 @@
             android:name="com.example.thp101g2_android_school.calendar.controller.CalMainFragment"
             android:label="fragment_cal_main"
             tools:layout="@layout/fragment_cal_main"/>
-<!--    -->
     <fragment
             android:id="@+id/firmMainFragment"
             android:name="com.example.thp101g2_android_school.firm.controller.FirmMainFragment"
             android:label="fragment_firm_main"
-            tools:layout="@layout/fragment_firm_main" />
+            tools:layout="@layout/fragment_firm_main"/>
     <fragment
             android:id="@+id/firmProductDetailFragment"
             android:name="com.example.thp101g2_android_school.firm.controller.FirmProductDetailFragment"
             android:label="fragment_firm_product_detail"
-            tools:layout="@layout/fragment_firm_product_detail" />
+            tools:layout="@layout/fragment_firm_product_detail"/>
+    <fragment
+            android:id="@+id/shopingCartFragment"
+            android:name="com.example.thp101g2_android_school.shop.controller.ShopingCartFragment"
+            android:label="fragment_shoping_cart"
+            tools:layout="@layout/fragment_shoping_cart"/>
+    <fragment
+            android:id="@+id/shopFrontFragment"
+            android:name="com.example.thp101g2_android_school.shop.controller.ShopFrontFragment"
+            android:label="fragment_shop_front"
+            tools:layout="@layout/fragment_shop_front">
+        <action
+                android:id="@+id/action_shopFrontFragment_to_productDetailFragment"
+                app:destination="@id/productDetailFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/couMainFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouMainFragment"
+            android:label="fragment_cou_main"
+            tools:layout="@layout/fragment_cou_main">
+        <action
+                android:id="@+id/action_couMainFragment_to_couCourseDetailFragment"
+                app:destination="@id/couCourseDetailFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/comAllClassForPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComAllClassForPostFragment"
+              android:label="ComAllClassForPostFragment"/>
+    <fragment android:id="@+id/comLabelForPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComLabelForPostFragment"
+              android:label="fragment_com_label_for_post" tools:layout="@layout/fragment_com_label_for_post"/>
+    <!--    -->
+    <fragment
+            android:id="@+id/couCourseDetailFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouCourseDetailFragment"
+            android:label="CouCourseDetailFragment">
+        <action
+                android:id="@+id/action_couCourseDetailFragment_to_couFavoriteFragment"
+                app:destination="@id/couFavoriteFragment" />
+        <action
+                android:id="@+id/action_couCourseDetailFragment_to_couMyCourseFragment"
+                app:destination="@id/couMyCourseFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couMyCourseFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouMyCourseFragment"
+            android:label="fragment_cou_my_course"
+            tools:layout="@layout/fragment_cou_my_course" >
+        <action
+                android:id="@+id/action_couMyCourseFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couFavoriteFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouFavoriteFragment"
+            android:label="fragment_cou_favorite"
+            tools:layout="@layout/fragment_cou_favorite" >
+        <action
+                android:id="@+id/action_couFavoriteFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couClassroomFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouClassroomFragment"
+            android:label="fragment_cou_classroom"
+            tools:layout="@layout/fragment_cou_classroom" />
+    <!--    -->
 </navigation>

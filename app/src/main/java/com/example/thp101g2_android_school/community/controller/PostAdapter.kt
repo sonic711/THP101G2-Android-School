@@ -41,10 +41,10 @@ class PostAdapter(private var posts: List<Post>) :
             itemView.setOnClickListener {
                 // TODO 按下CardView後把資料送到下一頁
                 // 按下CardView後把該文章編號存入偏好設定檔，做瀏覽記錄用
-                saveArticleIdToSharedPreferences(itemView.context, post.postId)
+                saveArticleIdToSharedPreferences(itemView.context, post.comPostId)
             }
             // 如果是Value是1，代表已讀過，就改變標題顏色
-            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.postId) == 1) {
+            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.comPostId) == 1) {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.gray_500))
             }else{
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.black))

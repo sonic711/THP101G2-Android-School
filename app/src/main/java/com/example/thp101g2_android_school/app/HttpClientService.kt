@@ -12,6 +12,7 @@ import java.net.HttpURLConnection
 import java.net.HttpURLConnection.HTTP_OK
 import java.net.URL
 
+const val url: String = "http://10.0.2.2:8080/THP101G2-WebServer-School/"
 
 fun main() {
     val url = "http://localhost:8080/THP101G2-WebServer-School/community/class"

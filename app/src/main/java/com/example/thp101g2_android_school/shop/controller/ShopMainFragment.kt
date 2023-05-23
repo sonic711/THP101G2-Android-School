@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.shop.controller
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.thp101g2_android_school.MainActivity
+import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopMainBinding
 import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
 
@@ -28,9 +27,14 @@ class ShopMainFragment : Fragment() {
         binding.viewModel = viewModel
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
+            //這裡註解要問老師關於SearchView的顯示跟關閉
+            val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
+//            if(searchView.visibility == View.GONE){
+//                searchView.visibility = View.VISIBLE
+//            }
+
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -62,16 +66,16 @@ class ShopMainFragment : Fragment() {
                 }
 
             })
-            binding.btnBack.setOnClickListener {
-                AlertDialog.Builder(requireContext())
-                    .setMessage("確定要回上一頁嗎?")
-                    .setTitle("警告!!!!")
-                    .setPositiveButton("確定"){ dialog, which ->
-                        Navigation.findNavController(requireView()).navigateUp()
-                    }
-                    .setNeutralButton("取消", null)
-                    .show()
-            }
+//            binding.btnBack.setOnClickListener {
+//                AlertDialog.Builder(requireContext())
+//                    .setMessage("確定要回上一頁嗎?")
+//                    .setTitle("警告!!!!")
+//                    .setPositiveButton("確定"){ dialog, which ->
+//                        Navigation.findNavController(requireView()).navigateUp()
+//                    }
+//                    .setNeutralButton("取消", null)
+//                    .show()
+//            }
         }
 
 
