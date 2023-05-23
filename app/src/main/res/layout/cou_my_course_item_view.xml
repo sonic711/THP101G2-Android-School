@@ -3,12 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.course.viewmodel.CouMainDetailViewModel" />
+            type="com.example.thp101g2_android_school.course.viewmodel.CouMyCourseDetailViewModel" />
     </data>
-
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -28,7 +26,7 @@
                 android:id="@+id/ivCourse"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:imageResource="@{viewModel.course.imageId}" />
+                app:imageResource="@{viewModel.mycourse.imageId}" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -36,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.course.name}"
+                android:text="@{viewModel.mycourse.name}"
                 android:textColor="#0000FF"
                 android:textSize="22sp" />
 
@@ -46,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.course.author}"
+                android:text="@{viewModel.mycourse.author}"
                 android:textSize="18sp" />
 
             <TextView
@@ -55,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.course.rate}"
+                android:text="@{viewModel.mycourse.rate}"
                 android:textSize="18sp" />
 
 

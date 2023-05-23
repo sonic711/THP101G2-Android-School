@@ -21,7 +21,6 @@ class CouMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // SearchView放在畫面頂端時通常會隱藏標題列
         (requireActivity() as MainActivity).supportActionBar?.hide()
         val viewModel: CouMainViewModel by viewModels()
         binding = FragmentCouMainBinding.inflate(inflater, container, false)
@@ -44,8 +43,6 @@ class CouMainFragment : Fragment() {
                     viewModel?.search(newText)
                     return true
                 }
-
-                // 點擊虛擬鍵盤上的提交鈕時呼叫
                 override fun onQueryTextSubmit(text: String): Boolean {
                     return false
                 }
