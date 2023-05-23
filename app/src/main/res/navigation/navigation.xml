@@ -128,16 +128,6 @@
             android:label="fragment_cal_main"
             tools:layout="@layout/fragment_cal_main"/>
     <fragment
-            android:id="@+id/firmMainFragment"
-            android:name="com.example.thp101g2_android_school.firm.controller.FirmMainFragment"
-            android:label="fragment_firm_main"
-            tools:layout="@layout/fragment_firm_main"/>
-    <fragment
-            android:id="@+id/firmProductDetailFragment"
-            android:name="com.example.thp101g2_android_school.firm.controller.FirmProductDetailFragment"
-            android:label="fragment_firm_product_detail"
-            tools:layout="@layout/fragment_firm_product_detail"/>
-    <fragment
             android:id="@+id/shopingCartFragment"
             android:name="com.example.thp101g2_android_school.shop.controller.ShopingCartFragment"
             android:label="fragment_shoping_cart"
