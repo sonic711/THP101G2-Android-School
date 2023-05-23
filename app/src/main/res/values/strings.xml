@@ -63,4 +63,6 @@
     <string name="txtManageReport">檢舉管理</string>
     <string name="txtManage">主頁</string>
     <string name="textClassName">請輸入要找的課程ID</string>
+    <string name="txtAddFavorite">加入我的最愛</string>
+    <string name="txtAddCourse">加入我的課程</string>
 </resources>

@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- API 23開始要設定靜音模式要加此permission -->
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!--使用者關機之後，設定會從檔案讀取到記憶體並設定 -->
 
     <uses-feature
             android:name="android.hardware.sensor.accelerometer"
@@ -55,6 +57,10 @@
         <activity
                 android:name="com.yalantis.ucrop.UCropActivity"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+<!--        <service android:name=".如果有用Service的話" />-->
+<!--        <service-->
+<!--                android:name=".如果要用JobService的話"-->
+<!--                android:permission="android.permission.BIND_JOB_SERVICE" />-->
     </application>
 
 </manifest>
