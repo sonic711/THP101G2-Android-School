@@ -45,8 +45,11 @@ class ComPostFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val activityViewModel = (requireActivity() as MainActivity).activityViewModel
         with(binding) {
-
+            button5.setOnClickListener {
+                println(activityViewModel.newLabels)
+            }
             val navController = Navigation.findNavController(requireView())
             val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
             savedStateHandle?.getLiveData<Bundle>("bundle")?.observe(viewLifecycleOwner) { bundle ->
@@ -60,6 +63,12 @@ class ComPostFragment : Fragment() {
             nextStepBtn.setOnClickListener {
                 // TODO 去搜尋標籤頁面
                 Navigation.findNavController(it).navigate(R.id.action_comPostFragment_to_comLabelForPostFragment)
+            }
+
+            viewModel?.labels?.value = activityViewModel?.newLabels?.toList()
+            viewModel?.labels?.observe(viewLifecycleOwner){
+                // TODO 寫到這邊暫停了 看起來是裝好了
+                println(viewModel?.labels?.value)
             }
         }
     }
@@ -79,7 +88,7 @@ class ComPostFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        println("發表文章頁面銷毀")
+        (requireActivity() as MainActivity).activityViewModel.newLabels.clear()
         saveInternal()
     }
 
@@ -142,5 +151,4 @@ class ComPostFragment : Fragment() {
         }
         return valid
     }
-
 }

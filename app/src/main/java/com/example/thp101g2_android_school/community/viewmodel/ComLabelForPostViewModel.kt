@@ -19,6 +19,23 @@ class ComLabelForPostViewModel : ViewModel() {
     init {
         viewModelScope.launch { loadData() }
     }
+    /**
+     * 如果搜尋條件為空字串，就顯示原始標籤列表；否則就顯示搜尋後結果
+     * @param newText 欲搜尋的條件字串
+     */
+    fun search(newText: String?) {
+        if (newText.isNullOrEmpty()) {
+            labels.value = labelList
+        } else {
+            val searchLabelList = mutableListOf<Label>()
+            labelList.forEach { label ->
+                if (label.comLabelName!!.contains(newText, true)) {
+                    searchLabelList.add(label)
+                }
+            }
+            labels.value = searchLabelList
+        }
+    }
 
     private fun loadData() {
 
@@ -26,11 +43,10 @@ class ComLabelForPostViewModel : ViewModel() {
         val type = object : TypeToken<List<Label>>() {}.type
         val list = requestTask<List<Label>>(url, respBodyType = type) ?: return
         val labelList = mutableListOf<Label>()
-        println(list)
+
         for (label in list!!) {
             labelList.add(label)
         }
-
         this.labelList = labelList
         this.labels.value = this.labelList
     }

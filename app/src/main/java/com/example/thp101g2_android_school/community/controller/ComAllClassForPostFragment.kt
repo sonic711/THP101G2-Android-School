@@ -28,7 +28,9 @@ class ComAllClassForPostFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
+            viewModel?.parents?.observe(viewLifecycleOwner){
 
+            }
             parentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
             viewModel?.parents?.observe(viewLifecycleOwner) { parents ->
