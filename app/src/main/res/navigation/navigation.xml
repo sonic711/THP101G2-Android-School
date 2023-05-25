@@ -82,6 +82,9 @@
             android:label="fragment_shop_front"
             tools:layout="@layout/fragment_shop_front">
         <action
+                android:id="@+id/action_shopFrontFragment_to_shopOrderDetailFragment"
+                app:destination="@id/shopOrderDetailFragment"/>
+        <action
                 android:id="@+id/action_shopFrontFragment_to_productDetailFragment"
                 app:destination="@id/productDetailFragment"/>
     </fragment>
@@ -183,4 +186,9 @@
             android:name="com.example.thp101g2_android_school.member.controller.MemApplyToTeacherFragment"
             android:label="fragment_mem_apply_to_teacher"
             tools:layout="@layout/fragment_mem_apply_to_teacher"/>
+    <fragment
+            android:id="@+id/shopOrderDetailFragment"
+            android:name="com.example.thp101g2_android_school.shop.controller.ShopOrderDetailFragment"
+            android:label="fragment_shop_order_detail"
+            tools:layout="@layout/fragment_shop_order_detail" />
 </navigation>

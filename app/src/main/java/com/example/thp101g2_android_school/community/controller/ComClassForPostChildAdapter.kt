@@ -19,7 +19,7 @@ class ComClassForPostChildAdapter(private val childList: List<ChildItem>) :
 
         RecyclerView.ViewHolder(itemViewBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComClassForPostChildAdapter.ChildViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildViewHolder {
 
         val itemViewBinding = ComClassChildItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -31,7 +31,7 @@ class ComClassForPostChildAdapter(private val childList: List<ChildItem>) :
         return ChildViewHolder(itemViewBinding)
     }
 
-    override fun onBindViewHolder(holder: ComClassForPostChildAdapter.ChildViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChildViewHolder, position: Int) {
         val childs = childList[position]
         with(holder) {
             itemViewBinding.toggleButton.isVisible = false

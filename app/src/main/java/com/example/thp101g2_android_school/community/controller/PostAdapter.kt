@@ -43,6 +43,8 @@ class PostAdapter(private var posts: List<Post>) :
                 itemViewBinding.imageView.setBackgroundResource(R.drawable.com_user)
             }
             // TODO 按下會員資料後跳轉到該會員主頁
+
+            // TODO 按下文章後跳轉到該文章細節頁面
             val bundle = Bundle()
             bundle.putSerializable("post", post)
 
@@ -50,6 +52,7 @@ class PostAdapter(private var posts: List<Post>) :
                 // TODO 按下CardView後把資料送到下一頁
                 // 按下CardView後把該文章編號存入偏好設定檔，做瀏覽記錄用
                 saveArticleIdToSharedPreferences(itemView.context, post.post.comPostId)
+
             }
             // 如果是Value是1，代表已讀過，就改變標題顏色
             if (getViewedArticleIdFromSharedPreferences(itemView.context, post.post.comPostId) == 1) {
