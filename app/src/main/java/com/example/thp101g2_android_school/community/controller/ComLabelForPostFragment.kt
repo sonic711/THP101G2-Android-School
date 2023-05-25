@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.example.thp101g2_android_school.databinding.FragmentComLabelForPostBi
 
 class ComLabelForPostFragment : Fragment() {
     private lateinit var binding: FragmentComLabelForPostBinding
+    val activityViewModel: ActivityViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,8 +35,7 @@ class ComLabelForPostFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.labels?.observe(viewLifecycleOwner) { labels ->
                 if (recyclerView.adapter == null) {
-                    var viewmodel = (requireActivity() as MainActivity)?.activityViewModel
-                    recyclerView.adapter = viewmodel?.let { ComLabelForPostAdapter(labels, it) }
+                    recyclerView.adapter = ComLabelForPostAdapter(labels, activityViewModel)
                 } else {
                     (recyclerView.adapter as ComLabelForPostAdapter).updateLabels(labels)
                 }
@@ -45,6 +46,7 @@ class ComLabelForPostFragment : Fragment() {
                     viewModel?.search(newText)
                     return true
                 }
+
                 // 點擊虛擬鍵盤上的提交鈕時呼叫
                 override fun onQueryTextSubmit(text: String): Boolean {
                     return false

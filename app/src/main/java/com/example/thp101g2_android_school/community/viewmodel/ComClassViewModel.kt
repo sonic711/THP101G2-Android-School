@@ -40,6 +40,9 @@ class ComClassViewModel : ViewModel() {
                         // 把該次分類放入該主分類的屬性中
                         childItems.add(
                             ChildItem(
+                                item.comMainClassId,
+                                item.comMainClassName,
+                                item.comSecClassId,
                                 item.comSecClassName,
                                 getStringResourceId(item.comSecClassName)
                             )
@@ -59,6 +62,9 @@ class ComClassViewModel : ViewModel() {
                             // 就把該分類放進集合
                             newchildItems.add(
                                 ChildItem(
+                                    item.comMainClassId,
+                                    item.comMainClassName,
+                                    item.comSecClassId,
                                     item.comSecClassName,
                                     getStringResourceId(item.comSecClassName)
                                 )

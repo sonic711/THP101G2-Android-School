@@ -10,12 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.thp101g2_android_school.ActivityViewModel
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.community.viewmodel.ComPostViewModel
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.community.model.ChildItem
+import com.example.thp101g2_android_school.community.model.ClassBean
 import com.example.thp101g2_android_school.databinding.FragmentComPostBinding
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -28,16 +32,17 @@ import java.io.File
 class ComPostFragment : Fragment() {
     private val myTag = "TAG_${javaClass.simpleName}"
     private lateinit var binding: FragmentComPostBinding
+    val viewModel: ComPostViewModel by viewModels()
+    val activityViewModel: ActivityViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val actionBar = (requireActivity() as MainActivity).supportActionBar
         actionBar?.title = "發表貼文"
         actionBar?.show()
 
         binding = FragmentComPostBinding.inflate(inflater, container, false)
-        val viewModel: ComPostViewModel by viewModels()
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -45,38 +50,43 @@ class ComPostFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val activityViewModel = (requireActivity() as MainActivity).activityViewModel
+
         with(binding) {
-            button5.setOnClickListener {
-                println(activityViewModel.newLabels)
-            }
+
             val navController = Navigation.findNavController(requireView())
             val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
             savedStateHandle?.getLiveData<Bundle>("bundle")?.observe(viewLifecycleOwner) { bundle ->
-                val data = bundle?.getString("child") // 从Bundle中获取传回的数据
-                viewModel?.secClass?.value = data
+                val data = bundle?.getSerializable("secClass") // 从Bundle中获取传回的数据
+                val secClass = data as ChildItem
+                viewModel?.secClassId?.value = secClass.comSecClassId
+                viewModel?.secClassName?.value = secClass.comSecClassName
             }
             // 按下選擇看板後，跳去下個Fragment選擇次分類
-            cardView.setOnClickListener {
+            classCardView.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_comPostFragment_to_comAllClassForPostFragment)
             }
             nextStepBtn.setOnClickListener {
                 // TODO 去搜尋標籤頁面
                 Navigation.findNavController(it).navigate(R.id.action_comPostFragment_to_comLabelForPostFragment)
             }
-
-            viewModel?.labels?.value = activityViewModel?.newLabels?.toList()
-            viewModel?.labels?.observe(viewLifecycleOwner){
-                // TODO 寫到這邊暫停了 看起來是裝好了
-                println(viewModel?.labels?.value)
-            }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     override fun onStart() {
         super.onStart()
         // TODO 這邊要判斷如果最後送出文章了，就刪除草稿
         loadInternal()
+        // 載入選擇的分類 並顯示在標籤上
+        // TODO 這邊沒選到三個就會閃退 FIXIT
+        if(activityViewModel.newLabels.isNullOrEmpty()) return
+        viewModel.labels?.value = activityViewModel.newLabels?.toList()
+        binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
+        binding.tvLabelName2.text = viewModel.labels?.value?.get(1)?.comLabelName
+        binding.tvLabelName3.text = viewModel.labels?.value?.get(2)?.comLabelName
     }
 
     override fun onStop() {
@@ -88,7 +98,8 @@ class ComPostFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        (requireActivity() as MainActivity).activityViewModel.newLabels.clear()
+        activityViewModel.newLabels.clear()
+        println("清空")
         saveInternal()
     }
 

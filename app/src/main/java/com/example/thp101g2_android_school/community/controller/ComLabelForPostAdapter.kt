@@ -46,7 +46,7 @@ class ComLabelForPostAdapter(private var labels: List<Label>, private var activi
             viewModel?.label?.value = label
             cardView.setOnClickListener {
                 // 取得點擊的Label名稱，並存到activityViewModel中
-                activityViewModel.getLabelToInsert(label.comLabelName)
+                activityViewModel.getLabelToInsert(label)
 
             }
         }

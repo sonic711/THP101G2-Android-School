@@ -36,8 +36,9 @@ class PostAdapter(private var posts: List<Post>) :
         with(holder) {
 
             itemViewBinding.viewModel?.post?.value = post
+            // 如果Po文者沒有大頭貼，就給一個預設的
             if (post.post.profilePhoto != null) {
-                val img = byteArrayToBitmap(post.post.profilePhoto)
+                val img = byteArrayToBitmap(post.post.profilePhoto!!)
                 itemViewBinding.imageView.setImageBitmap(img)
             }else{
                 itemViewBinding.imageView.setBackgroundResource(R.drawable.com_user)
@@ -51,16 +52,17 @@ class PostAdapter(private var posts: List<Post>) :
             itemView.setOnClickListener {
                 // TODO 按下CardView後把資料送到下一頁
                 // 按下CardView後把該文章編號存入偏好設定檔，做瀏覽記錄用
-                saveArticleIdToSharedPreferences(itemView.context, post.post.comPostId)
+                saveArticleIdToSharedPreferences(itemView.context, post.post?.comPostId!!)
 
             }
             // 如果是Value是1，代表已讀過，就改變標題顏色
-            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.post.comPostId) == 1) {
+            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.post?.comPostId!!) == 1) {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.gray_500))
             } else {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.black))
             }
             // 載入labelRecyclerView文章標籤
+            // TODO FIXIT RecyclerView重複使用導致資料錯誤問題
             with(itemViewBinding.labelRecyclerView) {
                 // 如果第一個標籤的id = 0 就不載入adapter
                 if (post.labels[0].comLabelId == "0") return

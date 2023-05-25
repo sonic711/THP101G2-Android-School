@@ -38,7 +38,7 @@ class ComClassForPostChildAdapter(private val childList: List<ChildItem>) :
             itemViewBinding.viewModel?.child?.value = childs
             itemView.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString("child", childs.childName) // 将数据添加到Bundle中，使用合适的键值对
+                bundle.putSerializable("secClass", childs) // 将数据添加到Bundle中，使用合适的键值对
 
                 val navController = Navigation.findNavController(it)
                 navController.previousBackStackEntry?.savedStateHandle?.set("bundle", bundle)
