@@ -30,7 +30,7 @@ class ShopOrderViewModel : ViewModel() {
 
     private fun loadProduct() {
         val orderList = mutableListOf<ShopOrderList>()
-        orderList.add(ShopOrderList(R.drawable.java, "java基礎教科書", "21856trsehse1221","2023/5/22"))
+        orderList.add(ShopOrderList(R.drawable.java, "java基礎教科書", "21856trsehse1221","2023/5/22", price = 500.0.toString(),"Willian","超級蘋果人","0905231318","台北市松山區20號"))
 
 
         this.orderList = orderList

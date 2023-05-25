@@ -35,9 +35,6 @@ class ShopOrderListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //這裡註解要問老師關於SearchView的顯示跟關閉
         val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
-//        if(searchView.visibility == View.VISIBLE){
-//            searchView.visibility = View.GONE
-//        }
         with(binding) {
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -63,7 +60,7 @@ class ShopOrderListFragment : Fragment() {
                     return false
                 }
 
-                // STEP09-2 當輸入內容變化時，呼叫search()
+                // 當輸入內容變化時，呼叫search()
                 override fun onQueryTextChange(newText: String?): Boolean {
                     viewModel?.search(newText)
                     return true

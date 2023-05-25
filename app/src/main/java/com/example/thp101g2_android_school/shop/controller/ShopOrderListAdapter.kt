@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopOrderItemBinding
 
 import com.example.thp101g2_android_school.shop.model.ShopOrderList
@@ -43,6 +45,10 @@ class ShopOrderListAdapter(private var orders: List<ShopOrderList>) :
             itemViewBinding.viewModel?.order?.value = order
             val bundle = Bundle()
             bundle.putSerializable("order", order)
+            itemView.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_shopFrontFragment_to_shopOrderDetailFragment, bundle)
+            }
 
         }
     }
