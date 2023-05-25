@@ -19,17 +19,26 @@ class ComPostViewModel : ViewModel() {
     val member: MutableLiveData<Member> by lazy { MutableLiveData<Member>() }
     val post: MutableLiveData<Post> by lazy { MutableLiveData<Post>() }
 
+    val memberName: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val memberImg: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
+    val postTime: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val secClass: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val private: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
+    val title: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val content: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val labels: MutableLiveData<List<String>> by lazy { MutableLiveData<List<String>>() }
     init {
         loadData()
     }
     private fun loadData(){
         val member = Member("Sean", R.drawable.com_mary)
-        this.member.value = member
+        this.memberName.value = member.name
+        this.memberImg.value = member.img
 
         val time = LocalDateTime.now()
         val now = ZonedDateTime.now()
         val formatterFULL = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
-        this.post.value?.post?.comPostTime = now.format(formatterFULL)
+        this.postTime.value = now.format(formatterFULL)
     }
     inner class Member(var name: String, var img : Int)
 }
