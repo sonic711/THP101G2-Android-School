@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ActivityViewModel
 import com.example.thp101g2_android_school.community.model.Label
 import com.example.thp101g2_android_school.community.viewmodel.LabelViewModel
+import com.example.thp101g2_android_school.databinding.ComLabelForPostItemviewBinding
 import com.example.thp101g2_android_school.databinding.ComLabelItemviewBinding
 
 class ComLabelForPostAdapter(private var labels: List<Label>, private var activityViewModel: ActivityViewModel) :
     RecyclerView.Adapter<ComLabelForPostAdapter.LabelForPostViewHolder>() {
 
-    class LabelForPostViewHolder(val itemViewBinding: ComLabelItemviewBinding) :
+    class LabelForPostViewHolder(val itemViewBinding: ComLabelForPostItemviewBinding) :
 
         RecyclerView.ViewHolder(itemViewBinding.root)
 
@@ -31,7 +32,7 @@ class ComLabelForPostAdapter(private var labels: List<Label>, private var activi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelForPostViewHolder {
-        val itemViewBinding = ComLabelItemviewBinding.inflate(
+        val itemViewBinding = ComLabelForPostItemviewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         itemViewBinding.viewModel = LabelViewModel()
@@ -47,7 +48,6 @@ class ComLabelForPostAdapter(private var labels: List<Label>, private var activi
             cardView.setOnClickListener {
                 // 取得點擊的Label名稱，並存到activityViewModel中
                 activityViewModel.getLabelToInsert(label)
-
             }
         }
     }
