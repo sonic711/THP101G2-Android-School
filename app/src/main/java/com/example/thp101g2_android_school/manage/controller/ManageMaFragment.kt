@@ -11,28 +11,28 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
+import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.databinding.FragmentManageClassBinding
+import com.example.thp101g2_android_school.databinding.FragmentManageMaBinding
+import com.example.thp101g2_android_school.manage.model.Classes
+import com.example.thp101g2_android_school.manage.model.Mas
+import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
 
-
-import com.example.thp101g2_android_school.databinding.FragmentManageFirmBinding
-
-import com.example.thp101g2_android_school.manage.model.Firms
-
-import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmViewModel
-import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmsViewModel
-
-class ManageFirmFragment : Fragment() {
-    private lateinit var binding: FragmentManageFirmBinding
+class ManageMaFragment : Fragment() {
+    private lateinit var binding: FragmentManageMaBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ManageFirmAdapter
-    private var firmList: List<Firms> = emptyList()
+    private lateinit var adapter: ManageMaAdapter
+    private var maList: List<Mas> = emptyList()
 
+
+    private lateinit var viewModel: ManageMaViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModel: ManageFirmsViewModel by viewModels()
-        binding = FragmentManageFirmBinding.inflate(inflater, container, false)
+        val viewModel: ManageMaViewModel by viewModels()
+        binding = FragmentManageMaBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -46,35 +46,40 @@ class ManageFirmFragment : Fragment() {
 
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            adapter = ManageFirmAdapter(firmList)
-            viewModel?.firms?.observe(viewLifecycleOwner) { firms ->
+            adapter = ManageMaAdapter(maList)
+            viewModel?.mao?.observe(viewLifecycleOwner) { mas ->
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ManageFirmAdapter(firmList)
+                    recyclerView.adapter = ManageMaAdapter(maList)
                 } else {
-                    adapter.updateFirms(firmList)
+                    adapter.updateMas(maList)
                 }
             }
-        }
 
+        }
         val searchView = binding.searchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-              searchFirms(query)
+                searchMa(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-               searchFirms(newText)
+                searchMa(newText)
                 return true
             }
         })
     }
 
-    private fun searchFirms(query: String) {
-        // 根據搜尋條件 query 更新 firmList
-        val filteredFirm = firmList.filter { firms ->
-            firms.Firmname.contains(query, ignoreCase = true)
+    private fun searchMa(query: String) {
+        // 根據搜尋條件 query 更新 classList
+        val filteredMa = maList.filter { ma ->
+            ma.manageID.contains(query, ignoreCase = true)
         }
-        adapter.updateFirms(filteredFirm)
+        adapter.updateMas(filteredMa)
     }
+
+
 }
+
+
+

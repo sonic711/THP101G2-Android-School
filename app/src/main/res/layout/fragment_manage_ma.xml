@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".manage.controller.ManageFirmFragment">
+    tools:context=".manage.controller.ManageMaFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.manage.viewmodel.ManageFirmsViewModel" />
+            type="com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
