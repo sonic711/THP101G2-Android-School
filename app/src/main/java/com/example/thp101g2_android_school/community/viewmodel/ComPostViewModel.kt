@@ -9,11 +9,7 @@ import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.ForPostBean
 import com.example.thp101g2_android_school.community.model.Label
-import com.example.thp101g2_android_school.community.model.Post
-import com.example.thp101g2_android_school.community.model.PostBean
-import com.google.gson.Gson
 import com.google.gson.JsonObject
-import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -51,10 +47,11 @@ class ComPostViewModel : ViewModel() {
         postBean.comPostContent = content.value!!
         postBean.comPostStatus = private.value!!
         postBean.labels = labels.value
-//        println(postBean)
-        val respbody = requestTask<JsonObject>("$url/community/post", "POST", postBean)
 
+        val respbody = requestTask<JsonObject>("$url/community/post", "POST", postBean)
+        println(respbody)
     }
+
 
     private fun loadData() {
         val member = Member("2", "Vivi", R.drawable.com_mary)

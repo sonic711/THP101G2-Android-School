@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.community.model.Label
-import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 
@@ -13,12 +12,15 @@ class ComLabelForPostViewModel : ViewModel() {
     // 資料庫抓出來的
     private var labelList = mutableListOf<Label>()
 
-    // 受監控的LiveData，一旦指派新值就會更新畫面
+    // 受監控的LiveData，一旦輸入搜尋字串就會更新畫面
     val labels: MutableLiveData<List<Label>> by lazy { MutableLiveData<List<Label>>() }
+    // 點擊到的標籤放裡面
+    val newLabels: MutableLiveData<List<Label>> by lazy { MutableLiveData<List<Label>>() }
 
     init {
         viewModelScope.launch { loadData() }
     }
+
     /**
      * 如果搜尋條件為空字串，就顯示原始標籤列表；否則就顯示搜尋後結果
      * @param newText 欲搜尋的條件字串

@@ -166,4 +166,6 @@
     <string name="txtFirmEditProductPicture">編輯圖片</string>
     <string name="txtFirmCancelOn">取消上架</string>
     <string name="txtFirmConOn">確定上架</string>
+    <string name="text_com_submitpost">送出文章</string>
+    <string name="text_com_chooselabels">選擇文章標籤</string>
 </resources>
