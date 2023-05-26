@@ -7,7 +7,21 @@ import java.io.Serializable
 * */
 
 data class Post(
-    var post: PostBean,
-    var labels: List<Label>,
+    var comPostId: String? = "",
+    var memberNo : String? = "",
+    var userId: String? = "",
+    var nickName: String? = "",
+    var profilePhoto: ByteArray? = null,
+    var comSecClassId: String? = "",
+    var comSecClassName: String? = "",
+    var comPostTitle: String? = "",
+    var comPostContent: String? = "",
+    var comPostLabelId: String? = "",
+    var comPostLabelName: String? = "",
+    var comPostLabelTime: String? = "",
+    var comPostTime: String? = "",
+    var comPostStatus: Boolean? = null,
+    var comPostAccessSetting: Boolean? = null,
+    var labels: List<Label>? = null,
 
 ) : Serializable

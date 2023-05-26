@@ -3,8 +3,11 @@ package com.example.thp101g2_android_school.community.controller
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
@@ -37,8 +40,8 @@ class PostAdapter(private var posts: List<Post>) :
 
             itemViewBinding.viewModel?.post?.value = post
             // 如果Po文者沒有大頭貼，就給一個預設的
-            if (post.post.profilePhoto != null) {
-                val img = byteArrayToBitmap(post.post.profilePhoto!!)
+            if (post.profilePhoto != null) {
+                val img = byteArrayToBitmap(post.profilePhoto!!)
                 itemViewBinding.imageView.setImageBitmap(img)
             }else{
                 itemViewBinding.imageView.setBackgroundResource(R.drawable.com_user)
@@ -50,24 +53,31 @@ class PostAdapter(private var posts: List<Post>) :
             bundle.putSerializable("post", post)
 
             itemView.setOnClickListener {
-                // TODO 按下CardView後把資料送到下一頁
                 // 按下CardView後把該文章編號存入偏好設定檔，做瀏覽記錄用
-                saveArticleIdToSharedPreferences(itemView.context, post.post?.comPostId!!)
+                saveArticleIdToSharedPreferences(itemView.context, post.comPostId!!)
+                // TODO 按下CardView後把資料送到該文章頁面
+                Navigation.findNavController(it).navigate(R.id.action_comMainFragment_to_postDetailFragment, bundle)
 
             }
             // 如果是Value是1，代表已讀過，就改變標題顏色
-            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.post?.comPostId!!) == 1) {
+            if (getViewedArticleIdFromSharedPreferences(itemView.context, post.comPostId!!) == 1) {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.gray_500))
             } else {
                 itemViewBinding.tvTitle.setTextColor(itemView.context.getColor(R.color.black))
             }
             // 載入labelRecyclerView文章標籤
-            // TODO FIXIT RecyclerView重複使用導致資料錯誤問題
+            if(itemViewBinding.viewModel?.post?.value?.labels.isNullOrEmpty()){
+
+                itemViewBinding.labelRecyclerView.visibility = View.GONE
+                return
+            }
             with(itemViewBinding.labelRecyclerView) {
-                // 如果第一個標籤的id = 0 就不載入adapter
-                if (post.labels[0].comLabelId == "0") return
+                // 如果第一個標籤的id = 0 就不顯示標籤recyclerView
+                if (post.labels!![0].comLabelId == "0") {
+                    itemViewBinding.labelRecyclerView.visibility = View.GONE
+                }else itemViewBinding.labelRecyclerView.visibility = View.VISIBLE
                 layoutManager = GridLayoutManager(holder.itemView.context, 3)
-                adapter = LabelAdapter(post.labels)
+                adapter = post.labels?.let { LabelAdapter(it) }
             }
         }
     }

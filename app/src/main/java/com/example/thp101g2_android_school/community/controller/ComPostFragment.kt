@@ -2,24 +2,21 @@ package com.example.thp101g2_android_school.community.controller
 
 import android.content.Context
 import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.example.thp101g2_android_school.ActivityViewModel
 import com.example.thp101g2_android_school.MainActivity
-import com.example.thp101g2_android_school.community.viewmodel.ComPostViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.community.model.ChildItem
-import com.example.thp101g2_android_school.community.model.ClassBean
+import com.example.thp101g2_android_school.community.viewmodel.ComPostViewModel
 import com.example.thp101g2_android_school.databinding.FragmentComPostBinding
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -52,7 +49,9 @@ class ComPostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         with(binding) {
-
+            binding.tvLabelName1.visibility = View.GONE
+            binding.tvLabelName2.visibility = View.GONE
+            binding.tvLabelName3.visibility = View.GONE
             val navController = Navigation.findNavController(requireView())
             val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
             savedStateHandle?.getLiveData<Bundle>("bundle")?.observe(viewLifecycleOwner) { bundle ->
@@ -81,12 +80,40 @@ class ComPostFragment : Fragment() {
         // TODO 這邊要判斷如果最後送出文章了，就刪除草稿
         loadInternal()
         // 載入選擇的分類 並顯示在標籤上
-        // TODO 這邊沒選到三個就會閃退 FIXIT
-        if(activityViewModel.newLabels.isNullOrEmpty()) return
+        // 沒有值得標籤要被隱藏起來
+        if (activityViewModel.newLabels.isNullOrEmpty()) return
         viewModel.labels?.value = activityViewModel.newLabels?.toList()
-        binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
-        binding.tvLabelName2.text = viewModel.labels?.value?.get(1)?.comLabelName
-        binding.tvLabelName3.text = viewModel.labels?.value?.get(2)?.comLabelName
+        when (viewModel.labels?.value?.size) {
+            0 -> {
+                binding.tvLabelName1.visibility = View.GONE
+                binding.tvLabelName2.visibility = View.GONE
+                binding.tvLabelName3.visibility = View.GONE
+            }
+
+            1 -> {
+                binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
+                binding.tvLabelName1.visibility = View.VISIBLE
+                binding.tvLabelName2.visibility = View.GONE
+                binding.tvLabelName3.visibility = View.GONE
+            }
+
+            2 -> {
+                binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
+                binding.tvLabelName2.text = viewModel.labels?.value?.get(1)?.comLabelName
+                binding.tvLabelName1.visibility = View.VISIBLE
+                binding.tvLabelName2.visibility = View.VISIBLE
+                binding.tvLabelName3.visibility = View.GONE
+            }
+
+            3 -> {
+                binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
+                binding.tvLabelName2.text = viewModel.labels?.value?.get(1)?.comLabelName
+                binding.tvLabelName3.text = viewModel.labels?.value?.get(2)?.comLabelName
+                binding.tvLabelName1.visibility = View.VISIBLE
+                binding.tvLabelName2.visibility = View.VISIBLE
+                binding.tvLabelName3.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onStop() {

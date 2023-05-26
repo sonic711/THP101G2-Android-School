@@ -40,7 +40,6 @@ class ComPostViewModel : ViewModel() {
     fun addPost() {
 
         val postBean = ForPostBean()
-
         if (secClassId.value.isNullOrEmpty()) return
 
         if (title.value.isNullOrEmpty()) return
@@ -52,18 +51,19 @@ class ComPostViewModel : ViewModel() {
         postBean.comPostContent = content.value!!
         postBean.comPostStatus = private.value!!
         postBean.labels = labels.value
-        println(postBean)
+//        println(postBean)
         val respbody = requestTask<JsonObject>("$url/community/post", "POST", postBean)
+
     }
 
     private fun loadData() {
-        val member = Member("2", "Sean", R.drawable.com_mary)
+        val member = Member("2", "Vivi", R.drawable.com_mary)
 
         this.memberId.value = member.id
         this.memberName.value = member.name
         this.memberImg.value = member.img
 
-        val time = LocalDateTime.now()
+
         val now = ZonedDateTime.now()
         val formatterFULL = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
         this.postTime.value = now.format(formatterFULL)
