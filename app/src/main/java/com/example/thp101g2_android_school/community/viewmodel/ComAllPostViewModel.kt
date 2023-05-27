@@ -9,6 +9,7 @@ import com.example.thp101g2_android_school.community.model.Label
 import com.example.thp101g2_android_school.community.model.Post
 import com.example.thp101g2_android_school.community.model.PostBean
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ComAllPostViewModel : ViewModel() {
@@ -20,7 +21,9 @@ class ComAllPostViewModel : ViewModel() {
     val posts: MutableLiveData<List<Post>> by lazy { MutableLiveData<List<Post>>() }
 
     init {
-        viewModelScope.launch { loadPosts() }
+        viewModelScope.launch(Dispatchers.IO) {
+            loadPosts()
+        }
     }
 
     private fun loadPosts() {
@@ -108,7 +111,9 @@ class ComAllPostViewModel : ViewModel() {
                 }
             }
         }
-        this.postList = postList
-        this.posts.value = this.postList
+        this.posts.postValue(postList)
+//        this.posts.value = this.postList
+//        this.postList = postList
+//        this.posts.value = this.postList
     }
 }

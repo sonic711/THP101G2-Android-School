@@ -30,7 +30,7 @@ class ComPostFragment : Fragment() {
     private val myTag = "TAG_${javaClass.simpleName}"
     private lateinit var binding: FragmentComPostBinding
     val viewModel: ComPostViewModel by viewModels()
-    val activityViewModel: ActivityViewModel by activityViewModels()
+    private val activityViewModel: ActivityViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +45,7 @@ class ComPostFragment : Fragment() {
         binding.lifecycleOwner = this
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         with(binding) {
@@ -65,8 +66,17 @@ class ComPostFragment : Fragment() {
                 Navigation.findNavController(it).navigate(R.id.action_comPostFragment_to_comLabelForPostFragment)
             }
             btSubmit.setOnClickListener {
-                viewModel?.addPost()
-                deleteInternal()
+                inputValid()
+                val result = viewModel?.addPost()
+                when (result) {
+                    0 -> Toast.makeText(requireContext(), "請選擇分類", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(requireContext(), "文章新增失敗", Toast.LENGTH_SHORT).show()
+                    2 -> {
+                        deleteInternal()
+                        Navigation.findNavController(it).navigate(R.id.comAllPostFragment)
+                    }
+
+                }
             }
         }
     }
@@ -74,7 +84,7 @@ class ComPostFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         // 載入選擇的分類 並顯示在標籤上
-        // 沒有值得標籤要被隱藏起來
+        // 沒有值的標籤要被隱藏起來
         if (activityViewModel.newLabels.isEmpty()) return
         viewModel.labels.value = activityViewModel.newLabels.toList()
         when (viewModel.labels.value?.size) {
@@ -109,6 +119,7 @@ class ComPostFragment : Fragment() {
             }
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         activityViewModel.newLabels.clear()
@@ -156,6 +167,7 @@ class ComPostFragment : Fragment() {
             }
         }
     }
+
     private fun deleteInternal() {
         with(binding) {
             if (!inputValid()) {
@@ -171,7 +183,7 @@ class ComPostFragment : Fragment() {
                 .bufferedWriter().use {
                     it.write(jsonObject.toString())
                 }
-            Toast.makeText(requireContext(), "已送出文章", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "已送出文章", Toast.LENGTH_LONG).show()
         }
     }
 

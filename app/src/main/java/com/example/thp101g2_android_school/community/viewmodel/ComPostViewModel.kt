@@ -33,23 +33,26 @@ class ComPostViewModel : ViewModel() {
         loadData()
     }
 
-    fun addPost() {
+    fun addPost(): Int? {
 
+        if (secClassId.value.isNullOrEmpty()) return 0
+
+        if (title.value.isNullOrEmpty()) return 0
+
+        if (content.value.isNullOrEmpty()) return 0
         val postBean = ForPostBean()
-        if (secClassId.value.isNullOrEmpty()) return
-
-        if (title.value.isNullOrEmpty()) return
-
-        if (content.value.isNullOrEmpty()) return
-        postBean.memberNo = memberId.value!!
-        postBean.comSecClassId = secClassId.value!!
-        postBean.comPostTitle = title.value!!
-        postBean.comPostContent = content.value!!
-        postBean.comPostStatus = private.value!!
+        postBean.memberNo = memberId.value
+        postBean.comSecClassId = secClassId.value
+        postBean.comPostTitle = title.value?.trim()
+        postBean.comPostContent = content.value?.trim()
+        postBean.comPostStatus = private.value
         postBean.labels = labels.value
 
         val respbody = requestTask<JsonObject>("$url/community/post", "POST", postBean)
-        println(respbody)
+        respbody?.get("msg")?.asInt.let {
+            return it
+        }
+
     }
 
 

@@ -17,7 +17,7 @@ import com.example.thp101g2_android_school.shop.controller.ShopMainFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ComMainFragment : Fragment() {
-    private lateinit var binding: FragmentComMainBinding
+     lateinit var binding: FragmentComMainBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,8 +44,8 @@ class ComMainFragment : Fragment() {
 
     private fun handleViews() {
         val pages = listOf(
-            Page("追蹤", ContextCompat.getColor(requireContext(), R.color.purple_200), ComFollowFragment()),
-            Page("全部文章", ContextCompat.getColor(requireContext(), R.color.teal_200), ComAllPostFragment()),
+            Page("追蹤", ContextCompat.getColor(requireContext(), R.color.white), ComFollowFragment()),
+            Page("全部文章", ContextCompat.getColor(requireContext(), R.color.white), ComAllPostFragment()),
             Page("全部分類", ContextCompat.getColor(requireContext(), R.color.white), ComAllClassFragment()),
         )
 

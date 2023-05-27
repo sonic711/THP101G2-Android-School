@@ -83,7 +83,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 android:text="@{viewModel.post.comPostContent}"
                                 android:hint="內文 ..." app:layout_constraintHorizontal_bias="0.0"
-                                android:textSize="24sp"/>
+                                android:textSize="24sp" android:textColor="@color/black"/>
                         <ImageButton
                                 android:src="@android:drawable/arrow_down_float"
                                 android:layout_width="wrap_content"
@@ -99,5 +99,8 @@
                         android:id="@+id/replyRecyclerView"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+        <include
+                android:id="@+id/included"
+                layout="@layout/com_reply_bottomsheet" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
