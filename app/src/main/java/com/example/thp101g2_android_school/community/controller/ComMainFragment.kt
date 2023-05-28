@@ -44,9 +44,9 @@ class ComMainFragment : Fragment() {
 
     private fun handleViews() {
         val pages = listOf(
-            Page("追蹤", ContextCompat.getColor(requireContext(), R.color.white), ComFollowFragment()),
-            Page("全部文章", ContextCompat.getColor(requireContext(), R.color.white), ComAllPostFragment()),
-            Page("全部分類", ContextCompat.getColor(requireContext(), R.color.white), ComAllClassFragment()),
+            Page("追蹤", ContextCompat.getColor(requireContext(), R.color.gray_50), ComFollowFragment()),
+            Page("全部文章", ContextCompat.getColor(requireContext(), R.color.gray_50), ComAllPostFragment()),
+            Page("全部分類", ContextCompat.getColor(requireContext(), R.color.gray_50), ComAllClassFragment()),
         )
 
         with(binding) {
