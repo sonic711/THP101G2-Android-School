@@ -13,6 +13,7 @@ import com.example.thp101g2_android_school.databinding.FragmentFirmOrderManagerB
 import com.example.thp101g2_android_school.firm.model.Order
 import com.example.thp101g2_android_school.firm.viewmodel.FirmOrderViewModel
 import com.example.thp101g2_android_school.firm.viewmodel.FirmOrdersViewModel
+import com.google.android.material.color.MaterialColors.getColor
 
 class FirmOrderManagerFragment : Fragment() {
     private lateinit var binding : FragmentFirmOrderManagerBinding
@@ -42,8 +43,16 @@ class FirmOrderManagerFragment : Fragment() {
                     (recyclerViewOrder.adapter as FirmOrderAdapter).updateOrders(orders)
                 }
             }
+
+            btNotShip.setOnClickListener {
+                viewModel?.orderNotShip()
+
+            }
+
+            btShipped.setOnClickListener{
+                viewModel?.orderShipped()
+
+            }
         }
     }
-
-
 }

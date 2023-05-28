@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentFirmOrderDetailBinding
@@ -34,6 +35,9 @@ class FirmOrderDetailFragment : Fragment() {
                 bundle.getSerializable("order")?.let {
                     binding.viewModel?.firmOrder?.value = it as Order
                 }
+            }
+            ibFirmOrderDetailBackTo.setOnClickListener{
+                Navigation.findNavController(it).popBackStack()
             }
         }
     }

@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:text='@{"訂單編號:"+viewModel.firmOrder.orderId}'
+                android:text='@{"訂單編號:"+viewModel.firmOrder.shopOrderId}'
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/ivOrderPicture"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text='@{"訂單時間:"+ viewModel.firmOrder.orderTime}'
+                android:text='@{"訂單時間:"+ viewModel.firmOrder.shopOrdercreateTime}'
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/ivOrderPicture"
                 app:layout_constraintTop_toBottomOf="@+id/tvOrderId" />

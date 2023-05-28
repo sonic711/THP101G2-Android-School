@@ -7,6 +7,7 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.byteArrayToBitmap
 import com.example.thp101g2_android_school.databinding.FragmentFirmItemViewBinding
 import com.example.thp101g2_android_school.firm.model.FirmProduct
 import com.example.thp101g2_android_school.firm.viewmodel.FirmMainViewModel
@@ -54,6 +55,13 @@ class FirmProductAdapter(private var firmProducts: List<FirmProduct>) :
         with(holder) {
             // 一旦把firmProduct指派給viewModel，上面的itemView都會秀出來
             itemViewBinding.viewModel?.firmProduct?.value = firmProduct
+            // TODO 重要 圖片檔在這!!
+//            if (firmProduct.img != null) {
+//                val img = byteArrayToBitmap(firmProduct.img)
+//                itemViewBinding.ivFirmProduct.setImageBitmap(img)
+//            }else{
+//                itemViewBinding.ivFirmProduct.setBackgroundResource(R.drawable.com_user)
+//            }
             // STEP06-5.把資料送到下一頁用
             val bundle = Bundle()
             bundle.putSerializable("firmProduct", firmProduct)
