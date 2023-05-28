@@ -43,7 +43,7 @@
                 android:layout_marginStart="10dp"
                 app:layout_constraintStart_toEndOf="@+id/childCardView"
                 app:layout_constraintTop_toTopOf="@+id/childCardView"
-                tools:text="@{viewModel.favoriteproduct.name}" />
+                tools:text="@{viewModel.favoriteproduct.shopProductName}" />
 
             <TextView
                 android:id="@+id/tvDate"
@@ -52,7 +52,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toEndOf="@+id/tvMemberName"
                 app:layout_constraintTop_toTopOf="@+id/tvMemberName"
-                tools:text="@{viewModel.favoriteproduct.author}" />
+                tools:text="@{viewModel.favoriteproduct.shopProductId}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
