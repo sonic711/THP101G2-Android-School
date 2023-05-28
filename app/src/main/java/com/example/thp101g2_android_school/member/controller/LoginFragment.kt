@@ -32,10 +32,10 @@ class LoginFragment : Fragment() {
             tvForgetPassword.setOnClickListener {
                 forgetPasswordOnClick(it)
             }
-            btLogin.setOnClickListener {
-                val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/member"
-                val respBody = requestTask<Member>("$url/${viewModel.member.value?.memberEmail}/${viewModel.member.value?.password}")
-            }
+//            btLogin.setOnClickListener {
+//                val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/member"
+//                val respBody = requestTask<Member>("$url/${viewModel.member.value?.memberEmail}/${viewModel.member.value?.password}")
+//            }
         }
 
 
