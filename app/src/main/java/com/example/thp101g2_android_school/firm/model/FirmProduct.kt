@@ -4,13 +4,13 @@ import java.io.Serializable
 
 class FirmProduct(
     var imageId: Int,
-    var name: String,
-    var author: String,
-    var price: String,
-    var pinfo: String,
-    var status :Int,
-    var publish : String,
-    var publishTime : String,
-    var productClass : String,
-    var productTag : String):
+    var shopProductName: String,
+//    var author: String,
+    var img: ByteArray,
+    var shopProductPrice: String,
+    var shopProductDesc: String,
+    var shopProductStatus :Int,
+    var shopProductClass : String,
+    var shopProductSearch : String,
+    var shopName:String):
     Serializable

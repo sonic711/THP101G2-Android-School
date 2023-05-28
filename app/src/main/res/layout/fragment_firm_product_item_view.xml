@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:text='@{"品名:"+viewModel.productEdit.name}'
+                android:text='@{"品名:"+viewModel.productEdit.shopProductName}'
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text='@{"價格:"+viewModel.productEdit.price}'
+                android:text='@{"價格:"+viewModel.productEdit.shopProductPrice}'
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/tvFirmProductMName" />
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text='@{"狀態:"+viewModel.productEdit.status}'
+                android:text='@{"狀態:"+viewModel.productEdit.shopProductStatus}'
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/tvFirmProductMPrice" />
 

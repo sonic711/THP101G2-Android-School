@@ -23,6 +23,7 @@ class FirmOrderAdapter(private var orders : List<Order>):
         notifyDataSetChanged()
     }
 
+
     class FirmOrderViewHolder(val itemViewBinding: FragmentOrderItemViewBinding) :
     //畫面交由父去呈現
         RecyclerView.ViewHolder(itemViewBinding.root)//根view->1筆itemView的畫面
