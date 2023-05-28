@@ -186,7 +186,6 @@
             android:name="com.example.thp101g2_android_school.shop.controller.ShopOrderDetailFragment"
             android:label="fragment_shop_order_detail"
             tools:layout="@layout/fragment_shop_order_detail" />
-<!--    -->
     <fragment
             android:id="@+id/couClassroomFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouClassroomFragment"
@@ -211,5 +210,10 @@
             android:name="com.example.thp101g2_android_school.course.controller.CouUploadChapterFragment"
             android:label="fragment_cou_upload_chapter"
             tools:layout="@layout/fragment_cou_upload_chapter" />
-<!--    -->
+    <fragment
+            android:id="@+id/shopBuyFragment"
+            android:name="com.example.thp101g2_android_school.shop.controller.ShopBuyFragment"
+            android:label="fragment_shop_buy"
+            tools:layout="@layout/fragment_shop_buy" />
+
 </navigation>
