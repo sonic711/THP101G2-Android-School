@@ -1,11 +1,14 @@
 package com.example.thp101g2_android_school.calendar.model
 
-class Schedule(
+import java.sql.Date
+import java.sql.Time
+
+class AddSchedule(
     var task: String,
     var tagName: String,
-    var day: String,
-    var month: String,
-    var time: String,
+    var date: Date,
+    var startTime: Time,
+    var endTime: Time,
     var repeat: String? = null,
     var remind: String? = null
 ): java.io.Serializable {
