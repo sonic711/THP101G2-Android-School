@@ -31,15 +31,12 @@ class ShopMainFragment : Fragment() {
         with(binding) {
             //這裡註解要問老師關於SearchView的顯示跟關閉
             val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
-//            if(searchView.visibility == View.GONE){
-//                searchView.visibility = View.VISIBLE
-//            }
-
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
             viewModel?.products?.observe(viewLifecycleOwner) { products ->
                 // adapter為null要建立新的adapter；之後只要呼叫updateFriends(friends)即可
+                //TODO:加載progress bar android
                 if (recyclerView.adapter == null) {
                     recyclerView.adapter = ProductAdapter(products)
                 } else {
@@ -66,16 +63,6 @@ class ShopMainFragment : Fragment() {
                 }
 
             })
-//            binding.btnBack.setOnClickListener {
-//                AlertDialog.Builder(requireContext())
-//                    .setMessage("確定要回上一頁嗎?")
-//                    .setTitle("警告!!!!")
-//                    .setPositiveButton("確定"){ dialog, which ->
-//                        Navigation.findNavController(requireView()).navigateUp()
-//                    }
-//                    .setNeutralButton("取消", null)
-//                    .show()
-//            }
         }
 
 

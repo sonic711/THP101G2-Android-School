@@ -36,10 +36,6 @@ class ShopingCartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //這裡註解要問老師關於SearchView的顯示跟關閉
         val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
-//        val etAddProduct: EditText = binding.root.findViewById(R.id.etAddProduct)
-//        etAddProduct.setText("1")
-//        val btnShoppingAdd : ImageButton = binding.root.findViewById(R.id.btnShoppingAdd)
-//        val btnShoppingDelete : ImageButton = binding.root.findViewById(R.id.btnShoppingDelete)
         with(binding) {
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -58,6 +54,7 @@ class ShopingCartFragment : Fragment() {
                     }
                 }
             }
+
 
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

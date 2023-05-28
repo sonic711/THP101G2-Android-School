@@ -19,7 +19,7 @@ class ComClassForPostChildAdapter(private val childList: List<ChildItem>) :
 
         RecyclerView.ViewHolder(itemViewBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComClassForPostChildAdapter.ChildViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildViewHolder {
 
         val itemViewBinding = ComClassChildItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -31,14 +31,14 @@ class ComClassForPostChildAdapter(private val childList: List<ChildItem>) :
         return ChildViewHolder(itemViewBinding)
     }
 
-    override fun onBindViewHolder(holder: ComClassForPostChildAdapter.ChildViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChildViewHolder, position: Int) {
         val childs = childList[position]
         with(holder) {
             itemViewBinding.toggleButton.isVisible = false
             itemViewBinding.viewModel?.child?.value = childs
             itemView.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString("child", childs.childName) // 将数据添加到Bundle中，使用合适的键值对
+                bundle.putSerializable("secClass", childs) // 将数据添加到Bundle中，使用合适的键值对
 
                 val navController = Navigation.findNavController(it)
                 navController.previousBackStackEntry?.savedStateHandle?.set("bundle", bundle)

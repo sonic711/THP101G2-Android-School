@@ -3,7 +3,9 @@ package com.example.thp101g2_android_school.firm.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.firm.model.FirmProduct
+import com.google.gson.reflect.TypeToken
 
 class FirmProductsEditViewModel : ViewModel(){
 
@@ -17,22 +19,65 @@ class FirmProductsEditViewModel : ViewModel(){
     }
     /** 模擬取得遠端資料 */
     private fun loadProductsManger() {
-        val productsManagerList = mutableListOf<FirmProduct>()
-        productsManagerList.add(FirmProduct(R.drawable.java, "java", "Willian", price = 300.0.toString(),"java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書",1,"緯育","2021.1.3","書籍","程式語言"))
-        productsManagerList.add(FirmProduct(R.drawable.kotlin, "kotlin", "黃彬華老師.註", price = 500.0.toString(),"Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書",2,"緯育","2021.1.3","書籍","程式語言"))
-        productsManagerList.add(FirmProduct(R.drawable.python, "python", "Jerry", price = 450.0.toString(),"python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書",1,"緯育","2021.1.3","書籍","程式語言"))
-        productsManagerList.add(FirmProduct(
-            R.drawable.senpai, "senpai", "AHHHH", price = 77777777777.777.toString(),"野獸先輩是日本㚻片公司COAT CORPORATION（官方網站）2001年發售的影片《Babylon 34 真夏の夜の淫夢 the IMP》中出演「田所」一役的一名㚻片演員。他出場的影片第四章副標題為「昏睡レイプ!野獣と化した先輩」，因此得名。其本人雖然成為了日本的網絡紅人，但是真實姓名，身份，和出演之後的行蹤均不詳。\n" +
-                    "\n" +
-                    "本文引自萌娘百科(https://zh.moegirl.org.cn )",0,"先輩出版社","2008.4.1","書籍","教育書籍"))
-        productsManagerList.add(FirmProduct(R.drawable.java, "java", "Willian", price = 300.0.toString(),"java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書java書",1,"緯育","2021.1.3","書籍","程式語言"))
-        productsManagerList.add(FirmProduct(R.drawable.kotlin, "kotlin", "黃彬華老師.註", price = 500.0.toString(),"Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書Kotlin書",2,"緯育","2021.1.3","書籍","程式語言"))
-        productsManagerList.add(FirmProduct(R.drawable.python, "python", "Jerry", price = 450.0.toString(),"python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書python書",1,"緯育","2021.1.3","書籍","程式語言"))
-        productsManagerList.add(FirmProduct(
-            R.drawable.senpai, "senpai", "AHHHH", price = 77777777777.777.toString(),"野獸先輩是日本㚻片公司COAT CORPORATION（官方網站）2001年發售的影片《Babylon 34 真夏の夜の淫夢 the IMP》中出演「田所」一役的一名㚻片演員。他出場的影片第四章副標題為「昏睡レイプ!野獣と化した先輩」，因此得名。其本人雖然成為了日本的網絡紅人，但是真實姓名，身份，和出演之後的行蹤均不詳。\n" +
-                    "\n" +
-                    "本文引自萌娘百科(https://zh.moegirl.org.cn )",0,"先輩出版社","2008.4.1","書籍","教育書籍"))
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productmanageall"
+        val type = object : TypeToken<List<FirmProduct>>() {}.type
+        val list = requestTask<List<FirmProduct>>(url, respBodyType = type)
+
+        for(item in list!!){
+            productsManagerList.add(item)
+        }
         this.productsManagerList = productsManagerList
         this.productsManager.value = this.productsManagerList
+        // update
     }
+
+    fun allProduct(){
+        // productsManagerList的每一筆資料取出
+        val productAll =mutableListOf<FirmProduct>()
+        for(a in productsManagerList){
+
+                productAll.add(a)
+        }
+        this.productsManager.value = productAll
+        println(productAll)
+        //
+    }
+    fun reload(){
+        // productsManagerList的每一筆資料取出
+        val productStatusOnList =mutableListOf<FirmProduct>()
+        for(a in productsManagerList){
+            if(a.shopProductStatus == 2){
+                productStatusOnList.add(a)
+            }
+        }
+        this.productsManager.value = productStatusOnList
+        println(productStatusOnList)
+        //
+    }
+    fun reloadOne(){
+        // productsManagerList的每一筆資料取出
+        val productStatusOffList =mutableListOf<FirmProduct>()
+        for(a in productsManagerList){
+            if(a.shopProductStatus == 1){
+                productStatusOffList.add(a)
+            }
+        }
+        this.productsManager.value = productStatusOffList
+        println(productStatusOffList)
+        //
+    }
+    fun reloadZero(){
+        // productsManagerList的每一筆資料取出
+        val productStatusOffedList =mutableListOf<FirmProduct>()
+        for(a in productsManagerList){
+            if(a.shopProductStatus == 0){
+                productStatusOffedList.add(a)
+            }
+        }
+        this.productsManager.value = productStatusOffedList
+        println(productStatusOffedList)
+        //
+    }
+
+
 }

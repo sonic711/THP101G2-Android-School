@@ -74,28 +74,13 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="80dp"
-                    android:text="@{viewModel.product.name}"
+                    android:text="@{viewModel.product.shopProductName}"
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints"
                     tools:text="java" />
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/tvName"-->
-                <!--                    android:layout_width="0dp"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_gravity="center_vertical"-->
-                <!--                    android:layout_weight="10"-->
-                <!--                    android:layout_marginStart="16dp"-->
-                <!--                    android:layout_marginTop="16dp"-->
-                <!--                    android:text="@{viewModel.product.name}"-->
-                <!--                    android:textColor="#0000FF"-->
-                <!--                    android:textSize="24sp"-->
-                <!--                    tools:text="JAVA" />-->
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
@@ -115,7 +100,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.product.price}"
+                android:text="@{viewModel.product.shopProductPrice}"
                 android:textSize="24sp"
                 tools:text="300.0" />
             <TextView
@@ -125,7 +110,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.product.pinfo}"
+                android:text="@{viewModel.product.shopProductId}"
                 android:textSize="24sp"
                 tools:text="java書" />
 

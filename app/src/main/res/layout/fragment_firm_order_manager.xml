@@ -20,9 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/button_primary"
+            android:background="@drawable/button_secondary"
             android:text="@string/txtNotShip"
-            android:textColor="@color/purple_50"
+            android:textColor="@color/purple_400"
             app:backgroundTint="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

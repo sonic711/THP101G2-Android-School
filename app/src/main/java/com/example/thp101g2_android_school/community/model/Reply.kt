@@ -1,12 +1,13 @@
 package com.example.thp101g2_android_school.community.model
 
 data class Reply(
-    val comReplyId: String,
-    val memberNo: String,
-    val memberName: String,
-    val memberImg: Int,
-    val comReplyTo: String,
-    val comReplyContent: String,
-    val comReplyTime: String,
-    val comReplyAccessSetting: String,
+    var comReplyId: String? = null,
+    var memberNo: String? = null,
+    var userId: String? = null,
+    var nickName: String? = null,
+    var profilePhoto: ByteArray? = null,
+    var comReplyTo: String? = null,
+    var comReplyContent: String? = null,
+    var comReplyTime: String? = null,
+    var comReplyAccessSetting: Boolean? = null
 )

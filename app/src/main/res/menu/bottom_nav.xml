@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="ManageMember"
-     android:id="@+id/ManageMember"
+     android:id="@+id/manageMemberFragment"
         android:icon="@drawable/baseline_person_24"
 
         />
     <item android:title="ManageClass"
-        android:id="@+id/ManageClass"
+        android:id="@+id/manageClassesFragment"
         android:icon="@drawable/baseline_book_24"
 
 
         />
     <item android:title="ManageHome"
-    android:id="@+id/ManageHome"
+    android:id="@+id/manageHomeFragment"
         android:icon="@drawable/baseline_home_24"
 
 
         />
     <item android:title="ManageCart"
-        android:id="@+id/ManageCart"
+        android:id="@+id/manageFirmFragment"
         android:icon="@drawable/baseline_shopping_cart_24"
         />
     <item android:title="ManageChat"
-        android:id="@+id/ManageChat"
+        android:id="@+id/manageComFragment"
         android:icon="@drawable/baseline_chat_bubble_24"
         />
 </menu>

@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginVertical="5dp"
-                    android:text="@{viewModel.child.childName}"
+                    android:text="@{viewModel.child.comSecClassName}"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -70,10 +70,10 @@
                         android:id="@+id/toggleButton"
                         android:background="@drawable/togglebtn"
                         android:textColor="@color/white"
-                        android:checked="true"
-                        android:textOff="取消追蹤"
+                        android:textOn="取消追蹤"
+                        android:textOff="追蹤"
                         android:foreground="?selectableItemBackground"
-                        android:textOn="追蹤"
+
                 />
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>

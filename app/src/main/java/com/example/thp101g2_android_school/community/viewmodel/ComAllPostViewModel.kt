@@ -9,6 +9,7 @@ import com.example.thp101g2_android_school.community.model.Label
 import com.example.thp101g2_android_school.community.model.Post
 import com.example.thp101g2_android_school.community.model.PostBean
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ComAllPostViewModel : ViewModel() {
@@ -20,7 +21,9 @@ class ComAllPostViewModel : ViewModel() {
     val posts: MutableLiveData<List<Post>> by lazy { MutableLiveData<List<Post>>() }
 
     init {
-        viewModelScope.launch { loadPosts() }
+        viewModelScope.launch(Dispatchers.IO) {
+            loadPosts()
+        }
     }
 
     private fun loadPosts() {
@@ -33,7 +36,7 @@ class ComAllPostViewModel : ViewModel() {
             val comPostId = list[i].comPostId
             // 第一筆資料
             if (i == 0) {
-                // 建立第一個主分類
+                // 建立第一篇文章
                 val labels = mutableListOf<Label>()
                 // 遍歷資料庫所有資料
                 for (item in list) {
@@ -50,7 +53,23 @@ class ComAllPostViewModel : ViewModel() {
                         )
                     }
                 }
-                postList.add(Post(list[i], labels))
+                postList.add(
+                    Post(
+                        list[i].comPostId,
+                        list[i].memberNo,
+                        list[i].userId,
+                        list[i].nickName,
+                        list[i].profilePhoto,
+                        list[i].comSecClassId,
+                        list[i].comSecClassName,
+                        list[i].comPostTitle,
+                        list[i].comPostContent,
+                        comPostTime = list[i].comPostTime,
+                        comPostStatus = list[i].comPostStatus,
+                        comPostAccessSetting = list[i].comPostAccessSetting,
+                        labels = labels
+                    )
+                )
                 continue
             } else {
                 // 如果這一個主分類id 不等於 上一個主分類 id
@@ -71,12 +90,30 @@ class ComAllPostViewModel : ViewModel() {
                             )
                         }
                     }
-                    postList.add(Post(list[i], newchildItems))
+                    postList.add(
+                        Post(
+                            list[i].comPostId,
+                            list[i].memberNo,
+                            list[i].userId,
+                            list[i].nickName,
+                            list[i].profilePhoto,
+                            list[i].comSecClassId,
+                            list[i].comSecClassName,
+                            list[i].comPostTitle,
+                            list[i].comPostContent,
+                            comPostTime = list[i].comPostTime,
+                            comPostStatus = list[i].comPostStatus,
+                            comPostAccessSetting = list[i].comPostAccessSetting,
+                            labels = newchildItems
+                        )
+                    )
                     // 如果兩筆資料分類一致，就把該資料放入子分類集合中
                 }
             }
         }
-        this.postList = postList
-        this.posts.value = this.postList
+        this.posts.postValue(postList)
+//        this.posts.value = this.postList
+//        this.postList = postList
+//        this.posts.value = this.postList
     }
 }

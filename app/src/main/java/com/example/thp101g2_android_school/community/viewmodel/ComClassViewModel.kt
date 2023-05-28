@@ -8,19 +8,25 @@ import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.ChildItem
 import com.example.thp101g2_android_school.community.model.ClassBean
+import com.example.thp101g2_android_school.community.model.FollowClassBean
 import com.example.thp101g2_android_school.community.model.ParentItem
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 
 class ComClassViewModel : ViewModel() {
+
     private var parentList = mutableListOf<ParentItem>()
     val parents: MutableLiveData<List<ParentItem>> by lazy { MutableLiveData<List<ParentItem>>() }
+    var followList = listOf<FollowClassBean>()
 
     init {
-        viewModelScope.launch { loadData() }
+        viewModelScope.launch {
+            loadClasses()
+            getFollowClass()
+        }
     }
 
-    private fun loadData() {
+    private fun loadClasses() {
 
         val url = "$url/community/class"
         val type = object : TypeToken<List<ClassBean>>() {}.type
@@ -40,6 +46,9 @@ class ComClassViewModel : ViewModel() {
                         // 把該次分類放入該主分類的屬性中
                         childItems.add(
                             ChildItem(
+                                item.comMainClassId,
+                                item.comMainClassName,
+                                item.comSecClassId,
                                 item.comSecClassName,
                                 getStringResourceId(item.comSecClassName)
                             )
@@ -59,6 +68,9 @@ class ComClassViewModel : ViewModel() {
                             // 就把該分類放進集合
                             newchildItems.add(
                                 ChildItem(
+                                    item.comMainClassId,
+                                    item.comMainClassName,
+                                    item.comSecClassId,
                                     item.comSecClassName,
                                     getStringResourceId(item.comSecClassName)
                                 )
@@ -72,61 +84,15 @@ class ComClassViewModel : ViewModel() {
         }
         this.parents.value = parentList
 
-//        // 假資料
-//        val childItems1 = ArrayList<ChildItem>()
-//        childItems1.add(ChildItem("C", R.drawable.com_c))
-//        childItems1.add(ChildItem("C++", R.drawable.com_cplusplus))
-//        childItems1.add(ChildItem("Java", R.drawable.com_java))
-//        childItems1.add(ChildItem("C#", R.drawable.com_csharp))
-//
-//        parentList.add(ParentItem("Game Development", R.drawable.com_console, childItems1))
-//
-//
-//        val childItem2 = ArrayList<ChildItem>()
-//        childItem2.add(ChildItem("Kotlin", R.drawable.com_kotlin))
-//        childItem2.add(ChildItem("XML", R.drawable.com_xml))
-//        childItem2.add(ChildItem("Java", R.drawable.com_java))
-//        parentList.add(
-//            ParentItem(
-//                "Android Development",
-//                R.drawable.com_android,
-//                childItem2
-//            )
-//        )
-//        val childItem3 = ArrayList<ChildItem>()
-//        childItem3.add(ChildItem("JavaScript", R.drawable.com_javascript))
-//        childItem3.add(ChildItem("HTML", R.drawable.com_html))
-//        childItem3.add(ChildItem("CSS", R.drawable.com_css))
-//        parentList.add(
-//            ParentItem(
-//                "Front End Web",
-//                R.drawable.com_front_end,
-//                childItem3
-//            )
-//        )
-//        val childItem4 = ArrayList<ChildItem>()
-//        childItem4.add(ChildItem("Julia", R.drawable.com_julia))
-//        childItem4.add(ChildItem("Python", R.drawable.com_python))
-//        childItem4.add(ChildItem("R", R.drawable.com_r))
-//        parentList.add(
-//            ParentItem(
-//                "Artificial Intelligence",
-//                R.drawable.com_ai,
-//                childItem4
-//            )
-//        )
-//        val childItem5 = ArrayList<ChildItem>()
-//        childItem5.add(ChildItem("Java", R.drawable.com_java))
-//        childItem5.add(ChildItem("Python", R.drawable.com_python))
-//        childItem5.add(ChildItem("PHP", R.drawable.com_c))
-//        childItem5.add(ChildItem("JavaScript", R.drawable.com_javascript))
-//        parentList.add(
-//            ParentItem(
-//                "Back End Web",
-//                R.drawable.com_backend,
-//                childItem5
-//            )
-//        )
-//        this.parents.value = parentList
+    }
+
+    // TODO 理論上抓追蹤應該是這邊一次抓，但先用不太好的寫法
+    fun getFollowClass() {
+        // 先寫死會員編號3
+        val memberId = 3
+        val url = "$url/member/followClass/$memberId"
+        val type = object : TypeToken<List<FollowClassBean>>() {}.type
+        val followClass = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return
+        this.followList = followClass
     }
 }
