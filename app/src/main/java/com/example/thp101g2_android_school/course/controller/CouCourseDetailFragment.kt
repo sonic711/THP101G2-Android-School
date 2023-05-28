@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.course.model.Course
+import com.example.thp101g2_android_school.course.model.Courses
 import com.example.thp101g2_android_school.course.viewmodel.CouMainDetailViewModel
 import com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel
 import com.example.thp101g2_android_school.databinding.CouCourseDetailBinding
@@ -33,7 +34,7 @@ class CouCourseDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let { bundle ->
             bundle.getSerializable("course")?.let {
-                binding.viewModel?.course?.value = it as Course
+                binding.viewModel?.course?.value = it as Courses
             }
             with(binding){
                 btAddCourse.setOnClickListener {

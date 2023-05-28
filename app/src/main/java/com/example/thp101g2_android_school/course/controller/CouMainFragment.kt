@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.course.controller
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentCouMainBinding
-import com.example.thp101g2_android_school.databinding.FragmentMainBinding
 
 class CouMainFragment : Fragment() {
     private lateinit var binding: FragmentCouMainBinding

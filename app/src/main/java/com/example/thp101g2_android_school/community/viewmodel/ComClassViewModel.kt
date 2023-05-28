@@ -8,19 +8,22 @@ import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.ChildItem
 import com.example.thp101g2_android_school.community.model.ClassBean
+import com.example.thp101g2_android_school.community.model.FollowClassBean
 import com.example.thp101g2_android_school.community.model.ParentItem
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 
 class ComClassViewModel : ViewModel() {
+
     private var parentList = mutableListOf<ParentItem>()
     val parents: MutableLiveData<List<ParentItem>> by lazy { MutableLiveData<List<ParentItem>>() }
 
     init {
-        viewModelScope.launch { loadData() }
+        viewModelScope.launch { loadFollowClass() }
+        viewModelScope.launch { loadClasses() }
     }
 
-    private fun loadData() {
+    private fun loadClasses() {
 
         val url = "$url/community/class"
         val type = object : TypeToken<List<ClassBean>>() {}.type
@@ -79,4 +82,16 @@ class ComClassViewModel : ViewModel() {
         this.parents.value = parentList
 
     }
+
+    private fun loadFollowClass() {
+        // 假裝載入編號id 3的會員
+        val memberid = 3
+        val url = "$url/member/followClass/$memberid"
+        val type = object : TypeToken<List<FollowClassBean>>() {}.type
+        val list = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return
+        for(classBean in list){
+            println(classBean)
+        }
+    }
+
 }

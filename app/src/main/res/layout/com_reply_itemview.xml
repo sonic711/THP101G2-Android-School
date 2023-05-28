@@ -8,13 +8,15 @@
     <com.google.android.material.card.MaterialCardView
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
 
             <androidx.cardview.widget.CardView
                     android:id="@+id/childCardView"
@@ -57,10 +59,12 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvReplyContent"
                     tools:text="@{viewModel.reply.comReplyContent}"
-                    android:textSize="18dp"
+                    android:textSize="24sp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:hint="內容 ..."
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@+id/childCardView"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="24dp" app:layout_constraintHorizontal_bias="0.502"/>

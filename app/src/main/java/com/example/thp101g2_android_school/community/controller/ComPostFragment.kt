@@ -30,7 +30,8 @@ class ComPostFragment : Fragment() {
     private val myTag = "TAG_${javaClass.simpleName}"
     private lateinit var binding: FragmentComPostBinding
     val viewModel: ComPostViewModel by viewModels()
-    val activityViewModel: ActivityViewModel by activityViewModels()
+    private val activityViewModel: ActivityViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,20 +43,16 @@ class ComPostFragment : Fragment() {
         binding = FragmentComPostBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         with(binding) {
-            binding.tvLabelName1.visibility = View.GONE
-            binding.tvLabelName2.visibility = View.GONE
-            binding.tvLabelName3.visibility = View.GONE
             val navController = Navigation.findNavController(requireView())
             val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
             savedStateHandle?.getLiveData<Bundle>("bundle")?.observe(viewLifecycleOwner) { bundle ->
-                val data = bundle?.getSerializable("secClass") // 从Bundle中获取传回的数据
+                val data = bundle?.getSerializable("secClass") // 從Bundle中獲得傳回來的次分類
                 val secClass = data as ChildItem
                 viewModel?.secClassId?.value = secClass.comSecClassId
                 viewModel?.secClassName?.value = secClass.comSecClassName
@@ -68,22 +65,29 @@ class ComPostFragment : Fragment() {
                 // TODO 去搜尋標籤頁面
                 Navigation.findNavController(it).navigate(R.id.action_comPostFragment_to_comLabelForPostFragment)
             }
-        }
-    }
+            btSubmit.setOnClickListener {
+                inputValid()
+                val result = viewModel?.addPost()
+                when (result) {
+                    0 -> Toast.makeText(requireContext(), "請選擇分類", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(requireContext(), "文章新增失敗", Toast.LENGTH_SHORT).show()
+                    2 -> {
+                        deleteInternal()
+                        Navigation.findNavController(it).navigate(R.id.comAllPostFragment)
+                    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+                }
+            }
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        // TODO 這邊要判斷如果最後送出文章了，就刪除草稿
-        loadInternal()
         // 載入選擇的分類 並顯示在標籤上
-        // 沒有值得標籤要被隱藏起來
-        if (activityViewModel.newLabels.isNullOrEmpty()) return
-        viewModel.labels?.value = activityViewModel.newLabels?.toList()
-        when (viewModel.labels?.value?.size) {
+        // 沒有值的標籤要被隱藏起來
+        if (activityViewModel.newLabels.isEmpty()) return
+        viewModel.labels.value = activityViewModel.newLabels.toList()
+        when (viewModel.labels.value?.size) {
             0 -> {
                 binding.tvLabelName1.visibility = View.GONE
                 binding.tvLabelName2.visibility = View.GONE
@@ -91,36 +95,29 @@ class ComPostFragment : Fragment() {
             }
 
             1 -> {
-                binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
+                binding.tvLabelName1.text = viewModel.labels.value?.get(0)?.comLabelName
                 binding.tvLabelName1.visibility = View.VISIBLE
                 binding.tvLabelName2.visibility = View.GONE
                 binding.tvLabelName3.visibility = View.GONE
             }
 
             2 -> {
-                binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
-                binding.tvLabelName2.text = viewModel.labels?.value?.get(1)?.comLabelName
+                binding.tvLabelName1.text = viewModel.labels.value?.get(0)?.comLabelName
+                binding.tvLabelName2.text = viewModel.labels.value?.get(1)?.comLabelName
                 binding.tvLabelName1.visibility = View.VISIBLE
                 binding.tvLabelName2.visibility = View.VISIBLE
                 binding.tvLabelName3.visibility = View.GONE
             }
 
             3 -> {
-                binding.tvLabelName1.text = viewModel.labels?.value?.get(0)?.comLabelName
-                binding.tvLabelName2.text = viewModel.labels?.value?.get(1)?.comLabelName
-                binding.tvLabelName3.text = viewModel.labels?.value?.get(2)?.comLabelName
+                binding.tvLabelName1.text = viewModel.labels.value?.get(0)?.comLabelName
+                binding.tvLabelName2.text = viewModel.labels.value?.get(1)?.comLabelName
+                binding.tvLabelName3.text = viewModel.labels.value?.get(2)?.comLabelName
                 binding.tvLabelName1.visibility = View.VISIBLE
                 binding.tvLabelName2.visibility = View.VISIBLE
                 binding.tvLabelName3.visibility = View.VISIBLE
             }
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        // TODO 應該是要寫一個彈出視窗 問要不要儲存草稿嗎？，但如果閃退怎麼辦
-//        saveInternal()
-
     }
 
     override fun onDestroy() {
@@ -168,6 +165,25 @@ class ComPostFragment : Fragment() {
                 }
                 Toast.makeText(requireContext(), "從草稿載入內容", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun deleteInternal() {
+        with(binding) {
+            if (!inputValid()) {
+                return
+            }
+            // 將資料轉成JSON
+            val jsonObject = JsonObject()
+            // TODO 這邊應該還要存會員的編號，避免換帳號之後代錯草稿，先寫死會員編號1
+            jsonObject.addProperty("memberId", "1")
+            jsonObject.addProperty("title", "")
+            jsonObject.addProperty("content", "")
+            requireContext().openFileOutput("PostInternal", Context.MODE_PRIVATE)
+                .bufferedWriter().use {
+                    it.write(jsonObject.toString())
+                }
+            Toast.makeText(requireContext(), "已送出文章", Toast.LENGTH_LONG).show()
         }
     }
 

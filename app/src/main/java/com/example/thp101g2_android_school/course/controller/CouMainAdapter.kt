@@ -2,21 +2,19 @@ package com.example.thp101g2_android_school.course.controller
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
-import com.example.thp101g2_android_school.course.model.Course
+import com.example.thp101g2_android_school.app.byteArrayToBitmap
+import com.example.thp101g2_android_school.course.model.Courses
 import com.example.thp101g2_android_school.course.viewmodel.CouMainDetailViewModel
 import com.example.thp101g2_android_school.databinding.CouCourseItemViewBinding
 
-class CouMainAdapter(private var courses: List<Course>) :
+class CouMainAdapter(private var courses: List<Courses>) :
     RecyclerView.Adapter<CouMainAdapter.CourseViewHolder>() {
-    fun updateCourses(courses: List<Course>) {
+    fun updateCourses(courses: List<Courses>) {
         this.courses = courses
         notifyDataSetChanged()
     }
@@ -39,11 +37,18 @@ class CouMainAdapter(private var courses: List<Course>) :
     }
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
-        val course = courses[position]
+        val courses = courses[position]
         with(holder) {
-            itemViewBinding.viewModel?.course?.value = course
+            itemViewBinding.viewModel?.course?.value = courses
+
+            if (courses.image != null) {
+                val img = byteArrayToBitmap(courses.image!!)
+                itemViewBinding.ivCourse.setImageBitmap(img)
+            }else{
+                itemViewBinding.ivCourse.setBackgroundResource(R.drawable.com_user)
+            }
             val bundle = Bundle()
-            bundle.putSerializable("course", course)
+            bundle.putSerializable("course", courses)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.action_couMainFragment_to_couCourseDetailFragment, bundle)

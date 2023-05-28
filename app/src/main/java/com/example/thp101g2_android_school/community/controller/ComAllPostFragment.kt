@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.community.viewmodel.ComAllPostViewModel
 import com.example.thp101g2_android_school.databinding.FragmentComAllPostBinding
+import com.example.thp101g2_android_school.databinding.FragmentComMainBinding
 
 class ComAllPostFragment : Fragment() {
     private lateinit var binding: FragmentComAllPostBinding
@@ -24,12 +25,14 @@ class ComAllPostFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.posts?.observe(viewLifecycleOwner) { posts ->
                 // 如果Adapter尚未建立過，透過建構式建立LessionAdapter
                 if (recyclerView.adapter == null) {
                     recyclerView.adapter = PostAdapter(posts)
+                    (requireParentFragment() as ComMainFragment).binding?.loadingPanel?.visibility = View.GONE
                 } else {
                     // TODO 之後補上搜尋更新
 //                    (recyclerView.adapter as PostAdapter).updateFriends(posts)

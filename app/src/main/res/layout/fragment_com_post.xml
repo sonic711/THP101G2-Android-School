@@ -16,7 +16,7 @@
                 android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
                 <androidx.cardview.widget.CardView
                         android:id="@+id/childCardView"
                         android:layout_width="40dp"
@@ -64,7 +64,7 @@
                         app:layout_constraintHorizontal_bias="0.0"/>
                 <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:gravity="start|top"
                         android:ems="10"
@@ -92,6 +92,7 @@
                             android:layout_height="match_parent"
                             android:id="@+id/tvClassName"
                             android:hint="選擇看板"
+                            android:gravity="center"
                             android:textColor="@color/white"
                             tools:text="@{viewModel.secClassName}"
                             android:background="@drawable/com_primarycolor"
@@ -116,13 +117,13 @@
                         app:layout_constraintTop_toTopOf="@+id/childCardView"
                         app:layout_constraintEnd_toEndOf="parent"/>
                 <Button
-                        android:text="Button"
+                        android:text="@string/text_com_chooselabels"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/nextStepBtn"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="54dp" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="52dp" app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="307dp" android:layout_marginEnd="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.833"/>
                 <androidx.cardview.widget.CardView
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
@@ -136,7 +137,7 @@
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="測試"
+                            android:visibility="gone"
                             android:background="@color/gray_300"
                             android:gravity="center" android:id="@+id/tvLabelName1"
                     />
@@ -155,7 +156,7 @@
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="測試"
+                            android:visibility="gone"
                             android:background="@color/gray_300"
                             android:gravity="center" android:id="@+id/tvLabelName2"
                     />
@@ -174,19 +175,17 @@
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="測試"
+                            android:visibility="gone"
                             android:background="@color/gray_300"
                             android:gravity="center" android:id="@+id/tvLabelName3"
                     />
                 </androidx.cardview.widget.CardView>
                 <Button
-                        android:text="submit"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/button6"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:onClick="@{_ -> viewModel.addPost()}"
-                        android:layout_marginTop="45dp"
-                        app:layout_constraintEnd_toStartOf="@+id/nextStepBtn" android:layout_marginEnd="51dp"/>
+                        android:layout_height="wrap_content" android:id="@+id/btSubmit"
+                        app:layout_constraintTop_toBottomOf="@+id/etContent"
+                        android:text="@string/text_com_submitpost" app:layout_constraintEnd_toEndOf="@+id/etContent"
+                        app:layout_constraintStart_toStartOf="@+id/etContent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
