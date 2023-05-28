@@ -191,4 +191,30 @@
             android:name="com.example.thp101g2_android_school.shop.controller.ShopOrderDetailFragment"
             android:label="fragment_shop_order_detail"
             tools:layout="@layout/fragment_shop_order_detail" />
+<!--    -->
+    <fragment
+            android:id="@+id/couClassroomFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouClassroomFragment"
+            android:label="fragment_cou_classroom"
+            tools:layout="@layout/fragment_cou_classroom">
+        <action
+                android:id="@+id/action_couClassroomFragment_to_couRateFragment"
+                app:destination="@id/couRateFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couRateFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouRateFragment"
+            android:label="fragment_cou_rate"
+            tools:layout="@layout/fragment_cou_rate" />
+    <fragment
+            android:id="@+id/couUploadCourseFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouUploadCourseFragment"
+            android:label="fragment_cou_upload_course"
+            tools:layout="@layout/fragment_cou_upload_course" />
+    <fragment
+            android:id="@+id/couUploadChapterFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouUploadChapterFragment"
+            android:label="fragment_cou_upload_chapter"
+            tools:layout="@layout/fragment_cou_upload_chapter" />
+<!--    -->
 </navigation>
