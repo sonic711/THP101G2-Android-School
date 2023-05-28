@@ -1,5 +1,6 @@
 package com.example.thp101g2_android_school.manage.controller
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ class ManageClassAdapter(private var classes: List<Classes>) :
      * 更新班級列表內容
      * @param classes 新的班級列表
      */
+    @SuppressLint("NotifyDataSetChanged")
     fun updateClasses(classes: List<Classes>) {
         this.classes = classes
         notifyDataSetChanged()
@@ -52,7 +54,7 @@ class ManageClassAdapter(private var classes: List<Classes>) :
             bundle.putSerializable("class", theClass)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_manageClassFragment_to_classDetailFragment, bundle)
+                    .navigate(R.id.action_manageClassesFragment_to_manageClassDetailFragment, bundle)
             }
         }
     }

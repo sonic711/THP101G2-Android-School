@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel" />
+            type="com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

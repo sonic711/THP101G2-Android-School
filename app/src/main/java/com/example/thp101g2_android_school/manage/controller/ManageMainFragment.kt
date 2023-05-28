@@ -28,7 +28,7 @@ class ManageMainFragment : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_manage_main)
 
         usernameEditText = findViewById(R.id.etUsername)
         passwordEditText = findViewById(R.id.etPassword)

@@ -7,14 +7,15 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.databinding.FragmentShopFavoriteItemviewBinding
 import com.example.thp101g2_android_school.shop.model.Product
+import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteViewModel
 
-class ShopFavoriteAdapter(private var products: List<Product>) :
+class ShopFavoriteAdapter(private var favoriteproducts: List<ShopFavorite>) :
     RecyclerView.Adapter<ShopFavoriteAdapter.ShopFavoriteViewHolder>() {
 
 
-    fun updateProduct(products: List<Product>) {
-        this.products = products
+    fun updateProduct(favoriteproducts: List<ShopFavorite>) {
+        this.favoriteproducts = favoriteproducts
         notifyDataSetChanged()
     }
 
@@ -22,7 +23,7 @@ class ShopFavoriteAdapter(private var products: List<Product>) :
         RecyclerView.ViewHolder(itemViewBinding.root)
 
     override fun getItemCount(): Int {
-        return products.size
+        return favoriteproducts.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopFavoriteViewHolder{
@@ -36,12 +37,12 @@ class ShopFavoriteAdapter(private var products: List<Product>) :
     }
 
     override fun onBindViewHolder(holder: ShopFavoriteViewHolder, position: Int) {
-        val product = products[position]
+        val favoriteproduct = favoriteproducts[position]
         with(holder) {
             // 將欲顯示的product物件指派給LiveData，就會自動更新layout檔案的view顯示
-            itemViewBinding.viewModel?.product?.value = product
+            itemViewBinding.viewModel?.favoriteproduct?.value = favoriteproduct
             val bundle = Bundle()
-            bundle.putSerializable("product", product)
+            bundle.putSerializable("product", favoriteproduct)
 
         }
     }

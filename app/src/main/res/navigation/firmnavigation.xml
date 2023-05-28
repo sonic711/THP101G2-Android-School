@@ -2,8 +2,63 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/firmnavigation"
-            app:startDestination="@id/TFirmMainFragment">
+            app:startDestination="@id/firmMainFragment">
 
     <fragment android:id="@+id/TFirmMainFragment" android:name="com.example.thp101g2_android_school.TFirmMainFragment"
               android:label="fragment_t_firm_main" tools:layout="@layout/fragment_t_firm_main"/>
+    <fragment
+            android:id="@+id/firmMainFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmMainFragment"
+            android:label="fragment_firm_main"
+            tools:layout="@layout/fragment_firm_main" />
+    <fragment
+            android:id="@+id/firmProductDetailFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmProductDetailFragment"
+            android:label="fragment_firm_product_detail"
+            tools:layout="@layout/fragment_firm_product_detail" />
+    <fragment
+            android:id="@+id/firmOrderManagerFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmOrderManagerFragment"
+            android:label="fragment_firm_order_manager"
+            tools:layout="@layout/fragment_firm_order_manager" />
+    <fragment
+            android:id="@+id/firmOrderDetailFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmOrderDetailFragment"
+            android:label="fragment_firm_order_detail"
+            tools:layout="@layout/fragment_firm_order_detail" />
+    <fragment
+            android:id="@+id/firmProductManagerFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmProductManagerFragment"
+            android:label="fragment_firm_product_manager"
+            tools:layout="@layout/fragment_firm_product_manager" />
+    <fragment
+            android:id="@+id/firmProductEditDetailFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmProductEditDetailFragment"
+            android:label="fragment_firm_product_edit_detail"
+            tools:layout="@layout/fragment_firm_product_edit_detail" />
+    <fragment
+            android:id="@+id/firmProductOnFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmProductOnFragment"
+            android:label="fragment_firm_product_on"
+            tools:layout="@layout/fragment_firm_product_on" />
+    <fragment
+            android:id="@+id/firmSettingFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmSettingFragment"
+            android:label="fragment_firm_setting"
+            tools:layout="@layout/fragment_firm_setting" />
+    <fragment
+            android:id="@+id/firmShopSettingFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmShopSettingFragment"
+            android:label="fragment_firm_shop_setting"
+            tools:layout="@layout/fragment_firm_shop_setting" />
+    <fragment
+            android:id="@+id/firmMemberSettingFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmMemberSettingFragment"
+            android:label="fragment_firm_member_setting"
+            tools:layout="@layout/fragment_firm_member_setting" />
+    <fragment
+            android:id="@+id/firmFixedPasswordFragment"
+            android:name="com.example.thp101g2_android_school.firm.controller.FirmFixedPasswordFragment"
+            android:label="fragment_firm_fixed_password"
+            tools:layout="@layout/fragment_firm_fixed_password" />
 </navigation>

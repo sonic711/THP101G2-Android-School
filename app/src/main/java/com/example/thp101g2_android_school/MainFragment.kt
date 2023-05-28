@@ -16,7 +16,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (requireActivity() as MainActivity).supportActionBar?.hide()
         val viewModel: MainViewModel by viewModels()
         binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel

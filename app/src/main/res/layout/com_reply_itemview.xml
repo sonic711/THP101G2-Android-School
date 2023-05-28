@@ -3,18 +3,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="viewModel" type="com.example.thp101g2_android_school.community.viewmodel.PostDetailViewModel"/>
+        <variable name="viewModel" type="com.example.thp101g2_android_school.community.viewmodel.ReplyViewModel"/>
     </data>
     <com.google.android.material.card.MaterialCardView
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
 
             <androidx.cardview.widget.CardView
                     android:id="@+id/childCardView"
@@ -29,7 +31,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:srcCompat="@tools:sample/avatars"
-                        app:imageResource="@{viewModel.post.memberImg}"
                         android:id="@+id/imageView"/>
             </androidx.cardview.widget.CardView>
             <TextView
@@ -37,42 +38,50 @@
                     android:layout_height="wrap_content" android:id="@+id/tvMemberName"
                     app:layout_constraintTop_toTopOf="@+id/childCardView"
                     app:layout_constraintStart_toEndOf="@+id/childCardView"
-                    tools:text="@{}"
-                    android:layout_marginStart="10dp" android:hint="SSS"/>
+                    tools:text="@{viewModel.reply.nickName}"
+                    android:layout_marginStart="10dp" android:hint="會員名稱"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvMemberId"
                     app:layout_constraintTop_toBottomOf="@+id/tvMemberName"
                     app:layout_constraintStart_toEndOf="@+id/childCardView"
-                    tools:text="@{viewModel.post.memberName}"
-                    android:layout_marginStart="10dp" android:hint="SS"/>
+                    tools:text="@{ '@' + viewModel.reply.userId}"
+                    android:layout_marginStart="10dp" android:hint="memId"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/tvDate"
                     app:layout_constraintTop_toTopOf="@+id/tvMemberId"
                     app:layout_constraintStart_toEndOf="@+id/tvMemberId"
                     android:layout_marginStart="16dp"
-                    tools:text="@{viewModel.post.time}" android:hint="11/11"/>
+                    tools:text="@{viewModel.reply.comReplyTime}" android:hint="12/21"/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvTitle"
-                    tools:text="@{viewModel.post.postContent}"
-                    android:textSize="18dp"
+                    android:id="@+id/tvReplyContent"
+                    tools:text="@{viewModel.reply.comReplyContent}"
+                    android:textSize="24sp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:hint="TTTTTTTTTTTTTT"
+                    android:hint="內容 ..."
+                    android:paddingBottom="16dp"
+                    android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@+id/childCardView"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="24dp" app:layout_constraintHorizontal_bias="0.502"/>
-            <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="209dp"
-                    android:layout_height="55dp"
-                    android:id="@+id/labelRecyclerView"
-                    tools:listitem="@layout/com_label_itemview" tools:itemCount="3"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="24dp" app:layout_constraintHorizontal_bias="0.084"/>
+            <ToggleButton
+                    android:text="ToggleButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tbLike"
+                    android:background="@drawable/togglebtn"
+                    android:textColor="@color/white"
+                    android:checked="true"
+                    android:textOff="取消喜歡"
+                    android:foreground="?selectableItemBackground"
+                    android:textOn="喜歡"
+                    app:layout_constraintTop_toTopOf="@+id/tvMemberName"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvMemberId" app:layout_constraintEnd_toEndOf="parent"
+            />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

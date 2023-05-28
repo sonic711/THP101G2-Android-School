@@ -27,16 +27,15 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding){
             tvForgetPassword.setOnClickListener {
-                forgetPasswordOnClick(view)
-
+                forgetPasswordOnClick(it)
             }
         }
     }
 
 // FIXME
     // textView: forgetPassword 的點擊事件函式
-    fun forgetPasswordOnClick(view: View) {
-        Toast.makeText(requireContext(), "TextView Clicked", Toast.LENGTH_SHORT).show()
+    private fun forgetPasswordOnClick(view: View) {
+        Toast.makeText(requireContext(), "ForgetPassword Clicked", Toast.LENGTH_SHORT).show()
     }
 
 }

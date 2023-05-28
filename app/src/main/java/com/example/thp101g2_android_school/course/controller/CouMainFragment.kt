@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.course.controller
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentCouMainBinding
-import com.example.thp101g2_android_school.databinding.FragmentMainBinding
 
 class CouMainFragment : Fragment() {
     private lateinit var binding: FragmentCouMainBinding
@@ -21,7 +18,6 @@ class CouMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // SearchView放在畫面頂端時通常會隱藏標題列
         (requireActivity() as MainActivity).supportActionBar?.hide()
         val viewModel: CouMainViewModel by viewModels()
         binding = FragmentCouMainBinding.inflate(inflater, container, false)
@@ -44,8 +40,6 @@ class CouMainFragment : Fragment() {
                     viewModel?.search(newText)
                     return true
                 }
-
-                // 點擊虛擬鍵盤上的提交鈕時呼叫
                 override fun onQueryTextSubmit(text: String): Boolean {
                     return false
                 }

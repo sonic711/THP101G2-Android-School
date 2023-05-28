@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.thp101g2_android_school.manage.viewmodel.ManageComViewModel" />
+    </data>
+
+    <!-- 設定 foreground="?selectableItemBackground" 當選項被點擊時會改變背景色 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:foreground="?selectableItemBackground"
+        app:cardBackgroundColor="#DDDDDD"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivCom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars"
+                app:imageResource="@{viewModel.commo.articleId}" />
+
+            <TextView
+                android:id="@+id/tvComName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:text="@{viewModel.commo.txtId}"
+                android:textColor="#0000FF"
+                android:textSize="22sp" />
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -47,80 +47,30 @@
             android:id="@+id/memMainFragment"
             android:name="com.example.thp101g2_android_school.member.controller.MemMainFragment"
             android:label="fragment_mem_main"
-            tools:layout="@layout/fragment_mem_main"/>
+            tools:layout="@layout/fragment_mem_main">
+        <action
+                android:id="@+id/action_memMainFragment_to_memEditProfileFragment"
+                app:destination="@id/memEditProfileFragment"/>
+    </fragment>
 
     <fragment android:id="@+id/comPostFragment"
               android:name="com.example.thp101g2_android_school.community.controller.ComPostFragment"
-              android:label="fragment_com_post" tools:layout="@layout/fragment_com_post"/>
+              android:label="fragment_com_post" tools:layout="@layout/fragment_com_post">
+        <action android:id="@+id/action_comPostFragment_to_comAllClassForPostFragment"
+                app:destination="@id/comAllClassForPostFragment"/>
+        <action android:id="@+id/action_comPostFragment_to_comLabelForPostFragment"
+                app:destination="@id/comLabelForPostFragment"/>
+    </fragment>
     <fragment android:id="@+id/postDetailFragment"
               android:name="com.example.thp101g2_android_school.community.controller.PostDetailFragment"
               android:label="fragment_post_detail" tools:layout="@layout/fragment_post_detail"/>
-    <fragment
-            android:id="@+id/loginMainFragment"
-            android:name="com.example.thp101g2_android_school.member.controller.LoginMainFragment"
-            android:label="fragment_login_main"
-            tools:layout="@layout/fragment_login_main">
-        <action
-                android:id="@+id/action_loginMainFragment_to_loginFragment"
-                app:destination="@id/loginFragment"/>
-    </fragment>
-    <fragment
-            android:id="@+id/loginFragment"
-            android:name="com.example.thp101g2_android_school.member.controller.LoginFragment"
-            android:label="fragment_login"
-            tools:layout="@layout/fragment_login">
-        <action
-                android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
-                app:destination="@id/forgetPasswordFragment"/>
-    </fragment>
-    <fragment
-            android:id="@+id/registerFragment"
-            android:name="com.example.thp101g2_android_school.member.controller.RegisterFragment"
-            android:label="fragment_register"
-            tools:layout="@layout/fragment_register">
-        <action
-                android:id="@+id/action_registerFragment_to_registerPhoneFragment"
-                app:destination="@id/registerPhoneFragment"/>
-    </fragment>
-    <fragment
-            android:id="@+id/registerPhoneFragment"
-            android:name="com.example.thp101g2_android_school.member.controller.RegisterPhoneFragment"
-            android:label="fragment_register_phone"
-            tools:layout="@layout/fragment_register_phone">
-        <action
-                android:id="@+id/action_registerPhoneFragment_to_registerVerificationFragment"
-                app:destination="@id/registerVerificationFragment"/>
-    </fragment>
-    <fragment
-            android:id="@+id/registerVerificationFragment"
-            android:name="com.example.thp101g2_android_school.member.controller.RegisterVerificationFragment"
-            android:label="fragment_register_verification"
-            tools:layout="@layout/fragment_register_verification"/>
-    <fragment
-            android:id="@+id/forgetPasswordFragment"
-            android:name="com.example.thp101g2_android_school.member.controller.ForgetPasswordFragment"
-            android:label="fragment_forget_password"
-            tools:layout="@layout/fragment_forget_password"/>
-    <fragment
-            android:id="@+id/changePasswordFragment"
-            android:name="com.example.thp101g2_android_school.member.controller.changePasswordFragment"
-            android:label="fragment_change_password"
-            tools:layout="@layout/fragment_change_password"/>
+
+
     <fragment
             android:id="@+id/calMainFragment"
             android:name="com.example.thp101g2_android_school.calendar.controller.CalMainFragment"
             android:label="fragment_cal_main"
             tools:layout="@layout/fragment_cal_main"/>
-    <fragment
-            android:id="@+id/firmMainFragment"
-            android:name="com.example.thp101g2_android_school.firm.controller.FirmMainFragment"
-            android:label="fragment_firm_main"
-            tools:layout="@layout/fragment_firm_main"/>
-    <fragment
-            android:id="@+id/firmProductDetailFragment"
-            android:name="com.example.thp101g2_android_school.firm.controller.FirmProductDetailFragment"
-            android:label="fragment_firm_product_detail"
-            tools:layout="@layout/fragment_firm_product_detail"/>
     <fragment
             android:id="@+id/shopingCartFragment"
             android:name="com.example.thp101g2_android_school.shop.controller.ShopingCartFragment"
@@ -131,6 +81,9 @@
             android:name="com.example.thp101g2_android_school.shop.controller.ShopFrontFragment"
             android:label="fragment_shop_front"
             tools:layout="@layout/fragment_shop_front">
+        <action
+                android:id="@+id/action_shopFrontFragment_to_shopOrderDetailFragment"
+                app:destination="@id/shopOrderDetailFragment"/>
         <action
                 android:id="@+id/action_shopFrontFragment_to_productDetailFragment"
                 app:destination="@id/productDetailFragment"/>
@@ -144,11 +97,119 @@
                 android:id="@+id/action_couMainFragment_to_couCourseDetailFragment"
                 app:destination="@id/couCourseDetailFragment"/>
     </fragment>
+
+    <fragment android:id="@+id/comAllClassForPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComAllClassForPostFragment"
+              android:label="ComAllClassForPostFragment"/>
+    <fragment android:id="@+id/comLabelForPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComLabelForPostFragment"
+              android:label="fragment_com_label_for_post" tools:layout="@layout/fragment_com_label_for_post"/>
     <fragment
             android:id="@+id/couCourseDetailFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouCourseDetailFragment"
-            android:label="CouCourseDetailFragment"/>
-    <!--    -->
-
-    <!--    -->
+            android:label="CouCourseDetailFragment">
+        <action
+                android:id="@+id/action_couCourseDetailFragment_to_couFavoriteFragment"
+                app:destination="@id/couFavoriteFragment"/>
+        <action
+                android:id="@+id/action_couCourseDetailFragment_to_couMyCourseFragment"
+                app:destination="@id/couMyCourseFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/couMyCourseFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouMyCourseFragment"
+            android:label="fragment_cou_my_course"
+            tools:layout="@layout/fragment_cou_my_course">
+        <action
+                android:id="@+id/action_couMyCourseFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/couFavoriteFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouFavoriteFragment"
+            android:label="fragment_cou_favorite"
+            tools:layout="@layout/fragment_cou_favorite">
+        <action
+                android:id="@+id/action_couFavoriteFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/memBlockFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemBlockFragment"
+            android:label="fragment_mem_block"
+            tools:layout="@layout/fragment_mem_block"/>
+    <fragment
+            android:id="@+id/memEditProfileFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemEditProfileFragment"
+            android:label="fragment_mem_edit_profile"
+            tools:layout="@layout/fragment_mem_edit_profile"/>
+    <fragment
+            android:id="@+id/memEditAccountFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemEditAccountFragment"
+            android:label="fragment_mem_edit_account"
+            tools:layout="@layout/fragment_mem_edit_account"/>
+    <fragment
+            android:id="@+id/memEditPasswordFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemEditPasswordFragment"
+            android:label="fragment_mem_edit_password"
+            tools:layout="@layout/fragment_mem_edit_password"/>
+    <fragment
+            android:id="@+id/memSettingFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemSettingFragment"
+            android:label="fragment_mem_setting"
+            tools:layout="@layout/fragment_mem_setting">
+        <action
+                android:id="@+id/action_memSettingFragment_to_memEditAccountFragment"
+                app:destination="@id/memEditAccountFragment"/>
+        <action
+                android:id="@+id/action_memSettingFragment_to_memNotificationSettingFragment"
+                app:destination="@id/memNotificationSettingFragment"/>
+        <action
+                android:id="@+id/action_memSettingFragment_to_memEditPasswordFragment"
+                app:destination="@id/memEditPasswordFragment"/>
+        <action
+                android:id="@+id/action_memSettingFragment_to_memApplyToTeacherFragment"
+                app:destination="@id/memApplyToTeacherFragment"/>
+    </fragment>
+    <fragment
+            android:id="@+id/memNotificationSettingFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemNotificationSettingFragment"
+            android:label="fragment_mem_notification_setting"
+            tools:layout="@layout/fragment_mem_notification_setting"/>
+    <fragment
+            android:id="@+id/memApplyToTeacherFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemApplyToTeacherFragment"
+            android:label="fragment_mem_apply_to_teacher"
+            tools:layout="@layout/fragment_mem_apply_to_teacher"/>
+    <fragment
+            android:id="@+id/shopOrderDetailFragment"
+            android:name="com.example.thp101g2_android_school.shop.controller.ShopOrderDetailFragment"
+            android:label="fragment_shop_order_detail"
+            tools:layout="@layout/fragment_shop_order_detail" />
+<!--    -->
+    <fragment
+            android:id="@+id/couClassroomFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouClassroomFragment"
+            android:label="fragment_cou_classroom"
+            tools:layout="@layout/fragment_cou_classroom">
+        <action
+                android:id="@+id/action_couClassroomFragment_to_couRateFragment"
+                app:destination="@id/couRateFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couRateFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouRateFragment"
+            android:label="fragment_cou_rate"
+            tools:layout="@layout/fragment_cou_rate" />
+    <fragment
+            android:id="@+id/couUploadCourseFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouUploadCourseFragment"
+            android:label="fragment_cou_upload_course"
+            tools:layout="@layout/fragment_cou_upload_course" />
+    <fragment
+            android:id="@+id/couUploadChapterFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouUploadChapterFragment"
+            android:label="fragment_cou_upload_chapter"
+            tools:layout="@layout/fragment_cou_upload_chapter" />
+<!--    -->
 </navigation>

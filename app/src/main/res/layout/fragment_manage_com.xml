@@ -2,17 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".controller.FriendsFragment">
+    tools:context=".manage.controller.ManageComFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.manage.viewmodel.ManageComViewModel" />
+            type="com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@drawable/baseline_chat_bubble_24"
         android:layout_height="match_parent">
 
         <SearchView
@@ -37,5 +38,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

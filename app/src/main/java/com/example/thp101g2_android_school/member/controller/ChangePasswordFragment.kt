@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import com.example.thp101g2_android_school.member.viewModel.ChangePasswordViewModel
 import com.example.thp101g2_android_school.R
 
-class changePasswordFragment : Fragment() {
+class ChangePasswordFragment : Fragment() {
 
     companion object {
-        fun newInstance() = changePasswordFragment()
+        fun newInstance() = ChangePasswordFragment()
     }
 
     private lateinit var viewModel: ChangePasswordViewModel

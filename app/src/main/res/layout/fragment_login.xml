@@ -9,10 +9,23 @@
             type="com.example.thp101g2_android_school.member.viewModel.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".member.controller.LoginFragment">
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                app:srcCompat="@drawable/ic_arrow_back_24" />
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -21,21 +34,17 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/txtLogin"
                 android:textColor="@color/purple_400"
                 android:textSize="36sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,9 +100,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:clickable="true"
                 android:onClick="forgetPasswordOnClick"
                 android:text="@string/btForgetPassword"
-                android:textColor="@color/purple_400" />
+                android:textColor="@color/purple_400"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btLogin"
@@ -115,34 +126,54 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvSSO"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/txtSSO" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray_200" />
+
+                <TextView
+                    android:id="@+id/tvSSO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="@string/txtSSO" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray_200" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/ivGoogle"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginRight="16dp"
                     android:src="@drawable/icon_google" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/ivFacebook"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginLeft="16dp"
@@ -150,5 +181,5 @@
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

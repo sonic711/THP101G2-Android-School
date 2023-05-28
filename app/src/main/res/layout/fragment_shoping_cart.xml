@@ -8,22 +8,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel" />
+            type="com.example.thp101g2_android_school.shop.viewmodel.ShopingCartFgViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/ShopBack"
-            android:src="@drawable/ic_back"
-            tools:ignore="MissingConstraints" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

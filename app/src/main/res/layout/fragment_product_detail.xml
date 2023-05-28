@@ -24,11 +24,11 @@
                 android:layout_height="30dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/ShopBack"
-                android:src="@drawable/ic_back"
+                android:src="@drawable/ic_backbutton"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
-                android:id="@+id/ivFriend"
+                android:id="@+id/ivProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -36,10 +36,36 @@
                 android:src="@drawable/java"
                 app:imageResource="@{viewModel.product.imageId}" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="117dp"
                 android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btShoppingCartAdd"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/shop_shoppingcart_notclick"
+                    app:layout_constraintStart_toEndOf="@+id/btShopFavorite"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <ImageButton
+                    android:id="@+id/btShopFavorite"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="232dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/shop_favorite_notclick"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
                 <TextView
                     android:id="@+id/tvName"
@@ -47,55 +73,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="80dp"
                     android:text="@{viewModel.product.name}"
                     android:textColor="#0000FF"
-                    android:textSize="48sp"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints"
                     tools:text="java" />
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tvName"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_weight="10"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:text="@{viewModel.product.name}"-->
-<!--                    android:textColor="#0000FF"-->
-<!--                    android:textSize="24sp"-->
-<!--                    tools:text="JAVA" />-->
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/btnFav"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/ShopFav"
-                    android:src="@drawable/ic_back"
-                    tools:ignore="MissingConstraints" />
-
-                <ImageButton
-                    android:id="@+id/btnCar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/ShopFav"
-                    android:src="@drawable/ic_back"
-                    tools:ignore="MissingConstraints" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tvAuthor"

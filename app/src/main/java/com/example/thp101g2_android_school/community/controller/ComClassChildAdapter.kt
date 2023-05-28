@@ -16,7 +16,7 @@ class ComClassChildAdapter(private val childList: List<ChildItem>) :
 
         RecyclerView.ViewHolder(itemViewBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComClassChildAdapter.ChildViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildViewHolder {
 
         val itemViewBinding = ComClassChildItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -28,7 +28,7 @@ class ComClassChildAdapter(private val childList: List<ChildItem>) :
         return ChildViewHolder(itemViewBinding)
     }
 
-    override fun onBindViewHolder(holder: ComClassChildAdapter.ChildViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChildViewHolder, position: Int) {
         val childs = childList[position]
         with(holder) {
 

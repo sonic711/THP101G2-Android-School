@@ -8,17 +8,109 @@
             android:id="@+id/manageHomeFragment"
             android:name="com.example.thp101g2_android_school.manage.controller.ManageHomeFragment"
             android:label="fragment_manage_home"
-            tools:layout="@layout/fragment_manage_home"/>
-    <fragment
-            android:id="@+id/manageClassFragment"
-            android:name="com.example.thp101g2_android_school.manage.controller.ManageClassesFragment"
-            android:label="ManageClassFragment">
+            tools:layout="@layout/fragment_manage_home">
         <action
-                android:id="@+id/action_manageClassFragment_to_classDetailFragment"
-                app:destination="@id/classDetailFragment"/>
+            android:id="@+id/action_manageHomeFragment_to_manageComFragment"
+            app:destination="@id/manageComFragment" />
+        <action
+            android:id="@+id/action_manageHomeFragment_to_manageFirmFragment"
+            app:destination="@id/manageFirmFragment" />
+        <action
+            android:id="@+id/action_manageHomeFragment_to_manageMaFragment"
+            app:destination="@id/manageMaFragment" />
+        <action
+            android:id="@+id/action_manageHomeFragment_to_manageReportFragment"
+            app:destination="@id/manageReportFragment" />
+        <action
+            android:id="@+id/action_manageHomeFragment_to_manageMemberFragment"
+            app:destination="@id/manageMemberFragment" />
+        <action
+            android:id="@+id/action_manageHomeFragment_to_manageClassesFragment"
+            app:destination="@id/manageClassesFragment" />
     </fragment>
     <fragment
-            android:id="@+id/classDetailFragment"
-            android:name="com.example.thp101g2_android_school.manage.controller.ClassDetailFragment"
-            android:label="ClassDetailFragment"/>
+        android:id="@+id/manageMemberDetailFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageMemberDetailFragment"
+        android:label="fragment_manage_member_detail"
+        tools:layout="@layout/fragment_manage_member_detail" />
+    <fragment
+        android:id="@+id/manageComFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageComFragment"
+        android:label="fragment_manage_com"
+        tools:layout="@layout/fragment_manage_com" >
+        <action
+            android:id="@+id/action_manageComFragment_to_manageComDetailFragment"
+            app:destination="@id/manageComDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manageFirmFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageFirmFragment"
+        android:label="fragment_manage_firm"
+        tools:layout="@layout/fragment_manage_firm" >
+        <action
+            android:id="@+id/action_manageFirmFragment_to_manageFirmDetailFragment"
+            app:destination="@id/manageFirmDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manageMaFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageMaFragment"
+        android:label="fragment_manage_ma"
+        tools:layout="@layout/fragment_manage_ma" >
+        <action
+            android:id="@+id/action_manageMaFragment_to_manageMaDetailFragment"
+            app:destination="@id/manageMaDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/manageReportFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageReportFragment"
+        android:label="fragment_manage_report"
+        tools:layout="@layout/fragment_manage_report" >
+        <action
+            android:id="@+id/action_manageReportFragment_to_manageReportDetailFragment"
+            app:destination="@id/manageReportDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manageReportDetailFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageReportDetailFragment"
+        android:label="fragment_manage_report_detail"
+        tools:layout="@layout/fragment_manage_report_detail" />
+    <fragment
+        android:id="@+id/manageFirmDetailFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageFirmDetailFragment"
+        android:label="fragment_manage_firm_detail"
+        tools:layout="@layout/fragment_manage_firm_detail" />
+    <fragment
+        android:id="@+id/manageMaDetailFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageMaDetailFragment"
+        android:label="fragment_manage_ma_detail"
+        tools:layout="@layout/fragment_manage_ma_detail" />
+    <fragment
+        android:id="@+id/manageComDetailFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageComDetailFragment"
+        android:label="fragment_manage_com_detail"
+        tools:layout="@layout/fragment_manage_com_detail" />
+    <fragment
+        android:id="@+id/manageClassDetailFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageClassDetailFragment"
+        android:label="fragment_manage_class_detail"
+        tools:layout="@layout/fragment_manage_class_detail" />
+    <fragment
+        android:id="@+id/manageMemberFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageMemberFragment"
+        android:label="fragment_manage_member"
+        tools:layout="@layout/fragment_manage_member" >
+        <action
+            android:id="@+id/action_manageMemberFragment_to_manageMemberDetailFragment"
+            app:destination="@id/manageMemberDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manageClassesFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageClassesFragment"
+        android:label="fragment_manage_class"
+        tools:layout="@layout/fragment_manage_class" >
+        <action
+            android:id="@+id/action_manageClassesFragment_to_manageClassDetailFragment"
+            app:destination="@id/manageClassDetailFragment" />
+    </fragment>
 </navigation>
