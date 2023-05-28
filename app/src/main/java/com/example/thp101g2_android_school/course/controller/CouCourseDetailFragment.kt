@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.byteArrayToBitmap
 import com.example.thp101g2_android_school.course.model.Course
 import com.example.thp101g2_android_school.course.model.Courses
 import com.example.thp101g2_android_school.course.viewmodel.CouMainDetailViewModel
@@ -35,8 +36,15 @@ class CouCourseDetailFragment: Fragment() {
         arguments?.let { bundle ->
             bundle.getSerializable("course")?.let {
                 binding.viewModel?.course?.value = it as Courses
+                if (it.image != null) {
+                    val img = byteArrayToBitmap(it.image!!)
+                    binding.ivCourse.setImageBitmap(img)
+                }else{
+                    binding.ivCourse.setBackgroundResource(R.drawable.com_user)
+                }
             }
             with(binding){
+
                 btAddCourse.setOnClickListener {
                     Navigation.findNavController(it)
                         .navigate(R.id.action_couCourseDetailFragment_to_couMyCourseFragment)

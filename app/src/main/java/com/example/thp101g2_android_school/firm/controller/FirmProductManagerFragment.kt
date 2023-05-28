@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentFirmProductManagerBinding
 import com.example.thp101g2_android_school.firm.viewmodel.FirmProductsEditViewModel
 
@@ -30,7 +31,7 @@ class FirmProductManagerFragment : Fragment() {
             productManagerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.productsManager?.observe(viewLifecycleOwner) { productsManager ->
                 if (productManagerRecyclerView.adapter == null) {
-                    productManagerRecyclerView.adapter = FirmProductManagerAdapter(productsManager)
+                    productManagerRecyclerView.adapter = FirmProductManagerAdapter(productsManager)//最終顯示
                 } else {
                     (productManagerRecyclerView.adapter as FirmProductManagerAdapter).updateProductsManager(
                         productsManager
@@ -39,6 +40,22 @@ class FirmProductManagerFragment : Fragment() {
             }
             ibFirmProductOn.setOnClickListener{
                 Navigation.findNavController(it).navigate(R.id.firmProductOnFragment)
+            }
+            btProductSum.setOnClickListener {
+                viewModel?.allProduct()
+            }
+
+            btProductOn.setOnClickListener {
+                // 把FirmProductsEditViewModel 的productsManager
+                viewModel?.reload()
+            }
+
+            btProductOff.setOnClickListener {
+                viewModel?.reloadOne()
+            }
+
+            btProductOffed.setOnClickListener {
+                viewModel?.reloadZero()
             }
         }
     }

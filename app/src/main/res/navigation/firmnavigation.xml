@@ -4,8 +4,6 @@
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/firmnavigation"
             app:startDestination="@id/firmMainFragment">
 
-    <fragment android:id="@+id/TFirmMainFragment" android:name="com.example.thp101g2_android_school.TFirmMainFragment"
-              android:label="fragment_t_firm_main" tools:layout="@layout/fragment_t_firm_main"/>
     <fragment
             android:id="@+id/firmMainFragment"
             android:name="com.example.thp101g2_android_school.firm.controller.FirmMainFragment"
@@ -61,4 +59,14 @@
             android:name="com.example.thp101g2_android_school.firm.controller.FirmFixedPasswordFragment"
             android:label="fragment_firm_fixed_password"
             tools:layout="@layout/fragment_firm_fixed_password" />
+    <fragment
+        android:id="@+id/firmDataCenterFragment"
+        android:name="com.example.thp101g2_android_school.firm.controller.FirmDataCenterFragment"
+        android:label="fragment_firm_data_center"
+        tools:layout="@layout/fragment_firm_data_center" />
+    <fragment
+        android:id="@+id/firmDataCenterItemViewFragment"
+        android:name="com.example.thp101g2_android_school.FirmDataCenterItemViewFragment"
+        android:label="fragment_firm_data_center_item_view"
+        tools:layout="@layout/fragment_firm_data_center_item_view" />
 </navigation>

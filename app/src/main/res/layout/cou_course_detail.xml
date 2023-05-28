@@ -30,9 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/java"
-                    app:imageResource="@{viewModel.course.imageId}" />
+                    android:layout_marginTop="16dp" />
 
                 <Button
                     android:id="@+id/btAddFavorite"
@@ -53,7 +51,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{viewModel.course.author}"
+                    android:text="@{viewModel.course.usrId}"
                     android:textSize="24sp"
                     tools:text="Author:Ron" />
 
@@ -64,7 +62,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{viewModel.course.rate}"
+                    android:text="@{viewModel.course.rating + '分'}"
                     android:textSize="24sp"
                     tools:text="Rate:5 (600)" />
 
@@ -75,7 +73,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{viewModel.course.name}"
+                    android:text="@{viewModel.course.courseName}"
                     android:textColor="#0000FF"
                     android:textSize="30sp"
                     tools:text="Java" />

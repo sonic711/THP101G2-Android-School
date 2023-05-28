@@ -7,7 +7,7 @@
         android:icon="@drawable/goodsbar"
         android:title="商品管理" />
     <item
-        android:id="@+id/frimOrderManagerFragment"
+        android:id="@+id/firmOrderManagerFragment"
         android:icon="@drawable/orderbar"
         android:title="訂單管理" />
     <item

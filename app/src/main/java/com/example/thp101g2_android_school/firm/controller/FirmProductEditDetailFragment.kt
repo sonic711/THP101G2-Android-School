@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentFirmProductEditDetailBinding
 import com.example.thp101g2_android_school.firm.model.FirmProduct
@@ -45,6 +46,9 @@ class FirmProductEditDetailFragment : Fragment() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 )
                 pickPictureLauncher.launch(intent)
+            }
+            ibProductEditToBack.setOnClickListener{
+                Navigation.findNavController(it).popBackStack()
             }
         }
     }
