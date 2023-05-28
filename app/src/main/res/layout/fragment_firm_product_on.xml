@@ -60,11 +60,11 @@
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnName"
-                tools:text="定價:" />
+                android:text="定價:" />
 
             <EditText
                 android:id="@+id/etFirmProductOnPrice"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
@@ -74,26 +74,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnName" />
 
             <TextView
-                android:id="@+id/tvFirnProductOnAuthor"
+                android:id="@+id/tvFirmProductOnFirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
-                android:text="@string/txtFirmEditProductAuthor"
+                android:text="@string/txtFirmShopName"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/etFirmProductOnPrice"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnName" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnPrice" />
 
             <EditText
-                android:id="@+id/etFirnProductOnAuthor"
-                android:layout_width="100dp"
+                android:id="@+id/etFirmProductOnShopName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                app:layout_constraintStart_toEndOf="@+id/tvFirnProductOnAuthor"
-                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnName" />
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnFirm"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnPrice" />
 
             <TextView
                 android:id="@+id/tvFirmProductOnClass"
@@ -103,19 +103,19 @@
                 android:layout_marginTop="32dp"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnPrice"
-                tools:text="分類:" />
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnFirm"
+                android:text="分類:" />
 
             <EditText
                 android:id="@+id/etFirmProductOnClass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnClass"
-                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnShopName" />
 
             <TextView
                 android:id="@+id/tvFirmProductOnTag"
@@ -140,50 +140,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnClass" />
 
             <TextView
-                android:id="@+id/tvFirmProductOnPub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="36dp"
-                android:text="@string/txtFirmEditProductPublish"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnTag" />
-
-            <EditText
-                android:id="@+id/etFirmProductOnPub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnPub"
-                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnTag" />
-
-            <TextView
-                android:id="@+id/tvFirmProductOnTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:text="@string/txtFirmEditProductPTime"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnPub" />
-
-            <EditText
-                android:id="@+id/etFirmProductOnTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:ems="10"
-                android:inputType="date"
-                app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnTime"
-                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnPub" />
-
-            <TextView
                 android:id="@+id/tvFirmProductOnInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -192,16 +148,16 @@
                 android:text="@string/txtFirmEditProductInfo"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnTime" />
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnTag" />
 
             <EditText
                 android:id="@+id/etFirmProductOnInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnInfo" />
 
@@ -210,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/button_secondary"
                 android:text="@string/txtFirmCancelOn"
                 android:textColor="@color/purple_400"
@@ -222,7 +178,7 @@
                 android:id="@+id/btFirmConOn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="80dp"
                 android:background="@drawable/button_secondary"
                 android:text="@string/txtFirmConOn"

@@ -26,8 +26,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/button_primary"
-            android:textColor="@color/purple_50"
+            android:background="@drawable/button_secondary"
+            android:textColor="@color/purple_400"
             app:backgroundTint="@null"/>
 
         <Button

@@ -20,6 +20,12 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <ImageButton
+                android:id="@+id/ibFirmHomeBackTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="?attr/homeAsUpIndicator" />
+
             <ImageView
                 android:id="@+id/ivFirmProduct"
                 android:layout_width="150dp"
@@ -34,18 +40,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.firmProduct.name}"
+                android:text='@{"商品名稱："+viewModel.firmProduct.shopProductName}'
                 android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/tvFirmProductAuthor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@{viewModel.firmProduct.author}"
-                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/tvFirmProductPrice"
@@ -54,7 +51,37 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.firmProduct.price}"
+                android:text='@{"價格："+viewModel.firmProduct.shopProductPrice}'
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tvFirmProductShopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text='@{"賣家名稱："+viewModel.firmProduct.shopName}'
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tvFirmProductClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text='@{"分類："+viewModel.firmProduct.shopProductClass}'
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tvFirmProductTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text='@{"標籤："+viewModel.firmProduct.shopProductSearch}'
                 android:textSize="22sp" />
 
             <TextView
@@ -64,7 +91,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.firmProduct.pinfo}"
+                android:text='@{"商品簡介："+"\n\n"+viewModel.firmProduct.shopProductDesc}'
                 android:textSize="22sp" />
         </LinearLayout>
     </ScrollView>
