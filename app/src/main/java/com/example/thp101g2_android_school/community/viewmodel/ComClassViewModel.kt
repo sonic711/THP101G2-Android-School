@@ -17,10 +17,13 @@ class ComClassViewModel : ViewModel() {
 
     private var parentList = mutableListOf<ParentItem>()
     val parents: MutableLiveData<List<ParentItem>> by lazy { MutableLiveData<List<ParentItem>>() }
+    var followList = listOf<FollowClassBean>()
 
     init {
-        viewModelScope.launch { loadFollowClass() }
-        viewModelScope.launch { loadClasses() }
+        viewModelScope.launch {
+            loadClasses()
+            getFollowClass()
+        }
     }
 
     private fun loadClasses() {
@@ -83,15 +86,13 @@ class ComClassViewModel : ViewModel() {
 
     }
 
-    private fun loadFollowClass() {
-        // 假裝載入編號id 3的會員
-        val memberid = 3
-        val url = "$url/member/followClass/$memberid"
+    // TODO 理論上抓追蹤應該是這邊一次抓，但先用不太好的寫法
+    fun getFollowClass() {
+        // 先寫死會員編號3
+        val memberId = 3
+        val url = "$url/member/followClass/$memberId"
         val type = object : TypeToken<List<FollowClassBean>>() {}.type
-        val list = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return
-        for(classBean in list){
-            println(classBean)
-        }
+        val followClass = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return
+        this.followList = followClass
     }
-
 }
