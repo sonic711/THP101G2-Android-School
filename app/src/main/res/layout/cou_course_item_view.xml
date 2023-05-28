@@ -27,8 +27,7 @@
             <ImageView
                 android:id="@+id/ivCourse"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:imageResource="@{viewModel.course.imageId}" />
+                android:layout_height="100dp" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -36,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.course.name}"
+                android:text="@{viewModel.course.courseName}"
                 android:textColor="#0000FF"
                 android:textSize="22sp" />
 
@@ -46,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.course.author}"
+                android:text="@{viewModel.course.usrId}"
                 android:textSize="18sp" />
 
             <TextView
@@ -55,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.course.rate}"
+                android:text="@{viewModel.course.rating + '分'}"
                 android:textSize="18sp" />
 
 
