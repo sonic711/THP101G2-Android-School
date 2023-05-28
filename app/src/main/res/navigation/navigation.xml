@@ -134,11 +134,6 @@
                 app:destination="@id/couClassroomFragment"/>
     </fragment>
     <fragment
-            android:id="@+id/couClassroomFragment"
-            android:name="com.example.thp101g2_android_school.course.controller.CouClassroomFragment"
-            android:label="fragment_cou_classroom"
-            tools:layout="@layout/fragment_cou_classroom"/>
-    <fragment
             android:id="@+id/memBlockFragment"
             android:name="com.example.thp101g2_android_school.member.controller.MemBlockFragment"
             android:label="fragment_mem_block"
