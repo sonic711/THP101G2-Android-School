@@ -86,10 +86,10 @@ class ComClassViewModel : ViewModel() {
 
     }
 
-    // TODO 理論上抓追蹤應該是這邊一次抓，但先用不太好的寫法
+    // 取得目前登入會員編號的所有追蹤次分類
     fun getFollowClass() {
-        // 先寫死會員編號3
-        val memberId = 3
+        // 先寫死會員編號 1
+        val memberId = 1
         val url = "$url/member/followClass/$memberId"
         val type = object : TypeToken<List<FollowClassBean>>() {}.type
         val followClass = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return

@@ -53,7 +53,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tvMemberId"
                     app:layout_constraintStart_toEndOf="@+id/tvMemberId"
                     android:layout_marginStart="16dp"
-                    tools:text="@{viewModel.reply.comReplyTime}" android:hint="12/21"/>
+                    tools:text="@{viewModel.reply.comReplyTime}" android:hint="剛剛 ..."/>
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,18 +70,16 @@
                     android:layout_marginTop="24dp" app:layout_constraintHorizontal_bias="0.502"/>
             <ToggleButton
                     android:text="ToggleButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:id="@+id/tbLike"
-                    android:background="@drawable/togglebtn"
-                    android:textColor="@color/white"
-                    android:checked="true"
-                    android:textOff="取消喜歡"
-                    android:foreground="?selectableItemBackground"
-                    android:textOn="喜歡"
-                    app:layout_constraintTop_toTopOf="@+id/tvMemberName"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvMemberId" app:layout_constraintEnd_toEndOf="parent"
-            />
+                    android:textOn=""
+                    android:textOff=""
+                    android:background="@drawable/toggleheart"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="6dp" android:layout_marginEnd="6dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>
