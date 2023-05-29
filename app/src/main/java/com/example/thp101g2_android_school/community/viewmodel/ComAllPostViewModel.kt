@@ -25,7 +25,23 @@ class ComAllPostViewModel : ViewModel() {
             loadPosts()
         }
     }
-
+    /**
+     * 如果搜尋條件為空字串，就顯示原始標籤列表；否則就顯示搜尋後結果
+     * @param newText 欲搜尋的條件字串
+     */
+    fun search(newText: String?) {
+        if (newText.isNullOrEmpty()) {
+            posts.postValue(postList)
+        } else {
+            val searchLabelList = mutableListOf<Post>()
+            postList.forEach { post ->
+                if (post.comPostTitle!!.contains(newText, true)) {
+                    searchLabelList.add(post)
+                }
+            }
+            posts.postValue(searchLabelList)
+        }
+    }
     private fun loadPosts() {
 
         val url = "$url/community/post"
@@ -112,8 +128,6 @@ class ComAllPostViewModel : ViewModel() {
             }
         }
         this.posts.postValue(postList)
-//        this.posts.value = this.postList
-//        this.postList = postList
-//        this.posts.value = this.postList
+
     }
 }

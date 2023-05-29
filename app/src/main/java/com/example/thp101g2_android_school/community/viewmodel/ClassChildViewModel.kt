@@ -12,16 +12,17 @@ import com.google.gson.reflect.TypeToken
 class ClassChildViewModel : ViewModel() {
     val child: MutableLiveData<ChildItem> by lazy { MutableLiveData<ChildItem>() }
 
-    // TODO
+    // TODO 先寫死會員編號1 假定登入
     fun addFollow() {
         val jsonObj = JsonObject()
-        jsonObj.addProperty("memberNo", 3)
+        jsonObj.addProperty("memberNo", 1)
         jsonObj.addProperty("comSecClassId", child.value?.comSecClassId)
         val respbody = requestTask<JsonObject>("$url/member/followClass", "POST", jsonObj)
 
     }
+    // TODO 先寫死會員編號1 假定登入
     fun cancelFollow(){
-        val memberNo = 3
+        val memberNo = 1
         val classId = child?.value?.comSecClassId
         val respbody = requestTask<Boolean>("$url/member/followClass/$memberNo/$classId", "DELETE")
 
