@@ -30,9 +30,9 @@ class ComAllClassFragment : Fragment() {
         with(binding) {
 
             parentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
+            val followList = viewModel?.followList
             viewModel?.parents?.observe(viewLifecycleOwner) { parents ->
-                parentRecyclerView.adapter = ComClassParentAdapter(parents)
+                parentRecyclerView.adapter = followList?.let { ComClassParentAdapter(parents, it) }
             }
 
         }
