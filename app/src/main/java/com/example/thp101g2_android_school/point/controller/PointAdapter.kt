@@ -40,7 +40,7 @@ class PointAdapter(private var reasons: List<Point>) :
         with(holder) {
             itemViewBinding.viewModel?.reason ?. value = reason
             val bundle = Bundle()
-            bundle.putSerializable("reason", reason)
+//            bundle.putSerializable("reason", reason)
 
         }
     }
