@@ -2,13 +2,17 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".shop.controller.ProductDetailFragment">
+    tools:context=".shop.controller.ProductDetailFragment"
+>
 
     <data>
 
         <variable
             name="viewModel"
             type="com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel" />
+        <variable
+            name="isFavorite"
+            type="Boolean" />
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -40,29 +44,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="117dp"
                 android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/btShoppingCartAdd"
+                <ToggleButton
+                    android:id="@+id/favtoggleButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/shop_shoppingcart_notclick"
-                    app:layout_constraintStart_toEndOf="@+id/btShopFavorite"
+                    android:layout_marginStart="248dp"
+                    android:layout_marginTop="64dp"
+                    android:background="@drawable/togglebtn"
+                    android:foreground="?selectableItemBackground"
+                    android:text="FavToggleButton"
+                    android:textColor="@color/white"
+                    android:textOff="加入最愛"
+                    android:textOn="已加入最愛"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
-                <ImageButton
-                    android:id="@+id/btShopFavorite"
+                <ToggleButton
+                    android:id="@+id/CartToggleButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="232dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/shop_favorite_notclick"
+                    android:layout_marginStart="312dp"
+                    android:layout_marginTop="64dp"
+                    android:background="@drawable/togglebtn"
+                    android:foreground="?selectableItemBackground"
+                    android:text="FavToggleButton"
+                    android:textColor="@color/white"
+                    android:textOff="加入購物車"
+                    android:textOn="已加入購物車"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
@@ -90,7 +99,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.product.author}"
+                android:text="@{viewModel.product.shopName}"
                 android:textSize="24sp"
                 tools:text="William" />
             <TextView
@@ -110,7 +119,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.product.shopProductId}"
+                android:text="@{viewModel.product.shopProductDesc}"
                 android:textSize="24sp"
                 tools:text="java書" />
 

@@ -11,11 +11,15 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopMainBinding
+import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
+import java.net.URL
 
 class ShopMainFragment : Fragment() {
 
     private lateinit var binding: FragmentShopMainBinding
+    private lateinit var productAdapter: ProductAdapter
+    private lateinit var favoriteProducts: List<ShopFavorite>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -29,6 +33,13 @@ class ShopMainFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
+            viewModel?.getFavoriteProducts()?.observe(viewLifecycleOwner) { favoriteProducts ->
+                this@ShopMainFragment.favoriteProducts = favoriteProducts
+                productAdapter = ProductAdapter(viewModel?.products?.value ?: emptyList(), favoriteProducts)
+                recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                recyclerView.adapter = productAdapter
+            }
+
             //這裡註解要問老師關於SearchView的顯示跟關閉
             val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
             //沒有layoutManager會沒recyclerview畫面
@@ -38,7 +49,7 @@ class ShopMainFragment : Fragment() {
                 // adapter為null要建立新的adapter；之後只要呼叫updateFriends(friends)即可
                 //TODO:加載progress bar android
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ProductAdapter(products)
+                    recyclerView.adapter = ProductAdapter(products, favoriteProducts)
                 } else {
                     (recyclerView.adapter as ProductAdapter).updateProduct(products)
                     if (products.isEmpty()) {
@@ -59,10 +70,12 @@ class ShopMainFragment : Fragment() {
                 // STEP09-2 當輸入內容變化時，呼叫search()
                 override fun onQueryTextChange(newText: String?): Boolean {
                     viewModel?.search(newText)
+
                     return true
                 }
 
             })
+
         }
 
 

@@ -18,6 +18,7 @@ class ShopBuyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_shop_buy, container, false)
+
     }
 
 
