@@ -17,10 +17,13 @@ class ComClassViewModel : ViewModel() {
 
     private var parentList = mutableListOf<ParentItem>()
     val parents: MutableLiveData<List<ParentItem>> by lazy { MutableLiveData<List<ParentItem>>() }
+    var followList = listOf<FollowClassBean>()
 
     init {
-        viewModelScope.launch { loadFollowClass() }
-        viewModelScope.launch { loadClasses() }
+        viewModelScope.launch {
+            loadClasses()
+            getFollowClass()
+        }
     }
 
     private fun loadClasses() {
@@ -83,15 +86,13 @@ class ComClassViewModel : ViewModel() {
 
     }
 
-    private fun loadFollowClass() {
-        // 假裝載入編號id 3的會員
-        val memberid = 3
-        val url = "$url/member/followClass/$memberid"
+    // 取得目前登入會員編號的所有追蹤次分類
+    fun getFollowClass() {
+        // 先寫死會員編號 1
+        val memberId = 1
+        val url = "$url/member/followClass/$memberId"
         val type = object : TypeToken<List<FollowClassBean>>() {}.type
-        val list = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return
-        for(classBean in list){
-            println(classBean)
-        }
+        val followClass = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return
+        this.followList = followClass
     }
-
 }

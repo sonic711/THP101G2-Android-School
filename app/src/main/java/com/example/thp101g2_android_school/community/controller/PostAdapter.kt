@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.byteArrayToBitmap
 import com.example.thp101g2_android_school.community.model.Post
+import com.example.thp101g2_android_school.community.model.Reply
 import com.example.thp101g2_android_school.community.viewmodel.ComMainViewModel
 import com.example.thp101g2_android_school.databinding.ComMainItemviewBinding
 
@@ -23,7 +24,14 @@ class PostAdapter(private var posts: List<Post>) :
     class PostViewHolder(val itemViewBinding: ComMainItemviewBinding) :
 
         RecyclerView.ViewHolder(itemViewBinding.root)
-
+    /**
+     * 更新文章列表內容
+     * @param posts 新的文章列表
+     */
+    fun updatePosts(posts: List<Post>) {
+        this.posts = posts
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val itemViewBinding = ComMainItemviewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -48,15 +56,15 @@ class PostAdapter(private var posts: List<Post>) :
             }
             // TODO 按下會員資料後跳轉到該會員主頁
 
-            // TODO 按下文章後跳轉到該文章細節頁面
+            // 按下文章後跳轉到該文章細節頁面
             val bundle = Bundle()
             bundle.putSerializable("post", post)
 
             itemView.setOnClickListener {
                 // 按下CardView後把該文章編號存入偏好設定檔，做瀏覽記錄用
                 saveArticleIdToSharedPreferences(itemView.context, post.comPostId!!)
-                // TODO 按下CardView後把資料送到該文章頁面
-                Navigation.findNavController(it).navigate(R.id.action_comMainFragment_to_postDetailFragment, bundle)
+                // 按下CardView後把資料送到該文章頁面
+                Navigation.findNavController(it).navigate(R.id.postDetailFragment, bundle)
 
             }
             // 如果是Value是1，代表已讀過，就改變標題顏色
