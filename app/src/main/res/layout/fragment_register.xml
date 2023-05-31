@@ -70,6 +70,27 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tvNickname"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/tvNickname" />
+
+                            <EditText
+                                android:id="@+id/etNickname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/txtNickname"
+                                android:inputType="textPersonName" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
                                 android:id="@+id/tvUserID"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
