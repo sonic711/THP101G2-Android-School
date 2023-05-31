@@ -44,9 +44,9 @@ class ComMainFragment : Fragment() {
 
     private fun handleViews() {
         val pages = listOf(
-            Page("追蹤", ContextCompat.getColor(requireContext(), R.color.gray_50), ComFollowFragment()),
-            Page("全部文章", ContextCompat.getColor(requireContext(), R.color.gray_50), ComAllPostFragment()),
-            Page("全部分類", ContextCompat.getColor(requireContext(), R.color.gray_50), ComAllClassFragment()),
+            Page("追蹤", ComFollowFragment()),
+            Page("全部文章", ComAllPostFragment()),
+            Page("全部分類", ComAllClassFragment()),
         )
 
         with(binding) {
@@ -57,7 +57,7 @@ class ComMainFragment : Fragment() {
             TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
                 // 設定tab標題文字
                 tab.text = pages[position].title
-                tab.view.setBackgroundColor(pages[position].color)
+//                tab.view.setBackgroundColor(pages[position].color)
             }.attach()
         }
     }

@@ -1,5 +1,6 @@
 package com.example.thp101g2_android_school.community.controller
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.byteArrayToBitmap
@@ -30,6 +32,7 @@ class PostDetailFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             arguments?.let { bundle ->
@@ -37,7 +40,7 @@ class PostDetailFragment : Fragment() {
                     bundle.getSerializable("post", Post::class.java)?.let {
                         viewModel?.post?.value = it
                         // TODO 這邊理論上不用手動呼叫吧 想改一下 註解拿掉可以正常跑
-//                        viewModel?.loadData()
+                        viewModel?.loadReplys()
                         if (it.profilePhoto == null) {
                             memberImg.setImageResource(R.drawable.com_user)
                         } else {
@@ -50,13 +53,21 @@ class PostDetailFragment : Fragment() {
                     }
                 }
             }
-            // TODO 把 likeList傳到ReplyAdapter裏面 繼續寫 ...
-            val likeList = viewModel?.replyLikes
+
+            val bundle = Bundle()
+            val post = viewModel?.post?.value
+
+            forMoreBtn.setOnClickListener{
+                bundle.putSerializable("post", post)
+                Navigation.findNavController(it).navigate(R.id.editPostFragment, bundle)
+            }
+            // 把該篇文章所有likeList傳到ReplyAdapter裏面
+            val likeList = viewModel?.allLikes
 
             replyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.replys?.observe(viewLifecycleOwner) { replys ->
                 if (replyRecyclerView.adapter == null) {
-                    replyRecyclerView.adapter = ReplyAdapter(replys)
+                    replyRecyclerView.adapter = ReplyAdapter(replys, likeList)
                 } else {
                     (replyRecyclerView.adapter as ReplyAdapter).updateReply(replys)
                 }
@@ -65,16 +76,13 @@ class PostDetailFragment : Fragment() {
             // 需要多做一些設定 ...
             val bottomSheetBehavior = BottomSheetBehavior.from(included.bottomSheet)
 
-            included.tvContent.setOnTouchListener(object : View.OnTouchListener {
-                override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                    if (event?.action == MotionEvent.ACTION_DOWN) {
-                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                        included.tvContent.requestFocus()
-                    }
-                    return false
+            included.tvContent.setOnTouchListener { _, event ->
+                if (event?.action == MotionEvent.ACTION_DOWN) {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    included.tvContent.requestFocus()
                 }
-
-            })
+                false
+            }
             // 回覆文章的部分
             included.saveButton.setOnClickListener {
                 viewModel?.replyContent?.value = included.tvContent.text.toString()
