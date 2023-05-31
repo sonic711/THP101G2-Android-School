@@ -48,10 +48,10 @@ class ComAllPostFragment : Fragment() {
                 if (recyclerView.adapter == null) {
                     recyclerView.adapter = PostAdapter(posts)
                     if (requireParentFragment() is ComMainFragment) {
-                        (requireParentFragment() as ComMainFragment).binding?.loadingPanel?.visibility = View.GONE
+                        (requireParentFragment() as ComMainFragment).binding.loadingPanel?.visibility = View.GONE
                     }
                 } else {
-                    // TODO 之後補上搜尋更新
+                    // 搜尋更新
                     (recyclerView.adapter as PostAdapter).updatePosts(posts)
                 }
             }

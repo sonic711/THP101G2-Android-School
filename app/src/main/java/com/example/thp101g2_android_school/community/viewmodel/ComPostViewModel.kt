@@ -10,6 +10,7 @@ import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.ForPostBean
 import com.example.thp101g2_android_school.community.model.Label
 import com.google.gson.JsonObject
+import java.sql.Timestamp
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -57,16 +58,16 @@ class ComPostViewModel : ViewModel() {
 
 
     private fun loadData() {
-        val member = Member("2", "Vivi", R.drawable.com_mary)
+        val member = Member("1", "Vivi", R.drawable.com_mary)
 
         this.memberId.value = member.id
         this.memberName.value = member.name
         this.memberImg.value = member.img
-
-
-        val now = ZonedDateTime.now()
-        val formatterFULL = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
-        this.postTime.value = now.format(formatterFULL)
+//
+//
+//        val now = ZonedDateTime.now()
+//        val formatterFULL = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+//        this.postTime.value = now.format(formatterFULL)
     }
 
     inner class Member(var id: String, var name: String, var img: Int)

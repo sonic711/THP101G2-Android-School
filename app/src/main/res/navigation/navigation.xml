@@ -215,5 +215,8 @@
             android:name="com.example.thp101g2_android_school.shop.controller.ShopBuyFragment"
             android:label="fragment_shop_buy"
             tools:layout="@layout/fragment_shop_buy" />
+    <fragment android:id="@+id/editPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.EditPostFragment"
+              android:label="EditPostFragment"/>
 
 </navigation>
