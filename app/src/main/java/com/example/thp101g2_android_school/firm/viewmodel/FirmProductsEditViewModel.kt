@@ -49,7 +49,9 @@ class FirmProductsEditViewModel : ViewModel(){
             if(a.shopProductStatus == 2){
                 productStatusOnList.add(a)
             }
+
         }
+
         this.productsManager.value = productStatusOnList
         println(productStatusOnList)
         //
