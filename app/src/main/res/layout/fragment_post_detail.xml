@@ -11,11 +11,11 @@
             android:layout_height="match_parent">
         <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:fillViewport="true"
+                android:layout_height="match_parent" android:fillViewport="true"
                 android:id="@+id/nestedScrollView"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="1dp">
+                android:layout_marginBottom="1dp" app:layout_constraintVertical_bias="0.13">
 
             <LinearLayout
                     android:orientation="vertical"
@@ -25,8 +25,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardElevation="5dp"
-                        app:cardUseCompatPadding="true" app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent">
+                        app:cardUseCompatPadding="true"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -66,7 +68,7 @@
                                 app:layout_constraintTop_toTopOf="@+id/tvMemberId"
                                 app:layout_constraintStart_toEndOf="@+id/tvMemberId"
                                 android:layout_marginStart="16dp"
-                                tools:text="@{viewModel.post.comPostTime}" android:hint="11/22"/>
+                                tools:text="@{viewModel.post.comPostTime}" android:hint="剛剛 ..."/>
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/tvTitle"
@@ -94,8 +96,8 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="409dp"
-                        android:layout_height="594dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:id="@+id/replyRecyclerView"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
