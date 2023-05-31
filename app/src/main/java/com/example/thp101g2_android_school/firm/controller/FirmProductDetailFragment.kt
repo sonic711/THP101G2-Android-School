@@ -35,9 +35,11 @@ class FirmProductDetailFragment : Fragment() {
             }
         }
         with(binding){
+
             ibFirmHomeBackTo.setOnClickListener{
                 Navigation.findNavController(it).popBackStack()
             }
+
         }
     }
 }

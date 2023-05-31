@@ -1,12 +1,17 @@
 package com.example.thp101g2_android_school.firm.controller
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.getStringResourceId
 import com.example.thp101g2_android_school.databinding.FragmentFirmProductItemViewBinding
 import com.example.thp101g2_android_school.firm.model.FirmProduct
 import com.example.thp101g2_android_school.firm.viewmodel.FirmProductManagerViewModel
@@ -54,10 +59,24 @@ class FirmProductManagerAdapter(private var productsManager: List<FirmProduct>) 
             val bundle = Bundle()
             bundle.putSerializable("productsManager", productsManager)
 
-            itemView.setOnClickListener {
+            itemViewBinding.btProductEdit.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.firmProductEditDetailFragment, bundle)
             }
+
+
+            // 這邊是假設如果商品狀態是1(下架)或0(被下架)時，將無法點擊編輯按鈕
+            if (productsManager.shopProductStatus == 1 || productsManager.shopProductStatus == 0) {
+                itemViewBinding.btProductEdit.visibility = View.INVISIBLE
+                itemViewBinding.btProductControlOffed.visibility = View.INVISIBLE
+
+            } else {
+                itemViewBinding.btProductEdit.isEnabled = true
+                itemViewBinding.btProductControlOffed.isEnabled = true
+                itemViewBinding.btProductEdit.visibility = View.VISIBLE
+                itemViewBinding.btProductControlOffed.visibility = View.VISIBLE
+            }
         }
+
     }
 }

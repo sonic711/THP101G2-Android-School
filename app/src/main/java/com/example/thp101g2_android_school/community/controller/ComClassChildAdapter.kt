@@ -33,7 +33,7 @@ class ComClassChildAdapter(private val childList: List<ChildItem>, private val f
         with(holder) {
             with(itemViewBinding) {
                 viewModel?.child?.value = childs
-
+                // 從viewModel取出所有追蹤紀錄並比對追蹤狀況
                 for (followed in followList) {
                     if (followed.comSecClassId == childs.comSecClassId) {
                         toggleButton.isChecked = true
@@ -47,14 +47,14 @@ class ComClassChildAdapter(private val childList: List<ChildItem>, private val f
                 //TODO 直接轉到對應文章分類的頁面
 
             }
+            // 點擊追蹤按鈕後
             itemViewBinding.toggleButton.setOnClickListener {
-                //TODO 更改顏色後送到資料庫
+                // 如果未追蹤，就新增一筆資料到資料庫
                 if (itemViewBinding.toggleButton.isChecked) {
                     holder.itemViewBinding.viewModel?.addFollow()
-                    println("追蹤")
                 } else {
+                    // 已追蹤，就刪除 該會員 該次分類編號的追蹤紀錄
                     holder.itemViewBinding.viewModel?.cancelFollow()
-                    println("取消追蹤")
                 }
             }
         }

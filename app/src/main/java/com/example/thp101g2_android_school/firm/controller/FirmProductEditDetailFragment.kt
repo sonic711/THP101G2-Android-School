@@ -49,6 +49,10 @@ class FirmProductEditDetailFragment : Fragment() {
             }
             ibProductEditToBack.setOnClickListener{
                 Navigation.findNavController(it).popBackStack()
+
+            }
+            btFirmCancelEdit.setOnClickListener { btCan->
+                Navigation.findNavController(btCan).popBackStack()
             }
         }
     }
