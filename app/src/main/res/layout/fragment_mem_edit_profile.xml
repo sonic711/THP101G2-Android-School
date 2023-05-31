@@ -1,129 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".member.controller.MemEditProfileFragment"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.thp101g2_android_school.member.viewModel.MemberViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivCoverPho"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cover_photo1" />
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#B3000000" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:src="@drawable/mem_userphoto" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/button_third"
-            android:drawableLeft="@drawable/ic_camera_24"
-            android:text="@string/btAddPic"
-            android:textColor="@color/white"
-            app:backgroundTint="@null" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvUsername"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/tvUsername" />
+                android:layout_height="200dp">
 
-            <EditText
-                android:id="@+id/etUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/txtUsername"
-                android:inputType="textEmailAddress" />
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/ivCoverPho"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cover_photo1"
+                    app:imgBase64="@={viewModel.member.coverPicture64}" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#B3000000" />
 
-            <TextView
-                android:id="@+id/tvUserID"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/tvUserID" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="80dp">
 
-            <EditText
-                android:id="@+id/etUserID"
+                    <ImageView
+                        android:id="@+id/ivProfilePic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/mem_userphoto"
+                        app:imgBase64="@={viewModel.member.profilePhoto64}" />
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/btChangePic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/button_third"
+                    android:drawableLeft="@drawable/ic_camera_24"
+                    android:text="@string/btChangePic"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@null" />
+            </FrameLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/txtUserID"
-                android:inputType="textEmailAddress" />
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tvUsername" />
+
+                    <EditText
+                        android:id="@+id/etNickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/txtUsername"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.member.nickname}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvUserId"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tvUserID" />
+
+                    <EditText
+                        android:id="@+id/etUserId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/txtUserID"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.member.userId}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvIntroduction"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tvIntroduction" />
+
+                    <EditText
+                        android:id="@+id/etIntroduction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/txtIntroduction"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.member.introduction}" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_primary"
+                    android:text="@string/btSubmit"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
+        <include
+            android:id="@+id/included"
+            layout="@layout/mem_bottom_sheet_picture" />
 
-            <TextView
-                android:id="@+id/tvIntroduction"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/tvIntroduction" />
-
-            <EditText
-                android:id="@+id/etIntroduction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/txtIntroduction"
-                android:inputType="textEmailAddress" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/btSubmit"
-            android:background="@drawable/button_primary"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:backgroundTint="@null" />
-
-    </LinearLayout>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

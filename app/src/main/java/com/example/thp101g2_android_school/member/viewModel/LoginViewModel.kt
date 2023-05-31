@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.member.model.Member
 
 class LoginViewModel : ViewModel() {
-    val member: MutableLiveData<Member> by lazy { MutableLiveData<Member>() }
-
+    val member: MutableLiveData<Member> by lazy { MutableLiveData<Member>(Member()) }
 
 }
