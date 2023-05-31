@@ -9,12 +9,12 @@ class Order (
     var memberNo:String,
     var shopAdress :String,
     var shopRecipient : String ,
-    var shopOrderCount : Int,
+    var shopOrderCount : String,
     var shopOrderStatus:String,
     var shopOrderpayTime:String,
     var shopOrdercreateTime : String,
-    var shopOrderDescId :String,
+//    var shopOrderDescId :String,
     var shopProductName : String,
     var shopProductPrice : String,
-    var sum : String):
+    var shopProductSales : String, ):
     Serializable

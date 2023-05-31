@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:text='@{"商品細項:"+"\n"+viewModel.firmOrder.shopProductName +"\t\t"+"數量:"+viewModel.firmOrder. shopOrderCount +"\t\t"+"總額:"+viewModel.firmOrder.shopProductPrice }'
+                android:text='@{"商品細項:"+"\n"+viewModel.firmOrder.shopProductName +"\t\t"+"數量:"+viewModel.firmOrder. shopOrderCount }'
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvOrderAdress" />
@@ -91,7 +91,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
-                android:text='@{"合計:"+viewModel.firmOrder.sum}'
+                android:text='@{"合計:"+viewModel.firmOrder.shopProductSales}'
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

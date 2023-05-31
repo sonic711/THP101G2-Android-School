@@ -10,11 +10,11 @@ import com.google.gson.reflect.TypeToken
 
 class FirmOrdersViewModel:ViewModel() {
     // STEP02.建立兩個集合，LiveData的是給搜尋時更新用，一般的MutableList是給資料庫來的所有資料用
-    // 原始課程列表
-    // 專門存取要顯示的畫面，受監控的LiveData，一旦指派新值就會更新課程列表畫面
+    // 原始訂單列表
+    // 專門存取要顯示的畫面，受監控的LiveData，一旦指派新值就會更新訂單列表畫面
     private var orderList = mutableListOf<Order>()
 
-    // 受監控的LiveData，一旦指派新值就會更新課程列表畫面
+    // 受監控的LiveData，一旦指派新值就會更新訂單列表畫面
     val orders: MutableLiveData<List<Order>> by lazy { MutableLiveData<List<Order>>() }
 
     // 載入資料
@@ -24,7 +24,7 @@ class FirmOrdersViewModel:ViewModel() {
 
     private fun loadOrders() {
         //val firmId = 3
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/ordermanager"///$firmId
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/ordermanager"//$firmId
         val type = object : TypeToken<List<Order>>() {}.type
         val list = requestTask<List<Order>>(url, respBodyType = type)
 
@@ -36,6 +36,14 @@ class FirmOrdersViewModel:ViewModel() {
         this.orders.value = this.orderList
     }
 
+
+    fun orderAll(){
+        val orderAllList = mutableListOf<Order>()
+        for (o in orderList){
+            orderAllList.add(o)
+        }
+        this.orders.value =  orderAllList
+    }
 
     fun orderNotShip(){
         val orderNotShipList = mutableListOf<Order>()

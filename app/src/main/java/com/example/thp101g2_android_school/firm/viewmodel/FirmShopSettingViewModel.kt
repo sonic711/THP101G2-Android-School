@@ -16,4 +16,17 @@ class FirmShopSettingViewModel :ViewModel() {
 //    }
 
 
+//    fun logout(view : View){ // 使用@{_ ->viewModel.logout()}會錯誤是因為沒有參數
+//        AlertDialog.Builder(view.context)
+//            .setMessage("確定登出")
+//            .setPositiveButton("是"){_,_ ->
+//                requestTask<JsonObject>(url,"DELETE")
+//
+//                // TODO 導覽至Login Fragment
+//                Navigation.findNavController(view).navigate(R.id.memberLoginFragment)
+//            }
+//            .setNegativeButton("否",null)
+//            .setCancelable(false)
+//            .show()
+//    }
 }
