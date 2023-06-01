@@ -169,4 +169,13 @@
     <string name="textNothingSelected">請選擇章節</string>
     <string name="text_com_editpost">編輯文章</string>
     <string name="text_com_nofollow">尚未追蹤任何看板唷！</string>
+    <string name="btEditTag">編輯標籤</string>
+    <string name="tvNickname">暱稱</string>
+    <string name="txtNickname">請輸入暱稱</string>
+    <string name="txtFans">粉絲</string>
+    <string name="txtFollowing">追蹤中</string>
+    <string name="btChangePic">更新照片</string>
+    <string name="txtPicQuestion">要更改哪個照片呢?</string>
+    <string name="txtProfilePhoto">頭像</string>
+    <string name="txtCoverPicture">封面</string>
 </resources>

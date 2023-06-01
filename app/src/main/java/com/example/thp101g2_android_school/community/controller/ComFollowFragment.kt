@@ -1,7 +1,6 @@
 package com.example.thp101g2_android_school.community.controller
 
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -88,8 +87,43 @@ class ComFollowAdapter(private var list: List<Post>) :
             if (post.profilePhoto != null) {
                 val img = byteArrayToBitmap(post.profilePhoto!!)
                 binding.imageView.setImageBitmap(img)
-            }else{
+            } else {
                 binding.imageView.setBackgroundResource(R.drawable.com_user)
+            }
+
+            if (post.labels?.get(0)?.comLabelId == "0") {
+                binding.labelCardView1.visibility = View.GONE
+            }
+            when (post.labels?.size) {
+                0 -> {
+                    binding.labelCardView1.visibility = View.GONE
+                    binding.labelCardView2.visibility = View.GONE
+                    binding.labelCardView3.visibility = View.GONE
+                }
+
+                1 -> {
+                    binding.tvLabelName1.text = post.labels!!.get(0).comLabelName
+                    binding.labelCardView1.visibility = View.VISIBLE
+                    binding.labelCardView2.visibility = View.GONE
+                    binding.labelCardView3.visibility = View.GONE
+                }
+
+                2 -> {
+                    binding.tvLabelName1.text = post.labels!!.get(0).comLabelName
+                    binding.tvLabelName2.text = post.labels!!.get(1).comLabelName
+                    binding.labelCardView1.visibility = View.VISIBLE
+                    binding.labelCardView2.visibility = View.VISIBLE
+                    binding.labelCardView3.visibility = View.GONE
+                }
+
+                3 -> {
+                    binding.tvLabelName1.text = post.labels!!.get(0).comLabelName
+                    binding.tvLabelName2.text = post.labels!!.get(1).comLabelName
+                    binding.tvLabelName3.text = post.labels!!.get(2).comLabelName
+                    binding.labelCardView1.visibility = View.VISIBLE
+                    binding.labelCardView2.visibility = View.VISIBLE
+                    binding.labelCardView3.visibility = View.VISIBLE
+                }
             }
         }
 
