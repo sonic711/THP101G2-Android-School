@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ShopMainItemviewBinding
 import com.example.thp101g2_android_school.shop.model.Product
+import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 
-class ProductAdapter(private var products: List<Product>) :
+class ProductAdapter(private var products: List<Product>,private var favproduct:List<ShopFavorite>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
 
@@ -24,11 +25,6 @@ class ProductAdapter(private var products: List<Product>) :
         RecyclerView.ViewHolder(itemViewBinding.root){
         var isClicked = false
         }
-
-    override fun getItemCount(): Int {
-        return products.size
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val itemViewBinding = ShopMainItemviewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -39,12 +35,27 @@ class ProductAdapter(private var products: List<Product>) :
         return ProductViewHolder(itemViewBinding)
     }
 
+
+    fun setFavoriteProducts(favoriteProducts: List<ShopFavorite>) {
+        this.favproduct = favoriteProducts
+        notifyDataSetChanged()
+    }
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
         with(holder) {
+            val bundle = Bundle()
             // 將欲顯示的product物件指派給LiveData，就會自動更新layout檔案的view顯示
             itemViewBinding.viewModel?.product?.value = product
-            val bundle = Bundle()
+            var isFavorite = false
+            for (favproduct in favproduct) {
+                if (favproduct.shopProductId == product.shopProductId) {
+                    isFavorite = true
+                    break
+                } else {
+                    isFavorite = false
+                }
+            }
+            bundle.putBoolean("isFavorite", isFavorite)
             bundle.putSerializable("product", product)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
@@ -52,5 +63,8 @@ class ProductAdapter(private var products: List<Product>) :
             }
 
         }
+    }
+    override fun getItemCount(): Int {
+        return products.size
     }
 }

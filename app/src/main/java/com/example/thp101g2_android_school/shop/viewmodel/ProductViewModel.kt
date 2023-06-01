@@ -1,19 +1,24 @@
 package com.example.thp101g2_android_school.shop.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.community.model.Label
 import com.example.thp101g2_android_school.shop.model.Product
+import com.example.thp101g2_android_school.shop.model.ShopFavorite
+import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.google.gson.reflect.TypeToken
 
 class ProductViewModel : ViewModel() {
     private var productList = mutableListOf<Product>()
     val products : MutableLiveData<List<Product>>by lazy {MutableLiveData<List<Product>>()}
+    var favoriteProducts = MutableLiveData<List<ShopFavorite>>()
 
     init {
         loadProduct()
+        loadFavoriteProducts()
     }
     fun search(newText: String?) {
         if (newText.isNullOrEmpty()) {
@@ -30,6 +35,10 @@ class ProductViewModel : ViewModel() {
             products.value = searchLessionList
         }
     }
+    fun getFavoriteProducts(): LiveData<List<ShopFavorite>> {
+        return favoriteProducts
+    }
+
 
     private fun loadProduct() {
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/"
@@ -45,4 +54,30 @@ class ProductViewModel : ViewModel() {
         this.productList = productList
         this.products.value = this.productList
     }
+    private fun loadFavoriteProducts() {
+        // Implement the logic to load favorite products and update the favoriteProducts LiveData
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/favorite"
+        val type = object : TypeToken<List<ShopFavorite>>() {}.type
+
+        // 发起网络请求，获取喜爱的产品数据
+        val favoriteProductList = requestTask<List<ShopFavorite>>(url, respBodyType = type) ?: return
+
+        // 将获取的喜爱的产品数据更新到 favoriteProducts 的 LiveData 对象中
+        favoriteProducts.value = favoriteProductList
+    }
+
+    fun onFavoriteProductClicked(productId: String) {
+        val product = products.value?.find { it.shopProductId == productId } ?: return
+        val favoriteProductList = favoriteProducts.value ?: listOf()
+        val isFavorite = favoriteProductList.any { it.shopProductId == productId } ?: false
+        if (isFavorite) {
+            println("刪除一筆")
+            favoriteProducts.value = favoriteProductList.dropWhile { it.shopProductId == productId }
+        } else {
+            println("增加一筆")
+            favoriteProducts.value = favoriteProductList.plus(product.toShopFavorite())
+        }
+        products.value = products.value
+    }
+
 }

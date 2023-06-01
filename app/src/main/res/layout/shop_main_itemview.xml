@@ -53,7 +53,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="8dp"
-                android:text="@{viewModel.product.author}"
+                android:text='@{"商城 : "+viewModel.product.shopName}'
                 android:textSize="18sp" />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="8dp"
-                android:text="@{viewModel.product.shopProductPrice}"
+                android:text='@{"價格 : "+viewModel.product.shopProductPrice + " NT"}'
                 android:textSize="18sp" />
 
 
