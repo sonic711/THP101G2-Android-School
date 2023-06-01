@@ -9,18 +9,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ShopMainItemviewBinding
 import com.example.thp101g2_android_school.shop.model.Product
-import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 
-
-
-class ProductAdapter(private var products: List<Product> ,private var favproduct: List<ShopFavorite>) :
+class ProductAdapter(private var products: List<Product>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
 
-    class ProductViewHolder(val itemViewBinding: ShopMainItemviewBinding) :
-        RecyclerView.ViewHolder(itemViewBinding.root)
+    fun updateProduct(products: List<Product>) {
+        this.products = products
+        notifyDataSetChanged()
+    }
 
+    class ProductViewHolder(val itemViewBinding: ShopMainItemviewBinding) :
+        RecyclerView.ViewHolder(itemViewBinding.root){
+        var isClicked = false
+        }
+
+    override fun getItemCount(): Int {
+        return products.size
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val itemViewBinding = ShopMainItemviewBinding.inflate(

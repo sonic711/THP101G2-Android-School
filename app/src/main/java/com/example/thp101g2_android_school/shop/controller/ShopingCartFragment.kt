@@ -57,6 +57,7 @@ class ShopingCartFragment : Fragment() {
 
 
 
+
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -72,7 +73,6 @@ class ShopingCartFragment : Fragment() {
             })
         }
         with(binding){
-
 
         }
 

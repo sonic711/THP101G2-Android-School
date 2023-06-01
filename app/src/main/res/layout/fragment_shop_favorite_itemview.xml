@@ -20,7 +20,7 @@
                 android:id="@+id/childCardView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="16dp"
                 android:foreground="?selectableItemBackground"
                 app:cardCornerRadius="100dp"
@@ -58,6 +58,16 @@
                 app:layout_constraintStart_toEndOf="@+id/childCardView"
                 app:layout_constraintTop_toBottomOf="@+id/tvMemberName"
                 tools:text='@{"廠商名稱 : "+viewModel.favoriteproduct.shopName}' />
+
+            <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="34dp"
+                android:layout_height="35dp"
+                android:rotation="-45"
+                android:src="@drawable/shop_shoppingcart_add"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

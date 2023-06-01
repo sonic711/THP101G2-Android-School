@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.thp101g2_android_school.MainActivity
@@ -26,7 +27,7 @@ class ShopMainFragment : Fragment() {
     ): View {
         // SearchView放在畫面頂端時通常會隱藏標題列
         (requireActivity() as MainActivity).supportActionBar?.hide()
-        val viewModel: ProductViewModel by viewModels()
+        val viewModel: ProductViewModel by activityViewModels()
         binding = FragmentShopMainBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         return binding.root
@@ -51,6 +52,7 @@ class ShopMainFragment : Fragment() {
                 if (recyclerView.adapter == null) {
                     recyclerView.adapter = ProductAdapter(products, favoriteProducts)
                 } else {
+                    println("更新list")
                     (recyclerView.adapter as ProductAdapter).updateProduct(products)
                     if (products.isEmpty()) {
                         tvSearchnull.text = "搜尋無資料"
@@ -60,6 +62,10 @@ class ShopMainFragment : Fragment() {
                         tvSearchnull.visibility = View.GONE // 隱藏 tvSearchnull
                     }
                 }
+            }
+            viewModel?.favoriteProducts?.observe(viewLifecycleOwner) { favoriteProducts ->
+                println("更新favorite list")
+                (recyclerView.adapter as? ProductAdapter)?.setFavoriteProducts(favoriteProducts)
             }
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {

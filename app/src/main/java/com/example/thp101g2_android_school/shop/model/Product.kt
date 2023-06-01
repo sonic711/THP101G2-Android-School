@@ -10,4 +10,10 @@ class Product(
     var shopProductPrice: String,
     var shopProductDesc: String,
     var shopProductCount: String)
-    : Serializable
+    : Serializable {
+        fun toShopFavorite(): ShopFavorite {
+            return ShopFavorite(
+                imageId, shopProductId, shopProductName, shopProductPrice, shopName
+            )
+        }
+    }

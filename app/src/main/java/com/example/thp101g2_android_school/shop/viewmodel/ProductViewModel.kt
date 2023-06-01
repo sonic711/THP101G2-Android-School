@@ -66,5 +66,18 @@ class ProductViewModel : ViewModel() {
         favoriteProducts.value = favoriteProductList
     }
 
+    fun onFavoriteProductClicked(productId: String) {
+        val product = products.value?.find { it.shopProductId == productId } ?: return
+        val favoriteProductList = favoriteProducts.value ?: listOf()
+        val isFavorite = favoriteProductList.any { it.shopProductId == productId } ?: false
+        if (isFavorite) {
+            println("刪除一筆")
+            favoriteProducts.value = favoriteProductList.dropWhile { it.shopProductId == productId }
+        } else {
+            println("增加一筆")
+            favoriteProducts.value = favoriteProductList.plus(product.toShopFavorite())
+        }
+        products.value = products.value
+    }
 
 }

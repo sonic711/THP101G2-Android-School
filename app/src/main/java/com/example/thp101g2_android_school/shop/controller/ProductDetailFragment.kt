@@ -9,6 +9,7 @@
     import android.view.LayoutInflater
     import android.view.View
     import android.view.ViewGroup
+    import androidx.fragment.app.activityViewModels
     import androidx.fragment.app.viewModels
     import androidx.navigation.Navigation
     import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteViewModel
@@ -19,6 +20,7 @@
     import com.example.thp101g2_android_school.databinding.FragmentProductDetailBinding
     import com.example.thp101g2_android_school.shop.model.Product
     import com.example.thp101g2_android_school.shop.model.ShopFavorite
+    import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
     import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
     import com.google.gson.JsonObject
     import kotlin.properties.Delegates
@@ -29,8 +31,9 @@
         private lateinit var product: Product
         private var isFavorite = false
         private var favoriteProducts: List<ShopFavorite> = emptyList()
+        private val productViewModel: ProductViewModel by activityViewModels()
 
-        //TODO 透過productid存我的最愛or購物車，布林值判斷DB內有沒有該productid，有就ture沒有就false，不要用按鈕事件判斷
+
 
         override fun onCreateView(
             inflater: LayoutInflater,
@@ -54,7 +57,7 @@
 
 
                 }
-
+                //TODO 透過productid狀態存我的最愛or購物車，布林值判斷DB內有沒有該productid，有就ture沒有就false，不要用按鈕狀態判斷
                 arguments?.let { bundle ->
                     favoriteProducts = bundle.getSerializable("favoriteProducts") as? List<ShopFavorite> ?: emptyList()
                     isFavorite = bundle.getBoolean("isFavorite")
@@ -72,6 +75,7 @@
                     }
                 }
                 binding.favtoggleButton.setOnClickListener {
+                    productViewModel.onFavoriteProductClicked(product.shopProductId)
                     if (isFavorite) {
                         // TODO 先寫死會員編號1 假定登入
                         println("刪除一筆")
@@ -87,9 +91,11 @@
                         jsonObj.addProperty("shopFavoriteId", randomNumber)
                         jsonObj.addProperty("memberNo", 1)
                         jsonObj.addProperty("shopProductId", product.shopProductId)
-                        val respbody =
-                            requestTask<JsonObject>("$url/shop/favorite", "POST", jsonObj)
+                        val respbody = requestTask<JsonObject>(
+                            "$url/shop/favorite",
+                            "POST", jsonObj)
                     }
+                    isFavorite = !isFavorite
                 }
                 binding.CartToggleButton.setOnClickListener {
 
