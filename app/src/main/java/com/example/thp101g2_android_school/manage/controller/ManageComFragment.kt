@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
 import com.example.thp101g2_android_school.databinding.FragmentManageComBinding
 import com.example.thp101g2_android_school.manage.model.Comms
-import com.example.thp101g2_android_school.manage.viewmodel.ManageComViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel
 
 
@@ -23,8 +23,9 @@ class ManageComFragment : Fragment() {
     private var comList: List<Comms> = emptyList()
 
 
-//    private lateinit var viewModel: ManageComViewModel
-
+    companion object {
+        fun newInstance() = ManageComFragment()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,40 +46,38 @@ class ManageComFragment : Fragment() {
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             adapter = ManageComAdapter(comList)
-            viewModel?.comms?.observe(viewLifecycleOwner) {
+            viewModel?.comms?.observe(viewLifecycleOwner) {comms ->
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ManageComAdapter(comList)
+                    recyclerView.adapter = ManageComAdapter(comms)
                 } else {
-                    adapter.updateComms(comList)
+                    adapter.updateComments(comms)
                 }
             }
-
+            binding.memberBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
-//        recyclerView = binding.recyclerView
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        adapter = ManageComAdapter(comList)
-//        recyclerView.adapter = adapter
 
         val searchView = binding.searchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                searchComms(query)
+                searchComments(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                searchComms(newText)
+                searchComments(newText)
                 return true
             }
         })
     }
 
-        private fun searchComms(query: String) {
+        private fun searchComments(query: String) {
             // 根據搜尋條件 query 更新 classList
             val filteredComm = comList.filter { comms ->
-                comms.txtId.contains(query, ignoreCase = true)
+                comms.articleId.contains(query, ignoreCase = true)
             }
-            adapter.updateComms(filteredComm)
+            adapter.updateComments(filteredComm)
         }
 
 

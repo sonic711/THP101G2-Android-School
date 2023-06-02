@@ -2,6 +2,7 @@ package com.example.thp101g2_android_school.manage.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.manage.model.Members
 
 class ManageMembersViewModel : ViewModel() {
@@ -12,27 +13,39 @@ class ManageMembersViewModel : ViewModel() {
         loadMembers()
     }
 
+    fun filterMembersByCondition(condition: Boolean) {
+        val filteredMembers = memberList.filter { member ->
+            member.state == condition
+        }
+        memberso.value = filteredMembers
+    }
+
     fun search(newText: String?) {
-        if (newText == null || newText.isEmpty()) {
+        if (newText.isNullOrEmpty()) {
             memberso.value = memberList
         } else {
-            val searchMemberList = mutableListOf<Members>()
-            memberList.forEach { members ->
-                if (members.memberID.contains(newText, true)) {
-                    searchMemberList.add(members)
-                }
+            val filteredMembers = memberList.filter { member ->
+                member.memberID.contains(newText, ignoreCase = true)
             }
-            memberso.value = searchMemberList
+            memberso.value = filteredMembers
         }
     }
 
     private fun loadMembers() {
-        val memberList = mutableListOf<Members>()
-        memberList.add(Members("123", "1", "0939847591"))
-        memberList.add(Members("1233", "2", "0988888111"))
-        memberList.add(Members("345", "3", "0966789123"))
-
-        this.memberList = memberList
-        this.memberso.value = this.memberList
+        memberList = mutableListOf(
+            Members(R.drawable.baseline_people_24,"101051", "coco397", "0939847591", true),
+            Members(R.drawable.baseline_people_24,"112212", "nickben", "0988888111", false),
+            Members(R.drawable.baseline_people_24,"100009", "cc309", "0966789123", true),
+            Members(R.drawable.baseline_people_24,"123324", "697071ee", "0939847591", true),
+            Members(R.drawable.baseline_people_24,"152223", "yeeee", "0988888111", false),
+            Members(R.drawable.baseline_people_24,"135785", "alavater", "0966789123", true),
+            Members(R.drawable.baseline_people_24,"114158", "cryie", "0966789123", true),
+            Members(R.drawable.baseline_people_24,"314687", "gg3:0", "0939847591", true),
+            Members(R.drawable.baseline_people_24,"322121", "Nxni", "0966789123", true),
+            Members(R.drawable.baseline_people_24,"111111", "NdoubleA", "0939847591", true),
+            Members(R.drawable.baseline_people_24,"222222", "ABC", "0966789123", true),
+            Members(R.drawable.baseline_people_24,"371234", "NANA", "0939847591", true)
+        )
+        memberso.value = memberList
     }
 }

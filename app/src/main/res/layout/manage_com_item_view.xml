@@ -27,12 +27,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <TextView
                 android:id="@+id/ivCom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:srcCompat="@tools:sample/avatars"
-                app:imageResource="@{viewModel.commo.articleId}" />
+                android:text="@{viewModel.commo.articleId}" />
 
             <TextView
                 android:id="@+id/tvComName"
@@ -43,6 +43,16 @@
                 android:text="@{viewModel.commo.txtId}"
                 android:textColor="#0000FF"
                 android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/ivFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ivy"
+                app:imageResource="@{viewModel.commo.imageId}"
+                />
 
 
 

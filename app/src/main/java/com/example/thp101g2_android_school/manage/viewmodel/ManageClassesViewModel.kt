@@ -28,7 +28,7 @@ class ManageClassesViewModel : ViewModel() {
         } else {
             val searchClassList = mutableListOf<Classes>()
             classList.forEach { classes ->
-                if (classes.name.contains(newText, true)) {
+                if (classes.classId.contains(newText, true)) {
                     searchClassList.add(classes)
                 }
             }
@@ -39,9 +39,18 @@ class ManageClassesViewModel : ViewModel() {
     /** 模擬取得遠端資料 */
     private fun loadClasses() {
         val classList = mutableListOf<Classes>()
-        classList.add(Classes(R.drawable.mary, "1", "John Doe","11","11"))
-        classList.add(Classes(R.drawable.mary, "2", "Jane Smith","11","11"))
-        classList.add(Classes(R.drawable.mary, "3", "Michael Johnson","11","11"))
+        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
+        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
+        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
+        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
+        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
+        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
+        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
+        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
+        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
+        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
+        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
+        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
 
         this.classList = classList
         this.classes.value = this.classList

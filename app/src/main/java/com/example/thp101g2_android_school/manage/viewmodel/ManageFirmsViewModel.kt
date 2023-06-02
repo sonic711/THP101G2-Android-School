@@ -40,9 +40,9 @@ class  ManageFirmsViewModel : ViewModel() {
     /** 模擬取得遠端資料 */
     private fun loadFirms() {
         val firmList = mutableListOf<Firms>()
-        firmList.add(Firms(R.drawable.mary, "1",""))
-        firmList.add(Firms(R.drawable.mary, "2",""))
-        firmList.add(Firms(R.drawable.mary,"3",""))
+        firmList.add(Firms(R.drawable.mary, "1","2020202"))
+        firmList.add(Firms(R.drawable.mary, "2","9993333"))
+        firmList.add(Firms(R.drawable.mary,"3","13155522"))
 
         this.firmList = firmList
         this.firms.value = this.firmList

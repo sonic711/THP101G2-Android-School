@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
@@ -27,6 +28,9 @@ class ManageFirmFragment : Fragment() {
     private var firmList: List<Firms> = emptyList()
 
 
+    companion object {
+        fun newInstance() = ManageFirmFragment()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +41,6 @@ class ManageFirmFragment : Fragment() {
         binding.lifecycleOwner = this
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -49,10 +52,13 @@ class ManageFirmFragment : Fragment() {
             adapter = ManageFirmAdapter(firmList)
             viewModel?.firms?.observe(viewLifecycleOwner) { firms ->
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ManageFirmAdapter(firmList)
+                    recyclerView.adapter = ManageFirmAdapter(firms)
                 } else {
-                    adapter.updateFirms(firmList)
+                    adapter.updateFirms(firms)
                 }
+            }
+            binding.memberBack.setOnClickListener {
+                findNavController().navigateUp()
             }
         }
 

@@ -10,6 +10,8 @@ import com.example.thp101g2_android_school.databinding.FragmentManageMaDetailBin
 
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.Mas
+import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
 
 class ManageMaDetailFragment : Fragment() {
     private lateinit var binding: FragmentManageMaDetailBinding
@@ -20,6 +22,9 @@ class ManageMaDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentManageMaDetailBinding.inflate(inflater, container, false)
+        val viewModel = ManageMaViewModel()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 

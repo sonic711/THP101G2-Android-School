@@ -2,6 +2,7 @@ package com.example.thp101g2_android_school.manage.controller
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,11 @@ import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.thp101g2_android_school.ManageMainActivity
 import com.example.thp101g2_android_school.databinding.FragmentManageReportBinding
 import com.example.thp101g2_android_school.manage.model.Reports
 import com.example.thp101g2_android_school.manage.viewmodel.ManageReportViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageReportsViewModel
 
 class ManageReportFragment : Fragment() {
     private lateinit var binding: FragmentManageReportBinding
@@ -20,19 +23,11 @@ class ManageReportFragment : Fragment() {
     private lateinit var adapter: ManageReportAdapter
     private var reportList: List<Reports> = emptyList()
 
-
-
-    companion object {
-        fun newInstance() = ManageReportFragment()
-    }
-
-    private lateinit var viewModel: ManageReportViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModel: ManageReportViewModel by viewModels()
+        val viewModel: ManageReportsViewModel by viewModels()
         binding = FragmentManageReportBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -42,18 +37,22 @@ class ManageReportFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 隱藏標題列
-        (requireActivity() as ManageMainFragment).supportActionBar?.hide()
+        (requireActivity() as ManageMainActivity).supportActionBar?.hide()
 
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            viewModel?.reporto?.observe(viewLifecycleOwner) { reports ->
+            //多了底下這串
+            adapter = ManageReportAdapter(reportList)
+            viewModel?.reports?.observe(viewLifecycleOwner) { reports ->
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ManageReportAdapter(reportList)
+                    recyclerView.adapter = ManageReportAdapter(reports)
                 } else {
-                    adapter.updateReports(reportList)
+                    adapter.updateReports(reports)
                 }
             }
-
+            binding.memberBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
 
         val searchView = binding.searchView
@@ -76,12 +75,6 @@ class ManageReportFragment : Fragment() {
             reports.reportID.contains(query, ignoreCase = true)
         }
         adapter.updateReports(filteredReports)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ManageReportViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

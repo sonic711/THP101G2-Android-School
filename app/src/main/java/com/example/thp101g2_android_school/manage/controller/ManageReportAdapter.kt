@@ -17,7 +17,6 @@ import com.example.thp101g2_android_school.manage.viewmodel.ManageReportViewMode
 class ManageReportAdapter(private var reports: List<Reports>) :
     RecyclerView.Adapter<ManageReportAdapter.ReportViewHolder>() {
 
-    @SuppressLint("NotifyDataSetChanged")
     fun updateReports(reports: List<Reports>) {
         this.reports = reports
         notifyDataSetChanged()
@@ -42,10 +41,11 @@ class ManageReportAdapter(private var reports: List<Reports>) :
         with(holder) {
             itemViewBinding.viewModel?.reporto?.value = report
             val bundle = Bundle()
-            bundle.putSerializable("report", report)
+            //有發生key不一樣
+            bundle.putSerializable("Report", report)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_manageReportFragment_to_manageReportDetailFragment)
+                    .navigate(R.id.action_manageReportFragment_to_manageReportDetailFragment, bundle)
             }
         }
     }

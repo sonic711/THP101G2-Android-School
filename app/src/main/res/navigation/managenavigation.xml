@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_manageHomeFragment_to_manageClassesFragment"
             app:destination="@id/manageClassesFragment" />
+        <action
+            android:id="@+id/action_manageHomeFragment_to_manageReportFragment2"
+            app:destination="@id/manageReportFragment" />
     </fragment>
     <fragment
         android:id="@+id/manageMemberDetailFragment"
@@ -59,6 +62,10 @@
         <action
             android:id="@+id/action_manageMaFragment_to_manageMaDetailFragment"
             app:destination="@id/manageMaDetailFragment" />
+        <action
+            android:id="@+id/action_manageMaFragment_to_manageMaSettingFragment"
+            app:destination="@id/manageMaSettingFragment" />
+        />
     </fragment>
 
     <fragment
@@ -113,4 +120,9 @@
             android:id="@+id/action_manageClassesFragment_to_manageClassDetailFragment"
             app:destination="@id/manageClassDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/manageMaSettingFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageMaSettingFragment"
+        android:label="fragment_manage_ma_setting"
+        tools:layout="@layout/fragment_manage_ma_setting" />
 </navigation>

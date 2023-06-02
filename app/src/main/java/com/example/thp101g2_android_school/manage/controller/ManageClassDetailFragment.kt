@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.thp101g2_android_school.databinding.FragmentClassDetailBinding
 import com.example.thp101g2_android_school.manage.model.Classes
+import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageMemberViewModel
 
 class ManageClassDetailFragment : Fragment() {
     private lateinit var binding: FragmentClassDetailBinding
@@ -17,6 +19,9 @@ class ManageClassDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentClassDetailBinding.inflate(inflater, container, false)
+        val viewModel = ManageClassViewModel()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 

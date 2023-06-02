@@ -11,6 +11,8 @@ import com.example.thp101g2_android_school.databinding.FragmentManageFirmDetailB
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.Comms
 import com.example.thp101g2_android_school.manage.model.Firms
+import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmViewModel
 
 class ManageFirmDetailFragment : Fragment() {
     private lateinit var binding: FragmentManageFirmDetailBinding
@@ -21,6 +23,9 @@ class ManageFirmDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentManageFirmDetailBinding.inflate(inflater, container, false)
+        val viewModel = ManageFirmViewModel()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 

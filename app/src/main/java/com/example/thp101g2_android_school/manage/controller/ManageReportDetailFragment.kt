@@ -10,6 +10,8 @@ import com.example.thp101g2_android_school.databinding.FragmentManageReportDetai
 
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.Reports
+import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageReportViewModel
 
 class ManageReportDetailFragment : Fragment() {
     private lateinit var binding: FragmentManageReportDetailBinding
@@ -20,6 +22,9 @@ class ManageReportDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentManageReportDetailBinding.inflate(inflater, container, false)
+        val viewModel = ManageReportViewModel()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
