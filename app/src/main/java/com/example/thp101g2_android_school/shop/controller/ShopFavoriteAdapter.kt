@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.databinding.FragmentShopFavoriteItemviewBinding
-import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopFavorite
-import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteViewModel
 import com.google.gson.JsonObject
 
@@ -51,7 +47,7 @@ class ShopFavoriteAdapter(private var favoriteproducts: List<ShopFavorite>) :
                         .setMessage("確定要刪除自我的最愛嗎?")
                         .setTitle("警告!!!!")
                         .setPositiveButton("確定") { dialog, which ->
-                            println("刪除一筆")
+                            println("SFA我的最愛刪除一筆")
                             val productId = favoriteproduct.shopProductId
                             val respbody = requestTask<JsonObject>(
                                 "$url/shop/favorite/$productId",

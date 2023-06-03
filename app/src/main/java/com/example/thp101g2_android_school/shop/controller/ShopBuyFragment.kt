@@ -49,7 +49,7 @@ class ShopBuyFragment : Fragment() {
             bundle.getSerializable("cartproduct")?.let {
                 cartproduct = it as ShopingCart
                 binding.viewModel?.cartproduct?.value = cartproduct
-                println(cartproduct.pquality)
+                println(cartproduct.shopProductCount)
 
 
             }

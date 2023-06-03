@@ -10,9 +10,10 @@ import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ShopMainItemviewBinding
 import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopFavorite
+import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 
-class ProductAdapter(private var products: List<Product>,private var favproduct:List<ShopFavorite>) :
+class ProductAdapter(private var products: List<Product>,private var favproduct:List<ShopFavorite>,private var shoppingcart:List<ShopingCart>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
 
@@ -22,9 +23,8 @@ class ProductAdapter(private var products: List<Product>,private var favproduct:
     }
 
     class ProductViewHolder(val itemViewBinding: ShopMainItemviewBinding) :
-        RecyclerView.ViewHolder(itemViewBinding.root){
-        var isClicked = false
-        }
+        RecyclerView.ViewHolder(itemViewBinding.root)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val itemViewBinding = ShopMainItemviewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -40,6 +40,11 @@ class ProductAdapter(private var products: List<Product>,private var favproduct:
         this.favproduct = favoriteProducts
         notifyDataSetChanged()
     }
+    fun setShoppingCartProducts(shoppingCartProducts: List<ShopingCart>){
+        this.shoppingcart = shoppingCartProducts
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
         with(holder) {
@@ -47,6 +52,7 @@ class ProductAdapter(private var products: List<Product>,private var favproduct:
             // 將欲顯示的product物件指派給LiveData，就會自動更新layout檔案的view顯示
             itemViewBinding.viewModel?.product?.value = product
             var isFavorite = false
+            var isShoppingCart = false
             for (favproduct in favproduct) {
                 if (favproduct.shopProductId == product.shopProductId) {
                     isFavorite = true
@@ -55,7 +61,17 @@ class ProductAdapter(private var products: List<Product>,private var favproduct:
                     isFavorite = false
                 }
             }
+            for (shoppingcart in shoppingcart) {
+                if (shoppingcart.shopProductId == product.shopProductId) {
+                    isShoppingCart = true
+                    break
+                } else {
+                    isShoppingCart = false
+                }
+            }
+
             bundle.putBoolean("isFavorite", isFavorite)
+            bundle.putBoolean("isShoppingCart", isShoppingCart)
             bundle.putSerializable("product", product)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
@@ -64,6 +80,7 @@ class ProductAdapter(private var products: List<Product>,private var favproduct:
 
         }
     }
+
     override fun getItemCount(): Int {
         return products.size
     }

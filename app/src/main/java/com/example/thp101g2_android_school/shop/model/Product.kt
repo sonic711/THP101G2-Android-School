@@ -9,11 +9,18 @@ class Product(
     var shopName: String,
     var shopProductPrice: String,
     var shopProductDesc: String,
-    var shopProductCount: String)
+    var shopProductCount: Int,
+    var rewardPoints: String,
+    var shoppingCartId: String)
     : Serializable {
         fun toShopFavorite(): ShopFavorite {
             return ShopFavorite(
                 imageId, shopProductId, shopProductName, shopProductPrice, shopName
             )
         }
+//        fun toShoppingCart():ShopingCart{
+//            return ShopingCart(
+//                imageId, shopProductId, shopProductName, shopProductPrice, shopName, rewardPoints,shoppingCartId, shopProductCount
+//            )
+//        }
     }

@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.shop.controller
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,7 +15,6 @@ import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.databinding.FragmentShopingCartItemviewBinding
-import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
@@ -86,9 +84,9 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
                             newValue > 99 -> 99
                             else -> newValue
                         }
-                        val finalValue = if (updatedValue > cartproduct.pquality) cartproduct.pquality else updatedValue
+                        val finalValue = if (updatedValue > cartproduct.shopProductCount) cartproduct.shopProductCount else updatedValue
                         if (finalValue != newValue) {
-                            cartproduct.pquality = finalValue
+                            cartproduct.shopProductCount = finalValue
                             itemViewBinding.etAddProduct.setText(finalValue.toString())
                         }
                         itemViewBinding.btBuy.visibility = if (finalValue != 0) View.VISIBLE else View.GONE
@@ -108,16 +106,17 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
             bundle.putSerializable("cartproduct", cartproduct)
 
             itemViewBinding.ivDelete.setOnClickListener {
+                val shoppingcartproduct = cartproducts[position]
                 AlertDialog.Builder(holder.itemView.context)
                     .setMessage("確定要刪除自我的購物車嗎?")
                     .setTitle("警告!!!!")
                     .setPositiveButton("確定") { dialog, which ->
-                        println("刪除一筆")
-//                        val productId = cartproducts.shopProductId
-//                        val respbody = requestTask<JsonObject>(
-//                            "$url/shop/favorite/$productId",
-//                            "DELETE"
-//                        )
+                        println("SCA購物車刪除一筆")
+                        val productId = shoppingcartproduct.shopProductId
+                        val respbody = requestTask<JsonObject>(
+                            "$url/shop/shoppingcart/$productId",
+                            "DELETE"
+                        )
                         cartproducts = cartproducts.toMutableList().apply {
                             removeAt(adapterPosition)
                         }
