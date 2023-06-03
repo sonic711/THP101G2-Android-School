@@ -1,13 +1,13 @@
-package com.example.thp101g2_android_school
-
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.google.firebase.messaging.FirebaseMessagingService
-import com.google.firebase.messaging.RemoteMessage
-
-class MyFCMService: FirebaseMessagingService() {
+//package com.example.thp101g2_android_school
+//
+//import android.content.Intent
+//import android.os.Bundle
+//import android.util.Log
+//import androidx.localbroadcastmanager.content.LocalBroadcastManager
+//import com.google.firebase.messaging.FirebaseMessagingService
+//import com.google.firebase.messaging.RemoteMessage
+//
+//class MyFCMService: FirebaseMessagingService() {
 //    private val myTag = "TAG_${javaClass.simpleName}"
 //    override fun onMessageReceived(message: RemoteMessage) {
 //
@@ -45,4 +45,4 @@ class MyFCMService: FirebaseMessagingService() {
 //        println("sendLocalBroadcast")
 //        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
 //    }
-}
+//}
