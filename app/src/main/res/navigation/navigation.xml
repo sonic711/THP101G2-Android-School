@@ -249,4 +249,15 @@
             android:name="com.example.thp101g2_android_school.calendar.controller.CalEditTagFragment"
             android:label="fragment_cal_edit_tag"
             tools:layout="@layout/fragment_cal_edit_tag" />
+    <fragment
+            android:id="@+id/memFollowersFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemFollowersFragment"
+            android:label="fragment_mem_followers"
+            tools:layout="@layout/fragment_mem_followers" />
+    <fragment
+            android:id="@+id/memFansFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemFansFragment"
+            android:label="fragment_mem_fans"
+            tools:layout="@layout/fragment_mem_fans" />
+
 </navigation>
