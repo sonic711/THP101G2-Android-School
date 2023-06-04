@@ -188,4 +188,6 @@
     <string name="memberProcessed">已處理</string>
     <string name="txtUnprocessed">未處理</string>
     <string name="txtprintid">請輸入...</string>
+    <string name="btDelete">刪除</string>
+    <string name="btFollow">追蹤</string>
 </resources>
