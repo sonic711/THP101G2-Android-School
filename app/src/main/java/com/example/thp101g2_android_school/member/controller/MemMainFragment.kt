@@ -34,9 +34,9 @@ class MemMainFragment : Fragment() {
             btEdit.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.memEditProfileFragment)
             }
-//            tvFollowingNum.setOnClickListener {
-//                Navigation.findNavController(it).navigate(R.id.memFollowersFragment)
-//            }
+            tvFollowingNum.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.memFollowersFragment)
+            }
 //            tvFansNum.setOnClickListener {
 //                Navigation.findNavController(it).navigate(R.id.memFansFragment)
 //            }
