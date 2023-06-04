@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.databinding.FragmentMemFollowersBinding
@@ -39,6 +40,16 @@ class MemFollowersFragment : Fragment() {
                 }
 
             }
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    viewModel?.search(newText)
+                    return true
+                }
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+            })
         }
     }
 
