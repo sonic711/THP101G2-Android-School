@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.member.viewModel.RegisterPhoneViewModel" />
+            type="com.example.thp101g2_android_school.member.viewModel.RegisterViewModel" />
     </data>
 
     <LinearLayout
@@ -79,7 +79,7 @@
                         android:layout_weight="1"
                         android:hint="@string/txtPhone"
                         android:inputType="none|phone"
-                        android:text="@={viewModel.phone}" />
+                        android:text="@={viewModel.member.phoneNumber}" />
                 </LinearLayout>
 
             </LinearLayout>
