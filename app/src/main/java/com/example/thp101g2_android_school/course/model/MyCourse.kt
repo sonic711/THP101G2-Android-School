@@ -2,4 +2,13 @@ package com.example.thp101g2_android_school.course.model
 
 import java.io.Serializable
 
-class MyCourse (var imageId: Int, var name: String, var author : String, var rate: String) : Serializable
+data class MyCourse (
+    var courseName: String? = "",
+    var userId: String? = "",
+    var studentCoursesId : String? = "",
+    var courseId: String? = "",
+    var memberNo: String? = "",
+    var coursesProgress: String? = "",
+    var image: ByteArray? = null,
+    var updateTime: String? = null
+    ) : Serializable

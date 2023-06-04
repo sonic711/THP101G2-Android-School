@@ -36,10 +36,7 @@ class CouFavoriteFragment : Fragment() {
                 }else{
                     (recyclerView.adapter as CouFavoriteAdapter).updateFavcourses(favcourses)
                 }
-
             }
         }
     }
-
-
 }
