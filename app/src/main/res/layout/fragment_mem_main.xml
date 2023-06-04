@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/cover_photo1"
+                android:src="@drawable/food"
                 app:imgBase64="@={viewModel.member.coverPicture64}" />
 
             <View
@@ -97,6 +97,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="16dp"
+                            android:text="@={viewModel.countFans}"
                             tools:text="400" />
 
                         <TextView
@@ -121,6 +122,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="16dp"
+                            android:text="@={viewModel.countFollowers}"
                             tools:text="300" />
 
                         <TextView

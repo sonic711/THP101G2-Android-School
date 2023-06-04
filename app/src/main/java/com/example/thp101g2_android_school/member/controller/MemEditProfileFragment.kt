@@ -3,6 +3,7 @@ package com.example.thp101g2_android_school.member.controller
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,8 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import com.example.thp101g2_android_school.ActivityViewModel
 import com.example.thp101g2_android_school.member.viewModel.MemEditProfileViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
@@ -21,15 +24,24 @@ import com.example.thp101g2_android_school.databinding.FragmentMemEditProfileBin
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.gson.JsonObject
+import com.yalantis.ucrop.UCrop
+import java.io.File
 
 class MemEditProfileFragment : Fragment() {
     private lateinit var binding: FragmentMemEditProfileBinding
+    private lateinit var imageUris: MutableList<Uri>
+    private val viewModel: MemberViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        imageUris = mutableListOf()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val viewModel: MemberViewModel by viewModels()
+
         binding = FragmentMemEditProfileBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -39,8 +51,11 @@ class MemEditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             viewModel?.initialize()
+            val bottomSheetBehavior = BottomSheetBehavior.from(included.bottomSheet)
+            if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_COLLAPSED) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
             btChangePic.setOnClickListener {
-                val bottomSheetBehavior = BottomSheetBehavior.from(included.bottomSheet)
                 if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
                     bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                 }
@@ -52,10 +67,16 @@ class MemEditProfileFragment : Fragment() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 )
                 pickPictureLauncher.launch(intent)
+
             }
 
             included.tvCoverPicture.setOnClickListener {
                 Toast.makeText(requireContext(), "pick2", Toast.LENGTH_SHORT).show()
+                val intent = Intent(
+                    Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                )
+                pickPictureLauncher2.launch(intent)
             }
             btSubmit.setOnClickListener {
                 if (!inputValid()) {
@@ -71,7 +92,6 @@ class MemEditProfileFragment : Fragment() {
                     .setNegativeButton("否", null)
                     .setCancelable(false)
                     .show()
-
             }
         }
     }
@@ -80,15 +100,10 @@ class MemEditProfileFragment : Fragment() {
         var valid = true
         with(binding) {
             val nickname = viewModel?.member?.value?.nickname?.trim()
-            val userId = viewModel?.member?.value?.userId?.trim()
             val intro = viewModel?.member?.value?.introduction?.trim()
 
             if (nickname?.length !in 1..10) {
                 etNickname.error = "暱稱須為1-10字元"
-                valid = false
-            }
-            if (userId?.length !in 5..15) {
-                etUserId.error = "使用者ID須為5-15字元"
                 valid = false
             }
             if (intro?.length!! >= 20) {
@@ -102,8 +117,47 @@ class MemEditProfileFragment : Fragment() {
     private var pickPictureLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                result.data?.data?.let { uri ->
-                    // TODO
+                result.data?.data?.let { uri -> crop(uri) }
+            }
+        }
+
+    private fun crop(sourceImageUri: Uri) {
+        val file = File(requireContext().getExternalFilesDir(null), "picture_cropped.jpg")
+        val destinationUri = Uri.fromFile(file)
+        val cropIntent: Intent = UCrop.of(sourceImageUri, destinationUri)
+            .getIntent(requireContext())
+        cropPictureLauncher.launch(cropIntent)
+    }
+
+    private var cropPictureLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.let { intent ->
+                    UCrop.getOutput(intent)?.let { uri -> binding.ivProfilePic.setImageURI(uri) }
+                }
+            }
+        }
+
+    private var pickPictureLauncher2 =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.data?.let { uri -> crop2(uri) }
+            }
+        }
+
+    private fun crop2(sourceImageUri: Uri) {
+        val file = File(requireContext().getExternalFilesDir(null), "picture_cropped.jpg")
+        val destinationUri = Uri.fromFile(file)
+        val cropIntent: Intent = UCrop.of(sourceImageUri, destinationUri)
+            .getIntent(requireContext())
+        cropPictureLauncher2.launch(cropIntent)
+    }
+
+    private var cropPictureLauncher2 =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.let { intent ->
+                    UCrop.getOutput(intent)?.let { uri -> binding.ivCoverPho.setImageURI(uri) }
                 }
             }
         }
