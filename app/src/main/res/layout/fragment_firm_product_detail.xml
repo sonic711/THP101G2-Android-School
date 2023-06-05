@@ -30,7 +30,8 @@
                 android:id="@+id/ivFirmProduct"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
-                app:imageResource="@{viewModel.firmProduct.imageId}"
+                android:layout_marginHorizontal="100dp"
+                app:imageByteArray="@{viewModel.firmProduct.shopProductImg}"
                 android:scaleType="centerInside"/>
 
             <TextView

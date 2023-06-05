@@ -1,16 +1,19 @@
 package com.example.thp101g2_android_school.firm.model
 
+import android.graphics.Bitmap
 import java.io.Serializable
 
 class FirmProduct(
     var imageId: Int,
-    var shopProductName: String,
-//    var author: String,
-    var img: ByteArray,
-    var shopProductPrice: String,
-    var shopProductDesc: String,
-    var shopProductStatus :Int,
-    var shopProductClass : String,
-    var shopProductSearch : String,
-    var shopName:String):
+    var shopProductName: String? = null,
+    var shopProductPrice: String? = null,
+    var shopProductDesc: String? = null,
+    var shopProductStatus :Int? = null,
+    var shopProductClass : String? = null,
+    var shopProductSearch : String? = null,
+    var shopName:String? = null,
+    var shopProductCount:String? = null,
+    var shopProductImgBase64: String? = null,
+    var shopProductImg:ByteArray? = null,
+    ):
     Serializable

@@ -2,13 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".controller.FriendsFragment">
+    tools:context=".controller.FirmMainFragment">
 
     <data>
 
         <variable
             name="viewModel"
             type="com.example.thp101g2_android_school.firm.viewmodel.FirmProductsViewModel" />
+        <variable
+            name="viewModel2"
+            type="com.example.thp101g2_android_school.firm.viewmodel.FirmShopDataViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,13 +20,13 @@
 
         <ImageView
             android:id="@+id/ivFirmBackGround"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:scaleType="center"
-            app:imageResource="@{viewModel.backGroundId}"
+            android:scaleType="centerCrop"
+            app:imageByteArray="@{viewModel2.firm.coverPhoto}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -59,8 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
-                    app:imageResource="@{viewModel.iconId}"
-                     />
+                    app:imageByteArray="@{viewModel2.firm.profilePhoto}"                     />
             </FrameLayout>
         </androidx.cardview.widget.CardView>
 
@@ -69,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@{viewModel.firmNameText}"
+            android:text="@{viewModel2.firm.shopName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivFirmBackGround"
@@ -82,7 +84,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{viewModel.infoText}"
+            android:text="@{viewModel2.firm.shopInfo}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

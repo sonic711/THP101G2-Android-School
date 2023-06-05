@@ -35,7 +35,7 @@
                 android:padding="15dp"
                 android:paddingLeft="25dp"
                 android:scaleType="centerInside"
-                app:imageResource="@{viewModel.firmProduct.imageId}" />
+                app:imageByteArray="@{viewModel.firmProduct.shopProductImg}" />
 
             <TextView
                 android:id="@+id/tvFirmProductName"

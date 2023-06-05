@@ -24,7 +24,7 @@ class FirmOrdersViewModel:ViewModel() {
 
     private fun loadOrders() {
         //val firmId = 3
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/ordermanager"//$firmId
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/ordermanager/firm"//$firmId
         val type = object : TypeToken<List<Order>>() {}.type
         val list = requestTask<List<Order>>(url, respBodyType = type)
 
@@ -48,7 +48,7 @@ class FirmOrdersViewModel:ViewModel() {
     fun orderNotShip(){
         val orderNotShipList = mutableListOf<Order>()
         for (o in orderList){
-            if (o.shopOrderStatus.toInt() == 1){
+            if (o.shopOrderStatus?.toInt() == 1){
                 orderNotShipList.add(o)
             }
         }
@@ -58,7 +58,7 @@ class FirmOrdersViewModel:ViewModel() {
     fun orderShipped(){
         val orderShippedList = mutableListOf<Order>()
         for (o in orderList){
-            if (o.shopOrderStatus.toInt() == 0){
+            if (o.shopOrderStatus?.toInt() == 0){
                 orderShippedList.add(o)
             }
         }
