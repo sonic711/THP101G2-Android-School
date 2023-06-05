@@ -18,7 +18,7 @@ class FirmDatasCenterViewModel :ViewModel() {
 
     // 網址待更改
     private fun loadDatas() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/datacenter"
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/datacenter/firm"
         val type = object : TypeToken<List<Order>>() {}.type
         val list = requestTask<List<Order>>(url, respBodyType = type) ?: return
         dataCenterList = list.toMutableList()

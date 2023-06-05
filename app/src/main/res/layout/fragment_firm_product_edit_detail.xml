@@ -24,11 +24,11 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="24dp"
-                android:scaleType="centerInside"
-                app:imageResource="@{viewModel.productEdit.imageId}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+
+                app:srcCompat="@drawable/baseline_add_product_photo_24" />
 
             <TextView
                 android:id="@+id/tvFirmProductEditName"
@@ -49,9 +49,10 @@
                 android:layout_marginTop="24dp"
                 android:ems="10"
                 android:text="@={viewModel.productEdit.shopProductName}"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditName"
-                app:layout_constraintTop_toBottomOf="@+id/ivFirmProductEdit" />
+                app:layout_constraintTop_toBottomOf="@+id/ivFirmProductEdit"
+                />
 
             <TextView
                 android:id="@+id/tvFirmProductEditPrice"
@@ -96,6 +97,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.productEdit.shopName}"
+                android:enabled="false"
                 app:layout_constraintStart_toEndOf="@+id/tvFirnProductEditFirm"
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditPrice" />
 

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.R
@@ -39,14 +40,6 @@ class FirmProductEditDetailFragment : Fragment() {
             }
         }
         with(binding){
-            btFirmProductPictureEdit.setOnClickListener {
-                val intent = Intent(
-                    Intent.ACTION_PICK,
-                    // 照片來源 --> 相簿MediaStore
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                )
-                pickPictureLauncher.launch(intent)
-            }
             ibProductEditToBack.setOnClickListener{
                 Navigation.findNavController(it).popBackStack()
 
@@ -54,7 +47,19 @@ class FirmProductEditDetailFragment : Fragment() {
             btFirmCancelEdit.setOnClickListener { btCan->
                 Navigation.findNavController(btCan).popBackStack()
             }
+
+            // 監聽此圖片是否被點擊
+            ivFirmProductEdit.setOnClickListener {
+                val intent = Intent(
+                    Intent.ACTION_PICK,
+                    // 照片來源 --> 相簿MediaStore
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                )
+                pickPictureLauncher.launch(intent)
+            }
+
         }
+
     }
     private var pickPictureLauncher = //
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

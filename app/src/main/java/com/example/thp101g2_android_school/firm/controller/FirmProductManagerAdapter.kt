@@ -59,13 +59,31 @@ class FirmProductManagerAdapter(private var productsManager: List<FirmProduct>) 
             val bundle = Bundle()
             bundle.putSerializable("productsManager", productsManager)
 
+//            if (productsManager.shopProductStatus == 1 || productsManager.shopProductStatus == 0) {
+//                itemViewBinding.btProductEdit.visibility = View.INVISIBLE
+//                itemViewBinding.btProductControlOffed.visibility = View.INVISIBLE
+//                itemView.setOnClickListener {
+//                    Navigation.findNavController(it)
+//                        .navigate(R.id.firmProductEditDetailFragment, bundle)
+//                }
+//            } else {
+//                itemViewBinding.btProductEdit.isEnabled = true
+//                itemViewBinding.btProductControlOffed.isEnabled = true
+//                itemViewBinding.btProductEdit.visibility = View.VISIBLE
+//                itemViewBinding.btProductControlOffed.visibility = View.VISIBLE
+//                itemViewBinding.btProductEdit.setOnClickListener {
+//                    Navigation.findNavController(it)
+//                        .navigate(R.id.firmProductEditDetailFragment, bundle)
+//                }
+//            }
+//
             itemViewBinding.btProductEdit.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.firmProductEditDetailFragment, bundle)
             }
 
 
-            // 這邊是假設如果商品狀態是1(下架)或0(被下架)時，將無法點擊編輯按鈕
+            // 這邊是假設如果商品狀態是1(下架)或0(被下架)時，將不會顯示編輯、下架按鈕
             if (productsManager.shopProductStatus == 1 || productsManager.shopProductStatus == 0) {
                 itemViewBinding.btProductEdit.visibility = View.INVISIBLE
                 itemViewBinding.btProductControlOffed.visibility = View.INVISIBLE
@@ -77,6 +95,5 @@ class FirmProductManagerAdapter(private var productsManager: List<FirmProduct>) 
                 itemViewBinding.btProductControlOffed.visibility = View.VISIBLE
             }
         }
-
     }
 }
