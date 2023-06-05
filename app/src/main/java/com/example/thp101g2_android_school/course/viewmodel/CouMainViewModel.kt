@@ -25,7 +25,7 @@ class CouMainViewModel : ViewModel() {
         } else {
             val searchCourseList = mutableListOf<Courses>()
             courseList.forEach { courses ->
-                if (courses.courseName?.contains(newText, true) == true) {
+                if (courses.courseName?.contains(newText, true) == true || (courses.userId?.contains(newText, true)) == true) {
                     searchCourseList.add(courses)
                 }
             }

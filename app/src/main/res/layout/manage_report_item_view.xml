@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="172dp"
             android:orientation="horizontal">
 
             <TextView
@@ -31,26 +31,25 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.reporto.reportID}" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/tvComName"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_marginStart="6dp"-->
-<!--                android:text="@{viewModel.membero.username}"-->
-<!--                android:textColor="#0000FF"-->
-<!--                android:textSize="22sp" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tvComName"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center_vertical"-->
+            <!--                android:layout_marginStart="6dp"-->
+            <!--                android:text="@{viewModel.membero.username}"-->
+            <!--                android:textColor="#0000FF"-->
+            <!--                android:textSize="22sp" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/phones"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_marginStart="6dp"-->
-<!--                android:text="@{viewModel.membero.phoneN}"-->
-<!--                android:textColor="#0000FF"-->
-<!--                android:textSize="22sp" />-->
-
+            <!--            <TextView-->
+            <!--                android:id="@+id/phones"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center_vertical"-->
+            <!--                android:layout_marginStart="6dp"-->
+            <!--                android:text="@{viewModel.membero.phoneN}"-->
+            <!--                android:textColor="#0000FF"-->
+            <!--                android:textSize="22sp" />-->
 
 
         </LinearLayout>

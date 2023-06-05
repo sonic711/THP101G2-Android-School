@@ -73,7 +73,7 @@ class ComPostFragment : Fragment() {
                     1 -> Toast.makeText(requireContext(), "文章新增失敗", Toast.LENGTH_SHORT).show()
                     2 -> {
                         deleteInternal()
-                        Navigation.findNavController(it).navigate(R.id.comAllPostFragment)
+                        Navigation.findNavController(it).navigate(R.id.comMainFragment)
                     }
 
                 }

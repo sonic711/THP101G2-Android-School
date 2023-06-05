@@ -70,17 +70,40 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tvNickname"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/tvNickname" />
+
+                            <EditText
+                                android:id="@+id/etNickname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/txtNickname"
+                                android:text="@={viewModel.member.nickname}"
+                                android:inputType="textPersonName" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
                                 android:id="@+id/tvUserID"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="@string/tvUserID" />
 
                             <EditText
-                                android:id="@+id/etUsername"
+                                android:id="@+id/etUserId"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:hint="@string/txtUserID"
+                                android:text="@={viewModel.member.userId}"
                                 android:inputType="textPersonName" />
                         </LinearLayout>
 
@@ -102,6 +125,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:hint="@string/txtEmail"
+                                android:text="@={viewModel.member.memberEmail}"
                                 android:inputType="textEmailAddress" />
                         </LinearLayout>
 
@@ -123,6 +147,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/txtPassword"
+                                android:text="@={viewModel.member.password}"
                                 android:inputType="textPassword" />
                         </LinearLayout>
 
@@ -143,6 +168,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/txtConPassword"
+                                android:text="@={viewModel.cPassword}"
                                 android:inputType="textPassword" />
                         </LinearLayout>
 

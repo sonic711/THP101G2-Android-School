@@ -15,7 +15,7 @@ class ManageCommsViewModel : ViewModel() {
     val comms: MutableLiveData<List<Comms>> by lazy { MutableLiveData<List<Comms>>() }
 
     init {
-        loadComms()
+        loadComments()
     }
 
     /**
@@ -28,7 +28,7 @@ class ManageCommsViewModel : ViewModel() {
         } else {
             val searchCommList = mutableListOf<Comms>()
             commList.forEach { comm ->
-                if (comm.txtId.contains(newText, true)) {
+                if (comm.articleId.contains(newText, true)) {
                     searchCommList.add(comm)
                 }
             }
@@ -37,11 +37,11 @@ class ManageCommsViewModel : ViewModel() {
     }
 
     /** 模擬取得遠端資料 */
-    private fun loadComms() {
+    private fun loadComments() {
         val commList = mutableListOf<Comms>()
-        commList.add(Comms((R.drawable.mary), "1"))
-        commList.add(Comms((R.drawable.mary), "2"))
-        commList.add(Comms((R.drawable.mary), "3"))
+        commList.add(Comms((R.drawable.mary), "1","11"))
+        commList.add(Comms((R.drawable.mary), "2","22"))
+        commList.add(Comms((R.drawable.mary), "3","33"))
 
         this.commList = commList
         this.comms.value = this.commList

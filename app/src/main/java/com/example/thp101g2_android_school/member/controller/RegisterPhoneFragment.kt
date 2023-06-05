@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.member.controller
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentRegisterPhoneBinding
-import com.example.thp101g2_android_school.member.viewModel.RegisterPhoneViewModel
+import com.example.thp101g2_android_school.member.model.Member
+import com.example.thp101g2_android_school.member.viewModel.RegisterViewModel
 
 class RegisterPhoneFragment : Fragment() {
 
@@ -20,7 +20,7 @@ class RegisterPhoneFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModel: RegisterPhoneViewModel by viewModels()
+        val viewModel: RegisterViewModel by viewModels()
         binding = FragmentRegisterPhoneBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -31,12 +31,36 @@ class RegisterPhoneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btGetCaptcha.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_registerPhoneFragment_to_registerVerificationFragment)
+                if (!inputValid()) {
+                    return@setOnClickListener
+                }
+                val newBundle = Bundle()
+                arguments?.let {bundle ->
+                    val member = bundle.getSerializable("member") as Member?
+                    member?.let { member ->
+                        member.phoneNumber = viewModel!!.member.value!!.phoneNumber.trim()
+                    }
+                    newBundle.putSerializable("member", member)
+                }
+                Navigation.findNavController(it).navigate(R.id.registerVerificationFragment, newBundle)
             }
             ivBack.setOnClickListener {
                 Navigation.findNavController(it).popBackStack()
             }
         }
+    }
+
+    private fun inputValid(): Boolean {
+        var valid = true
+        val phoneRegex = Regex("^09\\d{8}\$")
+        with(binding) {
+            val phone = viewModel?.member?.value?.phoneNumber?.trim()
+            if (phone?.length != 10 || !phone.matches(phoneRegex)) {
+                etPhone.error = "手機格式不正確"
+                valid = false
+            }
+        }
+        return valid
     }
 
 

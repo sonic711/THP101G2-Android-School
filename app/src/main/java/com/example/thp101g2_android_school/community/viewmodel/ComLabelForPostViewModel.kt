@@ -46,7 +46,7 @@ class ComLabelForPostViewModel : ViewModel() {
         val list = requestTask<List<Label>>(url, respBodyType = type) ?: return
         val labelList = mutableListOf<Label>()
 
-        for (label in list!!) {
+        for (label in list) {
             labelList.add(label)
         }
         this.labelList = labelList

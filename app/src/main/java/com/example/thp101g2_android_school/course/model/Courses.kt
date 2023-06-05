@@ -12,6 +12,6 @@ data class Courses (
     var coursesReport: Boolean? = null,
     var updateTime: String? = null,
     var image: ByteArray? = null,
-    var usrId: String? = "",
+    var userId: String? = "",
     var rating: String? =""
     ) : Serializable

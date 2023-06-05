@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.member.viewModel.RegisterVerificationViewModel" />
+            type="com.example.thp101g2_android_school.member.viewModel.RegisterViewModel" />
     </data>
 
     <LinearLayout
@@ -64,7 +64,7 @@
                     android:id="@+id/tvPhoneNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.phone}"
+                    android:text="@={viewModel.member.phoneNumber}"
                     android:textColor="@color/black"
                     tools:text="09xxxxxxxx" />
 
@@ -101,6 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/txtVerification"
+                        android:text="@={viewModel.captcha}"
                         android:inputType="none|number" />
                 </LinearLayout>
 

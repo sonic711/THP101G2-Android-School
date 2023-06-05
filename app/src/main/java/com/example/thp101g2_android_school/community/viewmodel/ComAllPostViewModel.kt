@@ -128,6 +128,5 @@ class ComAllPostViewModel : ViewModel() {
             }
         }
         this.posts.postValue(postList)
-
     }
 }

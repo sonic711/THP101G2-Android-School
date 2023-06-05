@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             app:navGraph="@navigation/managenavigation"
             app:defaultNavHost="true"
-            android:id="@+id/fragmentContainerView3"/>
+            android:id="@+id/nav_host_manage_fragment"/>
     </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

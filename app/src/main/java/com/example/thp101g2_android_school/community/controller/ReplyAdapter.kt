@@ -1,38 +1,31 @@
 package com.example.thp101g2_android_school.community.controller
 
-import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.byteArrayToBitmap
-import com.example.thp101g2_android_school.community.model.Label
-import com.example.thp101g2_android_school.community.model.Reply
-import com.example.thp101g2_android_school.community.viewmodel.ComMainViewModel
+import com.example.thp101g2_android_school.community.model.ReplyAndLike
 import com.example.thp101g2_android_school.community.viewmodel.ReplyViewModel
-import com.example.thp101g2_android_school.databinding.ComMainItemviewBinding
 import com.example.thp101g2_android_school.databinding.ComReplyItemviewBinding
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
-class ReplyAdapter(private var replyList: List<Reply>) :
+class ReplyAdapter(private var replyList: List<ReplyAndLike>, private val likeList: List<ReplyAndLike>?) :
     RecyclerView.Adapter<ReplyAdapter.ReplyViewHolder>() {
 
     class ReplyViewHolder(val itemViewBinding: ComReplyItemviewBinding) :
 
         RecyclerView.ViewHolder(itemViewBinding.root)
+
     /**
      * 更新回應列表內容
      * @param reply 新的回應列表
      */
-    fun updateReply(reply: List<Reply>) {
+    fun updateReply(reply: List<ReplyAndLike>) {
         this.replyList = reply
         notifyDataSetChanged()
     }
+
     override fun getItemCount(): Int {
         return replyList.size
     }
@@ -50,20 +43,36 @@ class ReplyAdapter(private var replyList: List<Reply>) :
 
     override fun onBindViewHolder(holder: ReplyViewHolder, position: Int) {
         val reply = replyList[position]
-        with(holder){
+        with(holder) {
             itemViewBinding.viewModel?.reply?.value = reply
             if (reply.profilePhoto != null) {
                 val img = byteArrayToBitmap(reply.profilePhoto!!)
                 itemViewBinding.imageView.setImageBitmap(img)
-            }else{
+            } else {
                 itemViewBinding.imageView.setBackgroundResource(R.drawable.com_user)
             }
-            // TODO 如果留言的會員id跟目前登入的會員id一樣
-            // 先寫死登入得會員編號是1 Adam
-            if("1" == reply.memberNo){
-                itemViewBinding.tbLike.visibility = View.GONE
-            }else{
-                itemViewBinding.tbLike.visibility = View.VISIBLE
+
+            // 從資料庫取出來該文章的所有喜歡來判斷有沒有喜歡過
+            likeList?.let {
+                for (liked in it) {
+                    // 找到屬於該MemberNo的喜歡並且 喜歡的編號 = 該回覆的編號
+                    // TODO 先寫死目前登入會員id為1
+                    if (liked.likedMemberNo == "1" && (liked.likedReplyId == reply.comReplyId)) {
+                        holder.itemViewBinding.tbLike.isChecked = true
+                        break
+                    } else {
+                        holder.itemViewBinding.tbLike.isChecked = false
+                    }
+                }
+            }
+            // 如果已經有這一個喜歡紀錄 就刪除 沒有這個紀錄就新增
+            itemViewBinding.tbLike.setOnClickListener {
+                if (itemViewBinding.tbLike.isChecked) {
+                    holder.itemViewBinding.viewModel?.addLike()
+                } else {
+                    // 已追蹤，就刪除
+                    holder.itemViewBinding.viewModel?.cancelLike()
+                }
             }
         }
     }

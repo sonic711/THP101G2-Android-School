@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="ManageMember"
-     android:id="@+id/manageMemberFragment"
+    <item
+        android:id="@+id/manageMemberFragment"
         android:icon="@drawable/baseline_person_24"
+        android:title="@string/manageMember"
 
         />
-    <item android:title="ManageClass"
+    <item
         android:id="@+id/manageClassesFragment"
         android:icon="@drawable/baseline_book_24"
+        android:title="@string/manageClass"
 
 
         />
-    <item android:title="ManageHome"
-    android:id="@+id/manageHomeFragment"
+    <item
+        android:id="@+id/manageHomeFragment"
         android:icon="@drawable/baseline_home_24"
+        android:title="@string/manageHome"
 
 
         />
-    <item android:title="ManageCart"
+    <item
         android:id="@+id/manageFirmFragment"
         android:icon="@drawable/baseline_shopping_cart_24"
-        />
-    <item android:title="ManageChat"
+        android:title="@string/manageFirm" />
+    <item
         android:id="@+id/manageComFragment"
         android:icon="@drawable/baseline_chat_bubble_24"
-        />
+        android:title="@string/manageCom" />
 </menu>

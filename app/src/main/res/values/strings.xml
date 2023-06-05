@@ -167,4 +167,27 @@
     <string name="text_com_chooselabels">選擇文章標籤</string>
     <string name="text_com_content">請輸入回覆內容</string>
     <string name="textNothingSelected">請選擇章節</string>
+    <string name="text_com_editpost">編輯文章</string>
+    <string name="text_com_nofollow">尚未追蹤任何看板唷！</string>
+    <string name="btEditTag">編輯標籤</string>
+    <string name="tvNickname">暱稱</string>
+    <string name="txtNickname">請輸入暱稱</string>
+    <string name="txtFans">粉絲</string>
+    <string name="txtFollowing">追蹤中</string>
+    <string name="btChangePic">更新照片</string>
+    <string name="txtPicQuestion">要更改哪個照片呢?</string>
+    <string name="txtProfilePhoto">頭像</string>
+    <string name="txtCoverPicture">封面</string>
+    <string name="manageMember">會員管理</string>
+    <string name="manageClass">課程管理</string>
+    <string name="manageHome">主頁</string>
+    <string name="manageFirm">商城管理</string>
+    <string name="manageCom">社群管理</string>
+    <string name="txtComName">請輸入要搜尋的貼文ID</string>
+    <string name="txtProcessed">已處理</string>
+    <string name="memberProcessed">已處理</string>
+    <string name="txtUnprocessed">未處理</string>
+    <string name="txtprintid">請輸入...</string>
+    <string name="btDelete">刪除</string>
+    <string name="btFollow">追蹤</string>
 </resources>

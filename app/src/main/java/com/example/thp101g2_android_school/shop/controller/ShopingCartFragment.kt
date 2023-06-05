@@ -14,12 +14,14 @@ import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopingCartBinding
 import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
+import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartFgViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 
 class ShopingCartFragment : Fragment() {
 
     private lateinit var binding: FragmentShopingCartBinding
+    private val viewModel: ShopingCartFgViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
 
 
     override fun onCreateView(
@@ -27,13 +29,14 @@ class ShopingCartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity() as MainActivity).supportActionBar?.hide()
-        val viewModel: ShopingCartFgViewModel by viewModels()
         binding = FragmentShopingCartBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //TODO 這邊使用viewModel: ShopFavoriteFgViewModel 去使用viewmodel內的方法.loadProduct，可以即時更新我的最愛
+        viewModel.loadProduct()
         //這裡註解要問老師關於SearchView的顯示跟關閉
         val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
         with(binding) {
@@ -57,6 +60,7 @@ class ShopingCartFragment : Fragment() {
 
 
 
+
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -70,10 +74,6 @@ class ShopingCartFragment : Fragment() {
                 }
 
             })
-        }
-        with(binding){
-
-
         }
 
     }
