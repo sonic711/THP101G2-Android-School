@@ -11,14 +11,22 @@ import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.byteArrayToBitmap
+import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.course.model.Course
 import com.example.thp101g2_android_school.course.model.Courses
+import com.example.thp101g2_android_school.course.model.FavCourse
+import com.example.thp101g2_android_school.course.model.MyCourse
 import com.example.thp101g2_android_school.course.viewmodel.CouMainDetailViewModel
 import com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel
 import com.example.thp101g2_android_school.databinding.CouCourseDetailBinding
 import com.example.thp101g2_android_school.databinding.FragmentCouMainBinding
+import com.google.gson.JsonObject
+
 class CouCourseDetailFragment: Fragment() {
     private lateinit var binding: CouCourseDetailBinding
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,15 +54,35 @@ class CouCourseDetailFragment: Fragment() {
             with(binding){
 
                 btAddCourse.setOnClickListener {
+                    val test = MyCourse(
+                        courseId = viewModel?.course?.value?.courseId!!,
+                        memberNo = viewModel?.course?.value?.memberNo!!
+                    )
+                    requestTask<JsonObject>(
+                        "http://10.0.2.2:8080/THP101G2-WebServer-School/studentcourses/",
+                        method = "POST",
+                        reqBody = test
+                    )
                     Navigation.findNavController(it)
                         .navigate(R.id.action_couCourseDetailFragment_to_couMyCourseFragment)
                     Toast.makeText(view.context, "成功加入我的課程", Toast.LENGTH_SHORT).show()
+
+
                 }
                 btAddFavorite.setOnClickListener {
+                    val test2 = FavCourse(
+
+                        courseId = viewModel?.course?.value?.courseId!!,
+                        memberNo = viewModel?.course?.value?.memberNo!!
+                    )
+                    requestTask<JsonObject>(
+                        "http://10.0.2.2:8080/THP101G2-WebServer-School/favoritecourses/",
+                        method = "POST",
+                        reqBody = test2
+                    )
                     Navigation.findNavController(it)
                         .navigate(R.id.action_couCourseDetailFragment_to_couFavoriteFragment)
                     Toast.makeText(view.context, "成功加入我的最愛", Toast.LENGTH_SHORT).show()
-
                 }
             }
         }

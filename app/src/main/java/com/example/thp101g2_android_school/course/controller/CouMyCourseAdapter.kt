@@ -50,7 +50,7 @@ class CouMyCourseAdapter(private var mycourses: List<MyCourse>) :
             bundle.putSerializable("mycourse", mycourse)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_couMyCourseFragment_to_couClassroomFragment)
+                    .navigate(R.id.action_couMyCourseFragment_to_couMyCourseSelectFragment, bundle)
             }
         }
     }

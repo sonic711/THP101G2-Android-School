@@ -14,12 +14,10 @@ class CouFavoriteViewModel : ViewModel() {
     val favcourses: MutableLiveData<List<FavCourse>> by lazy { MutableLiveData<List<FavCourse>>() }
 
 
-    init {
-        loadData()
-    }
-
-
-    private fun loadData() {
+init {
+    loadData()
+}
+     fun loadData() {
         val url = "$url/favoritecourses/"
         val type = object : TypeToken<List<FavCourse>>() {}.type
         val list = requestTask<List<FavCourse>>(url, respBodyType = type)
