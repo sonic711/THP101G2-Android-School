@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -17,7 +18,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="6dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -26,37 +27,35 @@
                 android:id="@+id/ivCourse"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:imageResource="@{viewModel.favcourse.imageId}" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
-                android:text="@{viewModel.favcourse.name}"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="32dp"
+                android:text="@{viewModel.favcourse.courseName}"
                 android:textColor="#0000FF"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintStart_toEndOf="@+id/ivCourse"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
-                android:text="@{viewModel.favcourse.author}"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvRate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
-                android:text="@{viewModel.favcourse.rate}"
-                android:textSize="18sp" />
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="36dp"
+                android:text="@{viewModel.favcourse.userId}"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/tvName"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

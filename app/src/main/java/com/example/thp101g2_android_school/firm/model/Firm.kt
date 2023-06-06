@@ -4,16 +4,18 @@ import android.graphics.Bitmap
 import java.io.Serializable
 
 class Firm(
-    var firmNo:Int,
-    var userId:Int,
-    var password:String,
-    var shopName:String,
-    var phoneNumber:String,
-    var FirmEmail:String,
-    var profilePhoto: Bitmap,
-    var coverPhoto:Bitmap,
-    var firmStatus:Int,
-    var createdAt:String,
-    var shopInfo:String
+    var firmNo:Int? = null,
+    var userId:Int? = null,
+    var password:String? = null,
+    var shopName:String? = null,
+    var phoneNumber:String? = null,
+    var firmEmail:String? = null,
+    var profilePhoto: ByteArray? = null,
+    var coverPhoto:ByteArray? = null,
+    var firmStatus:Int? = null,
+    var createdAt:String? = null,
+    var shopInfo:String? = null,
+    var profilePhoto64:String? = null,
+    var coverPhoto64:String
     ):
     Serializable

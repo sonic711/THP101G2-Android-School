@@ -2,9 +2,7 @@ package com.example.thp101g2_android_school.shop.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
-import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.google.gson.reflect.TypeToken
 
@@ -31,11 +29,12 @@ class ShopFavoriteFgViewModel : ViewModel() {
         }
     }
 
-    private fun loadProduct() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/another"
+    fun loadProduct() {
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/favorite"
         val type = object : TypeToken<List<ShopFavorite>>() {}.type
         val list = requestTask<List<ShopFavorite>>(url, respBodyType = type) ?: return
         val productList = mutableListOf<ShopFavorite>()
+
 
         for (shopfavorite in list!!) {
             productList.add(shopfavorite)

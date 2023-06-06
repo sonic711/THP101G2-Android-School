@@ -10,6 +10,8 @@ import com.example.thp101g2_android_school.databinding.FragmentManageComDetailBi
 
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.Comms
+import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageComViewModel
 
 class ManageComDetailFragment : Fragment() {
     private lateinit var binding: FragmentManageComDetailBinding
@@ -20,12 +22,15 @@ class ManageComDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentManageComDetailBinding.inflate(inflater, container, false)
+        val viewModel = ManageComViewModel()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let { bundle ->
-            bundle.getSerializable("com")?.let {
+            bundle.getSerializable("comm")?.let {
                 binding.viewModel?.commo?.value = it as Comms
             }
         }

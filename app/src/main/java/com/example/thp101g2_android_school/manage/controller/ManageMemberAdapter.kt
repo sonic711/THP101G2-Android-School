@@ -23,9 +23,9 @@ class ManageMemberAdapter(private var members:List<Members>):
         RecyclerView.ViewHolder(itemViewBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
-     val itemViewBinding = ManageMemberItemViewBinding.inflate(LayoutInflater.from(parent.context), parent,false)
-    itemViewBinding.viewModel = ManageMemberViewModel()
-
+     val itemViewBinding = ManageMemberItemViewBinding.inflate(
+         LayoutInflater.from(parent.context), parent,false)
+        itemViewBinding.viewModel = ManageMemberViewModel()
         itemViewBinding.lifecycleOwner = parent.findViewTreeLifecycleOwner()
         return  MemberViewHolder(itemViewBinding)
     }

@@ -17,13 +17,13 @@ import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewMode
 class ShopFavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentShopFavoriteBinding
+    val viewModel: ShopFavoriteFgViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity() as MainActivity).supportActionBar?.hide()
-        val viewModel: ShopFavoriteFgViewModel by viewModels()
         binding = FragmentShopFavoriteBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         return binding.root
@@ -31,26 +31,25 @@ class ShopFavoriteFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //TODO 這邊使用viewModel: ShopFavoriteFgViewModel 去使用viewmodel內的方法.loadProduct，可以即時更新我的最愛
+        viewModel.loadProduct()
         //這裡註解要問老師關於SearchView的顯示跟關閉
         val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
-//        if(searchView.visibility == View.GONE){
-//            searchView.visibility = View.VISIBLE
-//        }
         with(binding) {
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.favoriteproducts?.observe(viewLifecycleOwner) { favoriteproducts ->
-                if (recyclerView.adapter == null) {
+                val adapter = recyclerView.adapter as ShopFavoriteAdapter?
+                if (adapter == null) {
                     recyclerView.adapter = ShopFavoriteAdapter(favoriteproducts)
                 } else {
-                    (recyclerView.adapter as ShopFavoriteAdapter).updateProduct(favoriteproducts)
-                    if (favoriteproducts.isEmpty()) {
-                        tvSearchnull.text = "搜尋無資料"
-                        tvSearchnull.visibility = View.VISIBLE // 顯示 tvSearchnull
-                    } else {
-                        tvSearchnull.text = "" // 將文字設為空字串
-                        tvSearchnull.visibility = View.GONE // 隱藏 tvSearchnull
-                    }
+                    adapter.updateProduct(favoriteproducts)
+                }
+
+                if (favoriteproducts.isEmpty()) {
+                    tvSearchnull.visibility = View.VISIBLE // 显示 tvSearchnull
+                } else {
+                    tvSearchnull.visibility = View.GONE // 隐藏 tvSearchnull
                 }
             }
 

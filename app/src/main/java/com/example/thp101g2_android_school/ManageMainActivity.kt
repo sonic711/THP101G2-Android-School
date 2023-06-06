@@ -15,19 +15,13 @@ import com.example.thp101g2_android_school.manage.controller.*
 
 class ManageMainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityManageMainBinding
-    private fun replaceFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout,fragment)
-        fragmentTransaction.commit()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityManageMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView3) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.nav_host_manage_fragment) as NavHostFragment
         // 頁面切換可以整合BottomNavigationView功能
         NavigationUI.setupWithNavController(
             binding.bottomNavigationView,
@@ -35,5 +29,7 @@ class ManageMainActivity : AppCompatActivity() {
         )
         // 課程當登入後的首頁
         binding.bottomNavigationView.selectedItemId = R.id.manageHomeFragment
+
+        }
     }
-}
+

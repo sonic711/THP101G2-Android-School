@@ -7,6 +7,7 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.byteArrayToBitmap
 import com.example.thp101g2_android_school.course.model.MyCourse
 import com.example.thp101g2_android_school.course.viewmodel.CouMyCourseDetailViewModel
 import com.example.thp101g2_android_school.databinding.CouMyCourseItemViewBinding
@@ -39,11 +40,17 @@ class CouMyCourseAdapter(private var mycourses: List<MyCourse>) :
         val mycourse = mycourses[position]
         with(holder) {
             itemViewBinding.viewModel?.mycourse?.value = mycourse
+            if (mycourse.image != null) {
+                val img = byteArrayToBitmap(mycourse.image!!)
+                itemViewBinding.ivCourse.setImageBitmap(img)
+            }else{
+                itemViewBinding.ivCourse.setBackgroundResource(R.drawable.com_user)
+            }
             val bundle = Bundle()
             bundle.putSerializable("mycourse", mycourse)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_couMyCourseFragment_to_couClassroomFragment)
+                    .navigate(R.id.action_couMyCourseFragment_to_couMyCourseSelectFragment, bundle)
             }
         }
     }

@@ -30,7 +30,7 @@ class FirmProductOnFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(bindnig){
-            btFirmProductOnPicture.setOnClickListener {
+            ivFirmProductOn.setOnClickListener {
                 val intent = Intent(
                     Intent.ACTION_PICK,
                     // 照片來源 --> 相簿MediaStore

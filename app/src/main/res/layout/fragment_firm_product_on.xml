@@ -24,7 +24,8 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="24dp"
-                android:scaleType="centerInside"
+                android:scaleType="centerCrop"
+                android:src="@drawable/baseline_add_product_photo_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -92,6 +93,7 @@
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:enabled="false"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnFirm"
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnPrice" />
 

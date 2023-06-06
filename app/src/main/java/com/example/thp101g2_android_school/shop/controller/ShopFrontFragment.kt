@@ -1,20 +1,16 @@
 package com.example.thp101g2_android_school.shop.controller
 
-import android.annotation.SuppressLint
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopFrontBinding
 import com.example.thp101g2_android_school.shop.model.ShopPage
-import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ShopFrontFragment : Fragment() {

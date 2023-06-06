@@ -70,7 +70,12 @@
             android:id="@+id/calMainFragment"
             android:name="com.example.thp101g2_android_school.calendar.controller.CalMainFragment"
             android:label="fragment_cal_main"
-            tools:layout="@layout/fragment_cal_main"/>
+            tools:layout="@layout/fragment_cal_main">
+        <action
+                android:id="@+id/action_calMainFragment_to_calAddFragment"
+                app:destination="@id/calAddFragment" />
+    </fragment>
+
     <fragment
             android:id="@+id/shopingCartFragment"
             android:name="com.example.thp101g2_android_school.shop.controller.ShopingCartFragment"
@@ -81,6 +86,9 @@
             android:name="com.example.thp101g2_android_school.shop.controller.ShopFrontFragment"
             android:label="fragment_shop_front"
             tools:layout="@layout/fragment_shop_front">
+        <action
+                android:id="@+id/action_shopFrontFragment_to_shopBuyFragment"
+                app:destination="@id/shopBuyFragment" />
         <action
                 android:id="@+id/action_shopFrontFragment_to_shopOrderDetailFragment"
                 app:destination="@id/shopOrderDetailFragment"/>
@@ -121,8 +129,8 @@
             android:label="fragment_cou_my_course"
             tools:layout="@layout/fragment_cou_my_course">
         <action
-                android:id="@+id/action_couMyCourseFragment_to_couClassroomFragment"
-                app:destination="@id/couClassroomFragment"/>
+                android:id="@+id/action_couMyCourseFragment_to_couMyCourseSelectFragment"
+                app:destination="@id/couMyCourseSelectFragment" />
     </fragment>
     <fragment
             android:id="@+id/couFavoriteFragment"
@@ -130,8 +138,8 @@
             android:label="fragment_cou_favorite"
             tools:layout="@layout/fragment_cou_favorite">
         <action
-                android:id="@+id/action_couFavoriteFragment_to_couClassroomFragment"
-                app:destination="@id/couClassroomFragment"/>
+                android:id="@+id/action_couFavoriteFragment_to_couFavoriteDetailFragment"
+                app:destination="@id/couFavoriteDetailFragment" />
     </fragment>
     <fragment
             android:id="@+id/memBlockFragment"
@@ -199,7 +207,11 @@
             android:id="@+id/couRateFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouRateFragment"
             android:label="fragment_cou_rate"
-            tools:layout="@layout/fragment_cou_rate" />
+            tools:layout="@layout/fragment_cou_rate" >
+        <action
+                android:id="@+id/action_couRateFragment_to_couCommentFragment"
+                app:destination="@id/couCommentFragment" />
+    </fragment>
     <fragment
             android:id="@+id/couUploadCourseFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouUploadCourseFragment"
@@ -215,5 +227,64 @@
             android:name="com.example.thp101g2_android_school.shop.controller.ShopBuyFragment"
             android:label="fragment_shop_buy"
             tools:layout="@layout/fragment_shop_buy" />
+    <fragment android:id="@+id/editPostFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.EditPostFragment"
+              android:label="EditPostFragment"/>
+    <fragment
+            android:id="@+id/calAddFragment"
+            android:name="com.example.thp101g2_android_school.calendar.controller.CalAddFragment"
+            android:label="fragment_cal_add"
+            tools:layout="@layout/fragment_cal_add" >
+        <action
+                android:id="@+id/action_calAddFragment_to_calTagFragment"
+                app:destination="@id/calTagFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/calTagFragment"
+            android:name="com.example.thp101g2_android_school.calendar.controller.CalTagFragment"
+            android:label="fragment_cal_tag"
+            tools:layout="@layout/fragment_cal_tag" >
+        <action
+                android:id="@+id/action_calTagFragment_to_calEditTagFragment"
+                app:destination="@id/calEditTagFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/calEditTagFragment"
+            android:name="com.example.thp101g2_android_school.calendar.controller.CalEditTagFragment"
+            android:label="fragment_cal_edit_tag"
+            tools:layout="@layout/fragment_cal_edit_tag" />
+    <fragment
+            android:id="@+id/memFollowersFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemFollowersFragment"
+            android:label="fragment_mem_followers"
+            tools:layout="@layout/fragment_mem_followers" />
+    <fragment
+            android:id="@+id/memFansFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemFansFragment"
+            android:label="fragment_mem_fans"
+            tools:layout="@layout/fragment_mem_fans" />
+    <fragment
+            android:id="@+id/couCommentFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouCommentFragment"
+            android:label="fragment_cou_comment"
+            tools:layout="@layout/fragment_cou_comment" />
+    <fragment
+            android:id="@+id/couFavoriteDetailFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouFavoriteDetailFragment"
+            android:label="fragment_cou_favorite_detail"
+            tools:layout="@layout/fragment_cou_favorite_detail" >
+        <action
+                android:id="@+id/action_couFavoriteDetailFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couMyCourseSelectFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouMyCourseSelectFragment"
+            android:label="fragment_cou_my_course_select"
+            tools:layout="@layout/fragment_cou_my_course_select" >
+        <action
+                android:id="@+id/action_couMyCourseSelectFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
 
 </navigation>

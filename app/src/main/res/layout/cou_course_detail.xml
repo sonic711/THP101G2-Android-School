@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/ivCourse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp" />
 
@@ -36,13 +36,15 @@
                     android:id="@+id/btAddFavorite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txtAddFavorite" />
+                    android:hint="@string/txtAddFavorite"
+                    />
 
                 <Button
                     android:id="@+id/btAddCourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txtAddCourse" />
+                    android:hint="@string/txtAddCourse"
+                    />
 
                 <TextView
                     android:id="@+id/tvAuthor"
@@ -51,7 +53,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="@{viewModel.course.usrId}"
+                    android:text="@{viewModel.course.userId}"
                     android:textSize="24sp"
                     tools:text="Author:Ron" />
 

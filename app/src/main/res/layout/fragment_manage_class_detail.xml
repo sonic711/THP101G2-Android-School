@@ -27,7 +27,7 @@
         <!--            app:imageResource="@{viewModel.classo.imageId}" />-->
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/memberEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -45,7 +45,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{viewModel.classo.name}"
+            android:text="@{viewModel.classo.classname}"
             android:textSize="24sp"
             tools:text="0912345678" />
         <ImageView

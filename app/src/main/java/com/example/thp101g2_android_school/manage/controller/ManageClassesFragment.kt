@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
@@ -21,6 +22,10 @@ class ManageClassesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ManageClassAdapter
     private var classList: List<Classes> = emptyList()
+
+    companion object {
+        fun newInstance() = ManageClassesFragment()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +53,9 @@ class ManageClassesFragment : Fragment() {
                 }else{
                     adapter.updateClasses(classes)
                 }
+            }
+            binding.memberBack.setOnClickListener {
+                findNavController().navigateUp()
             }
 
         }
@@ -91,7 +99,7 @@ class ManageClassesFragment : Fragment() {
     private fun searchClasses(query: String) {
         // 根據搜尋條件 query 更新 classList
         val filteredClasses = classList.filter { classes ->
-            classes.name.contains(query, ignoreCase = true)
+            classes.classId.contains(query, ignoreCase = true)
         }
         adapter.updateClasses(filteredClasses)
     }

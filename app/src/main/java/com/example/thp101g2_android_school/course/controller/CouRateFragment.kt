@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.course.viewmodel.CouRateViewModel
 import com.example.thp101g2_android_school.databinding.FragmentCouRateBinding
@@ -24,9 +25,16 @@ class CouRateFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        binding.btnSubmit.setOnClickListener {
-            viewModel.submitRating()
-        }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        with(binding) {
+            ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->  }
+            btnSubmit.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_couRateFragment_to_couCommentFragment)
+            }
+        }
     }
 }

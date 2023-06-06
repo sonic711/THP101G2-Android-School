@@ -25,8 +25,7 @@
             <ImageView
                 android:id="@+id/ivCourse"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:imageResource="@{viewModel.mycourse.imageId}" />
+                android:layout_height="100dp" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -34,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.mycourse.name}"
+                android:text="@{viewModel.mycourse.courseName}"
                 android:textColor="#0000FF"
                 android:textSize="22sp" />
 
@@ -44,17 +43,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.mycourse.author}"
+                android:text="@{viewModel.mycourse.userId}"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/tvRate"
+                android:id="@+id/tvProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.mycourse.rate}"
+                android:text="@{viewModel.test}"
                 android:textSize="18sp" />
+
 
 
         </LinearLayout>

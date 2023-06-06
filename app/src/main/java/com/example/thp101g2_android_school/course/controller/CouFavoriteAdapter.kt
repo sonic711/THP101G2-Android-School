@@ -7,9 +7,12 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.byteArrayToBitmap
+import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.course.model.FavCourse
 import com.example.thp101g2_android_school.course.viewmodel.CouFavoriteDetailViewModel
 import com.example.thp101g2_android_school.databinding.CouFavCourseItemViewBinding
+import com.google.gson.JsonObject
 
 
 class CouFavoriteAdapter(private var favcourses: List<FavCourse>) :
@@ -39,12 +42,20 @@ class CouFavoriteAdapter(private var favcourses: List<FavCourse>) :
         val favcourse = favcourses[position]
         with(holder) {
             itemViewBinding.viewModel?.favcourse?.value = favcourse
+
+            if (favcourse.image != null) {
+                val img = byteArrayToBitmap(favcourse.image!!)
+                itemViewBinding.ivCourse.setImageBitmap(img)
+            }else{
+                itemViewBinding.ivCourse.setBackgroundResource(R.drawable.com_user)
+            }
             val bundle = Bundle()
             bundle.putSerializable("favcourse", favcourse)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_couFavoriteFragment_to_couClassroomFragment)
+                    .navigate(R.id.action_couFavoriteFragment_to_couFavoriteDetailFragment,bundle)
             }
+
         }
     }
 }

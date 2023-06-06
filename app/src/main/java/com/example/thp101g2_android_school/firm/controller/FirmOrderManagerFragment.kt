@@ -44,8 +44,13 @@ class FirmOrderManagerFragment : Fragment() {
                 }
             }
 
+            btAllOrder.setOnClickListener {
+                viewModel?.orderAll()
+            }
+
             btNotShip.setOnClickListener {
                 viewModel?.orderNotShip()
+
 
             }
 

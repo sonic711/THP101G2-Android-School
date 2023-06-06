@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".shop.controller.ShopCartFragment">
+    tools:context=".shop.controller.ShopingCartFragment">
 
     <data>
 
@@ -32,11 +32,26 @@
             android:id="@+id/tvSearchnull"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:layout_marginTop="250dp"
+            android:text="搜尋無資料"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="323dp"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="680dp"
+            android:background="@drawable/button_secondary"
+            android:textColor="@color/purple_400"
+            android:text="結帳"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

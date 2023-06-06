@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     tools:context=".manage.controller.ManageReportDetailFragment">
@@ -18,29 +19,39 @@
         android:padding="16dp">
 
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.reporto.reportID}"
-            android:textColor="#0000FF"
-            android:textSize="30sp"
-            tools:text="Ivy" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memberEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="30dp"
+                android:text="@{viewModel.reporto.reportID}"
+                android:textColor="#0000FF"
+                android:textSize="30sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvPhone"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="@{viewModel.reporto.}"-->
-<!--            android:textSize="24sp"-->
-<!--            tools:text="0912345678" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvPhone"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:text="@{viewModel.reporto.}"-->
+        <!--            android:textSize="24sp"-->
+        <!--            tools:text="0912345678" />-->
 
     </LinearLayout>
 </layout>

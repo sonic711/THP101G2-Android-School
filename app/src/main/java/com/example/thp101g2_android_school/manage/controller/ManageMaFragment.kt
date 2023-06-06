@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
@@ -17,6 +18,7 @@ import com.example.thp101g2_android_school.databinding.FragmentManageMaBinding
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.Mas
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageMasViewModel
 
 class ManageMaFragment : Fragment() {
     private lateinit var binding: FragmentManageMaBinding
@@ -25,13 +27,13 @@ class ManageMaFragment : Fragment() {
     private var maList: List<Mas> = emptyList()
 
 
-    private lateinit var viewModel: ManageMaViewModel
+    private lateinit var viewModel: ManageMasViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModel: ManageMaViewModel by viewModels()
+        val viewModel: ManageMasViewModel by viewModels()
         binding = FragmentManageMaBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -47,12 +49,18 @@ class ManageMaFragment : Fragment() {
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             adapter = ManageMaAdapter(maList)
-            viewModel?.mao?.observe(viewLifecycleOwner) { mas ->
+            viewModel?.mas?.observe(viewLifecycleOwner) { mas ->
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ManageMaAdapter(maList)
+                    recyclerView.adapter = ManageMaAdapter(mas)
                 } else {
-                    adapter.updateMas(maList)
+                    adapter.updateMas(mas)
                 }
+            }
+            binding.memberBack.setOnClickListener {
+                findNavController().navigateUp()
+            }
+            managerSet.setOnClickListener {
+                findNavController().navigate(R.id.action_manageMaFragment_to_manageMaSettingFragment)
             }
 
         }
