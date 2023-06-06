@@ -5,10 +5,10 @@ import java.io.Serializable
 data class MyCourse (
     var courseName: String? = "",
     var userId: String? = "",
-    var studentCoursesId : String? = "",
-    var courseId: String? = "",
-    var memberNo: String? = "",
-    var coursesProgress: String? = "",
+    var studentCoursesId : Int? = null,
+    var courseId: Int,
+    var memberNo: Int,
+    var coursesProgress: Boolean? = null,
     var image: ByteArray? = null,
     var updateTime: String? = null
     ) : Serializable

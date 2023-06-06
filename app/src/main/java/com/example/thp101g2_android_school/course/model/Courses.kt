@@ -4,9 +4,9 @@ import java.io.Serializable
 import java.sql.Timestamp
 
 data class Courses (
-    var courseId: String? = "",
+    var courseId: Int? = null,
     var courseName: String? = "",
-    var memberNo: String? = "",
+    var memberNo: Int,
     var summary: String? = "",
     var addAndRemove: Boolean? = null,
     var coursesReport: Boolean? = null,
