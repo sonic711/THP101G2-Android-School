@@ -39,17 +39,17 @@ class ShopFavoriteFragment : Fragment() {
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.favoriteproducts?.observe(viewLifecycleOwner) { favoriteproducts ->
-                if (recyclerView.adapter == null) {
+                val adapter = recyclerView.adapter as ShopFavoriteAdapter?
+                if (adapter == null) {
                     recyclerView.adapter = ShopFavoriteAdapter(favoriteproducts)
                 } else {
-                    (recyclerView.adapter as ShopFavoriteAdapter).updateProduct(favoriteproducts)
-                    if (favoriteproducts.isEmpty()) {
-                        tvSearchnull.text = "搜尋無資料"
-                        tvSearchnull.visibility = View.VISIBLE // 顯示 tvSearchnull
-                    } else {
-                        tvSearchnull.text = "" // 將文字設為空字串
-                        tvSearchnull.visibility = View.GONE // 隱藏 tvSearchnull
-                    }
+                    adapter.updateProduct(favoriteproducts)
+                }
+
+                if (favoriteproducts.isEmpty()) {
+                    tvSearchnull.visibility = View.VISIBLE // 显示 tvSearchnull
+                } else {
+                    tvSearchnull.visibility = View.GONE // 隐藏 tvSearchnull
                 }
             }
 

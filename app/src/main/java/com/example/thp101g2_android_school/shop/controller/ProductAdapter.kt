@@ -13,7 +13,11 @@ import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 
-class ProductAdapter(private var products: List<Product>,private var favproduct:List<ShopFavorite>,private var shoppingcart:List<ShopingCart>) :
+class ProductAdapter(
+    private var products: List<Product>,
+    private var favproduct: List<ShopFavorite>,
+    private var shoppingcart: List<ShopingCart>
+) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
 
@@ -40,7 +44,8 @@ class ProductAdapter(private var products: List<Product>,private var favproduct:
         this.favproduct = favoriteProducts
         notifyDataSetChanged()
     }
-    fun setShoppingCartProducts(shoppingCartProducts: List<ShopingCart>){
+
+    fun setShoppingCartProducts(shoppingCartProducts: List<ShopingCart>) {
         this.shoppingcart = shoppingCartProducts
         notifyDataSetChanged()
     }
@@ -61,6 +66,7 @@ class ProductAdapter(private var products: List<Product>,private var favproduct:
                     isFavorite = false
                 }
             }
+
             for (shoppingcart in shoppingcart) {
                 if (shoppingcart.shopProductId == product.shopProductId) {
                     isShoppingCart = true

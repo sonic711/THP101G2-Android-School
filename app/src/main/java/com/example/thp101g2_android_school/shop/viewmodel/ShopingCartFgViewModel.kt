@@ -30,11 +30,6 @@ class ShopingCartFgViewModel : ViewModel() {
     }
 
     fun loadProduct() {
-//        val productList = mutableListOf<ShopingCart>()
-//        productList.add(ShopingCart(R.drawable.java, "java基礎教科書", "Willian", price = 350.0.toString(),19))
-//        productList.add(ShopingCart(R.drawable.kotlin, "kotlin進階教科書", "黃彬華老師.註",price = 500.0.toString(),20))
-//        productList.add(ShopingCart(R.drawable.python, "python高階教科書", "Jerry",price = 450.0.toString(),65))
-//        productList.add(ShopingCart(R.drawable.senpai, "仲夏夜X夢兒童教育有聲書", "AHHHH",price = 777.0.toString(),99))
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/shoppingcart/"
         val type = object : TypeToken<List<ShopingCart>>() {}.type
         val list = requestTask<List<ShopingCart>>(url, respBodyType = type) ?: return

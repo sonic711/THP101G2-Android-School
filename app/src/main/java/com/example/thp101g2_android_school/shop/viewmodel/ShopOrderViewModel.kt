@@ -3,14 +3,18 @@ package com.example.thp101g2_android_school.shop.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.shop.model.PointSelect
+import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopOrderList
+import com.google.gson.reflect.TypeToken
 
 class ShopOrderViewModel : ViewModel() {
     private var orderList = mutableListOf<ShopOrderList>()
     val orders : MutableLiveData<List<ShopOrderList>>by lazy {MutableLiveData<List<ShopOrderList>>()}
 
     init {
-        loadProduct()
+        loadOrderProduct()
     }
     fun search(newText: String?) {
         if (newText.isNullOrEmpty()) {
@@ -19,7 +23,7 @@ class ShopOrderViewModel : ViewModel() {
             // 如果不是空字串，宣告新的集合，走訪每個元素的name屬性，如果符合就放到新的集合並指派
             val searchLessionList = mutableListOf<ShopOrderList>()
             orderList.forEach { order ->
-                if (order.name.contains(newText, true)) {
+                if (order.shopProductName.contains(newText, true)) {
                     searchLessionList.add(order)
                 }
             }
@@ -28,12 +32,18 @@ class ShopOrderViewModel : ViewModel() {
         }
     }
 
-    private fun loadProduct() {
-        val orderList = mutableListOf<ShopOrderList>()
-        orderList.add(ShopOrderList(R.drawable.java, "java基礎教科書", "21856trsehse1221","2023/5/22", price = 500.0.toString(),"Willian","超級蘋果人","0905231318","台北市松山區20號"))
+    fun loadOrderProduct() {
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/buy"
+        val type = object : TypeToken<List<ShopOrderList>>() {}.type
+        val list = requestTask<List<ShopOrderList>>(url, respBodyType = type) ?: return
+        // 发起网络请求，获取喜爱的产品数据
+        val shopOrderList = mutableListOf<ShopOrderList>()
 
+        for (order in list!!) {
+            shopOrderList.add(order)
+        }
 
-        this.orderList = orderList
+        this.orderList = shopOrderList
         this.orders.value = this.orderList
     }
 }

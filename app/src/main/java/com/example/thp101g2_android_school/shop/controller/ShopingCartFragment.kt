@@ -35,7 +35,7 @@ class ShopingCartFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //TODO 這邊使用viewModel: ShopFavoriteFgViewModel 去使用viewmodel內的方法.loadProduct，可以即時更新我的最愛
+        // TODO 這邊使用viewModel: ShopFavoriteFgViewModel 去使用viewmodel內的方法.loadProduct，可以即時更新我的最愛
         viewModel.loadProduct()
         //這裡註解要問老師關於SearchView的顯示跟關閉
         val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
@@ -44,17 +44,17 @@ class ShopingCartFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.cartproducts?.observe(viewLifecycleOwner) { products ->
                 // adapter為null要建立新的adapter
-                if (recyclerView.adapter == null) {
+                val adapter = recyclerView.adapter as ShopingCartAdapter?
+                if (adapter == null) {
                     recyclerView.adapter = ShopingCartAdapter(products)
                 } else {
-                    (recyclerView.adapter as ShopingCartAdapter).updateProduct(products)
-                    if (products.isEmpty()) {
-                        tvSearchnull.text = "搜尋無資料"
-                        tvSearchnull.visibility = View.VISIBLE // 顯示 tvSearchnull
-                    } else {
-                        tvSearchnull.text = "" // 將文字設為空字串
-                        tvSearchnull.visibility = View.GONE // 隱藏 tvSearchnull
-                    }
+                    adapter.updateProduct(products)
+                }
+
+                if (products.isEmpty()) {
+                    tvSearchnull.visibility = View.VISIBLE // 显示 tvSearchnull
+                } else {
+                    tvSearchnull.visibility = View.GONE // 隐藏 tvSearchnull
                 }
             }
 

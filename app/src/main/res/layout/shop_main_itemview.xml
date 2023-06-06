@@ -35,7 +35,7 @@
                 android:id="@+id/ivFriend"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:imageResource="@{viewModel.product.imageId}" />
+                app:imageByteArray="@{viewModel.product.shopProductImage}" />
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"

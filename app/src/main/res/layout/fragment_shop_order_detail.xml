@@ -37,7 +37,7 @@
                     android:layout_width="192dp"
                     android:layout_height="186dp"
                     android:src="@drawable/java"
-                    app:imageResource="@{viewModel.order.imageId}"
+                    app:imageByteArray="@{viewModel.order.shopOrderImg}"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="200dp"
-                    android:text="@{viewModel.order.name}"
+                    android:text="@{viewModel.order.shopProductName}"
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="200dp"
                     android:layout_marginTop="10dp"
-                    android:text="@{viewModel.order.price}"
+                    android:text="@{viewModel.order.shopProductSales}"
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="200dp"
                     android:layout_marginTop="30dp"
-                    android:text="@{viewModel.order.author}"
+                    android:text="標題"
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"訂單編號"+"         "+viewModel.order.orderid}'
+                    android:text='@{"訂單編號"+"         "+viewModel.order.shopOrderId}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -113,7 +113,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"訂單時間"+"               "+viewModel.order.crtime}'
+                    android:text='@{"訂單時間"+"               "+viewModel.order.shopOrdercreateTime}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -126,7 +126,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"購買人"+"                     "+viewModel.order.username}'
+                    android:text='@{"購買人"+"                     "+viewModel.order.shopRecipient}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -140,7 +140,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"手機號碼"+"               "+viewModel.order.userphone}'
+                    android:text='@{"手機號碼"+"               "+viewModel.order.ShopOrderPhone}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -154,7 +154,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"收件人/超商地址"+"         "+viewModel.order.useraddress}'
+                    android:text='@{"收件人/超商地址"+"         "+viewModel.order.ShopAddress}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
