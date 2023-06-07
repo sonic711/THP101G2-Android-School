@@ -193,4 +193,5 @@
     <string name="txtFavDelete">從我的最愛移除</string>
     <string name="txtStartCourse">開始上課</string>
     <string name="txtMyDelete">從我的課程移除</string>
+    <string name="txtFollow">追蹤</string>
 </resources>

@@ -209,8 +209,8 @@
             android:label="fragment_cou_rate"
             tools:layout="@layout/fragment_cou_rate" >
         <action
-                android:id="@+id/action_couRateFragment_to_couCommentFragment"
-                app:destination="@id/couCommentFragment" />
+                android:id="@+id/action_couRateFragment_to_couRatingFragment"
+                app:destination="@id/couRatingFragment" />
     </fragment>
     <fragment
             android:id="@+id/couUploadCourseFragment"
@@ -286,5 +286,25 @@
                 android:id="@+id/action_couMyCourseSelectFragment_to_couClassroomFragment"
                 app:destination="@id/couClassroomFragment" />
     </fragment>
+    <fragment
+            android:id="@+id/couRatingFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouRatingFragment"
+            android:label="fragment_cou_rating"
+            tools:layout="@layout/fragment_cou_rating" />
+    <fragment
+            android:id="@+id/memOthersHomeFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemOthersHomeFragment"
+            android:label="fragment_mem_others_home"
+            tools:layout="@layout/fragment_mem_others_home" />
+    <fragment
+            android:id="@+id/memOthersFansFragment"
+            android:name="com.example.thp101g2_android_school.MemOthersFansFragment"
+            android:label="fragment_mem_others_fans"
+            tools:layout="@layout/fragment_mem_others_fans" />
+    <fragment
+            android:id="@+id/memOthersFollowersFragment"
+            android:name="com.example.thp101g2_android_school.MemOthersFollowersFragment"
+            android:label="fragment_mem_others_followers"
+            tools:layout="@layout/fragment_mem_others_followers" />
 
 </navigation>
