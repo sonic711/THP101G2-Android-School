@@ -40,7 +40,6 @@ class CouClassroomAdapter (private var roomcourses: List<Chapter>) :
         val roomcourse = roomcourses[position]
         with(holder) {
             itemViewBinding.viewModel?.roomcourse?.value = roomcourse
-
             val bundle = Bundle()
             bundle.putSerializable("roomcourse", roomcourse)
             itemView.setOnClickListener {

@@ -18,7 +18,7 @@ class CouClassroomViewModel : ViewModel() {
         loadData()
     }
     private fun loadData() {
-        val url = "$url/chapter/"
+        val url = "$url/chapter/1"
         val type = object : TypeToken<List<Chapter>>() {}.type
         val list = requestTask<List<Chapter>>(url, respBodyType = type)
         for (roomcourses in list!!){
