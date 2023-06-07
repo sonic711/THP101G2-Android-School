@@ -20,7 +20,7 @@ import com.example.thp101g2_android_school.firm.viewmodel.FirmShopDataViewModel
 
 class FirmMainFragment : Fragment() {
     private lateinit var binding: FragmentFirmMainBinding
-
+    private val viewModel: FirmProductsViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +35,7 @@ class FirmMainFragment : Fragment() {
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.loadFirmProduct()
         with(binding){
             viewModel2?.init()
             // STEP01.設定recyclerView顯示格式，因需要監控LiveData，去補充FirmProductsViewModel

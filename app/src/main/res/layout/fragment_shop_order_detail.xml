@@ -36,8 +36,11 @@
                     android:id="@+id/ivProduct"
                     android:layout_width="192dp"
                     android:layout_height="186dp"
-                    android:src="@drawable/java"
-                    app:imageByteArray="@{viewModel.order.shopOrderImg}"
+                    android:layout_marginEnd="200dp"
+                    app:imageByteArray="@{viewModel.order.shopOrderImage}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
@@ -76,7 +79,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="200dp"
                     android:layout_marginTop="30dp"
-                    android:text="標題"
+                    android:text="@{viewModel.order.shopName}"
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +101,9 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"訂單編號"+"         "+viewModel.order.shopOrderId}'
+                    android:text='@{"訂單編號:\n"+""+viewModel.order.shopOrderId}'
                     android:textSize="24sp"
+                    android:background="@drawable/button_secondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
                     app:layout_constraintStart_toStartOf="parent"
@@ -113,8 +117,9 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"訂單時間"+"               "+viewModel.order.shopOrdercreateTime}'
+                    android:text='@{"訂單時間:\n"+""+viewModel.order.shopOrdercreateTime}'
                     android:textSize="24sp"
+                    android:background="@drawable/button_secondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
                     app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +131,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"購買人"+"                     "+viewModel.order.shopRecipient}'
+                    android:text='@{"購買人:"+""+viewModel.order.shopRecipient}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -140,7 +145,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"手機號碼"+"               "+viewModel.order.ShopOrderPhone}'
+                    android:text='@{"手機號碼:"+""+viewModel.order.ShopOrderPhone}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -154,7 +159,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"收件人/超商地址"+"         "+viewModel.order.ShopAddress}'
+                    android:text='@{"收件人/超商地址:"+""+viewModel.order.ShopAddress}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"

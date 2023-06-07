@@ -33,14 +33,14 @@ class FirmProductsViewModel : ViewModel() {
 //        loadFirmData()
     }
 
-    private fun loadFirmProduct() {
+    fun loadFirmProduct() {
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shophomepage/3" //先改成3，鎖死
         val type = object : TypeToken<List<FirmProduct>>() {}.type
         val list = requestTask<List<FirmProduct>>(url, respBodyType = type)
-
-        for(item in list!!){
-            firmProductList.add(item)
-        }
+        firmProductList = list!!.toMutableList()
+//        for(item in list!!){
+//            firmProductList.add(item)
+//        }
 
         this.firmProductList = firmProductList
         this.firmProducts.value = this.firmProductList

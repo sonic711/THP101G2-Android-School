@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.app.requestTask
-import com.example.thp101g2_android_school.shop.model.PointSelect
 import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.model.ShopingCart
@@ -15,13 +14,13 @@ class ProductViewModel : ViewModel() {
     val products: MutableLiveData<List<Product>> by lazy { MutableLiveData<List<Product>>() }
     val favoriteProducts: MutableLiveData<List<ShopFavorite>> by lazy { MutableLiveData<List<ShopFavorite>>() }
     val shoppingCartProducts: MutableLiveData<List<ShopingCart>> by lazy { MutableLiveData<List<ShopingCart>>() }
-    var shopBuyPoint = MutableLiveData<List<PointSelect>>()
+//    var shopBuyPoint = MutableLiveData<List<PointSelect>>()
 
     init {
         loadProduct()
         loadFavoriteProducts()
         loadShoppingCartProducts()
-        loadShopBuyPointProducts()
+//        loadShopBuyPointProducts()
     }
 
     fun search(newText: String?) {
@@ -88,17 +87,17 @@ class ProductViewModel : ViewModel() {
         shoppingCartProducts.value = shoppingCartProductList
     }
 
-    private fun loadShopBuyPointProducts() {
-        // Implement the logic to load favorite products and update the favoriteProducts LiveData
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/shoppingcart/point"
-        val type = object : TypeToken<List<PointSelect>>() {}.type
-
-        // 发起网络请求，获取喜爱的产品数据
-        val shopBuyPointList =
-            requestTask<List<PointSelect>>(url, respBodyType = type) ?: return
-
-        shopBuyPoint.value = shopBuyPointList
-    }
+//    private fun loadShopBuyPointProducts() {
+//        // Implement the logic to load favorite products and update the favoriteProducts LiveData
+//        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/shoppingcart/point"
+//        val type = object : TypeToken<List<PointSelect>>() {}.type
+//
+//        // 发起网络请求，获取喜爱的产品数据
+//        val shopBuyPointList =
+//            requestTask<List<PointSelect>>(url, respBodyType = type) ?: return
+//
+//        shopBuyPoint.value = shopBuyPointList
+//    }
 
 //    fun onFavoriteProductClicked(productId: String) {
 //        val product = products.value?.find { it.shopProductId == productId } ?: return

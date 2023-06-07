@@ -1,7 +1,9 @@
 package com.example.thp101g2_android_school.shop.controller
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -21,6 +24,9 @@ import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
+import android.util.Base64
+import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
+import java.util.*
 import kotlin.random.Random
 
 
@@ -29,6 +35,9 @@ class ShopBuyFragment : Fragment() {
     private lateinit var cartproduct: ShopingCart
     private var quantity = 0
     private val ERROR_COLOR = Color.RED
+    private var radioButtonSelected = false
+    private var radioButtonError = false
+    var pointans = 0
 
 
     override fun onCreateView(
@@ -43,6 +52,7 @@ class ShopBuyFragment : Fragment() {
         binding.editTextNumber.visibility = View.GONE
         binding.tvPoint.visibility = View.GONE
         binding.tvPoints.visibility = View.GONE
+        binding.btGPay.visibility = View.GONE
         return binding.root
     }
 
@@ -58,17 +68,20 @@ class ShopBuyFragment : Fragment() {
             bundle.getSerializable("cartproduct")?.let {
                 cartproduct = it as ShopingCart
                 binding.viewModel?.cartproduct?.value = cartproduct
-                println("${cartproduct.shopProductCount}" + "${cartproduct.shopProductId}")
+                println("商品數量 :${cartproduct.shopProductCount}" + "     " +"商品ID :${cartproduct.shopProductId}")
+                println("廠商代號 : ${cartproduct.firmNo}")
 
 
             }
             arguments?.let { bundle ->
                 quantity = bundle.getInt("quantity")
-                println(quantity)
+                println("我購買的數量 :$quantity")
             }
 
             var Count = cartproduct.shopProductCount - quantity
-            println(Count)
+            println("資料庫要變動的數量 :$Count")
+            val price = cartproduct.shopProductPrice.toInt() * quantity
+            println("我的購買金額: $price")
 
 
 
@@ -82,7 +95,16 @@ class ShopBuyFragment : Fragment() {
                     .setNegativeButton("取消", null)
                     .show()
             }
+            binding.rbBuyWay.setOnCheckedChangeListener { _, isChecked ->
+                radioButtonSelected = isChecked
+                if (isChecked) {
+                    binding.btGPay.visibility = View.VISIBLE
+                } else {
+                    binding.btGPay.visibility = View.GONE
+                }
+            }
             binding.rbBuyWay2.setOnCheckedChangeListener { _, isChecked ->
+                radioButtonSelected = isChecked
                 if (isChecked) {
                     binding.editTextNumber.visibility = View.VISIBLE
                     binding.tvPoint.visibility = View.VISIBLE
@@ -95,11 +117,73 @@ class ShopBuyFragment : Fragment() {
                 }
             }
             binding.button5.setOnClickListener {
+                val productid = cartproduct.shopProductId.toInt()
+                val productname = cartproduct.shopProductName
+                val memberno = 1
+                val firmno = cartproduct.firmNo
+                val productimg = cartproduct.shopProductImage
+                val rewardpoints = cartproduct.rewardPoints
+                val pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
                 val name = binding.etPersonName.text.toString()
                 val email = binding.etEmail.text.toString()
                 val address = binding.etAddress.text.toString()
                 val phone = binding.etPhone.text.toString()
                 var hasError = false
+
+                println(name)
+                println(email)
+                println(address)
+                println(phone)
+                println(productid)
+                println(productname)
+                println(memberno)
+                println(rewardpoints)
+                println(productimg)
+                if(cartproduct.firmNo != null && cartproduct.firmNo != 0){
+                    println(firmno)
+                }else{
+                    println("沒有firm")
+                }
+
+                if(productimg.isNotEmpty()){
+                    println("有圖片喔")
+                }else{
+                    println("沒有圖片")
+                }
+                println(pointquantity)
+                println(quantity)
+
+                if (!radioButtonSelected) {
+                    radioButtonError = true
+                    binding.rbBuyWay.setButtonTintList(ColorStateList.valueOf(Color.RED))
+                    binding.rbBuyWay2.setButtonTintList(ColorStateList.valueOf(Color.RED))
+                    Toast.makeText(context, "请选择一种付款方式", Toast.LENGTH_SHORT).show()
+                    hasError = true
+                } else {
+                    binding.rbBuyWay.setButtonTintList(null)
+                    binding.rbBuyWay2.setButtonTintList(null)
+                }
+                if(pointquantity == null){
+                    binding.editTextNumber.setError("不可為空")
+                    setErrorState(binding.editTextNumber)
+                    hasError = true
+                }
+                if (pointquantity != null && cartproduct.rewardPoints != null) {
+                    if (pointquantity > cartproduct.rewardPoints) {
+                        // 数量超过奖励积分，显示错误信息
+                        binding.editTextNumber.setError("數量不能超過總積分")
+                        setErrorState(binding.editTextNumber)
+                        hasError = true
+                    } else if(pointquantity < price){
+                        binding.editTextNumber.setError("您的積分不夠支付")
+                        setErrorState(binding.editTextNumber)
+                        hasError = true
+
+                    } else{
+                        pointans = rewardpoints - pointquantity
+                        clearErrorState(binding.editTextNumber)
+                    }
+                }
 
                 if (name.isEmpty() || name.length < 2) {
                     // 姓名验证失败，显示错误信息
@@ -141,28 +225,59 @@ class ShopBuyFragment : Fragment() {
                     clearErrorState(binding.etPhone)
                 }
 
-                if (hasError) {
-                    // 至少有一个字段验证失败，执行相应逻辑
-                    // ...
+                if (!hasError) {
+                        Toast.makeText(context, "付款成功", Toast.LENGTH_SHORT).show()
+                    println("Order增加一筆")
+                    val shopBuy = ShopBuyCalss(
+                        shopProductId = productid,
+                        memberNo = memberno,
+                        shopAddress = address,
+                        shopRecipient = name,
+                        shopOrderPhone = phone,
+                        shopPointDiscount = pointquantity,
+                        shopProductSales = price,
+                        shopProductName = productname,
+                        firmNo = firmno,
+                        shopOrderCount = quantity,
+                        shopOrderImage = productimg
+                    )
+
+                    val respbody = requestTask<JsonObject>(
+                        "$url/shop/buy/",
+                        "POST", reqBody = shopBuy
+                    )
+                    val jsonObj2 = JsonObject()
+                    jsonObj2.addProperty("id", productid)
+                    val respbody2 = requestTask<JsonObject>(
+                        "$url/shop/buy/",
+                        "DELETE", jsonObj2
+                    )
+                    val jsonObj3 = JsonObject()
+                    jsonObj3.addProperty("shopProductCount", Count)
+                    jsonObj3.addProperty("shopProductId", productid)
+                    val respbody3 = requestTask<JsonObject>(
+                        "$url/shop/buy/",
+                        "PUT", jsonObj3
+                    )
+                    val jsonObj4 = JsonObject()
+                    jsonObj4.addProperty("rewardPoints", pointans)
+                    val respbody4 = requestTask<JsonObject>(
+                        "$url/shop/buy/point",
+                        "PUT", jsonObj4
+                    )
+                    Navigation.findNavController(requireView()).navigateUp()
+
                 } else {
-//                    println("PDF購物車增加一筆")
-//                    val randomNumber = Random.nextInt(10000000)
-//                    val jsonObj = JsonObject()
-//                    jsonObj.addProperty("shoppingCartId", randomNumber)
-//                    jsonObj.addProperty("memberNo", 1)
-//                    jsonObj.addProperty("shopProductId", product.shopProductId)
-//                    jsonObj.addProperty("shopOrderCount", product.shopProductCount)
-//                    val respbody = requestTask<JsonObject>(
-//                        "$url/shop/shoppingcart",
-//                        "POST", jsonObj
-//                    )
-                    // 所有字段验证成功，执行相应逻辑
-                    // ...
+                        Toast.makeText(context, "付款失敗", Toast.LENGTH_SHORT).show()
                 }
             }
 
         }
     }
+    fun convertBytesToBase64(bytes: ByteArray): String {
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
+    }
+
 
     private fun setErrorState(editText: EditText) {
         editText.backgroundTintList = ColorStateList.valueOf(ERROR_COLOR)

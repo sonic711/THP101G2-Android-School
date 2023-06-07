@@ -86,8 +86,8 @@ class ProductDetailFragment : Fragment() {
                 }
             }
             binding.favtoggleButton.setOnClickListener {
-                productViewModel.onFavoriteProductClicked(product.shopProductId)
-                productViewModel.onShoppingCartProductClicked(product.shopProductId)
+                productViewModel.onFavoriteProductClicked(product.shopProductId.toString())
+                productViewModel.onShoppingCartProductClicked(product.shopProductId.toString())
                 if (isFavorite) {
                     // TODO 先寫死會員編號1 假定登入
                     println("PDF最愛刪除一筆")

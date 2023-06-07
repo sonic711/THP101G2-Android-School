@@ -15,6 +15,7 @@ import com.example.thp101g2_android_school.firm.viewmodel.FirmProductsEditViewMo
 
 class FirmProductManagerFragment : Fragment() {
     private lateinit var binding : FragmentFirmProductManagerBinding
+    private val viewModel: FirmProductsEditViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +29,7 @@ class FirmProductManagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
+            viewModel?.loadProductsManger()
             productManagerRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.productsManager?.observe(viewLifecycleOwner) { productsManager ->
                 if (productManagerRecyclerView.adapter == null) {
@@ -37,6 +39,7 @@ class FirmProductManagerFragment : Fragment() {
                         productsManager
                     )
                 }
+
             }
             ibFirmProductOn.setOnClickListener{
                 Navigation.findNavController(it).navigate(R.id.firmProductOnFragment)

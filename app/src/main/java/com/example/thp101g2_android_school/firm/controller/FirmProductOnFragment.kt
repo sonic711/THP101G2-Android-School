@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentFirmProductOnBinding
 import com.example.thp101g2_android_school.firm.viewmodel.FirmProductOnViewModel
 
@@ -37,6 +40,16 @@ class FirmProductOnFragment : Fragment() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 )
                 pickPictureLauncher.launch(intent)
+            }
+            btFirmConOn.setOnClickListener {
+                val context = it.context
+                // 呼叫 doPOST 方法並傳遞 context
+                viewModel?.doPOST(context)
+//                Navigation.findNavController(it).popBackStack()
+
+            }
+            btFirmCancelOn.setOnClickListener {
+                Navigation.findNavController(it).popBackStack()
             }
         }
     }
