@@ -34,7 +34,9 @@ class FirmProductsViewModel : ViewModel() {
     }
 
     fun loadFirmProduct() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shophomepage/3" //先改成3，鎖死
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shophomepage/$FNO"
         val type = object : TypeToken<List<FirmProduct>>() {}.type
         val list = requestTask<List<FirmProduct>>(url, respBodyType = type)
         firmProductList = list!!.toMutableList()
