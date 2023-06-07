@@ -10,30 +10,4 @@ import com.google.gson.JsonObject
 
 class CouMainDetailViewModel: ViewModel() {
     val course: MutableLiveData<Courses> by lazy { MutableLiveData<Courses>() }
-//    fun AddFav () {
-//            val test2 = FavCourse(
-//
-//                courseId = course.value?.courseId!!,
-//                memberNo = course?.value?.memberNo!!
-//
-//
-//            )
-//            requestTask<JsonObject>(
-//                "http://10.0.2.2:8080/THP101G2-WebServer-School/favoritecourses/",
-//                method = "POST",
-//                reqBody = test2
-//            )
-//
-//        }
-//    fun AddStu(){
-//        val test = MyCourse(
-//            courseId = course.value?.courseId!!,
-//            memberNo = course?.value?.memberNo!!
-//        )
-//        requestTask<JsonObject>(
-//            "http://10.0.2.2:8080/THP101G2-WebServer-School/studentcourses/",
-//            method = "POST",
-//            reqBody = test
-//        )
-//    }
 }
