@@ -20,7 +20,7 @@ class CouMyCourseViewModel : ViewModel() {
 
 
     private fun loadData() {
-        val url = "$url/studentcourses/"
+        val url = "$url/studentcourses/1"
         val type = object : TypeToken<List<MyCourse>>() {}.type
         val list = requestTask<List<MyCourse>>(url, respBodyType = type)
         for (mycourses in list!!){
@@ -30,23 +30,6 @@ class CouMyCourseViewModel : ViewModel() {
         this.mycourses.value = this.mycourseList
     }
 
-    //private fun loadMycourses(){
-    //    val mycourseList = mutableListOf<MyCourse>()
-    //    mycourseList.add(MyCourse(R.drawable.java, "Java","Ron","5分(600個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.kotlin, "Kotlin","Ron","5分(450個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    mycourseList.add(MyCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-    //    this.mycourseList = mycourseList
-    //    this.mycourses.value = this.mycourseList
-    //}
+
 
 }

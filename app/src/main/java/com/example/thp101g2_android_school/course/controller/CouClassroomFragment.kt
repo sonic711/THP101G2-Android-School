@@ -1,12 +1,15 @@
 package com.example.thp101g2_android_school.course.controller
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
@@ -34,6 +37,14 @@ class CouClassroomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding){
+             val path = "URL"
+            videoView.setVideoURI(Uri.parse(path))
+            videoView.setMediaController(MediaController(view.context))
+            videoView.setOnCompletionListener {
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_couClassroomFragment_to_couRateFragment)
+
+            }
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.roomcourses?.observe(viewLifecycleOwner){roomcourses ->
                 if (recyclerView.adapter == null){
@@ -42,5 +53,6 @@ class CouClassroomFragment : Fragment() {
                     (recyclerView.adapter as CouClassroomAdapter).updateroomCourses(roomcourses)
                 }
             }
-        }    }
+        }
+    }
 }
