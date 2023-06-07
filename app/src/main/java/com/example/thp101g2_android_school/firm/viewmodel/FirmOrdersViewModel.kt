@@ -22,15 +22,16 @@ class FirmOrdersViewModel:ViewModel() {
         loadOrders()
     }
 
-    private fun loadOrders() {
+    fun loadOrders() {
         //val firmId = 3
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/ordermanager/firm"//$firmId
         val type = object : TypeToken<List<Order>>() {}.type
         val list = requestTask<List<Order>>(url, respBodyType = type)
+        orderList = list!!.toMutableList()
 
-        for(item in list!!){
-            orderList.add(item)
-        }
+//        for(item in list!!){
+//            orderList.add(item)
+//        }
 
         this.orderList = orderList
         this.orders.value = this.orderList

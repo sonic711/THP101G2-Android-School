@@ -40,6 +40,8 @@ class FirmProductDetailFragment : Fragment() {
                 Navigation.findNavController(it).popBackStack()
             }
 
+
+
         }
     }
 }
