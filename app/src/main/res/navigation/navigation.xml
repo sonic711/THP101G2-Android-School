@@ -263,11 +263,7 @@
             android:name="com.example.thp101g2_android_school.member.controller.MemFansFragment"
             android:label="fragment_mem_fans"
             tools:layout="@layout/fragment_mem_fans" />
-    <fragment
-            android:id="@+id/couCommentFragment"
-            android:name="com.example.thp101g2_android_school.course.controller.CouCommentFragment"
-            android:label="fragment_cou_comment"
-            tools:layout="@layout/fragment_cou_comment" />
+
     <fragment
             android:id="@+id/couFavoriteDetailFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouFavoriteDetailFragment"
