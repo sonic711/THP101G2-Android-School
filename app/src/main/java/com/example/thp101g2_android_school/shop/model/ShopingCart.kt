@@ -7,9 +7,11 @@ class ShopingCart( var shopProductImage: ByteArray,
                    var shopProductName: String,
                    var shopProductPrice:String,
                    var shopName:String,
-                   var shopProductCount:Int
+                   var shopProductCount:Int,
+                   var rewardPoints:Int,
+                   var firmNo: Int
                    ):
     Serializable
-data class PointSelect (
-    var rewardPoints:Int ):
-    Serializable
+//data class PointSelect (
+//    var rewardPoints:Int ):
+//    Serializable

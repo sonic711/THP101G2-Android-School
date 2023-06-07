@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
-import com.example.thp101g2_android_school.shop.model.PointSelect
 import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopOrderList
 import com.google.gson.reflect.TypeToken
@@ -36,14 +35,15 @@ class ShopOrderViewModel : ViewModel() {
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/buy"
         val type = object : TypeToken<List<ShopOrderList>>() {}.type
         val list = requestTask<List<ShopOrderList>>(url, respBodyType = type) ?: return
-        // 发起网络请求，获取喜爱的产品数据
         val shopOrderList = mutableListOf<ShopOrderList>()
 
         for (order in list!!) {
             shopOrderList.add(order)
         }
 
+
         this.orderList = shopOrderList
         this.orders.value = this.orderList
+        println(orders)
     }
 }

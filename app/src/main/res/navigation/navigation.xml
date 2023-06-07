@@ -302,5 +302,15 @@
             android:name="com.example.thp101g2_android_school.MemOthersFollowersFragment"
             android:label="fragment_mem_others_followers"
             tools:layout="@layout/fragment_mem_others_followers" />
+    <fragment
+            android:id="@+id/memOthersFansFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemOthersFansFragment"
+            android:label="fragment_mem_others_fans"
+            tools:layout="@layout/fragment_mem_others_fans" />
+    <fragment
+            android:id="@+id/memOthersFollowersFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemOthersFollowersFragment"
+            android:label="fragment_mem_others_followers"
+            tools:layout="@layout/fragment_mem_others_followers" />
 
 </navigation>
