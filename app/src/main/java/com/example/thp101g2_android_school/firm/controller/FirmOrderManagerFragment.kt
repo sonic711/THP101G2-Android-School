@@ -17,6 +17,7 @@ import com.google.android.material.color.MaterialColors.getColor
 
 class FirmOrderManagerFragment : Fragment() {
     private lateinit var binding : FragmentFirmOrderManagerBinding
+    private val viewModel: FirmOrdersViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +30,7 @@ class FirmOrderManagerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.loadOrders()
         with(binding){
             // STEP01.設定recyclerView顯示格式，因需要監控LiveData，去補充FirmOrdersViewModel
             recyclerViewOrder.layoutManager = LinearLayoutManager(requireContext())

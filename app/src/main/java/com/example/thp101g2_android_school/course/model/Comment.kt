@@ -4,13 +4,14 @@ import java.io.Serializable
 
 data class Comment  (
     var commentId:Int? = null,
-    var memberNo: Int,
-    var courseId: Int,
-    var comment: String? = "",
+    var memberNo: Int? = 1,
+    var courseId: Int? = 1,
+    var comment: String?,
     var commentReport: Boolean? = null,
     var updateTime: String? = null,
     var image: ByteArray? = null,
-    var userId: String? = "",
-    var courseName: String? = "",
-    var rating: Int
+    var userId: String? = null,
+    var courseName: String? = "a",
+    var rating: String?
     ) : Serializable
+//記得把NULL改掉

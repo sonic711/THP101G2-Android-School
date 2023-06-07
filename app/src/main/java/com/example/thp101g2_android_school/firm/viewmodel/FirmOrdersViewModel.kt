@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.firm.model.Firm
 import com.example.thp101g2_android_school.firm.model.FirmProduct
 import com.example.thp101g2_android_school.firm.model.Order
 import com.google.gson.reflect.TypeToken
@@ -22,15 +23,17 @@ class FirmOrdersViewModel:ViewModel() {
         loadOrders()
     }
 
-    private fun loadOrders() {
-        //val firmId = 3
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/ordermanager/firm"//$firmId
+    fun loadOrders() {
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/ordermanager/firm/$FNO"//$firmId
         val type = object : TypeToken<List<Order>>() {}.type
         val list = requestTask<List<Order>>(url, respBodyType = type)
+        orderList = list!!.toMutableList()
 
-        for(item in list!!){
-            orderList.add(item)
-        }
+//        for(item in list!!){
+//            orderList.add(item)
+//        }
 
         this.orderList = orderList
         this.orders.value = this.orderList

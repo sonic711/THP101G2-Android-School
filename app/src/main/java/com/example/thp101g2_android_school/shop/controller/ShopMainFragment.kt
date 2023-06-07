@@ -48,7 +48,7 @@ class ShopMainFragment : Fragment() {
             recyclerView.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
             viewModel?.products?.observe(viewLifecycleOwner) { products ->
-                // adapter為null要建立新的adapter；之後只要呼叫updateFriends(friends)即可
+                // adapter為null要建立新的adapter；之後只要呼叫updateProducts(products)即可
                 //TODO:加載progress bar android
                 if (recyclerView.adapter == null) {
                     recyclerView.adapter = ProductAdapter(products, favoriteProducts,shoppingCartProducts)

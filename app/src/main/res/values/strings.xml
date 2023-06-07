@@ -193,4 +193,17 @@
     <string name="txtFavDelete">從我的最愛移除</string>
     <string name="txtStartCourse">開始上課</string>
     <string name="txtMyDelete">從我的課程移除</string>
+    <string name="txtFollow">追蹤</string>
+    <string name="txtIamManager">我是管理員</string>
+    <string name="etManageAc">請輸入帳號</string>
+    <string name="txtManageAc">帳號</string>
+    <string name="txtFirmProductCount">商品數量</string>
+    <string name="txtProductOnSuccessful">商品上架成功</string>
+    <string name="txtHProductName">請輸入商品名稱</string>
+    <string name="txtHProductPrice">請輸入商品價格</string>
+    <string name="txtHProductCount">請輸入商品數量</string>
+    <string name="txtHShopName">請輸入廠商名稱</string>
+    <string name="txtHProductClass">請輸入商品分類</string>
+    <string name="txtHProductTag">請輸入商品標籤</string>
+    <string name="txtHProductInfo">請輸入商品簡介</string>
 </resources>

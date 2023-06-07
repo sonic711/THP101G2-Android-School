@@ -3,6 +3,7 @@ package com.example.thp101g2_android_school.firm.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.firm.model.Firm
 import com.example.thp101g2_android_school.firm.model.Order
 import com.google.gson.reflect.TypeToken
 
@@ -17,8 +18,10 @@ class FirmDatasCenterViewModel :ViewModel() {
     }
 
     // 網址待更改
-    private fun loadDatas() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/datacenter/firm"
+    fun loadDatas() {
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/datacenter/firm/$FNO"
         val type = object : TypeToken<List<Order>>() {}.type
         val list = requestTask<List<Order>>(url, respBodyType = type) ?: return
         dataCenterList = list.toMutableList()

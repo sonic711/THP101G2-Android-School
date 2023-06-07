@@ -13,7 +13,7 @@ import com.example.thp101g2_android_school.firm.viewmodel.FirmDatasCenterViewMod
 
 class FirmDataCenterFragment : Fragment() {
     private lateinit var binding : FragmentFirmDataCenterBinding
-
+    private val viewModel: FirmDatasCenterViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,6 +26,7 @@ class FirmDataCenterFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.loadDatas()
         with(binding){
             // STEP01.設定recyclerView顯示格式，因需要監控LiveData，去補充DataCenterViewModel
             recyclerViewDataCenter.layoutManager=LinearLayoutManager(requireContext())

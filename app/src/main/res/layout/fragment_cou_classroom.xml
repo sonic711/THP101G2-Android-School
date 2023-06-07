@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <VideoView
-            android:id="@+id/vv"
+            android:id="@+id/videoView"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,6 +31,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="200dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/vv" />
+            app:layout_constraintTop_toTopOf="@+id/videoView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

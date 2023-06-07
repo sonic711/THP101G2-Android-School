@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.fragment.app.viewModels
@@ -40,12 +42,26 @@ class FirmProductEditDetailFragment : Fragment() {
             }
         }
         with(binding){
+            viewModel?.finished?.observe(viewLifecycleOwner){ finished->
+                if (finished){
+                    Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
+                }
+            }
+
             ibProductEditToBack.setOnClickListener{
                 Navigation.findNavController(it).popBackStack()
 
             }
             btFirmCancelEdit.setOnClickListener { btCan->
                 Navigation.findNavController(btCan).popBackStack()
+            }
+            btFirmConEdit.setOnClickListener {
+//                Navigation.findNavController(requireView()).navigateUp()
+                Navigation.findNavController(view).popBackStack()
+
+
+//                val result = Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
+//                Log.d("TAG_","onViewCreated:$result")
             }
 
             // 監聽此圖片是否被點擊

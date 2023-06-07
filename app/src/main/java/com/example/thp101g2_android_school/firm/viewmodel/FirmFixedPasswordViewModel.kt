@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
 import com.google.gson.JsonObject
-
+// 先不用
 class FirmFixedPasswordViewModel :ViewModel() {
 
 

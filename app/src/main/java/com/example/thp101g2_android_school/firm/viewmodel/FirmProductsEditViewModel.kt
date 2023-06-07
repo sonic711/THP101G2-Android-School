@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.firm.model.Firm
 import com.example.thp101g2_android_school.firm.model.FirmProduct
 import com.google.gson.reflect.TypeToken
 
@@ -18,18 +19,22 @@ class FirmProductsEditViewModel : ViewModel(){
         loadProductsManger()
     }
     /** 模擬取得遠端資料 */
-    private fun loadProductsManger() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productmanageall"
+    fun loadProductsManger() {
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productmanage/$FNO"
         val type = object : TypeToken<List<FirmProduct>>() {}.type
         val list = requestTask<List<FirmProduct>>(url, respBodyType = type)
-
-        for(item in list!!){
-            productsManagerList.add(item)
-        }
+        productsManagerList = list!!.toMutableList()
+//        for(item in list!!){
+//            productsManagerList.add(item)
+//        }
         this.productsManagerList = productsManagerList
         this.productsManager.value = this.productsManagerList
         // update
     }
+
+
 
     fun allProduct(){
         // productsManagerList的每一筆資料取出

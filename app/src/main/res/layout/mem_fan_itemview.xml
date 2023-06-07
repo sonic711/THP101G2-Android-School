@@ -15,12 +15,19 @@
         android:gravity="center_vertical"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/ivUserPhoto"
+        <androidx.cardview.widget.CardView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            app:imgBase64="@={viewModel.fan.profilePhoto64}"
-            app:srcCompat="@drawable/mem_userphoto" />
+            android:layout_gravity="top|start"
+            app:cardCornerRadius="80dp">
+
+            <ImageView
+                android:id="@+id/ivProfilePic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/mem_userphoto"
+                app:imgBase64="@{viewModel.fan.profilePhoto64}" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvUserID"
@@ -34,13 +41,17 @@
             android:layout_marginEnd="8dp"
             tools:text="UserId" />
 
-        <Button
-            android:id="@+id/btUnblock"
+        <ToggleButton
+            android:id="@+id/btFollow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_primary"
-            android:text="@string/btFollow"
+            android:background="@drawable/tooglebutton_selector"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textOff="@string/txtFollow"
+            android:textOn="@string/txtFollowing"
             android:textSize="16sp"
             app:backgroundTint="@null" />
+
     </LinearLayout>
 </layout>

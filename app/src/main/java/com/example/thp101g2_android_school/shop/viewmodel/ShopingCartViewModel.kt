@@ -5,13 +5,11 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thp101g2_android_school.shop.model.PointSelect
-import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopingCart
 
 class ShopingCartViewModel : ViewModel() {
     val cartproduct: MutableLiveData<ShopingCart> by lazy { MutableLiveData<ShopingCart>() }
-    val pointselect:MutableLiveData<PointSelect> by lazy {MutableLiveData<PointSelect>()}
+//    val pointselect:MutableLiveData<PointSelect> by lazy {MutableLiveData<PointSelect>()}
 
     companion object {
         @BindingAdapter("imageByteArray")
