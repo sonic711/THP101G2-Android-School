@@ -45,9 +45,10 @@ class FirmShopSettingViewModel :ViewModel() {
     }
 
     private fun loadFirmMember() {
-        firm.value?.firmNo=3
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
 
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firmData/3"
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firmData/$FNO"
         val type = object : TypeToken<Firm>() {}.type
         val result = requestTask<Firm>(url, respBodyType = type)
 //        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firmData/3"
@@ -58,7 +59,9 @@ class FirmShopSettingViewModel :ViewModel() {
         }
     }
     fun doPUT(){
-        val result = requestTask<JSONObject>("$url/firmData", "PUT", firm.value)
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
+        val result = requestTask<JSONObject>("$url/firmData/$FNO", "PUT", firm.value)
         println(result)
     }
 

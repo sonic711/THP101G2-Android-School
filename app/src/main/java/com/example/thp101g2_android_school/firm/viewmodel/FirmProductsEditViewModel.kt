@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.firm.model.Firm
 import com.example.thp101g2_android_school.firm.model.FirmProduct
 import com.google.gson.reflect.TypeToken
 
@@ -19,7 +20,9 @@ class FirmProductsEditViewModel : ViewModel(){
     }
     /** 模擬取得遠端資料 */
     fun loadProductsManger() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productmanage"
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productmanage/$FNO"
         val type = object : TypeToken<List<FirmProduct>>() {}.type
         val list = requestTask<List<FirmProduct>>(url, respBodyType = type)
         productsManagerList = list!!.toMutableList()

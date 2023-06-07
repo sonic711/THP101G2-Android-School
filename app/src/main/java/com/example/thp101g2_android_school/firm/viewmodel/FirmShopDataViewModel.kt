@@ -33,7 +33,9 @@ class FirmShopDataViewModel :ViewModel() {
     }
 
     private fun loadFirmShopData() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firm/personaldata/3"
+        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+        val FNO = currentFirm?.firmNo
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firm/personaldata/$FNO"
         val result = requestTask<FirmShopData>(url)
         result?.let {
             firm.value = it
