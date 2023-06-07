@@ -29,11 +29,6 @@ class PointFragment : Fragment() {
         binding = FragmentPointBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-
-
-
-
         return binding.root
     }
 
@@ -41,8 +36,13 @@ class PointFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            viewModel?.reasons?.observe(viewLifecycleOwner) { reasons ->
-                recyclerView.adapter = PointAdapter(reasons)
+
+            val pointAdapter = PointAdapter(emptyList())
+            recyclerView.adapter = pointAdapter
+
+            val pointViewModel: PointViewModel by viewModels()
+            pointViewModel.reasons.observe(viewLifecycleOwner) { reasons ->
+                pointAdapter.updateReasons(reasons)
             }
 
 

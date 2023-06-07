@@ -59,17 +59,16 @@
         </LinearLayout>
 
             <TextView
-                android:id="@+id/tvDateOfCh"
+                android:id="@+id/tvReasonCh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:text="積分變動原因"
                 android:layout_gravity="center_horizontal"
                 android:textSize="12sp" />
 
 
             <TextView
-                android:id="@+id/tvReasonCh"
+                android:id="@+id/tvDateOfCh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"

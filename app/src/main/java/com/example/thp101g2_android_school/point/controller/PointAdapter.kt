@@ -1,6 +1,7 @@
 package com.example.thp101g2_android_school.point.controller
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.findViewTreeLifecycleOwner
@@ -39,7 +40,16 @@ class PointAdapter(private var reasons: List<Point>) :
         val reason = reasons[position]
         with(holder) {
             itemViewBinding.viewModel?.reason ?. value = reason
-            val bundle = Bundle()
+            itemViewBinding.executePendingBindings()
+            var text = when (reason.valueOfChanged) {
+                1 -> "登入成功"
+                5 -> "課程評分完成"
+                20 -> "課程完成率達100%"
+                else -> "使用積分折抵"
+            }
+            itemViewBinding.tvReasonCh.text= text
+//            itemViewBinding.viewModel?.reason ?. value = reason
+//            val bundle = Bundle()
 //            bundle.putSerializable("reason", reason)
 
         }
