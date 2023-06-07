@@ -1,6 +1,8 @@
-package com.example.thp101g2_android_school.member.controller
+package com.example.thp101g2_android_school
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +11,23 @@ import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.databinding.FragmentMemFansBinding
+import com.example.thp101g2_android_school.databinding.FragmentMemOthersFansBinding
+import com.example.thp101g2_android_school.member.controller.FanAdapter
+import com.example.thp101g2_android_school.member.controller.OthersFanAdapter
+import com.example.thp101g2_android_school.member.viewModel.MemOthersHomeViewModel
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
 
-class MemFansFragment : Fragment() {
-    private lateinit var binding: FragmentMemFansBinding
-    private val viewModel: MemberViewModel by activityViewModels()
+class MemOthersFansFragment : Fragment() {
+    private lateinit var binding: FragmentMemOthersFansBinding
+    private val viewModel: MemOthersHomeViewModel by activityViewModels()
+    private val my_tag = "TAG_${javaClass.simpleName}"
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMemFansBinding.inflate(inflater, container, false)
+        binding = FragmentMemOthersFansBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -27,11 +36,13 @@ class MemFansFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            Log.d(my_tag, "FansSize: ${viewModel?.fans?.value?.size}")
             viewModel?.fans?.observe(viewLifecycleOwner) { fans ->
+
                 if (recyclerView.adapter == null) {
-                    recyclerView.adapter = FanAdapter(fans)
+                    recyclerView.adapter = OthersFanAdapter(fans)
                 } else {
-                    (recyclerView.adapter as FanAdapter).updateFans(fans)
+                    (recyclerView.adapter as OthersFanAdapter).updateFans(fans)
                 }
             }
             viewModel!!.loadFans()

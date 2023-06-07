@@ -8,6 +8,13 @@ data class Follower(
     var nickname: String = "",
     var memberIdentity: String = "",
     var profilePhoto64: String? = null, // Base64
+    var coverPicture64: String? = null, // Base64
     var memberStatus: Int? = null,
     var introduction: String = ""
-): java.io.Serializable
+): java.io.Serializable{
+
+    override fun toString(): String {
+        return "memberNo = $memberNo, userId = $userId, photo = $profilePhoto64 "
+    }
+
+}

@@ -5,15 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thp101g2_android_school.app.requestTask
-import com.example.thp101g2_android_school.course.model.Courses
 import com.example.thp101g2_android_school.member.model.Follower
 import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
+import java.util.Objects
 
-class MemberViewModel: ViewModel() {
-    val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/members"
+class MemOthersHomeViewModel : ViewModel() {
     val member: MutableLiveData<Member> by lazy { MutableLiveData<Member>(Member()) }
 
     val follower: MutableLiveData<Follower> by lazy { MutableLiveData<Follower>(Follower()) }
@@ -26,15 +25,25 @@ class MemberViewModel: ViewModel() {
 
     private var followerList = mutableListOf<Follower>() // 裝全部 followers
     private var fanList = mutableListOf<Follower>() // 裝全部 fans
+
+    private var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+
     fun initialize(){
         viewModelScope.launch {
-            member.value = requestTask(url, "OPTIONS")
             loadFollowers()
             loadFans()
         }
     }
 
-    private fun loadFollowers() {
+    fun getCurrentMember(): Member?{
+        return currentMember
+    }
+
+    fun loadCurrentMember() {
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/members"
+    }
+
+    fun loadFollowers() {
         val urlFollow = "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers/${member.value!!.memberNo}"
         val type = object : TypeToken<MutableList<Follower>>() {}.type
         val list = requestTask<MutableList<Follower>>(urlFollow, respBodyType = type)
@@ -52,6 +61,28 @@ class MemberViewModel: ViewModel() {
         fans.value = list
         fans.value?.let {
             fanList = it
+        }
+    }
+
+
+    fun addFollower(member: Member?) {
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers"
+        val respBody =
+            requestTask<JsonObject>(url, "POST", member)
+    }
+
+    fun searchFollowBackList(): MutableList<Follower>? {
+        val urlFollowBack = "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers"
+        val type = object : TypeToken<MutableList<Follower>>() {}.type
+        return requestTask<MutableList<Follower>>(urlFollowBack, "OPTIONS", respBodyType = type)
+    }
+
+    fun unfollow(memberFollowing: Int?) {
+        memberFollowing?.let {
+            requestTask<JsonObject>(
+                "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/fans/$memberFollowing",
+                "DELETE"
+            )
         }
     }
 
@@ -82,37 +113,4 @@ class MemberViewModel: ViewModel() {
             fans.value = searchList
         }
     }
-
-    fun addFollower(member: Member?) {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers"
-        val respBody =
-            requestTask<JsonObject>(url, "POST", member)
-        Log.d("xxx", respBody.toString())
-    }
-
-    // FIXME 取消追蹤對方
-    fun unfollow(memberFollowing: Int?) {
-        memberFollowing?.let {
-            requestTask<JsonObject>(
-                "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/fans/$memberFollowing",
-                "DELETE"
-            )
-        }
-    }
-
-    //刪除他人的追蹤
-    fun deleteFollower(id: Int?) {
-        requestTask<JsonObject>(
-            "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers/$id",
-            "DELETE"
-        )
-    }
-
-    fun searchFollowBackList(): MutableList<Follower>? {
-        val urlFollowBack = "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers"
-        val type = object : TypeToken<MutableList<Follower>>() {}.type
-        return requestTask<MutableList<Follower>>(urlFollowBack, "OPTIONS", respBodyType = type)
-    }
-
-
 }

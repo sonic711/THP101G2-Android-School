@@ -39,21 +39,16 @@ class FollowerAdapter(private var followers: MutableList<Follower>) : RecyclerVi
         with(holder) {
             itemViewBinding.viewModel?.follower?.value = follower
             val bundle = Bundle()
-            bundle.putSerializable("follower", follower)
+            bundle.putSerializable("member", follower)
             itemView.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.memMainFragment, bundle)
+                Navigation.findNavController(it).navigate(R.id.memOthersHomeFragment, bundle)
             }
             itemViewBinding.btDelete.setOnClickListener {
-
-                // FIXME 發請求給後端刪除
                 AlertDialog.Builder(holder.itemView.context)
                     .setMessage("確定要刪除此用戶嗎？")
                     .setPositiveButton("確定") { dialog, which ->
                         val id = follower.memberFollowingId
-                        val respbody = requestTask<JsonObject>(
-                            "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers/$id",
-                            "DELETE"
-                        )
+                        holder.itemViewBinding.viewModel?.deleteFollower(id)
                         followers.removeAt(position)
                         notifyItemRemoved(adapterPosition)
                         notifyDataSetChanged()

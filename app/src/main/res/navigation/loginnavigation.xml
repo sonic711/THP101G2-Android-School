@@ -64,5 +64,10 @@
         android:name="com.example.thp101g2_android_school.member.controller.ChangePasswordFragment"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password"/>
+    <fragment
+        android:id="@+id/loginFirmFragment"
+        android:name="com.example.thp101g2_android_school.LoginFirmFragment"
+        android:label="fragment_login_firm"
+        tools:layout="@layout/fragment_login_firm" />
 
 </navigation>
