@@ -37,9 +37,9 @@ class MemMainFragment : Fragment() {
             tvFollowingNum.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.memFollowersFragment)
             }
-//            tvFansNum.setOnClickListener {
-//                Navigation.findNavController(it).navigate(R.id.memFansFragment)
-//            }
+            tvFansNum.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.memFansFragment)
+            }
         }
 
     }

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.member.viewModel.MemberViewModel" />
+            type="com.example.thp101g2_android_school.member.viewModel.MemOthersHomeViewModel" />
     </data>
 
     <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/mem_userphoto"
-                app:imgBase64="@{viewModel.fan.profilePhoto64}" />
+                app:imgBase64="@{viewModel.follower.profilePhoto64}" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@={viewModel.fan.userId}"
+            android:text="@={viewModel.follower.userId}"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginStart="8dp"

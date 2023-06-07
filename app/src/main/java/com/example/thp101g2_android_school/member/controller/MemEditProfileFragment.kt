@@ -52,9 +52,7 @@ class MemEditProfileFragment : Fragment() {
         with(binding) {
             viewModel?.initialize()
             val bottomSheetBehavior = BottomSheetBehavior.from(included.bottomSheet)
-            if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_COLLAPSED) {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-            }
+
             btChangePic.setOnClickListener {
                 if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
                     bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -67,7 +65,9 @@ class MemEditProfileFragment : Fragment() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 )
                 pickPictureLauncher.launch(intent)
-
+                if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_COLLAPSED) {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                }
             }
 
             included.tvCoverPicture.setOnClickListener {
@@ -77,6 +77,9 @@ class MemEditProfileFragment : Fragment() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 )
                 pickPictureLauncher2.launch(intent)
+                if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_COLLAPSED) {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                }
             }
             btSubmit.setOnClickListener {
                 if (!inputValid()) {
