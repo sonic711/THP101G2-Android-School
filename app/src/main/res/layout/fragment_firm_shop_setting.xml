@@ -137,6 +137,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/button_secondary"
             android:text="@string/txtFirmDataEdit"
+            android:onClick="@{_->viewModel.doPUT()}"
             android:textColor="@color/purple_400"
             android:textSize="24sp"
             app:backgroundTint="@null"

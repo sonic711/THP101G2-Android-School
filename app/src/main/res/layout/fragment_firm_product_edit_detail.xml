@@ -48,11 +48,11 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="24dp"
                 android:ems="10"
-                android:text="@={viewModel.productEdit.shopProductName}"
+                android:hint="@string/txtHProductName"
                 android:inputType="textMultiLine"
+                android:text="@={viewModel.productEdit.shopProductName}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditName"
-                app:layout_constraintTop_toBottomOf="@+id/ivFirmProductEdit"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/ivFirmProductEdit" />
 
             <TextView
                 android:id="@+id/tvFirmProductEditPrice"
@@ -72,8 +72,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+                android:hint="@string/txtHProductPrice"
                 android:inputType="number"
-                android:text="@{viewModel.productEdit.shopProductPrice}"
+                android:text="@={viewModel.productEdit.shopProductPrice}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditPrice"
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditName" />
 
@@ -86,7 +87,7 @@
                 android:text="@string/txtFirmShopName"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditCount" />
 
             <EditText
                 android:id="@+id/etFirmProductEditShopName"
@@ -95,11 +96,12 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+
+                android:hint="@string/txtHShopName"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.productEdit.shopName}"
-                android:enabled="false"
                 app:layout_constraintStart_toEndOf="@+id/tvFirnProductEditFirm"
-                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditCount" />
 
             <TextView
                 android:id="@+id/tvFirmProductEditClass"
@@ -119,6 +121,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+                android:hint="@string/txtHProductClass"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.productEdit.shopProductClass}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditClass"
@@ -142,6 +145,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+                android:hint="@string/txtHProductTag"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.productEdit.shopProductSearch}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditTag"
@@ -166,6 +170,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:ems="10"
+                android:hint="@string/txtHProductInfo"
                 android:inputType="textMultiLine"
                 android:text="@={viewModel.productEdit.shopProductDesc}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -193,6 +198,7 @@
                 android:layout_marginEnd="80dp"
                 android:background="@drawable/button_secondary"
                 android:text="@string/txtFirmConEdit"
+                android:onClick="@{_->viewModel.doPUT()}"
                 android:textColor="@color/purple_400"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -208,15 +214,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <TextView
                 android:id="@+id/btFirmProductPictureEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="130dp"
+                android:layout_marginEnd="60dp"
                 android:text="@string/txtFirmEditProductPicture"
+                android:textColor="@color/purple_400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvFirmProductEditCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmProductCount"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductEditPrice" />
+
+            <EditText
+                android:id="@+id/etFirmProductEditCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/txtHProductCount"
+                android:inputType="number"
+                android:text="@={viewModel.productEdit.shopProductCount}"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductEditCount"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductEditPrice" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

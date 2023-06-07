@@ -27,6 +27,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/baseline_add_product_photo_24"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +49,9 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="24dp"
                 android:ems="10"
+                android:hint="@string/txtHProductName"
                 android:inputType="textPersonName"
+                android:text="@={viewModel.productOn.shopProductName}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnName"
                 app:layout_constraintTop_toBottomOf="@+id/ivFirmProductOn" />
 
@@ -70,7 +73,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+                android:hint="@string/txtHProductPrice"
                 android:inputType="number"
+                android:text="@={viewModel.productOn.shopProductPrice}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnPrice"
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnName" />
 
@@ -83,7 +88,7 @@
                 android:text="@string/txtFirmShopName"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductCount" />
 
             <EditText
                 android:id="@+id/etFirmProductOnShopName"
@@ -92,10 +97,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:enabled="false"
+                android:hint="@string/txtHShopName"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.productOn.shopName}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnFirm"
-                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductCount" />
 
             <TextView
                 android:id="@+id/tvFirmProductOnClass"
@@ -115,7 +122,9 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+                android:hint="@string/txtHProductClass"
                 android:inputType="textPersonName"
+                android:text="@={viewModel.productOn.shopProductClass}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnClass"
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnShopName" />
 
@@ -137,7 +146,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+                android:hint="@string/txtHProductTag"
                 android:inputType="textPersonName"
+                android:text="@={viewModel.productOn.shopProductSearch}"
                 app:layout_constraintStart_toEndOf="@+id/tvFirmProductOnTag"
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnClass" />
 
@@ -159,7 +170,9 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
+                android:hint="@string/txtHProductInfo"
                 android:inputType="textMultiLine"
+                android:text="@={viewModel.productOn.shopProductDesc}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnInfo" />
 
@@ -184,20 +197,46 @@
                 android:layout_marginEnd="80dp"
                 android:background="@drawable/button_secondary"
                 android:text="@string/txtFirmConOn"
+                android:onClick="@(view)->viewModel.doPOST()}"
                 android:textColor="@color/purple_400"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnInfo" />
 
-            <Button
+            <TextView
                 android:id="@+id/btFirmProductOnPicture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="130dp"
+                android:layout_marginEnd="60dp"
                 android:text="@string/txtFirmEditProductPicture"
+                android:textColor="@color/purple_400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvFirmProductCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/txtFirmProductCount"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFirmProductOnPrice" />
+
+            <EditText
+                android:id="@+id/etFirmProductCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/txtHProductCount"
+                android:inputType="number"
+                android:text="@={viewModel.productOn.shopProductCount}"
+                app:layout_constraintStart_toEndOf="@+id/tvFirmProductCount"
+                app:layout_constraintTop_toBottomOf="@+id/etFirmProductOnPrice" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

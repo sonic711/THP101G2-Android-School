@@ -18,18 +18,20 @@ class FirmProductsEditViewModel : ViewModel(){
         loadProductsManger()
     }
     /** 模擬取得遠端資料 */
-    private fun loadProductsManger() {
-        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productmanageall"
+    fun loadProductsManger() {
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productmanage"
         val type = object : TypeToken<List<FirmProduct>>() {}.type
         val list = requestTask<List<FirmProduct>>(url, respBodyType = type)
-
-        for(item in list!!){
-            productsManagerList.add(item)
-        }
+        productsManagerList = list!!.toMutableList()
+//        for(item in list!!){
+//            productsManagerList.add(item)
+//        }
         this.productsManagerList = productsManagerList
         this.productsManager.value = this.productsManagerList
         // update
     }
+
+
 
     fun allProduct(){
         // productsManagerList的每一筆資料取出

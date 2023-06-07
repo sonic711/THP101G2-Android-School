@@ -13,10 +13,11 @@ class Order (
     var shopOrderStatus:String? = null,
     var shopOrderpayTime:String? = null,
     var shopOrdercreateTime : String? = null,
-//    var shopOrderDescId :String? = null,
     var shopProductName : String? = null,
     var shopProductPrice : String? = null,
     var shopProductSales : String? = null,
-    var shopProductImg: ByteArray? = null
+    var shopOrderImg: ByteArray? = null,
+    var firmNo: String? =null,
+
 ):
     Serializable
