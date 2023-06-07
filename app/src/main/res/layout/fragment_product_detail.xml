@@ -37,7 +37,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/java"
                 app:imageByteArray="@{viewModel.product.shopProductImage}" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
