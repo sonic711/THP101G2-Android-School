@@ -28,6 +28,7 @@ class CouFavoriteFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         with(binding){
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.favcourses?.observe(viewLifecycleOwner){favcourses ->
@@ -38,5 +39,7 @@ class CouFavoriteFragment : Fragment() {
                 }
             }
         }
+
+
     }
 }

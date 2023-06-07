@@ -5,7 +5,7 @@ import java.io.Serializable
 
 class Firm(
     var firmNo:Int? = null,
-    var userId:Int? = null,
+    var userId:String? = null,
     var password:String? = null,
     var shopName:String? = null,
     var phoneNumber:String? = null,
@@ -16,6 +16,6 @@ class Firm(
     var createdAt:String? = null,
     var shopInfo:String? = null,
     var profilePhoto64:String? = null,
-    var coverPhoto64:String
+    var coverPhoto64:String? = null
     ):
     Serializable

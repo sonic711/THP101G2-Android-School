@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.member.controller
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,8 +9,6 @@ import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.databinding.FragmentMemFollowersBinding
-import com.example.thp101g2_android_school.member.controller.FollowerAdapter
-import com.example.thp101g2_android_school.member.viewModel.MemFollowersViewModel
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
 
 class MemFollowersFragment : Fragment() {
@@ -42,7 +39,7 @@ class MemFollowersFragment : Fragment() {
             }
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel?.search(newText)
+                    viewModel?.searchFollower(newText)
                     return true
                 }
 

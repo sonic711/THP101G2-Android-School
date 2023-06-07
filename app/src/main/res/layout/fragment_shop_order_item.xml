@@ -32,7 +32,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:imageResource="@{viewModel.order.imageId}"
+                    app:imageByteArray="@{viewModel.order.shopOrderImg}"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.cardview.widget.CardView>
 
@@ -43,7 +43,7 @@
                 android:layout_marginStart="10dp"
                 app:layout_constraintStart_toEndOf="@+id/childCardView"
                 app:layout_constraintTop_toTopOf="@+id/childCardView"
-                tools:text="@{viewModel.order.name}" />
+                tools:text="@{viewModel.order.shopProductName}" />
 
             <TextView
                 android:id="@+id/tvClass"
@@ -52,7 +52,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toEndOf="@+id/childCardView"
                 app:layout_constraintTop_toBottomOf="@+id/tvMemberName"
-                tools:text="@{viewModel.order.orderid}" />
+                tools:text="@{viewModel.order.shopOrderId}" />
 
             <TextView
                 android:id="@+id/tvDate"
@@ -61,7 +61,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toEndOf="@+id/childCardView"
                 app:layout_constraintTop_toBottomOf="@+id/tvClass"
-                tools:text="@{viewModel.order.crtime}" />
+                tools:text="@{viewModel.order.shopOrdercreateTime}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -19,8 +19,9 @@ import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
 
-class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
+class ShopingCartAdapter(private var cartproducts: List<ShopingCart>) :
     RecyclerView.Adapter<ShopingCartAdapter.ShopingCartViewHolder>() {
+
 
 
     fun updateProduct(products: List<ShopingCart>) {
@@ -29,7 +30,7 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
     }
 
     class ShopingCartViewHolder(val itemViewBinding: FragmentShopingCartItemviewBinding) :
-        RecyclerView.ViewHolder(itemViewBinding.root){
+        RecyclerView.ViewHolder(itemViewBinding.root) {
         init {
             itemViewBinding.btBuy.visibility = View.GONE
         }
@@ -40,8 +41,8 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopingCartViewHolder{
-        val itemViewBinding =  FragmentShopingCartItemviewBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopingCartViewHolder {
+        val itemViewBinding = FragmentShopingCartItemviewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         itemViewBinding.viewModel = ShopingCartViewModel()
@@ -60,20 +61,22 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
                 val etAddProduct: EditText = itemViewBinding.root.findViewById(R.id.etAddProduct)
                 val currentValue = etAddProduct.text.toString().toIntOrNull() ?: 0
                 val newValue = if (currentValue < 99) currentValue + 1 else 99
-//                itemViewBinding.btBuy.setOnClickListener {
-//                    val etAddProduct: EditText = itemViewBinding.root.findViewById(R.id.etAddProduct)
-//                    val quantity = etAddProduct.text.toString().toIntOrNull() ?: 0
-//                    // 将数量传递到另一个界面
-//                    val context = itemView.context
-//                    val intent = Intent(context, ShopBuyFragment::class.java)
-//                    intent.putExtra("quantity", quantity)
-//                }
                 //若要即時更新 EditText 的內容並限制輸入數字的範圍，可以在 EditText 上設置 TextWatcher 監聽器。這樣當使用者輸入數字時，可以即時更新 EditText 的值並進行相關的邏輯處理。.jerry
                 itemViewBinding.etAddProduct.addTextChangedListener(object : TextWatcher {
-                    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) {
                     }
 
-                    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
                     }
 
                     override fun afterTextChanged(s: Editable?) {
@@ -84,16 +87,19 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
                             newValue > 99 -> 99
                             else -> newValue
                         }
-                        val finalValue = if (updatedValue > cartproduct.shopProductCount) cartproduct.shopProductCount else updatedValue
+                        val finalValue =
+                            if (updatedValue > cartproduct.shopProductCount) cartproduct.shopProductCount else updatedValue
                         if (finalValue != newValue) {
                             cartproduct.shopProductCount = finalValue
                             itemViewBinding.etAddProduct.setText(finalValue.toString())
                         }
-                        itemViewBinding.btBuy.visibility = if (finalValue != 0) View.VISIBLE else View.GONE
+                        itemViewBinding.btBuy.visibility =
+                            if (finalValue != 0) View.VISIBLE else View.GONE
                     }
                 })
                 etAddProduct.setText(newValue.toString())
             }
+
 
 
 
@@ -140,7 +146,6 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart> ) :
                 navController.navigate(R.id.action_shopFrontFragment_to_shopBuyFragment, bundle)
             }
         }
-
 
 
     }

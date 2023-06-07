@@ -129,8 +129,8 @@
             android:label="fragment_cou_my_course"
             tools:layout="@layout/fragment_cou_my_course">
         <action
-                android:id="@+id/action_couMyCourseFragment_to_couClassroomFragment"
-                app:destination="@id/couClassroomFragment"/>
+                android:id="@+id/action_couMyCourseFragment_to_couMyCourseSelectFragment"
+                app:destination="@id/couMyCourseSelectFragment" />
     </fragment>
     <fragment
             android:id="@+id/couFavoriteFragment"
@@ -138,8 +138,8 @@
             android:label="fragment_cou_favorite"
             tools:layout="@layout/fragment_cou_favorite">
         <action
-                android:id="@+id/action_couFavoriteFragment_to_couClassroomFragment"
-                app:destination="@id/couClassroomFragment"/>
+                android:id="@+id/action_couFavoriteFragment_to_couFavoriteDetailFragment"
+                app:destination="@id/couFavoriteDetailFragment" />
     </fragment>
     <fragment
             android:id="@+id/memBlockFragment"
@@ -207,7 +207,11 @@
             android:id="@+id/couRateFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouRateFragment"
             android:label="fragment_cou_rate"
-            tools:layout="@layout/fragment_cou_rate" />
+            tools:layout="@layout/fragment_cou_rate" >
+        <action
+                android:id="@+id/action_couRateFragment_to_couRatingFragment"
+                app:destination="@id/couRatingFragment" />
+    </fragment>
     <fragment
             android:id="@+id/couUploadCourseFragment"
             android:name="com.example.thp101g2_android_school.course.controller.CouUploadCourseFragment"
@@ -259,5 +263,44 @@
             android:name="com.example.thp101g2_android_school.member.controller.MemFansFragment"
             android:label="fragment_mem_fans"
             tools:layout="@layout/fragment_mem_fans" />
+
+    <fragment
+            android:id="@+id/couFavoriteDetailFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouFavoriteDetailFragment"
+            android:label="fragment_cou_favorite_detail"
+            tools:layout="@layout/fragment_cou_favorite_detail" >
+        <action
+                android:id="@+id/action_couFavoriteDetailFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couMyCourseSelectFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouMyCourseSelectFragment"
+            android:label="fragment_cou_my_course_select"
+            tools:layout="@layout/fragment_cou_my_course_select" >
+        <action
+                android:id="@+id/action_couMyCourseSelectFragment_to_couClassroomFragment"
+                app:destination="@id/couClassroomFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/couRatingFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouRatingFragment"
+            android:label="fragment_cou_rating"
+            tools:layout="@layout/fragment_cou_rating" />
+    <fragment
+            android:id="@+id/memOthersHomeFragment"
+            android:name="com.example.thp101g2_android_school.member.controller.MemOthersHomeFragment"
+            android:label="fragment_mem_others_home"
+            tools:layout="@layout/fragment_mem_others_home" />
+    <fragment
+            android:id="@+id/memOthersFansFragment"
+            android:name="com.example.thp101g2_android_school.MemOthersFansFragment"
+            android:label="fragment_mem_others_fans"
+            tools:layout="@layout/fragment_mem_others_fans" />
+    <fragment
+            android:id="@+id/memOthersFollowersFragment"
+            android:name="com.example.thp101g2_android_school.MemOthersFollowersFragment"
+            android:label="fragment_mem_others_followers"
+            tools:layout="@layout/fragment_mem_others_followers" />
 
 </navigation>

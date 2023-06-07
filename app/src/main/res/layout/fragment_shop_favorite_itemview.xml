@@ -32,7 +32,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:imageResource="@{viewModel.favoriteproduct.imageId}"
+                    app:imageByteArray="@{viewModel.favoriteproduct.shopProductImage}"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.cardview.widget.CardView>
 

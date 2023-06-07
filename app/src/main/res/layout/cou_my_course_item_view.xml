@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.mycourse.coursesProgress}"
+                android:text="@{viewModel.test}"
                 android:textSize="18sp" />
 
 

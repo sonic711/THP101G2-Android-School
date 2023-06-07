@@ -18,38 +18,16 @@ class CouFavoriteViewModel : ViewModel() {
         loadData()
     }
 
-
-    private fun loadData() {
-        val url = "$url/favoritecourses/"
+    fun loadData() {
+        val url = "$url/favoritecourses/1"
         val type = object : TypeToken<List<FavCourse>>() {}.type
         val list = requestTask<List<FavCourse>>(url, respBodyType = type)
-        for (favcourses in list!!){
+        for (favcourses in list!!) {
             favcourseList.add(favcourses)
         }
         this.favcourseList = favcourseList
         this.favcourses.value = this.favcourseList
     }
 
-
-
-
-//    private fun loadFavcourses(){
-//        val favcourseList = mutableListOf<FavCourse>()
-//        favcourseList.add(FavCourse(R.drawable.java, "Java","Ron","5分(600個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.kotlin, "Kotlin","Ron","5分(450個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        favcourseList.add(FavCourse(R.drawable.python, "Python","William","4分(300個評論)"))
-//        this.favcourseList = favcourseList
-//        this.favcourses.value = this.favcourseList
-//    }
 
 }

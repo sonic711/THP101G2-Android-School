@@ -22,7 +22,7 @@ class PointViewModel : ViewModel() {
 
     private fun loadData(){
         val type = object : TypeToken<List<Point>>() {}.type
-        val list = requestTask<List<Point>>("$url/point/2", respBodyType = type) ?: return
+        val list = requestTask<List<Point>>("$url/point/1", respBodyType = type) ?: return
         this.reasonList = list.toMutableList()
         this.reasons.value = reasonList
 

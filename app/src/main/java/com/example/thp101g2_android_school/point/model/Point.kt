@@ -12,4 +12,5 @@ data class Point(
     val loginRecordId:String,
     val valueOfChanged:Int,
     val creatAt:String,
-    val rewardPoints:String)
+    val rewardPoints:String,
+    val type:String)

@@ -3,6 +3,7 @@ package com.example.thp101g2_android_school.app
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
@@ -22,6 +23,7 @@ fun ImageView.setImgBase64(base64: String?){
         val byteArray = Base64.getDecoder().decode(base64)
         val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
         setImageBitmap(bitmap)
+//        Log.d("TAG_setImgBase64", "base64: $base64")
     }
 }
 // 雙向綁定圖片
@@ -33,6 +35,7 @@ fun ImageView.getImgBase64(): String?{
         it.toBitmap().compress(Bitmap.CompressFormat.PNG, 100, stream)
         val byteArray = stream.toByteArray()
 //        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+//        Log.d("TAG_getImgBase64", "byteArray: $byteArray")
         return Base64.getEncoder().encodeToString(byteArray)
     }
     return null

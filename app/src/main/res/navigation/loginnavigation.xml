@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/loginnavigation"
-            app:startDestination="@id/loginFragment">
+            app:startDestination="@id/loginManagerFragment">
 
     <fragment android:id="@+id/TLoginMainFragment" android:name="com.example.thp101g2_android_school.TLoginMainFragment"
               android:label="fragment_t_login_main" tools:layout="@layout/fragment_t_login_main"/>
@@ -64,5 +64,15 @@
         android:name="com.example.thp101g2_android_school.member.controller.ChangePasswordFragment"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password"/>
+    <fragment
+        android:id="@+id/loginFirmFragment"
+        android:name="com.example.thp101g2_android_school.member.controller.LoginFirmFragment"
+        android:label="fragment_login_firm"
+        tools:layout="@layout/fragment_login_firm" />
+    <fragment
+        android:id="@+id/loginManagerFragment"
+        android:name="com.example.thp101g2_android_school.member.controller.LoginManagerFragment"
+        android:label="fragment_login_manager"
+        tools:layout="@layout/fragment_login_manager" />
 
 </navigation>
