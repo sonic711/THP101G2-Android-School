@@ -31,25 +31,25 @@ class LoginFirmFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
-//            btLogin.setOnClickListener {
-//                if (!inputValid()) {
-//                    return@setOnClickListener
-//                }
-//                val email = viewModel!!.firm.value!!.firmEmail.trim()
-//                val password = viewModel!!.firm.value!!.password.trim()
-//
-//                val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firms"
-//                val respBody =
-//                    requestTask<Firm>("$url/$email/$password")
-//                if (respBody?.firmNo != null) {
-//                    val intent = Intent(requireContext(), FirmMainActivity::class.java)
-//                    intent.putExtra("type", "user")
-//                    startActivity(intent)
-//                } else {
-//                    etEmail.error = "信箱或密碼錯誤"
-//                    etPassword.error = "信箱或密碼錯誤"
-//                }
-//            }
+            btLogin.setOnClickListener {
+                if (!inputValid()) {
+                    return@setOnClickListener
+                }
+                val email = viewModel!!.firm.value!!.firmEmail!!.trim()
+                val password = viewModel!!.firm.value!!.password!!.trim()
+
+                val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firms"
+                val respBody =
+                    requestTask<Firm>("$url/$email/$password")
+                if (respBody?.firmNo != null) {
+                    val intent = Intent(requireContext(), FirmMainActivity::class.java)
+                    intent.putExtra("type", "user")
+                    startActivity(intent)
+                } else {
+                    etEmail.error = "信箱或密碼錯誤"
+                    etPassword.error = "信箱或密碼錯誤"
+                }
+            }
         }
 
     }

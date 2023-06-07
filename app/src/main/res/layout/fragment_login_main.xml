@@ -81,8 +81,18 @@
                     android:id="@+id/btFirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/button_secondary"
                     android:text="@string/txtIamFirm"
+                    android:textColor="@color/purple_400"
+                    app:backgroundTint="@null" />
+
+                <Button
+                    android:id="@+id/btManager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_secondary"
+                    android:text="@string/txtIamManager"
                     android:textColor="@color/purple_400"
                     app:backgroundTint="@null" />
             </LinearLayout>
