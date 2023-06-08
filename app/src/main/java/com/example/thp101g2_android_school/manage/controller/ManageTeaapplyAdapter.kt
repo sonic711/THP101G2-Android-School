@@ -9,48 +9,51 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ManageComItemViewBinding
+import com.example.thp101g2_android_school.databinding.ManageTeaapplyItemViewBinding
 import com.example.thp101g2_android_school.manage.model.Comms
 import com.example.thp101g2_android_school.manage.model.ManageComReportBean
+import com.example.thp101g2_android_school.manage.model.TeaApplyBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageComViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageMemberViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageTeaApplyViewModel
 
 
-class ManageComAdapter(private var comms: List<ManageComReportBean>) :
-    RecyclerView.Adapter<ManageComAdapter.ComViewHolder>() {
+class ManageTeaApplyAdapter(private var teas: List<TeaApplyBean>) :
+    RecyclerView.Adapter<ManageTeaApplyAdapter.TeaViewHolder>() {
     @SuppressLint("NotifyDataSetChanged")
-    fun updateComments(comms: List<ManageComReportBean>) {
-        this.comms = comms
+    fun updateTeaApplies(teas: List<TeaApplyBean>) {
+        this.teas = teas
         notifyDataSetChanged()
     }
 
-    class ComViewHolder(val itemViewBinding: ManageComItemViewBinding) :
+    class TeaViewHolder(val itemViewBinding: ManageTeaapplyItemViewBinding) :
         RecyclerView.ViewHolder(itemViewBinding.root)
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComViewHolder {
-        val itemViewBinding = ManageComItemViewBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeaViewHolder {
+        val itemViewBinding = ManageTeaapplyItemViewBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
-        itemViewBinding.viewModel = ManageComViewModel()
-        // 設定lifecycleOwner方能監控LiveData資料變化，layout檔案的view才會更新顯示
+        itemViewBinding.viewModel = ManageTeaApplyViewModel()
         itemViewBinding.lifecycleOwner = parent.findViewTreeLifecycleOwner()
-        return ComViewHolder(itemViewBinding)
+        return TeaViewHolder(itemViewBinding)
     }
     override fun getItemCount(): Int {
-        return comms.size
+        return teas.size
     }
 
-        override fun onBindViewHolder(holder: ComViewHolder, position: Int) {
-        val thecomms = comms[position]
+        override fun onBindViewHolder(holder: TeaViewHolder, position: Int) {
+        val theteas = teas[position]
         with(holder) {
             // 將欲顯示的class物件指派給LiveData，就會自動更新layout檔案的view顯示
-            itemViewBinding.viewModel?.commo?.value = thecomms
+            itemViewBinding.viewModel?.teaapply?.value = theteas
             val bundle = Bundle()
             //有發生key不一樣
-            bundle.putSerializable("comm", thecomms)
+            bundle.putSerializable("teaapply", theteas)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_manageComFragment_to_manageComDetailFragment, bundle)
+                    .navigate(R.id.action_manageTeaApplyFragment_to_manageTeaApplyDetailFragment, bundle)
             }
         }
     }

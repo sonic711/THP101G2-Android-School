@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_manageHomeFragment_to_manageReportFragment2"
             app:destination="@id/manageReportFragment" />
+        <action
+            android:id="@+id/action_manageHomeFragment_to_manageTeaApplyFragment"
+            app:destination="@id/manageTeaApplyFragment" />
     </fragment>
     <fragment
         android:id="@+id/manageMemberDetailFragment"
@@ -125,4 +128,18 @@
         android:name="com.example.thp101g2_android_school.manage.controller.ManageMaSettingFragment"
         android:label="fragment_manage_ma_setting"
         tools:layout="@layout/fragment_manage_ma_setting" />
+    <fragment
+        android:id="@+id/manageTeaApplyFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageTeaApplyFragment"
+        android:label="fragment_manage_tea_apply"
+        tools:layout="@layout/fragment_manage_tea_apply" >
+        <action
+            android:id="@+id/action_manageTeaApplyFragment_to_manageTeaApplyDetailFragment"
+            app:destination="@id/manageTeaApplyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manageTeaApplyDetailFragment"
+        android:name="com.example.thp101g2_android_school.manage.controller.ManageTeaApplyDetailFragment"
+        android:label="fragment_manage_tea_apply_detail"
+        tools:layout="@layout/fragment_manage_tea_apply_detail" />
 </navigation>

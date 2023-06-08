@@ -13,6 +13,7 @@ import com.example.thp101g2_android_school.databinding.FragmentManageHomeBinding
 
 class ManageHomeFragment : Fragment() {
     private lateinit var binding: FragmentManageHomeBinding
+
     //每次點擊都是新?
     companion object {
         fun newInstance() = ManageHomeFragment()
@@ -29,32 +30,71 @@ class ManageHomeFragment : Fragment() {
 
         with(binding) {
             btManageClass.setOnClickListener {
-                findNavController().navigate(R.id.action_manageHomeFragment_to_manageClassesFragment)
+                findNavController().navigate(
+                    R.id.action_manageHomeFragment_to_manageClassesFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.manageHomeFragment, true)
+                        .build()
+                )
             }
             btManageCom.setOnClickListener {
-                findNavController().navigate(R.id.action_manageHomeFragment_to_manageComFragment)
+                findNavController().navigate(
+                    R.id.action_manageHomeFragment_to_manageComFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.manageHomeFragment, true)
+                        .build()
+                )
             }
             btManageFirm.setOnClickListener {
-                findNavController().navigate(R.id.action_manageHomeFragment_to_manageFirmFragment)
+                findNavController().navigate(
+                    R.id.action_manageHomeFragment_to_manageFirmFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.manageHomeFragment, true)
+                        .build()
+                )
             }
             btManageMa.setOnClickListener {
-                findNavController().navigate(R.id.action_manageHomeFragment_to_manageMaFragment)
+                findNavController().navigate(
+                    R.id.action_manageHomeFragment_to_manageMaFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.manageHomeFragment, true)
+                        .build()
+                )
             }
             btManageMember.setOnClickListener {
                 findNavController().navigate(
                     R.id.action_manageHomeFragment_to_manageMemberFragment,
                     null,
                     NavOptions.Builder()
-                        .setPopUpTo(R.id.mainFragment, false)
+                        .setPopUpTo(R.id.manageHomeFragment, true)
                         .build()
                 )
             }
             btManageReport.setOnClickListener {
-                findNavController().navigate(R.id.action_manageHomeFragment_to_manageReportFragment)
+                findNavController().navigate(
+                    R.id.action_manageHomeFragment_to_manageReportFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.manageHomeFragment, true)
+                        .build()
+                )
             }
-        }
+            btManageTeaApply.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_manageHomeFragment_to_manageTeaApplyFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.manageHomeFragment, true)
+                        .build()
+                )
+            }
 
-        return binding.root
+            return binding.root
+        }
     }
 }
 

@@ -21,69 +21,94 @@
 <!--        app:cardCornerRadius="16dp"-->
 <!--        app:cardElevation="6dp">-->
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:orientation="horizontal">
+
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="262dp"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="6dp"
+                        android:text="@{viewModel.memberuse.memberEmail}"
+                        android:textColor="#0000FF"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout5"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvComName"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@{viewModel.memberuse.nickName}"
+                        android:textColor="#0000FF"
+                        android:textSize="22sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/ivCom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="6dp"
+                        android:text="@{viewModel.memberuse.memberNo}"
+                        android:textColor="#0000FF"
+                        android:textSize="22sp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/cvPhone"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center_vertical"-->
+        <!--                android:layout_marginStart="16dp"-->
+        <!--                android:layout_marginTop="16dp"-->
+        <!--                app:imageResource="@{viewModel.memberuse.}"-->
+        <!--                android:textSize="24sp"-->
+        <!--                tools:text="" />-->
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/childCardView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="100dp"
-                app:cardElevation="2dp"
-                android:foreground="?selectableItemBackground" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:srcCompat="@tools:sample/avatars"
-                    android:id="@+id/imageView"/>
-            </androidx.cardview.widget.CardView>
-            <TextView
-                android:id="@+id/ivCom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
-                android:textColor="#0000FF"
-                android:textSize="22sp"
-                android:text="@{viewModel.memberuse.memberID}" />
-            <TextView
-                android:id="@+id/tvComName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
-                android:text="@{viewModel.memberuse.username}"
-                android:textColor="#0000FF"
-                android:textSize="22sp" />
-            <TextView
-                android:id="@+id/phones"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
-                android:text="@{viewModel.memberuse.phoneN}"
-                android:textColor="#0000FF"
-                android:textSize="22sp" />
-            <ImageView
-                android:id="@+id/cvPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:imageResource="@{viewModel.memberuse.imageId}"
-                android:textSize="24sp"
-                tools:text="" />
-
-
-
-        </LinearLayout>
+    </LinearLayout>
 <!--    </androidx.cardview.widget.CardView>-->
 </layout>
 
