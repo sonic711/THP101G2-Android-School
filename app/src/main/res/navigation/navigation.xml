@@ -313,5 +313,10 @@
             android:name="com.example.thp101g2_android_school.shop.controller.ShopOrderListFragment"
             android:label="fragment_shop_order_list"
             tools:layout="@layout/fragment_shop_order_list" />
+    <fragment
+            android:id="@+id/pointFragment"
+            android:name="com.example.thp101g2_android_school.point.controller.PointFragment"
+            android:label="fragment_point"
+            tools:layout="@layout/fragment_point" />
 
 </navigation>
