@@ -39,7 +39,7 @@ class ManageMaFragment : Fragment() {
         binding = FragmentManageMaBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        binding.Back.setOnClickListener {
+        binding.memberBack.setOnClickListener {
             Navigation.findNavController(requireView()).navigateUp()
         }
         return binding.root
