@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentManageClassBinding
 import com.example.thp101g2_android_school.databinding.FragmentManageMaBinding
 import com.example.thp101g2_android_school.manage.model.Classes
+import com.example.thp101g2_android_school.manage.model.ManageAccountBean
 import com.example.thp101g2_android_school.manage.model.Mas
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMasViewModel
@@ -24,7 +26,7 @@ class ManageMaFragment : Fragment() {
     private lateinit var binding: FragmentManageMaBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ManageMaAdapter
-    private var maList: List<Mas> = emptyList()
+    private var maList: List<ManageAccountBean> = emptyList()
 
 
     private lateinit var viewModel: ManageMasViewModel
@@ -37,6 +39,9 @@ class ManageMaFragment : Fragment() {
         binding = FragmentManageMaBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        binding.Back.setOnClickListener {
+            Navigation.findNavController(requireView()).navigateUp()
+        }
         return binding.root
     }
 
@@ -56,9 +61,7 @@ class ManageMaFragment : Fragment() {
                     adapter.updateMas(mas)
                 }
             }
-            binding.memberBack.setOnClickListener {
-                findNavController().navigateUp()
-            }
+
             managerSet.setOnClickListener {
                 findNavController().navigate(R.id.action_manageMaFragment_to_manageMaSettingFragment)
             }
@@ -81,7 +84,7 @@ class ManageMaFragment : Fragment() {
     private fun searchMa(query: String) {
         // 根據搜尋條件 query 更新 classList
         val filteredMa = maList.filter { ma ->
-            ma.manageID.contains(query, ignoreCase = true)
+            (ma.manageId?.toString() == query)
         }
         adapter.updateMas(filteredMa)
     }

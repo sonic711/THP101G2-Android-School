@@ -9,13 +9,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ClassItemViewBinding
-import com.example.thp101g2_android_school.manage.model.Classes
+import com.example.thp101g2_android_school.manage.model.CourseReportBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
 
 /**
  * 班級列表所需的Adapter
  */
-class ManageClassAdapter(private var classes: List<Classes>) :
+class ManageClassAdapter(private var classes: List<CourseReportBean>) :
     RecyclerView.Adapter<ManageClassAdapter.ClassViewHolder>() {
 
     /**
@@ -23,7 +23,7 @@ class ManageClassAdapter(private var classes: List<Classes>) :
      * @param classes 新的班級列表
      */
     @SuppressLint("NotifyDataSetChanged")
-    fun updateClasses(classes: List<Classes>) {
+    fun updateClasses(classes: List<CourseReportBean>) {
         this.classes = classes
         notifyDataSetChanged()
     }
@@ -37,8 +37,7 @@ class ManageClassAdapter(private var classes: List<Classes>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClassViewHolder {
         val itemViewBinding = ClassItemViewBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
+            LayoutInflater.from(parent.context), parent, false)
         itemViewBinding.viewModel = ManageClassViewModel()
         // 設定lifecycleOwner方能監控LiveData資料變化，layout檔案的view才會更新顯示
         itemViewBinding.lifecycleOwner = parent.findViewTreeLifecycleOwner()

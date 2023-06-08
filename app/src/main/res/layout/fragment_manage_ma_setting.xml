@@ -7,7 +7,7 @@
     tools:context=".manage.controller.ManageMaSettingFragment" >
 
     <ImageView
-        android:id="@+id/memberBack"
+        android:id="@+id/Back"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"

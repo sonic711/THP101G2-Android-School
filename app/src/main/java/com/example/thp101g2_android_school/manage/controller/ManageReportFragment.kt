@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
@@ -31,6 +32,10 @@ class ManageReportFragment : Fragment() {
         binding = FragmentManageReportBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        binding.Back.setOnClickListener {
+            Navigation.findNavController(requireView()).navigateUp()
+        }
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,9 +55,7 @@ class ManageReportFragment : Fragment() {
                     adapter.updateReports(reports)
                 }
             }
-            binding.memberBack.setOnClickListener {
-                findNavController().navigateUp()
-            }
+
         }
 
         val searchView = binding.searchView

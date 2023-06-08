@@ -2,21 +2,30 @@ package com.example.thp101g2_android_school.manage.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thp101g2_android_school.R
-import com.example.thp101g2_android_school.manage.model.Classes
+import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.app.url
+import com.example.thp101g2_android_school.manage.model.CourseReportBean
+import com.google.gson.reflect.TypeToken
+
+//import com.example.thp101g2_android_school.manage.model.Classes
 
 /**
  * 好友列表資料處理
  */
 class ManageClassesViewModel : ViewModel() {
-    // 原始課程列表
-    private var classList = mutableListOf<Classes>()
-    // 受監控的LiveData，一旦指派新值就會更新課程列表畫面
-    val classes: MutableLiveData<List<Classes>> by lazy { MutableLiveData<List<Classes>>() }
 
-    init {
-        loadClasses()
-    }
+//    fun updateCourseReport(courseReportBean: CourseReportBean) {
+//        val i = 5
+//    }
+    // 原始課程列表
+    private var classList = mutableListOf<CourseReportBean>()
+
+    // 受監控的LiveData，一旦指派新值就會更新課程列表畫面
+    val classes: MutableLiveData<List<CourseReportBean>> by lazy { MutableLiveData<List<CourseReportBean>>() }
+
+
+
+
 
     /**
      * 如果搜尋條件為空字串，就顯示原始課程列表；否則就顯示搜尋後結果
@@ -26,33 +35,38 @@ class ManageClassesViewModel : ViewModel() {
         if (newText == null || newText.isEmpty()) {
             classes.value = classList
         } else {
-            val searchClassList = mutableListOf<Classes>()
+            val searchClassList = mutableListOf<CourseReportBean>()
             classList.forEach { classes ->
-                if (classes.classId.contains(newText, true)) {
+                if (classes.courseId.toString() == newText) {
                     searchClassList.add(classes)
-                }
+                }//上面可能有點問題 ==?
             }
             classes.value = searchClassList
         }
     }
+    init {
+        loadClasses()
+    }
 
-    /** 模擬取得遠端資料 */
     private fun loadClasses() {
-        val classList = mutableListOf<Classes>()
-        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
-        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
-        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
-        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
-        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
-        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
-        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
-        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
-        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
-        classList.add(Classes(R.drawable.ivy, "1", "Java?Js?","0933333333","11"))
-        classList.add(Classes(R.drawable.mary, "2", "Andiord?","0912345678","11"))
-        classList.add(Classes(R.drawable.ivy, "3", "Kotlin?","0922222222","11"))
 
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/coursereport/"
+        val type = object : TypeToken<List<CourseReportBean>>() {}.type
+        val list = requestTask<List<CourseReportBean>>(url, respBodyType = type)
+        for (classes in list!!) {
+            classList.add(classes)
+        }
         this.classList = classList
         this.classes.value = this.classList
+
+    /** 模擬取得遠端資料 */
+//    private fun loadClasses() {
+//        val classList = mutableListOf<CourseReportBean>()
+//        classList.add(CourseReportBean( 1, 1,1,1,"",))
+//        classList.add(CourseReportBean(2, 2,2,2,""))
+//        classList.add(CourseReportBean(3, 3,3,3,"11",))
+//
+//        this.classList = classList
+//        this.classes.value = this.classList
     }
 }

@@ -35,7 +35,7 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <Button
-            android:id="@+id/memberProcessed"
+            android:id="@+id/Unprocessed"
             android:layout_width="203dp"
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <Button
-            android:id="@+id/memberUnprocessed"
+            android:id="@+id/Processed"
             android:layout_width="207dp"
             android:layout_height="50dp"
             android:layout_marginTop="6dp"
@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
         <ImageView
-            android:id="@+id/memberBack"
+            android:id="@+id/Back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
@@ -84,7 +84,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/textView19"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/memberProcessed" />
+            app:layout_constraintTop_toBottomOf="@+id/Unprocessed" />
 
         <TextView
             android:id="@+id/textView19"
@@ -92,30 +92,30 @@
             android:layout_height="30dp"
             android:layout_marginStart="36dp"
             android:layout_marginTop="2dp"
-            android:text="信箱"
+            android:text="名字"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/memberProcessed" />
+            app:layout_constraintTop_toBottomOf="@+id/Unprocessed" />
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginStart="32dp"
-            android:text="編號"
+            android:text="信箱"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/textView19"
-            app:layout_constraintTop_toBottomOf="@+id/memberUnprocessed" />
+            app:layout_constraintTop_toBottomOf="@+id/Processed" />
 
         <TextView
             android:id="@+id/textView21"
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginStart="34dp"
-            android:text="編號"
+            android:text="電話"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/textView20"
-            app:layout_constraintTop_toBottomOf="@+id/memberUnprocessed" />
+            app:layout_constraintTop_toBottomOf="@+id/Processed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
