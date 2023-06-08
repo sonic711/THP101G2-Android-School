@@ -9,13 +9,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ClassItemViewBinding
-import com.example.thp101g2_android_school.manage.model.CourseReportBean
+import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
 
 /**
  * 班級列表所需的Adapter
  */
-class ManageClassAdapter(private var classes: List<CourseReportBean>) :
+class ManageClassAdapter(private var classes: List<Classes>) :
     RecyclerView.Adapter<ManageClassAdapter.ClassViewHolder>() {
 
     /**

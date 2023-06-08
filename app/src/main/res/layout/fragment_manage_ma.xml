@@ -47,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/Back"
+            android:id="@+id/memberBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"

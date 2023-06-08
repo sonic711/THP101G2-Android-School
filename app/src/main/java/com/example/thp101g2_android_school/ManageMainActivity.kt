@@ -18,25 +18,18 @@ class ManageMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityManageMainBinding.inflate(layoutInflater)
+        binding = ActivityManageMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_manage_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        // 頁面切換可以整合BottomNavigationView功能
+        NavigationUI.setupWithNavController(
+            binding.bottomNavigationView,
+            navHostFragment.navController
+        )
+        // 課程當登入後的首頁
+        binding.bottomNavigationView.selectedItemId = R.id.manageHomeFragment
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.manageHomeFragment -> navController.navigate(R.id.manageHomeFragment)
-                R.id.manageClassesFragment -> navController.navigate(R.id.manageClassesFragment)
-                R.id.manageComFragment -> navController.navigate(R.id.manageComFragment)
-                R.id.manageFirmFragment -> navController.navigate(R.id.manageFirmFragment)
-                R.id.manageMaFragment -> navController.navigate(R.id.manageMaFragment)
-                R.id.manageMemberFragment -> navController.navigate(R.id.manageMemberFragment)
-                R.id.manageReportFragment -> navController.navigate(R.id.manageReportFragment)
-            }
-            true
         }
     }
-}
 
