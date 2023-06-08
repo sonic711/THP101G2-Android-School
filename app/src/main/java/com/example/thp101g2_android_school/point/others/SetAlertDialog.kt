@@ -37,13 +37,14 @@ class SetAlertDialog(val context: Context) {
         alertDialog.show()
     }
 
-    fun showAlertDialogForMLR(context: Context) {
+    fun showAlertDialogForMLR(context: Context, callback: () -> Unit) {
         val alertDialogBuilder = AlertDialog.Builder(context)
         alertDialogBuilder.setTitle("增加積分")
         alertDialogBuilder.setMessage("登入成功，積分+1")
         alertDialogBuilder.setCancelable(true)
         alertDialogBuilder.setPositiveButton("確定") { dialog, _ ->
             dialog.dismiss()
+            callback()
         }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()

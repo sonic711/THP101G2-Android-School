@@ -11,12 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentPointBinding
+import com.example.thp101g2_android_school.firm.viewmodel.FirmProductsEditViewModel
 import com.example.thp101g2_android_school.point.others.SetAlertDialog
 import com.example.thp101g2_android_school.point.viewmodel.PointViewModel
 
 
 class PointFragment : Fragment() {
     private lateinit var binding: FragmentPointBinding
+    private val viewModel: PointViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
 
 
 
@@ -35,6 +37,7 @@ class PointFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
+            viewModel?.loadData()
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
             val pointAdapter = PointAdapter(emptyList())
