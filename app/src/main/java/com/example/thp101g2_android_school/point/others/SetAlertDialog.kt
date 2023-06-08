@@ -3,6 +3,7 @@ package com.example.thp101g2_android_school.point.others
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.view.Gravity
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.point.model.Point
@@ -30,6 +31,7 @@ class SetAlertDialog(val context: Context) {
         alertDialogBuilder.setMessage("課程評分完成，積分+5")
         alertDialogBuilder.setPositiveButton("確定") { dialog, _ ->
             dialog.dismiss()
+
         }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
@@ -39,6 +41,7 @@ class SetAlertDialog(val context: Context) {
         val alertDialogBuilder = AlertDialog.Builder(context)
         alertDialogBuilder.setTitle("增加積分")
         alertDialogBuilder.setMessage("登入成功，積分+1")
+        alertDialogBuilder.setCancelable(true)
         alertDialogBuilder.setPositiveButton("確定") { dialog, _ ->
             dialog.dismiss()
         }
@@ -46,7 +49,7 @@ class SetAlertDialog(val context: Context) {
         alertDialog.show()
     }
 
-
+    data class ApiResponse(val successful: Boolean)
 
 
 
