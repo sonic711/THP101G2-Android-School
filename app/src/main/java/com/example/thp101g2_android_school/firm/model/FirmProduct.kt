@@ -14,7 +14,7 @@ data class FirmProduct(
     var shopProductSearch : String? = null,
     var shopName:String? = null,
     var shopProductCount:String? = null,
-    var shopProductImgBase64: String? = null,
+    var shopProductImgBase64: String? = null,// Base64
     var shopProductImg:ByteArray? = null,
     var firmNo:String? = null
     ):

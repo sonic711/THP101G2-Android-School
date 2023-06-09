@@ -18,7 +18,7 @@ class FirmDataCenterAdapter(private var datas: List<Order>) :
     RecyclerView.Adapter<FirmDataCenterAdapter.FirmDataCenterViewHolder>() {
     /**
      * 更新數據中心列表內容
-     * @param datas 新的課程列表
+     * @param datas 新的列表
      */
     class FirmDataCenterViewHolder(val itemViewBinding: FragmentFirmDataCenterItemViewBinding) :
         //畫面交由父去呈現
@@ -50,17 +50,9 @@ class FirmDataCenterAdapter(private var datas: List<Order>) :
     override fun onBindViewHolder(holder: FirmDataCenterViewHolder, position: Int) {
         val data = datas[position] // 讀取datas資料的位置
         with(holder){
-            // 一旦把lesson指派給viewModel，上面的itemView都會秀出來
+            // 一旦把data指派給viewModel，上面的itemView都會秀出來
             itemViewBinding.viewModel?.firmSaleData?.value = data
-            // STEP06-5.把資料送到下一頁用
-//            val bundle = Bundle()
-//            bundle.putSerializable("data",data)
-//            // STEP06-6.按下CardView後把資料送到下一頁SecFragment
-//            // 這邊可以設定按鈕點擊
-//            itemView.setOnClickListener {
-//                Navigation.findNavController(it)
-//                    .navigate(R.id.firmDataCenterItemViewFragment, bundle)
-//            }
+
         }
     }
 }

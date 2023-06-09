@@ -11,25 +11,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.databinding.FragmentFirmProductEditDetailBinding
+import com.example.thp101g2_android_school.firm.model.Firm
 import com.example.thp101g2_android_school.firm.model.FirmProduct
 import com.example.thp101g2_android_school.firm.viewmodel.FirmProductManagerViewModel
 
 class FirmProductEditDetailFragment : Fragment() {
-    private lateinit var binding : FragmentFirmProductEditDetailBinding
+    private lateinit var binding: FragmentFirmProductEditDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val viewModel : FirmProductManagerViewModel by viewModels()
-        binding = FragmentFirmProductEditDetailBinding.inflate(inflater,container,false)
+        val viewModel: FirmProductManagerViewModel by viewModels()
+        binding = FragmentFirmProductEditDetailBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner =this
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -41,27 +46,42 @@ class FirmProductEditDetailFragment : Fragment() {
                 binding.viewModel?.productEdit?.value = it as FirmProduct
             }
         }
-        with(binding){
-            viewModel?.finished?.observe(viewLifecycleOwner){ finished->
-                if (finished){
-                    Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
-                }
-            }
+        with(binding) {
+            // 若是採用onClick綁定事件，使用此方法可避免點擊衝突造成Toast無法回應
+//            viewModel?.finished?.observe(viewLifecycleOwner) { finished ->
+//                if (finished) {
+//                    Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
+//                }
+//            }
 
-            ibProductEditToBack.setOnClickListener{
+            ibProductEditToBack.setOnClickListener {
                 Navigation.findNavController(it).popBackStack()
 
             }
-            btFirmCancelEdit.setOnClickListener { btCan->
+            btFirmCancelEdit.setOnClickListener { btCan ->
                 Navigation.findNavController(btCan).popBackStack()
             }
             btFirmConEdit.setOnClickListener {
-//                Navigation.findNavController(requireView()).navigateUp()
-                Navigation.findNavController(view).popBackStack()
+                AlertDialog.Builder(view.context)
+                    .setMessage("確定編輯?")
+                    .setPositiveButton("是") { _, _ ->
+                        val finished: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
+                        var currentFirm: Firm? = requestTask(
+                            "http://10.0.2.2:8080/THP101G2-WebServer-School/firms",
+                            "OPTIONS"
+                        )
+                        val FNO = currentFirm?.firmNo
+                        requestTask<Unit>("$url/productmanage/$FNO", "PUT",viewModel?.productEdit?.value)
+                        Navigation.findNavController(view).popBackStack()
+                        finished.value = true
+                        if (finished.value == true) {
+                            Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    .setNegativeButton("否", null)
+                    .setCancelable(false)
+                    .show()
 
-
-//                val result = Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
-//                Log.d("TAG_","onViewCreated:$result")
             }
 
             // 監聽此圖片是否被點擊
@@ -73,15 +93,14 @@ class FirmProductEditDetailFragment : Fragment() {
                 )
                 pickPictureLauncher.launch(intent)
             }
-
         }
-
     }
+
     private var pickPictureLauncher = //
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 // data -> intent  data -> uri資源定位的路徑
-                // let -> 當uri不為空職則執行
+                // let -> 當uri不為空值則執行
                 result.data?.data?.let { uri -> binding.ivFirmProductEdit.setImageURI(uri) }
                 // 直接拿到圖檔本身setImage
                 // 直接拿到圖檔的路徑setImageURI(uri - >相簿裡面的圖檔)
