@@ -11,51 +11,89 @@
             name="viewModel"
             type="com.example.thp101g2_android_school.manage.viewmodel.ManageComViewModel" />
     </data>
-
-    <!-- 設定 foreground="?selectableItemBackground" 當選項被點擊時會改變背景色 -->
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:foreground="?selectableItemBackground"
-        app:cardBackgroundColor="#DDDDDD"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp">
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true" app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    <!-- 設定 foreground="?selectableItemBackground" 當選項被點擊時會改變背景色 -->
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/cardView3"-->
+<!--                android:layout_width="66dp"-->
+<!--                android:layout_height="53dp"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:foreground="?selectableItemBackground"-->
+<!--                app:cardBackgroundColor="#DDDDDD"-->
+<!--                app:cardCornerRadius="16dp"-->
+<!--                app:cardElevation="6dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/ivFriend"-->
+<!--                    android:layout_width="55dp"-->
+<!--                    android:layout_height="39dp"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:src="@drawable/ivy"-->
+<!--                    app:imageResource="@{viewModel.commo.imageId}" />-->
+
+<!--            </androidx.cardview.widget.CardView>-->
 
             <TextView
-                android:id="@+id/ivCom"
+                android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars"
-                android:text="@{viewModel.commo.articleId}" />
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="63dp"
+                android:text="test2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvComName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/ccCom"
+                android:layout_width="43dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="268dp"
+                android:text="@{viewModel.commo.memberNo}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/ccComName"
+                android:layout_width="42dp"
+                android:layout_height="39dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
-                android:text="@{viewModel.commo.txtId}"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="155dp"
+                android:text="@{viewModel.commo.manageId}"
                 android:textColor="#0000FF"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/ivFriend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ivy"
-                app:imageResource="@{viewModel.commo.imageId}"
-                />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="35dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="104dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="18dp"
+                android:text="test1"
+                app:layout_constraintEnd_toStartOf="@+id/ccComName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ccCom" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

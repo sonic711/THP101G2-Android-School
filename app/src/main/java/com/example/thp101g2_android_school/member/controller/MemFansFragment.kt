@@ -34,7 +34,7 @@ class MemFansFragment : Fragment() {
                     (recyclerView.adapter as FanAdapter).updateFans(fans)
                 }
             }
-            viewModel!!.loadFans()
+//            viewModel!!.loadFans()
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String?): Boolean {
                     viewModel?.searchFan(newText)

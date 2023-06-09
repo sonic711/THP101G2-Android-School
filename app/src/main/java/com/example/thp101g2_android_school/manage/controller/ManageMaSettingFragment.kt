@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,9 @@ class ManageMaSettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentManageMaSettingBinding.inflate(inflater, container, false)
+        binding.Back.setOnClickListener {
+            Navigation.findNavController(requireView()).navigateUp()
+        }
         return binding.root
     }
 
@@ -44,18 +48,17 @@ class ManageMaSettingFragment : Fragment() {
 //        adapter = ManageMaAdapter(emptyList())
 //        recyclerView.adapter = adapter
 
-        // 初始化Spinner和适配器
+
         spinner = binding.spinner
         val options = listOf("新增管理者", "刪除管理者")
         val spinnerAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, options)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
 
-        // 设置Spinner的选择监听器
+
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(position) as String
-                // 根据选择的选项执行相应的操作
                 when (selectedItem) {
                     "新增管理者" -> {
                         // 执行新增管理者操作
@@ -71,10 +74,6 @@ class ManageMaSettingFragment : Fragment() {
             }
         }
 
-        with(binding) {
-            memberBack.setOnClickListener {
-                findNavController().navigateUp()
-            }
-        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.thp101g2_android_school.manage.controller
 
+import android.app.DownloadManager.Query
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,12 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
 import com.example.thp101g2_android_school.databinding.FragmentManageComBinding
-import com.example.thp101g2_android_school.manage.model.Comms
+import com.example.thp101g2_android_school.manage.model.ManageComReportBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel
 
 
@@ -20,8 +22,7 @@ class ManageComFragment : Fragment() {
     private lateinit var binding: FragmentManageComBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ManageComAdapter
-    private var comList: List<Comms> = emptyList()
-
+    private var comList: List<ManageComReportBean> = emptyList()
 
     companion object {
         fun newInstance() = ManageComFragment()
@@ -30,8 +31,9 @@ class ManageComFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModel: ManageCommsViewModel by viewModels()
+
         binding = FragmentManageComBinding.inflate(inflater, container, false)
+        val viewModel: ManageCommsViewModel by viewModels()
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -40,21 +42,23 @@ class ManageComFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         // 隱藏標題列
         (requireActivity() as ManageMainActivity).supportActionBar?.hide()
 
         with(binding) {
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
             adapter = ManageComAdapter(comList)
-            viewModel?.comms?.observe(viewLifecycleOwner) {comms ->
+            binding.viewModel?.comm?.observe(viewLifecycleOwner) {comms ->
                 if (recyclerView.adapter == null) {
                     recyclerView.adapter = ManageComAdapter(comms)
                 } else {
-                    adapter.updateComments(comms)
+                    this@ManageComFragment.adapter.updateComments(comms)
                 }
             }
-            binding.memberBack.setOnClickListener {
-                findNavController().navigateUp()
+            binding.Back.setOnClickListener {
+                Navigation.findNavController(requireView()).navigateUp()
             }
         }
 
@@ -75,8 +79,8 @@ class ManageComFragment : Fragment() {
         private fun searchComments(query: String) {
             // 根據搜尋條件 query 更新 classList
             val filteredComm = comList.filter { comms ->
-                comms.articleId.contains(query, ignoreCase = true)
-            }
+                (comms.comPostId.toString() == query)
+            } //同class有問題
             adapter.updateComments(filteredComm)
         }
 

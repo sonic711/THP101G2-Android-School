@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ManageMemberItemViewBinding
 import com.example.thp101g2_android_school.manage.model.Members
+import com.example.thp101g2_android_school.manage.model.SelectMemberBean
+import com.example.thp101g2_android_school.manage.model.TeaApplyBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMemberViewModel
 
-class ManageMemberAdapter(private var members:List<Members>):
+class ManageMemberAdapter(private var members:List<SelectMemberBean>):
     RecyclerView.Adapter<ManageMemberAdapter.MemberViewHolder>() {
 
-        fun updateMembers(members: List<Members>){
+        fun updateMembers(members: List<SelectMemberBean>){
             this.members = members
             notifyDataSetChanged()
         }

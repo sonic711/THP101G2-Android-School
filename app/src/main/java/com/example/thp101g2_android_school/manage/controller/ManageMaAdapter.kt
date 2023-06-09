@@ -11,16 +11,17 @@ import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ClassItemViewBinding
 import com.example.thp101g2_android_school.databinding.ManageMaItemViewBinding
 import com.example.thp101g2_android_school.manage.model.Classes
+import com.example.thp101g2_android_school.manage.model.ManageAccountBean
 import com.example.thp101g2_android_school.manage.model.Mas
 import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
 
 
-class ManageMaAdapter(private var mas: List<Mas>) :
+class ManageMaAdapter(private var mas: List<ManageAccountBean>) :
     RecyclerView.Adapter<ManageMaAdapter.MaViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateMas(mas: List<Mas>) {
+    fun updateMas(mas: List<ManageAccountBean>) {
         this.mas = mas
         notifyDataSetChanged()
     }

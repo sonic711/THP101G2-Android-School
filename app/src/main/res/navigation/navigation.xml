@@ -226,7 +226,13 @@
             android:id="@+id/shopBuyFragment"
             android:name="com.example.thp101g2_android_school.shop.controller.ShopBuyFragment"
             android:label="fragment_shop_buy"
-            tools:layout="@layout/fragment_shop_buy" />
+            tools:layout="@layout/fragment_shop_buy">
+
+        <action
+                android:id="@+id/action_shopBuyFragment_to_shopOrderListFragment"
+                app:destination="@id/shopOrderListFragment" />
+
+    </fragment>
     <fragment android:id="@+id/editPostFragment"
               android:name="com.example.thp101g2_android_school.community.controller.EditPostFragment"
               android:label="EditPostFragment"/>
@@ -294,16 +300,6 @@
             tools:layout="@layout/fragment_mem_others_home" />
     <fragment
             android:id="@+id/memOthersFansFragment"
-            android:name="com.example.thp101g2_android_school.MemOthersFansFragment"
-            android:label="fragment_mem_others_fans"
-            tools:layout="@layout/fragment_mem_others_fans" />
-    <fragment
-            android:id="@+id/memOthersFollowersFragment"
-            android:name="com.example.thp101g2_android_school.MemOthersFollowersFragment"
-            android:label="fragment_mem_others_followers"
-            tools:layout="@layout/fragment_mem_others_followers" />
-    <fragment
-            android:id="@+id/memOthersFansFragment"
             android:name="com.example.thp101g2_android_school.member.controller.MemOthersFansFragment"
             android:label="fragment_mem_others_fans"
             tools:layout="@layout/fragment_mem_others_fans" />
@@ -312,5 +308,15 @@
             android:name="com.example.thp101g2_android_school.member.controller.MemOthersFollowersFragment"
             android:label="fragment_mem_others_followers"
             tools:layout="@layout/fragment_mem_others_followers" />
+    <fragment
+            android:id="@+id/shopOrderListFragment"
+            android:name="com.example.thp101g2_android_school.shop.controller.ShopOrderListFragment"
+            android:label="fragment_shop_order_list"
+            tools:layout="@layout/fragment_shop_order_list" />
+    <fragment
+            android:id="@+id/pointFragment"
+            android:name="com.example.thp101g2_android_school.point.controller.PointFragment"
+            android:label="fragment_point"
+            tools:layout="@layout/fragment_point" />
 
 </navigation>

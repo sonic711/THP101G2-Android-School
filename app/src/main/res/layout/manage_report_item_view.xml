@@ -14,44 +14,125 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:foreground="?selectableItemBackground"
-        app:cardBackgroundColor="#DDDDDD"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="20dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="172dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/ivCom"
+                android:id="@+id/textView35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.reporto.reportID}" />
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="84dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/tvComName"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_gravity="center_vertical"-->
-            <!--                android:layout_marginStart="6dp"-->
-            <!--                android:text="@{viewModel.membero.username}"-->
-            <!--                android:textColor="#0000FF"-->
-            <!--                android:textSize="22sp" />-->
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="84dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/phones"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_gravity="center_vertical"-->
-            <!--                android:layout_marginStart="6dp"-->
-            <!--                android:text="@{viewModel.membero.phoneN}"-->
-            <!--                android:textColor="#0000FF"-->
-            <!--                android:textSize="22sp" />-->
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:layout_marginEnd="84dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="148dp"
+                android:layout_marginEnd="84dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/textReportItem"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="28dp"
+                android:text="檢舉項目"
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textReporterId"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="22dp"
+                android:text="檢舉者ID"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textReportItem" />
+
+            <TextView
+                android:id="@+id/textReportedId"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="21dp"
+                android:text="被檢舉ID"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textReporterId" />
+
+            <TextView
+                android:id="@+id/textReportedId2"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="被檢舉品"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textReportedId" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="89dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="143dp"
+                android:layout_marginEnd="143dp"
+                android:text="文本内容"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            android:padding="16dp">
+
+            <!-- 檢舉項 -->
+
+            <!-- 檢舉者ID -->
+
+            <!-- 被檢舉ID -->
+
+            <!-- 一个放TextView的容器 -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 </layout>

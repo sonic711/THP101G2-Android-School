@@ -1,15 +1,13 @@
 package com.example.thp101g2_android_school.member.controller
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.thp101g2_android_school.member.viewModel.MemMainViewModel
+import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentMemMainBinding
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
@@ -29,6 +27,8 @@ class MemMainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (requireActivity() as MainActivity).supportActionBar?.show()
+        activity?.setTitle("個人主頁")
         with(binding) {
             viewModel?.initialize()
             btEdit.setOnClickListener {

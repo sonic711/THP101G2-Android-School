@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
@@ -14,11 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.thp101g2_android_school.ActivityViewModel
-import com.example.thp101g2_android_school.member.viewModel.MemEditProfileViewModel
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentMemEditProfileBinding
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
@@ -41,7 +36,6 @@ class MemEditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentMemEditProfileBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
