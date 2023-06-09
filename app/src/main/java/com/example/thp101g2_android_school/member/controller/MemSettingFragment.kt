@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.member.viewModel.MemSettingViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentMemSettingBinding
@@ -25,6 +26,8 @@ class MemSettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).supportActionBar?.show()
+        activity?.setTitle("帳號設定")
         with(binding) {
             llAccountSetting.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.action_memSettingFragment_to_memEditAccountFragment)
