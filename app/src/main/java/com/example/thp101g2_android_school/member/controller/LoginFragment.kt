@@ -1,5 +1,6 @@
 package com.example.thp101g2_android_school.member.controller
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,10 +17,12 @@ import com.example.thp101g2_android_school.databinding.FragmentLoginBinding
 import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.member.viewModel.LoginViewModel
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
+import com.example.thp101g2_android_school.point.others.SetAlertDialog
+import com.google.gson.reflect.TypeToken
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-
+    private lateinit var contextMLR: Context
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +31,7 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        contextMLR = requireContext()
         return binding.root
     }
 
@@ -47,9 +51,26 @@ class LoginFragment : Fragment() {
                 val respBody =
                     requestTask<Member>("$url/$email/$password")
                 if (respBody?.memberNo != null) {
-                    val intent = Intent(requireContext(), MainActivity::class.java)
-                    intent.putExtra("type", "user")
-                    startActivity(intent)
+                    val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
+                    val requestBody = mapOf(
+                        "type" to "insertForMLR",
+                        "memberNo" to respBody.memberNo
+                    )
+                    val responseType = object : TypeToken<SetAlertDialog.ApiResponse>() {}.type
+                    val response = requestTask<SetAlertDialog.ApiResponse>(postUrl, "POST",
+                        requestBody, responseType)
+                    if (response != null && response.successful ) {
+                        val daiBiao = SetAlertDialog(contextMLR)
+                        daiBiao.showAlertDialogForMLR(contextMLR){
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            intent.putExtra("type", "user")
+                            startActivity(intent)
+                        }
+                    } else {
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.putExtra("type", "user")
+                        startActivity(intent)
+                    }
                 } else {
                     etEmail.error = "信箱或密碼錯誤"
                     etPassword.error = "信箱或密碼錯誤"
