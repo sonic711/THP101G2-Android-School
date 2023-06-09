@@ -12,6 +12,7 @@ import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.databinding.MemFollowerItemviewBinding
 import com.example.thp101g2_android_school.member.model.Follower
+import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
 import com.google.gson.JsonObject
 
@@ -39,7 +40,7 @@ class FollowerAdapter(private var followers: MutableList<Follower>) : RecyclerVi
         with(holder) {
             itemViewBinding.viewModel?.follower?.value = follower
             val bundle = Bundle()
-            bundle.putSerializable("member", follower)
+            bundle.putSerializable("member", changeToMember(holder, follower))
             itemView.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.memOthersHomeFragment, bundle)
             }
@@ -63,5 +64,22 @@ class FollowerAdapter(private var followers: MutableList<Follower>) : RecyclerVi
         this.followers = followers
         notifyDataSetChanged()
     }
+
+    private fun changeToMember(holder: FollowerAdapter.FollowerViewHolder, follower: Follower): Member? {
+        holder.itemViewBinding.viewModel?.member?.value?.let { member ->
+            member.memberNo = follower.memberFollowing
+            member.userId = follower.userId
+            member.nickname = follower.nickname
+            member.memberIdentity = follower.memberIdentity
+            member.profilePhoto64 = follower.profilePhoto64
+            member.coverPicture64 = follower.coverPicture64
+            member.memberStatus = follower.memberStatus
+            member.introduction = follower.introduction
+            return member
+        }
+        return null
+    }
+
+
 
 }

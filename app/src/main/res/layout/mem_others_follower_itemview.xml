@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/mem_userphoto"
+                android:scaleType="centerCrop"
                 app:imgBase64="@{viewModel.follower.profilePhoto64}" />
         </androidx.cardview.widget.CardView>
 
