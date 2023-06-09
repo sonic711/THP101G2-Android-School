@@ -32,42 +32,22 @@ class FirmProductOnViewModel : ViewModel() {
         }
     }
 
-
-    fun doPOST(context:Context){
-        // 寫死廠商編號為1的廠商
-        productOn.value?.firmNo = "3"
-//        productOn.value?.shopName = "土康三號流水線"
-        println(productOn.value)
-        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
-        val FNO = currentFirm?.firmNo
-        val result = requestTask<JSONObject>("$url/productmanage/$FNO", "POST", productOn.value)
-        println(result)
-
-//        val result = FirmAll(
-//            shopProductId = productOn.value?.shopProductId,
-//            shopProductName = productOn.value?.shopProductName,
-//            shopProductPrice = productOn.value?.shopProductPrice,
-//            shopProductSearch = productOn.value?.shopProductSearch,
-//            shopProductClass = productOn.value?.shopProductClass,
-//            shopProductDesc = productOn.value?.shopProductDesc,
-//            shopProductStatus = productOn.value?.shopProductStatus,
-//            shopProductCount = productOn.value?.shopProductCount,
-//            shopName = productOn.value?.shopName,
-//            firmNo = productOn.value?.firmNo,
-//            shopProductImg = productOn.value?.shopProductImg
-//        )
-
-//        val respbody = requestTask<JSONObject>("$url/productmanage/$FNO", "PUT", reqBody = result)
-
-        if (productOn.value?.shopProductDesc !=null) {
-            // 請求成功，執行相應的操作
-            // 例如顯示 Toast
-            Toast.makeText(context, "上架成功", Toast.LENGTH_SHORT).show()
-        } else {
-            // 請求失敗，執行相應的操作
-            // 例如顯示錯誤訊息或重新嘗試
-            Toast.makeText(context, "上架失敗", Toast.LENGTH_SHORT).show()
-        }
-    }
+//    若用onClick1綁定點及事件，可用此方法
+//    fun doPOST(context:Context){
+//        productOn.value?.firmNo = "3"
+//        println(productOn.value)
+//        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+//        val FNO = currentFirm?.firmNo
+//        val result = requestTask<JSONObject>("$url/productmanage/3", "POST", productOn.value)
+//        println(result)
+//
+//        if (productOn.value?.shopProductDesc !=null) {
+//            // 請求成功，執行相應的操作
+//            Toast.makeText(context, "上架成功", Toast.LENGTH_SHORT).show()
+//        } else {
+//            // 請求失敗，執行相應的操作
+//            Toast.makeText(context, "上架失敗", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.thp101g2_android_school.firm.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
@@ -18,7 +19,7 @@ class FirmProductsEditViewModel : ViewModel(){
     init {
         loadProductsManger()
     }
-    /** 模擬取得遠端資料 */
+
     fun loadProductsManger() {
         var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
         val FNO = currentFirm?.firmNo
@@ -29,6 +30,7 @@ class FirmProductsEditViewModel : ViewModel(){
 //        for(item in list!!){
 //            productsManagerList.add(item)
 //        }
+        Log.d("TAG_","productsManagerList:$productsManagerList")
         this.productsManagerList = productsManagerList
         this.productsManager.value = this.productsManagerList
         // update

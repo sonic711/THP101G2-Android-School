@@ -2,6 +2,7 @@ package com.example.thp101g2_android_school.firm.controller
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,38 +56,22 @@ class FirmProductManagerAdapter(private var productsManager: List<FirmProduct>) 
         with(holder) {
 
             itemViewBinding.viewModel?.productEdit?.value = productsManager
-
+//            Log.d("TAG_GraceAdapter", "shopProductId: ${productsManager.shopProductId}, base64: ${productsManager.shopProductImgBase64}" )
             val bundle = Bundle()
             bundle.putSerializable("productsManager", productsManager)
 
-//            if (productsManager.shopProductStatus == 1 || productsManager.shopProductStatus == 0) {
-//                itemViewBinding.btProductEdit.visibility = View.INVISIBLE
-//                itemViewBinding.btProductControlOffed.visibility = View.INVISIBLE
-//                itemView.setOnClickListener {
-//                    Navigation.findNavController(it)
-//                        .navigate(R.id.firmProductEditDetailFragment, bundle)
-//                }
-//            } else {
-//                itemViewBinding.btProductEdit.isEnabled = true
-//                itemViewBinding.btProductControlOffed.isEnabled = true
-//                itemViewBinding.btProductEdit.visibility = View.VISIBLE
-//                itemViewBinding.btProductControlOffed.visibility = View.VISIBLE
-//                itemViewBinding.btProductEdit.setOnClickListener {
-//                    Navigation.findNavController(it)
-//                        .navigate(R.id.firmProductEditDetailFragment, bundle)
-//                }
-//            }
-//
             itemViewBinding.btProductEdit.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.firmProductEditDetailFragment, bundle)
             }
 
 
+
             // 這邊是假設如果商品狀態是1(下架)或0(被下架)時，將不會顯示編輯、下架按鈕
             if (productsManager.shopProductStatus == 1 || productsManager.shopProductStatus == 0) {
                 itemViewBinding.btProductEdit.visibility = View.INVISIBLE
                 itemViewBinding.btProductControlOffed.visibility = View.INVISIBLE
+
 
             } else {
                 itemViewBinding.btProductEdit.isEnabled = true
