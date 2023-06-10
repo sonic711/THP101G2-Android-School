@@ -206,8 +206,4 @@
     <string name="txtHProductClass">請輸入商品分類</string>
     <string name="txtHProductTag">請輸入商品標籤</string>
     <string name="txtHProductInfo">請輸入商品簡介</string>
-    <string name="textComAuthError">輸入的驗證碼錯誤！</string>
-    <string name="textComAuthFailed">認證錯誤！</string>
-    <string name="textComAuthNeeded">尚未進行電話認證！認證後才可以發表文章</string>
-    <string name="textComAuthGo">前往驗證</string>
 </resources>
