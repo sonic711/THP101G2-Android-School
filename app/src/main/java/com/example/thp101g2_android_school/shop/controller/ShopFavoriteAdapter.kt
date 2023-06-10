@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.databinding.FragmentShopFavoriteItemviewBinding
+import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteViewModel
 import com.google.gson.JsonObject
@@ -39,7 +40,14 @@ class ShopFavoriteAdapter(private var favoriteproducts: List<ShopFavorite>) :
     }
 
     override fun onBindViewHolder(holder: ShopFavoriteViewHolder, position: Int) {
+        var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+        println(currentMember)
+        val memberno = currentMember?.memberNo
+        println(memberno)
         val favoriteproduct = favoriteproducts[position]
+        if (favoriteproduct.memberNo == memberno) {
+
+        }
         with(holder) {
             with(holder) {
                 itemViewBinding.ivDelete.setOnClickListener {

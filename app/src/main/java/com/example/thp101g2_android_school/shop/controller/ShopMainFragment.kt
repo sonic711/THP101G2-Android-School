@@ -15,6 +15,7 @@ import com.example.thp101g2_android_school.databinding.FragmentShopMainBinding
 import com.example.thp101g2_android_school.shop.model.ShopFavorite
 import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
+import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewModel
 import java.net.URL
 
 class ShopMainFragment : Fragment() {
@@ -23,18 +24,21 @@ class ShopMainFragment : Fragment() {
     private lateinit var productAdapter: ProductAdapter
     private lateinit var favoriteProducts: List<ShopFavorite>
     private lateinit var shoppingCartProducts: List<ShopingCart>
+    val viewModel: ProductViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         // SearchView放在畫面頂端時通常會隱藏標題列
         (requireActivity() as MainActivity).supportActionBar?.hide()
-        val viewModel: ProductViewModel by activityViewModels()
         binding = FragmentShopMainBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.loadProduct()
+        viewModel.loadFavoriteProducts()
+        viewModel.loadShoppingCartProducts()
         favoriteProducts = emptyList<ShopFavorite>()
         shoppingCartProducts = emptyList<ShopingCart>()
         with(binding) {
