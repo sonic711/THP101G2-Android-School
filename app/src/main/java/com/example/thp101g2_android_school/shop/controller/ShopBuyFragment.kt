@@ -1,9 +1,7 @@
 package com.example.thp101g2_android_school.shop.controller
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,13 +13,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.databinding.FragmentShopBuyBinding
-import com.example.thp101g2_android_school.shop.model.Product
 import com.example.thp101g2_android_school.shop.model.ShopingCart
-import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
 import android.util.Base64
@@ -29,8 +24,6 @@ import com.example.thp101g2_android_school.GooglePayActivity
 import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
 import com.google.gson.reflect.TypeToken
-import java.util.*
-import kotlin.random.Random
 
 
 class ShopBuyFragment : Fragment() {
@@ -72,6 +65,7 @@ class ShopBuyFragment : Fragment() {
         binding.tvPoints.text = "您的積分總額 : "+memberpoints
 
 
+
         /**
          * TODO 將cartproduct.shopProductCount的資料和後端做比對，使用者只能買到商品最大數量。
          */
@@ -90,6 +84,16 @@ class ShopBuyFragment : Fragment() {
                 quantity = bundle.getInt("quantity")
                 println("我購買的數量 :$quantity")
             }
+            val productid = cartproduct.shopProductId.toInt()
+            val productname = cartproduct.shopProductName
+            val firmno = cartproduct.firmNo
+            val productimg = cartproduct.shopProductImage
+            var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
+            val name = binding.etPersonName.text.toString()
+            val email = binding.etEmail.text.toString()
+            val address = binding.etAddress.text.toString()
+            val phone = binding.etPhone.text.toString()
+            var hasError = false
 
             var Count = cartproduct.shopProductCount - quantity
             println("資料庫要變動的數量 :$Count")
@@ -145,6 +149,7 @@ class ShopBuyFragment : Fragment() {
                 val name = binding.etPersonName.text.toString()
                 val email = binding.etEmail.text.toString()
                 val address = binding.etAddress.text.toString()
+                val phone = binding.etPhone.text.toString()
 
                 var hasError = false
 
@@ -167,6 +172,15 @@ class ShopBuyFragment : Fragment() {
                     // 验证成功，恢复原始颜色
                     clearErrorState(binding.etEmail)
                 }
+                if (phone.isEmpty() || !isPhoneValid(phone)) {
+                    // 手机号验证失败，显示错误信息
+                    binding.etPhone.setError("手機、電話號碼格式不正確")
+                    setErrorState(binding.etPhone)
+                    hasError = true
+                } else {
+                    // 验证成功，恢复原始颜色
+                    clearErrorState(binding.etPhone)
+                }
 
                 if (address.isEmpty() || !isAddressValid(address)) {
                     // 地址验证失败，显示错误信息
@@ -184,6 +198,17 @@ class ShopBuyFragment : Fragment() {
                     intent.putExtra("cartproduct", cartproduct)
                     intent.putExtra("quantity", quantity)
                     intent.putExtra("price",price)
+                    intent.putExtra("name",name)
+                    intent.putExtra("email",email)
+                    intent.putExtra("address",address)
+                    intent.putExtra("phone",phone)
+                    intent.putExtra("productid",productid)
+                    intent.putExtra("memberno",memberno)
+                    intent.putExtra("pointquantity",pointquantity)
+                    intent.putExtra("productname",productname)
+                    intent.putExtra("firmno",firmno)
+                    intent.putExtra("productimg",productimg)
+                    intent.putExtra("count",Count)
                     // 启动下一个页面
                     startActivity(intent)
                 } else {
@@ -191,17 +216,6 @@ class ShopBuyFragment : Fragment() {
                 }
             }
             binding.btComFirm.setOnClickListener {
-                val productid = cartproduct.shopProductId.toInt()
-                val productname = cartproduct.shopProductName
-                val firmno = cartproduct.firmNo
-                val productimg = cartproduct.shopProductImage
-                var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
-                val name = binding.etPersonName.text.toString()
-                val email = binding.etEmail.text.toString()
-                val address = binding.etAddress.text.toString()
-                val phone = binding.etPhone.text.toString()
-                var hasError = false
-
                 println(name)
                 println(email)
                 println(address)
@@ -241,23 +255,23 @@ class ShopBuyFragment : Fragment() {
                     hasError = true
                 }
                 if (pointquantity != null && memberpoints != null) {
-                    if (pointquantity > memberpoints) {
+                    if (pointquantity!! > memberpoints) {
                         // 数量超过奖励积分，显示错误信息
                         binding.editTextNumber.setError("不能超過你擁有的積分")
                         setErrorState(binding.editTextNumber)
                         hasError = true
-                    } else if(pointquantity < price){
+                    } else if(pointquantity!! < price){
                         binding.editTextNumber.setError("您的積分不夠支付")
                         setErrorState(binding.editTextNumber)
                         hasError = true
 
-                    } else if(pointquantity > price){
+                    } else if(pointquantity!! > price){
                         Toast.makeText(context, "積分使用過多", Toast.LENGTH_SHORT).show()
                         pointquantity = price
                         hasError = true
                     }else
                     {
-                        pointans = memberpoints - pointquantity
+                        pointans = memberpoints - pointquantity!!
                         clearErrorState(binding.editTextNumber)
                         println(pointans)
                     }

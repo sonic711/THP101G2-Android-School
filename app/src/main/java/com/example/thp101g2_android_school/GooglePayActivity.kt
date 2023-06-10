@@ -3,11 +3,13 @@
     import android.app.Activity
     import android.content.Intent
     import android.os.Bundle
+    import android.text.TextUtils.replace
     import android.util.Log
     import android.view.LayoutInflater
-    import android.widget.RelativeLayout
     import android.widget.Toast
     import androidx.appcompat.app.AppCompatActivity
+    import com.example.thp101g2_android_school.app.requestTask
+    import com.example.thp101g2_android_school.app.url
     import com.google.android.gms.wallet.AutoResolveHelper
     import com.google.android.gms.wallet.PaymentData
     import com.google.android.gms.wallet.TransactionInfo
@@ -15,17 +17,35 @@
     import com.google.gson.Gson
     import com.google.gson.JsonObject
     import com.example.thp101g2_android_school.databinding.GooglepayactivitymainBinding
+    import com.example.thp101g2_android_school.shop.controller.ShopFrontFragment
+    import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
     import com.example.thp101g2_android_school.shop.model.ShopingCart
     import com.google.android.material.button.MaterialButton
+    import com.google.gson.reflect.TypeToken
     import kotlinx.coroutines.runBlocking
     import tech.cherri.tpdirect.api.*
 
     class GooglePayActivity : AppCompatActivity() {
+        private lateinit var cartproduct: ShopingCart
         private val myTag = "TAG_${javaClass.simpleName}"
         private val requestCode = 101
         private lateinit var binding: GooglepayactivitymainBinding
         private lateinit var tpdGooglePay: TPDGooglePay
         private lateinit var btGooglePay: MaterialButton
+        var price = 0
+        var quantity = 0
+        var name = ""
+        var email = ""
+        var address = ""
+        var phone = ""
+        var productid = 0
+        var memberno = 0
+        var pointquantity = 0
+        var productname = ""
+        var firmno = 0
+        var productimg: ByteArray? = null
+        var Count = 0
+
 
         // 測試環境網址
         private val sandbox = "https://sandbox.tappaysdk.com/"
@@ -46,13 +66,37 @@
             binding = GooglepayactivitymainBinding.inflate(LayoutInflater.from(this))
             setContentView(binding.root)
 
-            val cartproduct = intent.getSerializableExtra("cartproduct") as? ShopingCart
+            cartproduct = (intent.getSerializableExtra("cartproduct") as? ShopingCart)!!
             println(cartproduct)
-            val quantity = intent.getIntExtra("quantity", 0)
+            quantity = intent.getIntExtra("quantity", 0)
             println(quantity)
-            val price = intent.getIntExtra("price",0)
+            price = intent.getIntExtra("price",0)
             println(price)
             binding.totalAmountTV.text = "總金額為 : "+ price +"NT"
+            name = intent.getStringExtra("name").toString()
+            println(name)
+            email = intent.getStringExtra("email").toString()
+            println(email)
+            address = intent.getStringExtra("address").toString()
+            println(address)
+            phone = intent.getStringExtra("phone").toString()
+            println(phone)
+            productid = intent.getIntExtra("productid",0)
+            println(productid)
+            memberno = intent.getIntExtra("memberno",0)
+            println(memberno)
+            pointquantity = intent.getIntExtra("pointquantity",0)
+            println(pointquantity)
+            productname = intent.getStringExtra("productname").toString()
+            println(productname)
+            firmno =  intent.getIntExtra("firmno",0)
+            println(firmno)
+            productimg = intent.getByteArrayExtra("productimg")
+            println(productimg)
+            Count = intent.getIntExtra("count",0)
+            println(Count)
+
+
             Log.d(myTag, "SDK version is " + TPDSetup.getVersion())
             TPDSetup.initInstance(
                 this,
@@ -99,7 +143,7 @@
                         tpdGooglePay.requestPayment(
                             TransactionInfo.newBuilder()
                                 .setTotalPriceStatus(WalletConstants.TOTAL_PRICE_STATUS_FINAL)
-                                .setTotalPrice("10") // 消費總金額
+                                .setTotalPrice(price.toString()) // 消費總金額
                                 .setCurrencyCode("TWD") // 設定幣別
                                 .build(), requestCode
                         )
@@ -198,11 +242,63 @@
                             R.string.textPaymentSuccess,
                             Toast.LENGTH_SHORT
                         ).show()
+                        Toast.makeText(this, "付款成功", Toast.LENGTH_SHORT).show()
+                        println("Order增加一筆")
+                        val shopBuy = ShopBuyCalss(
+                            shopProductId = productid,
+                            memberNo = memberno,
+                            shopAddress = address,
+                            shopRecipient = name,
+                            shopOrderPhone = phone,
+                            shopPointDiscount = pointquantity,
+                            shopProductSales = price,
+                            shopProductName = productname,
+                            firmNo = firmno,
+                            shopOrderCount = quantity,
+                            shopOrderImage = productimg
+                        )
+
+                        val respbody = requestTask<JsonObject>(
+                            "$url/shop/buy/",
+                            "POST", reqBody = shopBuy
+                        )
+                        val jsonObj2 = JsonObject()
+                        val urldelete = "$url/shop/buy/$productid"
+                        val respbody2 = requestTask<JsonObject>(urldelete, "DELETE")
+
+                        val jsonObj3 = JsonObject()
+                        jsonObj3.addProperty("shopProductCount", Count)
+                        jsonObj3.addProperty("shopProductId", productid)
+                        val respbody3 = requestTask<JsonObject>(
+                            "$url/shop/buy/",
+                            "PUT", jsonObj3
+                        )
+                        /**
+                         *  TDOO 以下是積分折抵後的積分使用狀況後端更新.Ian //278~289行
+                         */
+                        val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
+                        val requestBody = mapOf(
+                            "type" to "insertForSO",
+                        )
+                        val responseType = object : TypeToken<JsonObject>() {}.type
+                        val response = requestTask<JsonObject>(
+                            postUrl, "POST",
+                            requestBody, responseType)
 
                     }
                     val text = "支付結束，TapPay回應的結果訊息:\n$resultJson"
                     Log.d(myTag, text)
                     binding.tvResult.text = text
+
+                    MainActivity().supportFragmentManager.beginTransaction().apply {
+                        val fragment = ShopFrontFragment()
+                        val fragmentManager = supportFragmentManager
+                        val transaction = fragmentManager.beginTransaction()
+                        transaction.replace(R.id.fragmentContainer, fragment)
+                        transaction.addToBackStack(null)
+                        transaction.commit()
+
+                    }
                 }
             ) { status: Int, reportMsg: String ->
                 val text =
@@ -222,7 +318,7 @@
             paymentJO.addProperty("partner_key", partnerKey)
             paymentJO.addProperty("prime", prime)
             paymentJO.addProperty("merchant_id", merchantId)
-            paymentJO.addProperty("amount", 10)
+            paymentJO.addProperty("amount", price)
             paymentJO.addProperty("currency", "TWD")
             paymentJO.addProperty("order_number", "SN0001")
             paymentJO.addProperty("details", "茶葉蛋1顆")

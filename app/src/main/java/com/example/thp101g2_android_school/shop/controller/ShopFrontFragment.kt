@@ -8,16 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopFrontBinding
 import com.example.thp101g2_android_school.shop.model.ShopPage
+import com.example.thp101g2_android_school.shop.viewmodel.ShopFrontViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ShopFrontFragment : Fragment() {
-
     private lateinit var binding: FragmentShopFrontBinding
+    private val viewModel: ShopFrontViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
