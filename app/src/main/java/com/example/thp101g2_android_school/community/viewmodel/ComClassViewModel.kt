@@ -10,6 +10,7 @@ import com.example.thp101g2_android_school.community.model.ChildItem
 import com.example.thp101g2_android_school.community.model.ClassBean
 import com.example.thp101g2_android_school.community.model.FollowClassBean
 import com.example.thp101g2_android_school.community.model.ParentItem
+import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 
@@ -22,7 +23,6 @@ class ComClassViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             loadClasses()
-            getFollowClass()
         }
     }
 
@@ -87,9 +87,8 @@ class ComClassViewModel : ViewModel() {
     }
 
     // 取得目前登入會員編號的所有追蹤次分類
-    fun getFollowClass() {
-        // 先寫死會員編號 1
-        val memberId = 1
+    fun getFollowClass(member: Member) {
+        val memberId = member.memberNo
         val url = "$url/member/followClass/$memberId"
         val type = object : TypeToken<List<FollowClassBean>>() {}.type
         val followClass = requestTask<List<FollowClassBean>>(url, respBodyType = type) ?: return

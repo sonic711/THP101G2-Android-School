@@ -30,22 +30,7 @@ class CouUploadChapterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
 
-            val onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel?.text?.value = parent?.getItemAtPosition(position).toString()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    viewModel?.text?.value = getString(R.string.textNothingSelected)
-                }
-            }
-            spinnerChapter.setSelection(0, true)
-            spinnerChapter.onItemSelectedListener = onItemSelectedListener
         }
+
     }
 }

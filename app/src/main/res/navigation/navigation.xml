@@ -213,15 +213,23 @@
                 app:destination="@id/couRatingFragment" />
     </fragment>
     <fragment
-            android:id="@+id/couUploadCourseFragment"
-            android:name="com.example.thp101g2_android_school.course.controller.CouUploadCourseFragment"
-            android:label="fragment_cou_upload_course"
-            tools:layout="@layout/fragment_cou_upload_course" />
+        android:id="@+id/couUploadCourseFragment"
+        android:name="com.example.thp101g2_android_school.course.controller.CouUploadCourseFragment"
+        android:label="fragment_cou_upload_course"
+        tools:layout="@layout/fragment_cou_upload_course" >
+        <action
+            android:id="@+id/action_couUploadCourseFragment_to_couUploadChapterFragment"
+            app:destination="@id/couUploadChapterFragment" />
+    </fragment>
     <fragment
-            android:id="@+id/couUploadChapterFragment"
-            android:name="com.example.thp101g2_android_school.course.controller.CouUploadChapterFragment"
-            android:label="fragment_cou_upload_chapter"
-            tools:layout="@layout/fragment_cou_upload_chapter" />
+        android:id="@+id/couUploadChapterFragment"
+        android:name="com.example.thp101g2_android_school.course.controller.CouUploadChapterFragment"
+        android:label="fragment_cou_upload_chapter"
+        tools:layout="@layout/fragment_cou_upload_chapter" >
+        <action
+            android:id="@+id/action_couUploadChapterFragment_to_memOthersHomeFragment"
+            app:destination="@id/memOthersHomeFragment" />
+    </fragment>
     <fragment
             android:id="@+id/shopBuyFragment"
             android:name="com.example.thp101g2_android_school.shop.controller.ShopBuyFragment"
@@ -318,5 +326,8 @@
             android:name="com.example.thp101g2_android_school.point.controller.PointFragment"
             android:label="fragment_point"
             tools:layout="@layout/fragment_point" />
+    <fragment android:id="@+id/comPostAuthFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComPostAuthFragment"
+              android:label="ComPostAuthFragment"/>
 
 </navigation>

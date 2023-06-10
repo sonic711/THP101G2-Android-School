@@ -20,6 +20,7 @@
             android:required="true"/>
 
     <application
+
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
             android:fullBackupContent="@xml/backup_rules"
@@ -28,11 +29,15 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.THP101G2AndroidSchool"
             android:usesCleartextTraffic="true"
-            tools:targetApi="31">
+            tools:targetApi="31"
+            tools:replace="android:allowBackup">
         <!-- 可以加上metadata標籤設定Notification的預設圖示、顏色與Channel ID (Android 8.0)，
              就無須使用程式建立Notification物件 -->
         <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
              See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
         <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
                 android:resource="@android:drawable/ic_dialog_info" />
@@ -71,6 +76,18 @@
         <activity
                 android:name="com.yalantis.ucrop.UCropActivity"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".GooglePayActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 <!--        <service android:name=".如果有用Service的話" />-->
 <!--        <service-->
 <!--                android:name=".如果要用JobService的話"-->

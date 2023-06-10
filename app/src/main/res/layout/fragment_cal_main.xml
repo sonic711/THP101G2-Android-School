@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.calendar.viewModel.SchedulesViewModel" />
+            type="com.example.thp101g2_android_school.calendar.viewModel.MemScheduleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,9 +45,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="2023/4/25"
+                    android:text="@={viewModel.date}"
                     android:textSize="20sp"
-                    android:textColor="@color/purple_400" />
+                    android:textColor="@color/purple_400"
+                    tools:text="2023/05/01"/>
 
                 <ImageView
                     android:id="@+id/ivnext"

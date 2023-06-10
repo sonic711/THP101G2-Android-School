@@ -6,10 +6,10 @@ import java.sql.Timestamp
 data class Courses (
     var courseId: Int? = null,
     var courseName: String? = "",
-    var memberNo: Int,
+    var memberNo: Int? = 1,
     var summary: String? = "",
-    var addAndRemove: Boolean? = null,
-    var coursesReport: Boolean? = null,
+    var addAndRemove: Boolean? = true,
+    var coursesReport: Boolean? = false,
     var updateTime: String? = null,
     var image: ByteArray? = null,
     var userId: String? = "",

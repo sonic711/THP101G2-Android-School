@@ -4,13 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.example.thp101g2_android_school.ActivityViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.byteArrayToBitmap
 import com.example.thp101g2_android_school.community.model.ReplyAndLike
 import com.example.thp101g2_android_school.community.viewmodel.ReplyViewModel
 import com.example.thp101g2_android_school.databinding.ComReplyItemviewBinding
 
-class ReplyAdapter(private var replyList: List<ReplyAndLike>, private val likeList: List<ReplyAndLike>?) :
+class ReplyAdapter(
+    private var replyList: List<ReplyAndLike>,
+    private val likeList: List<ReplyAndLike>?,
+    private val activityViewModel: ActivityViewModel
+) :
     RecyclerView.Adapter<ReplyAdapter.ReplyViewHolder>() {
 
     class ReplyViewHolder(val itemViewBinding: ComReplyItemviewBinding) :
@@ -43,35 +48,45 @@ class ReplyAdapter(private var replyList: List<ReplyAndLike>, private val likeLi
 
     override fun onBindViewHolder(holder: ReplyViewHolder, position: Int) {
         val reply = replyList[position]
-        with(holder) {
-            itemViewBinding.viewModel?.reply?.value = reply
+        val memberObj = activityViewModel.memberObj.value
+
+        with(holder.itemViewBinding) {
+            viewModel?.reply?.value = reply
             if (reply.profilePhoto != null) {
                 val img = byteArrayToBitmap(reply.profilePhoto!!)
-                itemViewBinding.imageView.setImageBitmap(img)
+                imageView.setImageBitmap(img)
             } else {
-                itemViewBinding.imageView.setBackgroundResource(R.drawable.com_user)
+                imageView.setBackgroundResource(R.drawable.com_user)
             }
-
             // 從資料庫取出來該文章的所有喜歡來判斷有沒有喜歡過
             likeList?.let {
                 for (liked in it) {
                     // 找到屬於該MemberNo的喜歡並且 喜歡的編號 = 該回覆的編號
                     // TODO 先寫死目前登入會員id為1
-                    if (liked.likedMemberNo == "1" && (liked.likedReplyId == reply.comReplyId)) {
-                        holder.itemViewBinding.tbLike.isChecked = true
+                    if (liked.likedMemberNo == memberObj?.memberNo.toString() && (liked.likedReplyId == reply.comReplyId)) {
+                        tbLike.isChecked = true
                         break
                     } else {
-                        holder.itemViewBinding.tbLike.isChecked = false
+                        tbLike.isChecked = false
                     }
                 }
             }
-            // 如果已經有這一個喜歡紀錄 就刪除 沒有這個紀錄就新增
-            itemViewBinding.tbLike.setOnClickListener {
-                if (itemViewBinding.tbLike.isChecked) {
-                    holder.itemViewBinding.viewModel?.addLike()
+            // 如果已經有這一個喜歡紀錄 就刪除 沒有這個紀錄就新增 ， 並同時更改愛心總數
+            var currentLikeCount = viewModel?.reply?.value?.likeCounts
+            tbLike.setOnClickListener {
+                if (tbLike.isChecked) {
+                    memberObj?.let { member ->
+                        currentLikeCount = currentLikeCount!! + 1
+                        tvLikesCount.text = currentLikeCount.toString()
+                        viewModel?.addLike(member)
+                    }
                 } else {
                     // 已追蹤，就刪除
-                    holder.itemViewBinding.viewModel?.cancelLike()
+                    memberObj?.let { member ->
+                        currentLikeCount = currentLikeCount!! - 1
+                        tvLikesCount.text = currentLikeCount.toString()
+                        viewModel?.cancelLike(member)
+                    }
                 }
             }
         }

@@ -9,6 +9,7 @@ class ShopingCart( var shopProductImage: ByteArray,
                    var shopName:String,
                    var shopProductCount:Int,
                    var rewardPoints:Int,
+                   var memberNo: Int,
                    var firmNo: Int
                    ):
     Serializable

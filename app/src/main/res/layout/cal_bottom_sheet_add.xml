@@ -116,8 +116,7 @@
                                 android:clickable="true"
                                 android:focusable="false"
                                 android:focusableInTouchMode="false"
-                                android:hint="@string/txtTag"
-                                android:text="@={viewModel.addSchedule.tagName}"/>
+                                android:hint="@string/txtTag" />
                         </LinearLayout>
 
                         <LinearLayout

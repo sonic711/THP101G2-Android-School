@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".course.controller.CouUploadChapterFragment" >
 
@@ -10,38 +11,44 @@
     </data>
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Spinner
-            android:id="@+id/spinnerChapter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/txtchapter" />
+        android:layout_height="match_parent">
 
 
         <EditText
-            android:id="@+id/editTextChapterName"
-            android:layout_width="match_parent"
+            android:id="@+id/etName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Enter chapter name" />
+            android:layout_marginTop="32dp"
+            android:hint="Enter chapter name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etNumber" />
 
         <Button
+            android:id="@+id/btUpV"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
             android:text="Upload Video"
-            android:onClick="@{() -> viewModel.uploadVideo()}" />
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="30dp"
-            android:background="#00FFFF"
-            android:padding="10dp"
-            android:text="@{viewModel.text}"
-            android:textSize="20sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etName" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/etNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

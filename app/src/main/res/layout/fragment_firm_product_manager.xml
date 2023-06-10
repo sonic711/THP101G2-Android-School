@@ -36,44 +36,44 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="200dp"
+            android:layout_marginEnd="100dp"
+            android:background="@drawable/button_secondary"
             android:text="@string/txtProductOn"
+            android:textColor="@color/purple_400"
+            app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/button_secondary"
-            android:textColor="@color/purple_400"
-            app:backgroundTint="@null"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btProductOffed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="350dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="50dp"
-            android:text="@string/txtProductOffed"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/button_secondary"
-            android:textColor="@color/purple_400"
-            app:backgroundTint="@null"/>
+<!--        <Button-->
+<!--            android:id="@+id/btProductOffed"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="350dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="50dp"-->
+<!--            android:text="@string/txtProductOffed"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:background="@drawable/button_secondary"-->
+<!--            android:textColor="@color/purple_400"-->
+<!--            app:backgroundTint="@null"/>-->
 
         <Button
             android:id="@+id/btProductOff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
+            android:layout_marginStart="320dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_secondary"
             android:text="@string/txtProductOff"
+            android:textColor="@color/purple_400"
+            app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/button_secondary"
-            android:textColor="@color/purple_400"
-            app:backgroundTint="@null"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productManagerRecyclerView"

@@ -16,7 +16,7 @@ class ComAllPostFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val viewModel: ComAllPostViewModel by viewModels()
         binding = FragmentComAllPostBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -48,7 +48,7 @@ class ComAllPostFragment : Fragment() {
                 if (recyclerView.adapter == null) {
                     recyclerView.adapter = PostAdapter(posts)
                     if (requireParentFragment() is ComMainFragment) {
-                        (requireParentFragment() as ComMainFragment).binding.loadingPanel?.visibility = View.GONE
+                        (requireParentFragment() as ComMainFragment).binding.loadingPanel.visibility = View.GONE
                     }
                 } else {
                     // 搜尋更新

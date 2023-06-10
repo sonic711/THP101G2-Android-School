@@ -62,6 +62,8 @@ class FirmProductAdapter(private var firmProducts: List<FirmProduct>) :
             if (firmProduct.shopProductImg != null) {
                 val img = byteArrayToBitmap(firmProduct.shopProductImg!!)
                 itemViewBinding.ivFirmProduct.setImageBitmap(img)
+            }else{
+                itemViewBinding.ivFirmProduct.setBackgroundResource(R.drawable.baseline_add_to_product_24)
             }
 
             // STEP06-5.把資料送到下一頁用

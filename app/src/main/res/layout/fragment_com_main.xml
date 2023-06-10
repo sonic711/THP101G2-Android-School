@@ -5,7 +5,7 @@
         tools:context=".ComMainFragment">
 
     <data>
-        <variable name="viewModel" type="com.example.thp101g2_android_school.community.viewmodel.ComMainViewModel"/>
+        <variable name="viewModel" type="com.example.thp101g2_android_school.community.viewmodel.ComNotificationViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
