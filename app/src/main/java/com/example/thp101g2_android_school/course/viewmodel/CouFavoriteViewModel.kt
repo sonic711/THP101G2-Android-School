@@ -6,6 +6,7 @@ import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.course.model.FavCourse
+import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.reflect.TypeToken
 
 
@@ -15,7 +16,9 @@ class CouFavoriteViewModel : ViewModel() {
 
 
     init {
+
         loadData()
+
     }
 
     fun loadData() {

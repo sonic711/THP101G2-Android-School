@@ -48,7 +48,7 @@ class CouMyCourseSelectFragment : Fragment() {
 
                     btStartCourse.setOnClickListener {
                         Navigation.findNavController(it)
-                            .navigate(R.id.couClassroomFragment, bundle)
+                            .navigate(R.id.action_couMyCourseSelectFragment_to_couClassroomFragment, bundle)
                     }
                     btDeleteMy.setOnClickListener {
                         requestTask<JsonObject>(

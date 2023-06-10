@@ -21,6 +21,7 @@ import com.example.thp101g2_android_school.course.viewmodel.CouMainDetailViewMod
 import com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel
 import com.example.thp101g2_android_school.databinding.CouCourseDetailBinding
 import com.example.thp101g2_android_school.databinding.FragmentCouMainBinding
+import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.JsonObject
 
 class CouCourseDetailFragment: Fragment() {
@@ -52,11 +53,13 @@ class CouCourseDetailFragment: Fragment() {
                 }
             }
             with(binding){
+                val member: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+                var memberNo = member?.memberNo
 
                 btAddCourse.setOnClickListener {
                     val test = MyCourse(
                         courseId = viewModel?.course?.value?.courseId!!,
-                        memberNo = viewModel?.course?.value?.memberNo!!
+                        memberNo = memberNo
                     )
                     requestTask<JsonObject>(
                         "http://10.0.2.2:8080/THP101G2-WebServer-School/studentcourses/",
@@ -73,7 +76,7 @@ class CouCourseDetailFragment: Fragment() {
                     val test2 = FavCourse(
 
                         courseId = viewModel?.course?.value?.courseId!!,
-                        memberNo = viewModel?.course?.value?.memberNo!!
+                        memberNo = memberNo
                     )
                     requestTask<JsonObject>(
                         "http://10.0.2.2:8080/THP101G2-WebServer-School/favoritecourses/",
@@ -81,7 +84,7 @@ class CouCourseDetailFragment: Fragment() {
                         reqBody = test2
                     )
                     Navigation.findNavController(it)
-                        .navigate(R.id.action_couCourseDetailFragment_to_couFavoriteFragment)
+                        .navigate(R.id.action_couCourseDetailFragment_to_couFavoriteFragment, bundle)
                     Toast.makeText(view.context, "成功加入我的最愛", Toast.LENGTH_SHORT).show()
                 }
             }
