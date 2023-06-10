@@ -25,6 +25,7 @@ import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
 import android.util.Base64
+import com.example.thp101g2_android_school.GooglePayActivity
 import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
 import com.google.gson.reflect.TypeToken
@@ -130,7 +131,66 @@ class ShopBuyFragment : Fragment() {
                     binding.editTextNumber.text = null
                 }
             }
-            binding.button5.setOnClickListener {
+            /**
+             * TODO 跳轉googlepay頁面
+             */
+
+            binding.btGPay.setOnClickListener {
+//                val intent = Intent(requireContext(), GooglePayActivity::class.java)
+//                // 添加要传递的数据到Intent的Extra中
+//                intent.putExtra("cartproduct", cartproduct)
+//                intent.putExtra("quantity", quantity)
+//                // 启动下一个页面
+//                startActivity(intent)
+                val name = binding.etPersonName.text.toString()
+                val email = binding.etEmail.text.toString()
+                val address = binding.etAddress.text.toString()
+
+                var hasError = false
+
+                if (name.isEmpty() || name.length < 2) {
+                    // 姓名验证失败，显示错误信息
+                    binding.etPersonName.setError("姓名輸入失敗，請至少輸入兩個字元")
+                    setErrorState(binding.etPersonName)
+                    hasError = true
+                } else {
+                    // 验证成功，恢复原始颜色
+                    clearErrorState(binding.etPersonName)
+                }
+
+                if (email.isEmpty() || !isEmailValid(email)) {
+                    // 邮箱验证失败，显示错误信息
+                    binding.etEmail.setError("電子郵件驗證失敗")
+                    setErrorState(binding.etEmail)
+                    hasError = true
+                } else {
+                    // 验证成功，恢复原始颜色
+                    clearErrorState(binding.etEmail)
+                }
+
+                if (address.isEmpty() || !isAddressValid(address)) {
+                    // 地址验证失败，显示错误信息
+                    binding.etAddress.setError("地址格式不正確，請重新輸入")
+                    setErrorState(binding.etAddress)
+                    hasError = true
+                } else {
+                    // 验证成功，恢复原始颜色
+                    clearErrorState(binding.etAddress)
+                }
+
+                if (!hasError) {
+                    val intent = Intent(requireContext(), GooglePayActivity::class.java)
+                    // 添加要传递的数据到Intent的Extra中
+                    intent.putExtra("cartproduct", cartproduct)
+                    intent.putExtra("quantity", quantity)
+                    intent.putExtra("price",price)
+                    // 启动下一个页面
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(context, "付款失敗", Toast.LENGTH_SHORT).show()
+                }
+            }
+            binding.btComFirm.setOnClickListener {
                 val productid = cartproduct.shopProductId.toInt()
                 val productname = cartproduct.shopProductName
                 val firmno = cartproduct.firmNo

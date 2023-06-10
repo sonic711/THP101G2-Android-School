@@ -210,4 +210,19 @@
     <string name="textComAuthFailed">認證錯誤！</string>
     <string name="textComAuthNeeded">尚未進行電話認證！認證後才可以發表文章</string>
     <string name="textComAuthGo">前往驗證</string>
+    <string name="textConfirmPay">確認付款</string>
+    <string name="textCannotUseGPay">Cannot use Google Pay</string>
+    <string name="textCanceled">Canceled by the user.</string>
+    <string name="textNoNetwork">no network connection available</string>
+    <string name="textPaymentSuccess">Payment is successful</string>
+    <string name="TapPay_AppID">132400</string>
+    <string name="TapPay_AppKey">app_khpYmGtvLMNRwL50YuTQqCXSoSHqQdbDIShYfSUoseX5pGYiz4wIoNIHGBj8</string>
+
+    <!-- 公司資訊 / 帳號金鑰 -->
+    <string name="TapPay_PartnerKey">partner_9Y1yEpLHaZ6zkbkgV0aPhT1VcfHCdYxxFMZCyPG0OkF8a4xjPG0oaBBy</string>
+
+    <!-- 商家管理 / 商家設置 / 收單銀行 -->
+    <string name="TapPay_MerchantName">TW_TAISHIN</string>
+    <!-- 商家管理 / 商家設置 / Merchant ID -->
+    <string name="TapPay_MerchantID">softfat_TAISHIN</string>
 </resources>
