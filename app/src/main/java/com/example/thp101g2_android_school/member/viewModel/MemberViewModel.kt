@@ -87,7 +87,6 @@ class MemberViewModel: ViewModel() {
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/member/follow/followers"
         val respBody =
             requestTask<JsonObject>(url, "POST", member)
-        Log.d("xxx", respBody.toString())
     }
 
     // FIXME 取消追蹤對方

@@ -5,6 +5,9 @@ import android.graphics.BitmapFactory
 import com.example.thp101g2_android_school.R
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.TypeAdapter
+import com.google.gson.stream.JsonReader
+import com.google.gson.stream.JsonWriter
 import kotlinx.coroutines.*
 import java.lang.reflect.Type
 import java.net.CookieHandler
@@ -12,6 +15,12 @@ import java.net.CookieManager
 import java.net.HttpURLConnection
 import java.net.HttpURLConnection.HTTP_OK
 import java.net.URL
+import java.sql.Date
+import java.sql.Time
+import java.sql.Timestamp
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val url: String = "http://10.0.2.2:8080/THP101G2-WebServer-School/"
 
@@ -106,5 +115,61 @@ inline fun <reified T> request(
 }
 
 val GSON: Gson = GsonBuilder()
-    .setDateFormat("yyyy/MM/dd HH:mm:ss")
-    .create();
+    .registerTypeAdapter(Date::class.java, CustomDateTypeAdapter())
+    .registerTypeAdapter(Time::class.java, CustomTimeTypeAdapter())
+    .registerTypeAdapter(Timestamp::class.java, CustomTimestampTypeAdapter())
+    .create()
+
+class CustomDateTypeAdapter : TypeAdapter<Date>() {
+    private val dateFormat = SimpleDateFormat("M月 d, yyyy", Locale.CHINESE)
+
+    override fun write(out: JsonWriter, value: Date?) {
+        out.value(value?.let { dateFormat.format(it) })
+    }
+
+    override fun read(`in`: JsonReader): Date? {
+        val dateString = `in`.nextString()
+        return try {
+            val parsedDate = dateFormat.parse(dateString)
+            Date(parsedDate.time)
+        } catch (e: ParseException) {
+            null
+        }
+    }
+}
+
+class CustomTimeTypeAdapter : TypeAdapter<Time>() {
+    private val timeFormat = SimpleDateFormat("hh:mm:ss a", Locale.CHINESE)
+
+    override fun write(out: JsonWriter, value: Time?) {
+        out.value(value?.let { timeFormat.format(it) })
+    }
+
+    override fun read(`in`: JsonReader): Time? {
+        val timeString = `in`.nextString()
+        return try {
+            val parsedDate = timeFormat.parse(timeString)
+            Time(parsedDate.time)
+        } catch (e: ParseException) {
+            null
+        }
+    }
+}
+
+class CustomTimestampTypeAdapter : TypeAdapter<Timestamp>() {
+    private val timestampFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
+
+    override fun write(out: JsonWriter, value: Timestamp?) {
+        out.value(value?.let { timestampFormat.format(it) })
+    }
+
+    override fun read(`in`: JsonReader): Timestamp? {
+        val timestampString = `in`.nextString()
+        return try {
+            val parsedDate = timestampFormat.parse(timestampString)
+            Timestamp(parsedDate.time)
+        } catch (e: ParseException) {
+            null
+        }
+    }
+}
