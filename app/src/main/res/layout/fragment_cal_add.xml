@@ -14,17 +14,21 @@
         android:layout_height="match_parent"
         tools:context=".calendar.controller.CalAddFragment">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="vertical">
+            android:layout_marginBottom="16dp">
 
             <ScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/btAdd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,7 +55,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="@string/txtTask"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            android:text="@={viewModel.schedule.task}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -77,7 +82,7 @@
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:hint="@string/txtTag"
-                            android:text="@={viewModel.addSchedule.tagName}" />
+                            android:text="@={viewModel.tagName}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -102,7 +107,8 @@
                             android:clickable="true"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:hint="@string/txtDate" />
+                            android:hint="@string/txtDate"
+                            android:text="@={viewModel.date}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -127,7 +133,8 @@
                             android:clickable="true"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:hint="@string/txtStartTime" />
+                            android:hint="@string/txtStartTime"
+                            android:text="@={viewModel.startTime}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -152,7 +159,8 @@
                             android:clickable="true"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:hint="@string/txtEndTime" />
+                            android:hint="@string/txtEndTime"
+                            android:text="@={viewModel.endTime}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -170,7 +178,7 @@
                             android:text="@string/tvRepeat" />
 
                         <Spinner
-                            android:id="@+id/Repeat"
+                            android:id="@+id/spRepeat"
                             android:layout_width="120dp"
                             android:layout_height="48dp"
                             android:entries="@array/repeatPattern" />
@@ -191,7 +199,7 @@
                             android:text="@string/tvRemind" />
 
                         <Spinner
-                            android:id="@+id/Remind"
+                            android:id="@+id/spRemind"
                             android:layout_width="120dp"
                             android:layout_height="48dp"
                             android:entries="@array/remindType" />
@@ -205,14 +213,15 @@
                 android:id="@+id/btAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/button_primary"
                 android:text="@string/btAdd"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:backgroundTint="@null" />
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>
