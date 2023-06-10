@@ -2,27 +2,19 @@ package com.example.thp101g2_android_school.community.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.Label
 import com.example.thp101g2_android_school.community.model.Post
 import com.example.thp101g2_android_school.community.model.PostBean
+import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.launch
 
 class ComFollowViewModel : ViewModel() {
     val followedPosts: MutableLiveData<List<Post>> by lazy { MutableLiveData<List<Post>>() }
     var followedPostList = mutableListOf<Post>()
 
-    init {
-        viewModelScope.launch {
-            loadData()
-        }
-    }
-
-    fun loadData(): Boolean {
-        val member = Member("1")
+    fun loadData(member: Member): Boolean {
         val type = object : TypeToken<List<PostBean>>() {}.type
         val list = requestTask<List<PostBean>>("$url/community/post", "OPTIONS", member, type) ?: return false
         val newList = mutableListOf<Post>()
@@ -109,6 +101,4 @@ class ComFollowViewModel : ViewModel() {
         followedPosts.postValue(followedPostList)
         return true
     }
-
-    inner class Member(var memberNo: String)
 }

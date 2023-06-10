@@ -65,6 +65,7 @@
                         android:inputType="textMultiLine"
                         android:gravity="start|top"
                         android:ems="10"
+                        android:minHeight="300dp"
                         android:text="@={viewModel.post.comPostContent}"
                         android:id="@+id/etContent"
                         android:background="@drawable/com_textview"

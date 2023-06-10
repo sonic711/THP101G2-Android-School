@@ -31,7 +31,8 @@
                         app:layout_constraintEnd_toEndOf="parent">
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp">
 
                         <androidx.cardview.widget.CardView
                                 android:id="@+id/childCardView"
@@ -54,28 +55,27 @@
                                 app:layout_constraintTop_toTopOf="@+id/childCardView"
                                 app:layout_constraintStart_toEndOf="@+id/childCardView"
                                 android:text="@{viewModel.post.nickName}"
-                                android:layout_marginStart="10dp" android:hint="TSE"/>
+                                android:layout_marginStart="10dp"/>
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/tvMemberId"
                                 app:layout_constraintTop_toBottomOf="@+id/tvMemberName"
                                 app:layout_constraintStart_toEndOf="@+id/childCardView"
                                 android:text="@{viewModel.post.comSecClassName + '板'}"
-                                android:layout_marginStart="10dp" android:hint="TSE"/>
+                                android:layout_marginStart="10dp"/>
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/tvDate"
                                 app:layout_constraintTop_toTopOf="@+id/tvMemberId"
                                 app:layout_constraintStart_toEndOf="@+id/tvMemberId"
                                 android:layout_marginStart="16dp"
-                                app:text="@{viewModel.post.comPostTime}" android:hint="剛剛 ..."/>
+                                app:text="@{viewModel.post.comPostTime}"/>
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/tvTitle"
                                 app:layout_constraintTop_toBottomOf="@+id/childCardView"
                                 app:layout_constraintStart_toStartOf="@+id/childCardView" android:layout_marginTop="6dp"
                                 android:text="@{viewModel.post.comPostTitle}" android:textSize="16sp"
-                                android:hint="標題"
                         />
                         <TextView
                                 android:layout_width="wrap_content"
@@ -84,15 +84,44 @@
                                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 android:text="@{viewModel.post.comPostContent}"
-                                android:hint="內文 ..." app:layout_constraintHorizontal_bias="0.0"
-                                android:textSize="24sp" android:textColor="@color/black"/>
+                                app:layout_constraintHorizontal_bias="0.0"
+                                android:textSize="24sp" android:textColor="@color/black" tools:text="Test"/>
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@+id/view3"
+                                app:layout_constraintStart_toStartOf="parent"
+                        >
+                            <ImageView
+                                    android:src="@drawable/baseline_comment_24"
+                                    app:tint="@color/black"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp" android:id="@+id/ivComment"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginStart="16dp"/>
+                            <TextView
+                                    android:text="@{viewModel.replyCount.toString()}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent" android:id="@+id/tvCommentCount"
+                                    android:gravity="center" tools:text="123"/>
+                        </LinearLayout>
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp"
+                                android:background="@color/gray_200"
+                                app:layout_constraintTop_toBottomOf="@+id/tvContent" android:layout_marginTop="6dp"
+                                android:id="@+id/view3" tools:layout_editor_absoluteX="16dp"/>
                         <ImageButton
-                                android:src="@android:drawable/arrow_down_float"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/forMoreBtn"
                                 app:layout_constraintTop_toTopOf="parent"
                                 android:layout_marginTop="16dp"
-                                android:layout_marginEnd="9dp" app:layout_constraintEnd_toEndOf="parent"/>
+                                android:layout_marginEnd="9dp"
+                                android:src="@drawable/baseline_mode_edit_24"
+
+                                app:layout_constraintEnd_toEndOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <androidx.recyclerview.widget.RecyclerView
@@ -104,5 +133,6 @@
         <include
                 android:id="@+id/included"
                 layout="@layout/com_reply_bottomsheet" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
