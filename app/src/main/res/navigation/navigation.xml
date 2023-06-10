@@ -318,5 +318,8 @@
             android:name="com.example.thp101g2_android_school.point.controller.PointFragment"
             android:label="fragment_point"
             tools:layout="@layout/fragment_point" />
+    <fragment android:id="@+id/comPostAuthFragment"
+              android:name="com.example.thp101g2_android_school.community.controller.ComPostAuthFragment"
+              android:label="ComPostAuthFragment"/>
 
 </navigation>

@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -21,7 +22,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true // 開啟程式碼瘦身功能
+            shrinkResources true // 開啟資源瘦身功能，minifyEnabled也必須設為true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -56,6 +58,20 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.github.yalantis:ucrop:2.2.4'
+    // 本機的google認證函式庫
+    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+    // 使用Firebase BOM則無須指定Firebase單一函式庫的版次 (但BOM仍需指定版次)
+//    implementation platform('com.google.firebase:firebase-bom:32.0.0')
+//    implementation 'com.google.firebase:firebase-messaging-ktx'
+    // Import the BoM for the Firebase platform
+    // Add the dependency for the Cloud Storage library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation platform('com.google.firebase:firebase-bom:31.2.0')
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
