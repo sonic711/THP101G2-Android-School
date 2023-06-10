@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <Button
-            android:id="@+id/memberProcessed"
+            android:id="@+id/Unprocessed"
             android:layout_width="203dp"
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <Button
-            android:id="@+id/memberUnprocessed"
+            android:id="@+id/Processed"
             android:layout_width="207dp"
             android:layout_height="50dp"
             android:layout_marginTop="6dp"
@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <ImageView
-            android:id="@+id/memberBack"
+            android:id="@+id/Back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"

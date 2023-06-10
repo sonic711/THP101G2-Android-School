@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,10 @@ class ManageFirmFragment : Fragment() {
         binding = FragmentManageFirmBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        binding.Back.setOnClickListener {
+            Navigation.findNavController(requireView()).navigateUp()
+        }
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,9 +61,6 @@ class ManageFirmFragment : Fragment() {
                 } else {
                     adapter.updateFirms(firms)
                 }
-            }
-            binding.memberBack.setOnClickListener {
-                findNavController().navigateUp()
             }
         }
 

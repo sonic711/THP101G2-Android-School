@@ -10,13 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.ManageComItemViewBinding
 import com.example.thp101g2_android_school.manage.model.Comms
+import com.example.thp101g2_android_school.manage.model.ManageComReportBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageComViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel
 
 
-class ManageComAdapter(private var comms: List<Comms>) :
+class ManageComAdapter(private var comms: List<ManageComReportBean>) :
     RecyclerView.Adapter<ManageComAdapter.ComViewHolder>() {
     @SuppressLint("NotifyDataSetChanged")
-    fun updateComments(comms: List<Comms>) {
+    fun updateComments(comms: List<ManageComReportBean>) {
         this.comms = comms
         notifyDataSetChanged()
     }
@@ -39,13 +41,13 @@ class ManageComAdapter(private var comms: List<Comms>) :
     }
 
         override fun onBindViewHolder(holder: ComViewHolder, position: Int) {
-        val comments = comms[position]
+        val thecomms = comms[position]
         with(holder) {
             // 將欲顯示的class物件指派給LiveData，就會自動更新layout檔案的view顯示
-            itemViewBinding.viewModel?.commo?.value = comments
+            itemViewBinding.viewModel?.commo?.value = thecomms
             val bundle = Bundle()
             //有發生key不一樣
-            bundle.putSerializable("comm", comments)
+            bundle.putSerializable("comm", thecomms)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.action_manageComFragment_to_manageComDetailFragment, bundle)

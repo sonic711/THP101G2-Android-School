@@ -3,19 +3,28 @@ package com.example.thp101g2_android_school.manage.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.manage.model.Members
+import com.example.thp101g2_android_school.manage.model.SelectMemberBean
+import com.example.thp101g2_android_school.manage.model.TeaApplyBean
+import com.google.gson.reflect.TypeToken
 
 class ManageMembersViewModel : ViewModel() {
-    private var memberList = mutableListOf<Members>()
-    val memberso: MutableLiveData<List<Members>> by lazy { MutableLiveData<List<Members>>() }
+    private var memberList = mutableListOf<SelectMemberBean>()
+
+
+    val memberso: MutableLiveData<List<SelectMemberBean>> by lazy { MutableLiveData<List<SelectMemberBean>>() }
 
     init {
         loadMembers()
     }
 
+
+    //按鍵事件點擊
     fun filterMembersByCondition(condition: Boolean) {
         val filteredMembers = memberList.filter { member ->
-            member.state == condition
+            member.memberStatus == condition
         }
         memberso.value = filteredMembers
     }
@@ -25,27 +34,50 @@ class ManageMembersViewModel : ViewModel() {
             memberso.value = memberList
         } else {
             val filteredMembers = memberList.filter { member ->
-                member.memberID.contains(newText, ignoreCase = true)
+                (member.memberNo?.contains(newText, ignoreCase = true)) == true
             }
             memberso.value = filteredMembers
         }
     }
 
+
     private fun loadMembers() {
-        memberList = mutableListOf(
-            Members(R.drawable.baseline_people_24,"101051", "coco397", "0939847591", true),
-            Members(R.drawable.baseline_people_24,"112212", "nickben", "0988888111", false),
-            Members(R.drawable.baseline_people_24,"100009", "cc309", "0966789123", true),
-            Members(R.drawable.baseline_people_24,"123324", "697071ee", "0939847591", true),
-            Members(R.drawable.baseline_people_24,"152223", "yeeee", "0988888111", false),
-            Members(R.drawable.baseline_people_24,"135785", "alavater", "0966789123", true),
-            Members(R.drawable.baseline_people_24,"114158", "cryie", "0966789123", true),
-            Members(R.drawable.baseline_people_24,"314687", "gg3:0", "0939847591", true),
-            Members(R.drawable.baseline_people_24,"322121", "Nxni", "0966789123", true),
-            Members(R.drawable.baseline_people_24,"111111", "NdoubleA", "0939847591", true),
-            Members(R.drawable.baseline_people_24,"222222", "ABC", "0966789123", true),
-            Members(R.drawable.baseline_people_24,"371234", "NANA", "0939847591", true)
-        )
+        val url1 = "http://10.0.2.2:8080/THP101G2-WebServer-School/teaapply/another"
+
+
+        val type1 = object : TypeToken<List<SelectMemberBean>>() {}.type
+
+
+        val list1 = requestTask<List<SelectMemberBean>>(url1, respBodyType = type1)
+
+
+        memberList.addAll(list1 ?: emptyList())
+        this.memberList = memberList
         memberso.value = memberList
+
     }
+
+
+    // 其他方法和代码...
 }
+
+
+
+//    private fun loadMembers() {
+//        val memberList = mutableListOf<TeaApplyBean>()
+//        memberList.add(TeaApplyBean("100033", "112212", "123", "111111","知錯能改....",null,null,true))
+//        memberList.add(TeaApplyBean("122222", "Java?Js?", "124", "112233", "我感覺你是不是...",null,null,false))
+//        memberList.add(TeaApplyBean("112212", "nickben", "125","333222","福佬奶奶過街,我不罵你",null,null,false))
+//        memberList.add(TeaApplyBean("100009", "cc309", "126","333333","AtoBtoCtoD",null,null,true))
+//        memberList.add(TeaApplyBean("123324", "697071ee", "127","136123","ADCDB五題答案",null,null,true))
+//        memberList.add(TeaApplyBean("112212", "nickben", "128","131366","MIT",null,null,true))
+//        memberList.add(TeaApplyBean("112212", "nickben", "129","124588","AAAAAA",null,null,true))
+//        memberList.add(TeaApplyBean("112212", "nickben", "139","154344","bbbbbb",null,null,false))
+//        memberList.add(TeaApplyBean("112212", "nickben", "246","128765","cccccc",null,null,true))
+//        memberList.add(TeaApplyBean("112212", "nickben", "369","121488","哩起傚喔......",null,null,true))
+//        memberList.add(TeaApplyBean("112212", "nickben", "321","875109","tothesky",null,null,true))
+
+
+//        memberso.value = memberList
+//    }
+//}

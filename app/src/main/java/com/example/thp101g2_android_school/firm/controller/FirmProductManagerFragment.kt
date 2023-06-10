@@ -46,22 +46,21 @@ class FirmProductManagerFragment : Fragment() {
             }
             btProductSum.setOnClickListener {
                 viewModel?.allProduct()
-
             }
 
             btProductOn.setOnClickListener {
                 // 把FirmProductsEditViewModel 的productsManager
                 viewModel?.reload()
-
             }
 
             btProductOff.setOnClickListener {
                 viewModel?.reloadOne()
             }
 
-            btProductOffed.setOnClickListener {
-                viewModel?.reloadZero()
-            }
+//            btProductOffed.setOnClickListener {
+//                viewModel?.reloadZero()
+//            }
+
         }
     }
 }

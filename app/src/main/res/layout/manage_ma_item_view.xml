@@ -15,27 +15,52 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:foreground="?selectableItemBackground"
-        app:cardBackgroundColor="#DDDDDD"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp">
+        android:layout_margin="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <!-- 檢舉項 -->
             <TextView
-                android:id="@+id/ivManageID"
-                android:layout_width="wrap_content"
+                android:id="@+id/textReportItem"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.mao.manageID}" />
+                android:textSize="20sp"
+                android:text="檢舉項目" />
 
+            <!-- 檢舉者ID -->
+            <TextView
+                android:id="@+id/textReporterId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="檢舉者ID" />
 
+            <!-- 被檢舉ID -->
+            <TextView
+                android:id="@+id/textReportedId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="被檢舉ID" />
 
+            <!-- 一个放TextView的容器 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="文本内容" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 </layout>

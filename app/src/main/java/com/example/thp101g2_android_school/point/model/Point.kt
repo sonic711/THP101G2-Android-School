@@ -13,4 +13,4 @@ data class Point(
     val valueOfChanged:Int,
     val creatAt:String,
     val rewardPoints:String,
-    val type:String)
+    val type:String):Serializable

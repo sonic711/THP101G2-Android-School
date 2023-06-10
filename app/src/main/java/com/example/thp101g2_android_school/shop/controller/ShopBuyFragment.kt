@@ -25,7 +25,9 @@ import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
 import android.util.Base64
+import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
+import com.google.gson.reflect.TypeToken
 import java.util.*
 import kotlin.random.Random
 
@@ -57,11 +59,20 @@ class ShopBuyFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        /**
+         * TODO 66~71:去拿Member資料
+         */
+
+        var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+        println(currentMember)
+        val memberno = currentMember?.memberNo
+        println(memberno)
+        val memberpoints = currentMember?.rewardPoints
+        binding.tvPoints.text = "您的積分總額 : "+memberpoints
 
 
         /**
-         * TODO
-         * 將cartproduct的資料和後端做比對，只能買到商品最大數量。
+         * TODO 將cartproduct.shopProductCount的資料和後端做比對，使用者只能買到商品最大數量。
          */
 
         arguments?.let { bundle ->
@@ -70,6 +81,7 @@ class ShopBuyFragment : Fragment() {
                 binding.viewModel?.cartproduct?.value = cartproduct
                 println("商品數量 :${cartproduct.shopProductCount}" + "     " +"商品ID :${cartproduct.shopProductId}")
                 println("廠商代號 : ${cartproduct.firmNo}")
+                println("商品價格 : ${cartproduct.shopProductPrice}")
 
 
             }
@@ -82,6 +94,8 @@ class ShopBuyFragment : Fragment() {
             println("資料庫要變動的數量 :$Count")
             val price = cartproduct.shopProductPrice.toInt() * quantity
             println("我的購買金額: $price")
+
+            binding.tvBuyPrice.text = "總金額 : ${price}"
 
 
 
@@ -119,11 +133,9 @@ class ShopBuyFragment : Fragment() {
             binding.button5.setOnClickListener {
                 val productid = cartproduct.shopProductId.toInt()
                 val productname = cartproduct.shopProductName
-                val memberno = 1
                 val firmno = cartproduct.firmNo
                 val productimg = cartproduct.shopProductImage
-                val rewardpoints = cartproduct.rewardPoints
-                val pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
+                var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
                 val name = binding.etPersonName.text.toString()
                 val email = binding.etEmail.text.toString()
                 val address = binding.etAddress.text.toString()
@@ -137,7 +149,7 @@ class ShopBuyFragment : Fragment() {
                 println(productid)
                 println(productname)
                 println(memberno)
-                println(rewardpoints)
+                println(memberpoints)
                 println(productimg)
                 if(cartproduct.firmNo != null && cartproduct.firmNo != 0){
                     println(firmno)
@@ -168,10 +180,10 @@ class ShopBuyFragment : Fragment() {
                     setErrorState(binding.editTextNumber)
                     hasError = true
                 }
-                if (pointquantity != null && cartproduct.rewardPoints != null) {
-                    if (pointquantity > cartproduct.rewardPoints) {
+                if (pointquantity != null && memberpoints != null) {
+                    if (pointquantity > memberpoints) {
                         // 数量超过奖励积分，显示错误信息
-                        binding.editTextNumber.setError("數量不能超過總積分")
+                        binding.editTextNumber.setError("不能超過你擁有的積分")
                         setErrorState(binding.editTextNumber)
                         hasError = true
                     } else if(pointquantity < price){
@@ -179,9 +191,15 @@ class ShopBuyFragment : Fragment() {
                         setErrorState(binding.editTextNumber)
                         hasError = true
 
-                    } else{
-                        pointans = rewardpoints - pointquantity
+                    } else if(pointquantity > price){
+                        Toast.makeText(context, "積分使用過多", Toast.LENGTH_SHORT).show()
+                        pointquantity = price
+                        hasError = true
+                    }else
+                    {
+                        pointans = memberpoints - pointquantity
                         clearErrorState(binding.editTextNumber)
+                        println(pointans)
                     }
                 }
 
@@ -247,11 +265,14 @@ class ShopBuyFragment : Fragment() {
                         "POST", reqBody = shopBuy
                     )
                     val jsonObj2 = JsonObject()
-                    jsonObj2.addProperty("id", productid)
-                    val respbody2 = requestTask<JsonObject>(
-                        "$url/shop/buy/",
-                        "DELETE", jsonObj2
-                    )
+//                    jsonObj2.addProperty("id", productid)
+//                    val respbody2 = requestTask<JsonObject>(
+//                        "$url/shop/buy/",
+//                        "DELETE", jsonObj2
+//                    )
+                    val urldelete = "$url/shop/buy/$productid"
+                    val respbody2 = requestTask<JsonObject>(urldelete, "DELETE")
+
                     val jsonObj3 = JsonObject()
                     jsonObj3.addProperty("shopProductCount", Count)
                     jsonObj3.addProperty("shopProductId", productid)
@@ -261,10 +282,23 @@ class ShopBuyFragment : Fragment() {
                     )
                     val jsonObj4 = JsonObject()
                     jsonObj4.addProperty("rewardPoints", pointans)
+                    jsonObj4.addProperty("memberNo", memberno)
                     val respbody4 = requestTask<JsonObject>(
                         "$url/shop/buy/point",
                         "PUT", jsonObj4
                     )
+                    /**
+                     *  TDOO 以下是積分折抵後的積分使用狀況後端更新.Ian //278~289行
+                     */
+                    val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
+                    val requestBody = mapOf(
+                        "type" to "insertForSO",
+                    )
+                    val responseType = object : TypeToken<JsonObject>() {}.type
+                    val response = requestTask<JsonObject>(
+                        postUrl, "POST",
+                        requestBody, responseType)
+
                     Navigation.findNavController(requireView()).navigateUp()
 
                 } else {

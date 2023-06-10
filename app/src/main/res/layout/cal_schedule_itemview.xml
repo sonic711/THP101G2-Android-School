@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.calendar.viewModel.CalScheduleItemViewModel" />
+            type="com.example.thp101g2_android_school.calendar.viewModel.MemScheduleViewModel" />
     </data>
 
     <FrameLayout
@@ -25,6 +25,7 @@
                 android:id="@+id/vColorBar"
                 android:layout_width="8dp"
                 android:layout_height="80dp"
+                android:background="@{viewModel.schedule.colorHex}"
                 tools:background="@color/Tag_HotPink" />
 
 
@@ -40,18 +41,18 @@
                     android:id="@+id/tvDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.schedule.day}"
-                    android:textColor="@color/Tag_HotPink"
+                    android:text="@={viewModel.day}"
                     android:textSize="36sp"
+                    app:colorHex="@{viewModel.schedule.colorHex}"
                     tools:text="20" />
 
                 <TextView
                     android:id="@+id/tvMonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.schedule.month}"
-                    android:textColor="@color/Tag_HotPink"
+                    android:text="@={viewModel.month}"
                     android:textSize="20sp"
+                    app:colorHex="@{viewModel.schedule.colorHex}"
                     tools:text="APR" />
 
             </LinearLayout>
@@ -76,15 +77,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="@={viewModel.schedule.task}"
-                    android:textColor="@color/Tag_HotPink"
                     android:textSize="20sp"
+                    app:colorHex="@{viewModel.schedule.colorHex}"
                     tools:text="Do homework" />
 
                 <TextView
                     android:id="@+id/tvTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.schedule.time}"
+                    android:text="@={viewModel.time}"
                     tools:text="10:00 - 12:00" />
             </LinearLayout>
 

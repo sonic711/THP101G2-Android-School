@@ -30,7 +30,6 @@ class MemFollowersFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.followers?.observe(viewLifecycleOwner) { followers ->
                 if (recyclerView.adapter == null) {
-                    println(followers)
                     recyclerView.adapter = FollowerAdapter(followers)
                 } else {
                     (recyclerView.adapter as FollowerAdapter).updateFollowers(followers)

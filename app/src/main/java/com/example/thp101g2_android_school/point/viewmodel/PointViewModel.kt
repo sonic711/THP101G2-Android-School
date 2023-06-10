@@ -29,7 +29,7 @@ class PointViewModel : ViewModel() {
         loadData()
     }
 
-    private fun loadData(){
+    fun loadData(){
         var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
         val MNO = currentMember?.memberNo
         val type = object : TypeToken<List<Point>>() {}.type

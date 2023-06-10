@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.databinding.FragmentClassDetailBinding
 import com.example.thp101g2_android_school.databinding.FragmentManageFirmDetailBinding
 
@@ -26,6 +27,10 @@ class ManageFirmDetailFragment : Fragment() {
         val viewModel = ManageFirmViewModel()
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        binding.Back.setOnClickListener {
+            Navigation.findNavController(requireView()).navigateUp()
+        }
+
         return binding.root
     }
 

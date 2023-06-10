@@ -8,29 +8,28 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
 import com.example.thp101g2_android_school.databinding.FragmentManageClassBinding
 import com.example.thp101g2_android_school.manage.model.Classes
+import com.example.thp101g2_android_school.manage.model.CourseReportBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageClassesViewModel
 
 
-class ManageClassesFragment : Fragment() {
+open class ManageClassesFragment : Fragment() {
     private lateinit var binding: FragmentManageClassBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ManageClassAdapter
-    private var classList: List<Classes> = emptyList()
-
-    companion object {
-        fun newInstance() = ManageClassesFragment()
-    }
+    private var classList: List<CourseReportBean> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val viewModel: ManageClassesViewModel by viewModels()
         binding = FragmentManageClassBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -54,11 +53,12 @@ class ManageClassesFragment : Fragment() {
                     adapter.updateClasses(classes)
                 }
             }
-            binding.memberBack.setOnClickListener {
-                findNavController().navigateUp()
+            binding.Back.setOnClickListener {
+                Navigation.findNavController(requireView()).navigateUp()
             }
-
         }
+
+
 
 
 
@@ -99,8 +99,8 @@ class ManageClassesFragment : Fragment() {
     private fun searchClasses(query: String) {
         // 根據搜尋條件 query 更新 classList
         val filteredClasses = classList.filter { classes ->
-            classes.classId.contains(query, ignoreCase = true)
-        }
+            (classes.courseId.toString() == query)
+        }   //這裡有問題!!
         adapter.updateClasses(filteredClasses)
     }
 

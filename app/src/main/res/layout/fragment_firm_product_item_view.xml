@@ -31,7 +31,11 @@
                 android:scaleType="centerInside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:imageResource="@{viewModel.productEdit.imageId}"/>
+                app:imgBase64="@{viewModel.productEdit.shopProductImgBase64}"
+
+
+
+                />
 
             <TextView
                 android:id="@+id/tvFirmProductMName"
@@ -85,6 +89,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/button_secondary"
                 android:text="@string/txtFirmProductOff"
+                android:onClick="@{_->viewModel.changeStatus(context)}"
                 android:textColor="@color/purple_400"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"

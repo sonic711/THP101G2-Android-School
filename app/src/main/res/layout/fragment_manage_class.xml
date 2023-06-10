@@ -29,18 +29,19 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="403dp"
+            android:layout_height="533dp"
             android:layout_margin="6dp"
+            android:layout_marginTop="66dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/Unprocessed"
+            app:layout_constraintVertical_bias="0.719" />
 
         <ImageView
-            android:id="@+id/memberBack"
+            android:id="@+id/Back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
@@ -48,5 +49,35 @@
             android:src="@drawable/icon_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/Unprocessed"
+            android:layout_width="133dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/txtUnprocessed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        <Button
+            android:id="@+id/Processed"
+            android:layout_width="133dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/memberProcessed"
+            app:layout_constraintStart_toEndOf="@+id/Unprocessed"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        <Button
+            android:id="@+id/down"
+            android:layout_width="133dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="封鎖"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Processed"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

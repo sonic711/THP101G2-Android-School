@@ -6,5 +6,7 @@ data class ShopFavorite(
     var shopProductId: String,
     var shopProductName: String,
     var shopProductPrice:String,
-    var shopName:String):
+    var shopName:String,
+    var memberNo:Int
+    ):
     Serializable

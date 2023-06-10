@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentShopFavoriteBinding
+import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewModel
 
 
@@ -31,6 +33,9 @@ class ShopFavoriteFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+        println(currentMember)
+        val memberno = currentMember?.memberNo
         //TODO 這邊使用viewModel: ShopFavoriteFgViewModel 去使用viewmodel內的方法.loadProduct，可以即時更新我的最愛
         viewModel.loadProduct()
         //這裡註解要問老師關於SearchView的顯示跟關閉
@@ -52,20 +57,6 @@ class ShopFavoriteFragment : Fragment() {
                     tvSearchnull.visibility = View.GONE // 隐藏 tvSearchnull
                 }
             }
-
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-                androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return false
-                }
-
-                // STEP09-2 當輸入內容變化時，呼叫search()
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel?.search(newText)
-                    return true
-                }
-
-            })
         }
 
 

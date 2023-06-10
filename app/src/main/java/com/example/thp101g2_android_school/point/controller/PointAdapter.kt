@@ -15,7 +15,8 @@ class PointAdapter(private var reasons: List<Point>) :
     RecyclerView.Adapter<PointAdapter.ReasonViewHolder>() {
 
     fun updateReasons(reasons: List<Point>) {
-        this.reasons = reasons
+        this.reasons = reasons.sortedByDescending { it.creatAt }
+//        this.reasons = reasons
         notifyDataSetChanged()
     }
 
@@ -48,9 +49,9 @@ class PointAdapter(private var reasons: List<Point>) :
                 else -> "使用積分折抵"
             }
             itemViewBinding.tvReasonCh.text= text
-//            itemViewBinding.viewModel?.reason ?. value = reason
-//            val bundle = Bundle()
-//            bundle.putSerializable("reason", reason)
+
+            val bundle = Bundle()
+            bundle.putSerializable("reason", reason)
 
         }
     }

@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <data>
         <variable
             name="viewModel"
-            type="com.example.thp101g2_android_school.member.viewModel.MemberViewModel" />
+            type="com.example.thp101g2_android_school.member.viewModel.MemBlockViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/ivUserPhoto"
+        <androidx.cardview.widget.CardView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            app:srcCompat="@drawable/mem_userphoto" />
+            android:layout_gravity="top|start"
+            app:cardCornerRadius="80dp">
+
+            <ImageView
+                android:id="@+id/ivUserPhoto"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="centerCrop"
+                app:imgBase64="@{viewModel.blockedUser.profilePhoto64}"
+                android:src="@drawable/mem_userphoto" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvUserID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Adam"
+            android:text="@={viewModel.blockedUser.userId}"
             android:textSize="20sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            tools:text="UserId" />
 
         <Button
             android:id="@+id/btUnblock"

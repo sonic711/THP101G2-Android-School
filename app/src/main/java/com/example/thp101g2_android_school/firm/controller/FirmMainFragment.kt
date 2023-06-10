@@ -48,6 +48,7 @@ class FirmMainFragment : Fragment() {
                     (recyclerView.adapter as FirmProductAdapter).updateFirmProduct(firmProducts)
                 }
             }
+
         }
     }
 }
