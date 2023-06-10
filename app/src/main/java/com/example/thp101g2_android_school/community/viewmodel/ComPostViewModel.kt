@@ -9,6 +9,7 @@ import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.ForPostBean
 import com.example.thp101g2_android_school.community.model.Label
+import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.JsonObject
 import java.sql.Timestamp
 import java.time.ZonedDateTime
@@ -21,7 +22,7 @@ class ComPostViewModel : ViewModel() {
 
     val memberId: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val memberName: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val memberImg: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
+    val memberImg: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val postTime: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val secClassId: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val secClassName: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -30,9 +31,6 @@ class ComPostViewModel : ViewModel() {
     val content: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val labels: MutableLiveData<List<Label>> = MutableLiveData<List<Label>>()
 
-    init {
-        loadData()
-    }
 
     fun addPost(): Int? {
 
@@ -41,7 +39,9 @@ class ComPostViewModel : ViewModel() {
         if (title.value.isNullOrEmpty()) return 0
 
         if (content.value.isNullOrEmpty()) return 0
+
         val postBean = ForPostBean()
+
         postBean.memberNo = memberId.value
         postBean.comSecClassId = secClassId.value
         postBean.comPostTitle = title.value?.trim()
@@ -57,18 +57,13 @@ class ComPostViewModel : ViewModel() {
     }
 
 
-    private fun loadData() {
-        val member = Member("1", "Vivi", R.drawable.com_mary)
+    fun loadData(member: Member) {
+        this.memberId.value = member.memberNo.toString()
+        this.memberName.value = member.nickname
+        this.memberImg.value = member.profilePhoto64
 
-        this.memberId.value = member.id
-        this.memberName.value = member.name
-        this.memberImg.value = member.img
-//
-//
-//        val now = ZonedDateTime.now()
-//        val formatterFULL = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
-//        this.postTime.value = now.format(formatterFULL)
+        val now = ZonedDateTime.now()
+        val formatterFULL = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+        this.postTime.value = now.format(formatterFULL)
     }
-
-    inner class Member(var id: String, var name: String, var img: Int)
 }
