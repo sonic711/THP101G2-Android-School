@@ -1,6 +1,10 @@
 package com.example.thp101g2_android_school
 
 import android.Manifest
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,22 +15,25 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
+import com.example.thp101g2_android_school.app.getCurrentMemberId
+import com.example.thp101g2_android_school.app.saveMemberId
 import com.example.thp101g2_android_school.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val activityViewModel: ActivityViewModel by viewModels()
+    val myTag = "TAG_${javaClass.simpleName}"
+    var memberId = ""
+    var message = ""
     private lateinit var navHostFragment: NavHostFragment
 
 
@@ -49,10 +56,26 @@ class MainActivity : AppCompatActivity() {
         // 頁面切換可以整合抽屜選單功能
         NavigationUI.setupWithNavController(
             binding.navigationView,
-            navHostFragment.navController)
+            navHostFragment.navController
+        )
 
         // 課程當登入後的首頁
         binding.bottomNavigationView.selectedItemId = R.id.couMainFragment
+        val messageReceiver = MessageReceiver()
+
+        registerReceiver(messageReceiver)
+        val message = intent.extras?.getString("data")
+        if (message != null) {
+            this@MainActivity.message = message
+        }
+        // 登入後把該會員token存到資料庫
+        ActivityViewModel().getTokenSendServer()
+        // 把會員Id存到偏好設定檔，方便取用
+        saveMemberId(this, activityViewModel?.memberObj?.value?.memberNo.toString())
+        // 從偏好設定檔取得目前登入會員Id
+        memberId = getCurrentMemberId(this)!!
+        activityViewModel.member.memberId = memberId
+
     }
 
     override fun onStart() {
@@ -73,15 +96,18 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+
     // 初始化抽屜選單功能
     private fun initDrawer() {
         // 建立ActionBarDrawerToggle監聽器，監聽抽屜開關的狀態，但不用實作，呼叫建構式就好
         with(binding) {
             val actionBarDrawerToggle =
-                ActionBarDrawerToggle(this@MainActivity,
+                ActionBarDrawerToggle(
+                    this@MainActivity,
                     drawerLayout,
                     R.string.txtOpen,
-                    R.string.txtClose)
+                    R.string.txtClose
+                )
             drawerLayout.addDrawerListener(actionBarDrawerToggle)
             // 將左上角按鈕動畫與抽屜選單開關同步化
             actionBarDrawerToggle.syncState()
@@ -124,5 +150,34 @@ class MainActivity : AppCompatActivity() {
                 // Handle for example visibility of menu items
             }
         }, this, Lifecycle.State.RESUMED)
+    }
+
+    private inner class MessageReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val message = intent.extras?.getString("message")
+            if (message != null) {
+                this@MainActivity.message = message
+            }
+            if (!message.isNullOrBlank()) {
+                // 從資料庫找對應的通知訊息
+                activityViewModel.getNotifi(message.toInt())
+                AlertDialog.Builder(this@MainActivity)
+                    .setMessage("${activityViewModel?.notification?.value?.notificationContent}")
+                    .setPositiveButton("確定") { _, _ ->
+                        // TODO 導去對應文章
+
+                    }
+                    .setCancelable(false) // 點旁邊可不可以取消
+                    .show()
+                // 清除通知變數
+                this@MainActivity.message = ""
+            }
+        }
+    }
+
+    // 註冊廣播接收器攔截"action_news"的廣播
+    private fun registerReceiver(messageReceiver: MessageReceiver) {
+        val intentFilter = IntentFilter("action_message")
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, intentFilter)
     }
 }

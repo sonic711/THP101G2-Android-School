@@ -1,5 +1,6 @@
 package com.example.thp101g2_android_school.app
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.thp101g2_android_school.R
@@ -61,6 +62,21 @@ inline fun getStringResourceId(str: String): Int {
         "英文" -> R.drawable.com_eng
         else -> R.drawable.com_mary
     }
+}
+
+fun saveMemberId(context: Context, memberId: String) {
+    // TODO 之後改成用JSON存
+    val sharedPrefs = context.getSharedPreferences("com_app_prefs", Context.MODE_PRIVATE)
+    sharedPrefs.edit()
+        .putString("memberId", memberId)
+        .apply()
+}
+
+fun getCurrentMemberId(context: Context): String? {
+    // TODO 之後改成取JSON
+    val sharedPrefs = context.getSharedPreferences("com_app_prefs", Context.MODE_PRIVATE)
+    // 如果找不到Key，就回傳 null。如果找到Key，就檢查值是否為預設值 -1。如果不是，就回傳實際值；否則回傳 null。
+    return sharedPrefs.getString("memberId", "-1")
 }
 
 inline fun <reified T> requestTask(
