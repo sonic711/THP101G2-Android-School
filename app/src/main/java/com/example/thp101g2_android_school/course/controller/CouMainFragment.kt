@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.course.viewmodel.CouMainViewModel
 import com.example.thp101g2_android_school.databinding.FragmentCouMainBinding
+import com.example.thp101g2_android_school.member.viewModel.MemBlockViewModel
 
 class CouMainFragment : Fragment() {
     private lateinit var binding: FragmentCouMainBinding

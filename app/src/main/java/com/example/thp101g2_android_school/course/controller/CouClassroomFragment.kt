@@ -13,11 +13,16 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
+import com.example.thp101g2_android_school.app.requestTask
+import com.example.thp101g2_android_school.course.model.Chapter
+import com.example.thp101g2_android_school.course.model.Courses
+import com.example.thp101g2_android_school.course.model.MyCourse
 import com.example.thp101g2_android_school.course.viewmodel.CouClassroomViewModel
 import com.example.thp101g2_android_school.course.viewmodel.CouFavoriteViewModel
 import com.example.thp101g2_android_school.databinding.FragmentClassDetailBinding
 import com.example.thp101g2_android_school.databinding.FragmentCouClassroomBinding
 import com.example.thp101g2_android_school.databinding.FragmentCouFavoriteBinding
+import com.google.gson.JsonObject
 
 
 class CouClassroomFragment : Fragment() {
@@ -43,6 +48,15 @@ class CouClassroomFragment : Fragment() {
             videoView.setOnCompletionListener {
                 Navigation.findNavController(view)
                     .navigate(R.id.action_couClassroomFragment_to_couRateFragment)
+                val coursesProgress = viewModel?.coursesProgress?.value ?: true
+                val test = MyCourse(
+                    coursesProgress = coursesProgress
+                )
+                requestTask<JsonObject>(
+                    "http://10.0.2.2:8080/THP101G2-WebServer-School/studentcourses/",
+                    method = "PUT",
+                    reqBody = test
+                )
 
             }
             recyclerView.layoutManager = LinearLayoutManager(requireContext())

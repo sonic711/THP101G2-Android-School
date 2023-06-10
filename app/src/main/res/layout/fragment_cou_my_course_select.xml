@@ -36,7 +36,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.mycourse.userId}"
+                android:text="@{viewModel.mycourse.courseName}"
                 android:textSize="24sp"
                 tools:text="Author:Ron" />
 
