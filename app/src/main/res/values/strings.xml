@@ -30,7 +30,7 @@
     <string name="txtResent">重發驗證碼</string>
     <string name="tvValidityPeriod1">驗證碼在</string>
     <string name="txtValidityPeriod2">秒內有效</string>
-    <string name="txtForgetPasswordDescribe">請輸入您的註冊的電子信箱，將發送重新設定密碼連結至此電子信箱</string>
+    <string name="txtForgetPasswordDescribe">請輸入您的註冊的電子信箱，將發送驗證碼至您註冊的手機號碼，以重新設定密碼</string>
     <string name="txtForgetPassword">忘記密碼</string>
     <string name="txtRemberPW">記得密碼?</string>
     <string name="txtChangePW">更改密碼</string>
@@ -215,6 +215,7 @@
     <string name="textCanceled">Canceled by the user.</string>
     <string name="textNoNetwork">no network connection available</string>
     <string name="textPaymentSuccess">Payment is successful</string>
+
     <string name="TapPay_AppID">132400</string>
     <string name="TapPay_AppKey">app_khpYmGtvLMNRwL50YuTQqCXSoSHqQdbDIShYfSUoseX5pGYiz4wIoNIHGBj8</string>
 
