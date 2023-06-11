@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:id="@+id/shopFrontFragment"
-            android:icon="@drawable/common_google_signin_btn_icon_dark"
+            android:icon="@drawable/baseline_shopping_cart_24"
             android:title="商城"/>
 
     <item
             android:id="@+id/calMainFragment"
-            android:icon="@drawable/common_google_signin_btn_icon_dark"
+            android:icon="@drawable/baseline_calendar_today_24"
             android:title="日曆"/>
     <item
             android:id="@+id/couMainFragment"
-            android:icon="@drawable/common_google_signin_btn_icon_dark"
+            android:icon="@drawable/baseline_library_books_24"
             android:title="課程"/>
     <item
             android:id="@+id/comMainFragment"
@@ -19,6 +19,6 @@
             android:title="社群"/>
     <item
             android:id="@+id/memMainFragment"
-            android:icon="@drawable/common_google_signin_btn_icon_dark"
+            android:icon="@drawable/baseline_person_pin_24"
             android:title="個人"/>
 </menu>
