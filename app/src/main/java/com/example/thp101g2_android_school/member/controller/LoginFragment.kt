@@ -3,6 +3,7 @@ package com.example.thp101g2_android_school.member.controller
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,10 +20,14 @@ import com.example.thp101g2_android_school.member.viewModel.LoginViewModel
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
 import com.example.thp101g2_android_school.point.others.SetAlertDialog
 import com.google.gson.reflect.TypeToken
+import okio.Utf8
+import org.mindrot.jbcrypt.BCrypt
+import java.net.URLEncoder
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var contextMLR: Context
+    private val myTag = "TAG_${javaClass.simpleName}"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,43 +43,59 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             tvForgetPassword.setOnClickListener {
-                forgetPasswordOnClick(it)
+                Navigation.findNavController(it).navigate(R.id.forgetPasswordFragment)
             }
             btLogin.setOnClickListener {
                 if (!inputValid()) {
                     return@setOnClickListener
                 }
-                val email = viewModel!!.member.value!!.memberEmail.trim()
+                var member = Member()
+                member.memberEmail = viewModel!!.member.value!!.memberEmail.trim()
                 val password = viewModel!!.member.value!!.password.trim()
-
-                val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/members"
-                val respBody =
-                    requestTask<Member>("$url/$email/$password")
-                if (respBody?.memberNo != null) {
-                    val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
-                    val requestBody = mapOf(
-                        "type" to "insertForMLR",
-                        "memberNo" to respBody.memberNo
-                    )
-                    val responseType = object : TypeToken<SetAlertDialog.ApiResponse>() {}.type
-                    val response = requestTask<SetAlertDialog.ApiResponse>(postUrl, "POST",
-                        requestBody, responseType)
-                    if (response != null && response.successful ) {
-                        val daiBiao = SetAlertDialog(contextMLR)
-                        daiBiao.showAlertDialogForMLR(contextMLR){
-                            val intent = Intent(requireContext(), MainActivity::class.java)
-                            intent.putExtra("type", "user")
-                            startActivity(intent)
+                val dbPassword = requestTask<String>("http://10.0.2.2:8080/THP101G2-WebServer-School/member/getDetail/${member.memberEmail}")
+                if (dbPassword != null) {
+                    member.password = dbPassword
+                    if (BCrypt.checkpw(password, dbPassword)) {
+                        // 將特殊字符轉換為URL安全形式
+                        val encodedPassword = URLEncoder.encode(dbPassword, "UTF-8")
+                        Log.d(myTag, encodedPassword)
+                        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/member/getDetail"
+                        val respBody =
+                            requestTask<Member>(url, "POST", member)
+                        if (respBody?.memberNo != null) {
+                            val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
+                            val requestBody = mapOf(
+                                "type" to "insertForMLR",
+                                "memberNo" to respBody.memberNo
+                            )
+                            val responseType = object : TypeToken<SetAlertDialog.ApiResponse>() {}.type
+                            val response = requestTask<SetAlertDialog.ApiResponse>(postUrl, "POST",
+                                requestBody, responseType)
+                            if (response != null && response.successful ) {
+                                val daiBiao = SetAlertDialog(contextMLR)
+                                daiBiao.showAlertDialogForMLR(contextMLR){
+                                    val intent = Intent(requireContext(), MainActivity::class.java)
+                                    intent.putExtra("type", "user")
+                                    startActivity(intent)
+                                }
+                            } else {
+                                val intent = Intent(requireContext(), MainActivity::class.java)
+                                intent.putExtra("type", "user")
+                                startActivity(intent)
+                            }
+                        } else {
+                            etEmail.error = "信箱或密碼錯誤"
+                            etPassword.error = "信箱或密碼錯誤"
                         }
                     } else {
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.putExtra("type", "user")
-                        startActivity(intent)
+                        etEmail.error = "信箱或密碼錯誤"
+                        etPassword.error = "信箱或密碼錯誤"
                     }
                 } else {
                     etEmail.error = "信箱或密碼錯誤"
                     etPassword.error = "信箱或密碼錯誤"
                 }
+
             }
         }
 
@@ -96,12 +117,6 @@ class LoginFragment : Fragment() {
             }
         }
         return valid
-    }
-
-    // FIXME
-    // textView: forgetPassword 的點擊事件函式
-    private fun forgetPasswordOnClick(view: View) {
-        Toast.makeText(requireContext(), "ForgetPassword Clicked", Toast.LENGTH_SHORT).show()
     }
 
 }
