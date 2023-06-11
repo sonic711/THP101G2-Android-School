@@ -14,7 +14,7 @@
                     android:icon="@drawable/ic_favorite_border_24"
                     android:title="@string/tvMyFavorite" />
                 <item
-                    android:id="@+id/myPoint"
+                    android:id="@+id/pointFragment"
                     android:icon="@drawable/ic_attach_money_24"
                     android:title="@string/tvMyPoint" />
             </menu>
