@@ -14,6 +14,7 @@ import com.example.thp101g2_android_school.databinding.FragmentForgetPasswordBin
 
 class ForgetPasswordFragment : Fragment() {
     private lateinit var binding: FragmentForgetPasswordBinding
+    private val myTag = "TAG_${javaClass.simpleName}"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,20 +22,19 @@ class ForgetPasswordFragment : Fragment() {
     ): View? {
         val viewModel: ForgetPasswordViewModel by viewModels()
         binding = FragmentForgetPasswordBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
-        //FIXME binding.viewModel記得設定
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             tvSmallLogin.setOnClickListener {
-                smallLoginOnClick(it)
+                Navigation.findNavController(it).navigate(R.id.loginMainFragment)
             }
+
         }
     }
 
-    private fun smallLoginOnClick(view: View) {
-        Navigation.findNavController(view).navigate(R.id.action_loginMainFragment_to_registerFragment)
-    }
 
 }

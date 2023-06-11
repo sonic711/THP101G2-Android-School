@@ -18,7 +18,7 @@ import com.google.gson.JsonObject
 
 class RegisterVerificationFragment : Fragment() {
     private lateinit var binding: FragmentRegisterVerificationBinding
-
+    private val myTag = "TAG_${javaClass.simpleName}"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +32,12 @@ class RegisterVerificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
+            var member = Member()
+            arguments?.let { bundle ->
+                member = bundle.getSerializable("member") as Member
+                viewModel?.member?.value?.phoneNumber = member.phoneNumber
+            }
+            Log.d(myTag, "member: $member")
             btSubmit.setOnClickListener {
                 if (viewModel?.captcha?.value == null || viewModel?.captcha?.value!!.isEmpty()) {
                     return@setOnClickListener
@@ -39,15 +45,11 @@ class RegisterVerificationFragment : Fragment() {
                 if (viewModel!!.captcha.value!!.length != 4) {
                     etVerification.error = "驗證碼錯誤"
                 }
-                var member = Member()
-                arguments?.let { bundle ->
-                    member = bundle.getSerializable("member") as Member
-                    viewModel?.member?.value?.phoneNumber = member.phoneNumber
-                }
+
                 val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/members"
                 val respBody =
                     requestTask<JsonObject>(url, "POST", member)
-                Log.d("xxx", respBody.toString())
+                Log.d(myTag, respBody.toString())
 
                 if (respBody?.get("successful")?.asBoolean == true) {
                     Toast.makeText(requireContext(), "註冊成功", Toast.LENGTH_SHORT).show()
