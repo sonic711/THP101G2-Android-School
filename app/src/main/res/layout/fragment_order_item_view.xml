@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:foreground="?selectableItemBackground"
-
+        app:cardUseCompatPadding="true"
         app:cardCornerRadius="16dp"
         app:cardElevation="6dp">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,12 +24,14 @@
 
             <ImageView
                 android:id="@+id/ivOrderPicture"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerInside"
                 app:imageByteArray="@{viewModel.firmOrder.shopOrderImg}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,8 +39,8 @@
                 android:id="@+id/tvOrderId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
                 android:text='@{"訂單編號:"+viewModel.firmOrder.shopOrderId}'
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/ivOrderPicture"
@@ -48,7 +50,7 @@
                 android:id="@+id/tvOrderTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text='@{"訂單時間:"+ viewModel.firmOrder.shopOrdercreateTime}'
                 android:textSize="16sp"
