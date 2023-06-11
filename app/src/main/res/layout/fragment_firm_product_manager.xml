@@ -19,30 +19,26 @@
             android:id="@+id/btProductSum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="320dp"
-            android:text="@string/txtProductSum"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/button_secondary"
+            android:text="@string/txtProductSum"
             android:textColor="@color/purple_400"
-            app:backgroundTint="@null"/>
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btProductOn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="100dp"
             android:background="@drawable/button_secondary"
             android:text="@string/txtProductOn"
             android:textColor="@color/purple_400"
             app:backgroundTint="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btProductSum"
             app:layout_constraintTop_toTopOf="parent" />
 
 <!--        <Button-->
@@ -64,15 +60,13 @@
             android:id="@+id/btProductOff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="320dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="32dp"
             android:background="@drawable/button_secondary"
             android:text="@string/txtProductOff"
             android:textColor="@color/purple_400"
             app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -85,14 +79,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btProductOn" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ibFirmProductOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@drawable/baseline_add_producton_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

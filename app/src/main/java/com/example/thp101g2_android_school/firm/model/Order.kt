@@ -18,6 +18,8 @@ class Order (
     var shopProductSales : String? = null,
     var shopOrderImg: ByteArray? = null,
     var firmNo: String? =null,
+    var shopOrderImgBase64:String? = null,
 
-):
+
+    ):
     Serializable

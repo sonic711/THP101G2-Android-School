@@ -3,10 +3,10 @@ package com.example.thp101g2_android_school.firm.model
 import android.graphics.Bitmap
 import java.io.Serializable
 
-class Firm(
+data class Firm(
     var firmNo:Int? = null,
     var userId:String? = null,
-    var password:String? = null,
+    var password:String = "",
     var shopName:String? = null,
     var phoneNumber:String? = null,
     var firmEmail:String? = null,

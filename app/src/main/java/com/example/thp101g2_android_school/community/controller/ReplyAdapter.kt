@@ -62,7 +62,6 @@ class ReplyAdapter(
             likeList?.let {
                 for (liked in it) {
                     // 找到屬於該MemberNo的喜歡並且 喜歡的編號 = 該回覆的編號
-                    // TODO 先寫死目前登入會員id為1
                     if (liked.likedMemberNo == memberObj?.memberNo.toString() && (liked.likedReplyId == reply.comReplyId)) {
                         tbLike.isChecked = true
                         break

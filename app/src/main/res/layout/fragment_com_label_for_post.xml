@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
     >
-
         <SearchView
                 android:layout_width="350dp"
                 android:layout_height="66dp" app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +23,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/searchView"
                 android:iconifiedByDefault="false"
-                android:queryHint="請輸入......."/>
+                android:queryHint="請選擇文章標籤，或自行輸入．．．"/>
 
         <androidx.cardview.widget.CardView
                 android:layout_width="60dp"

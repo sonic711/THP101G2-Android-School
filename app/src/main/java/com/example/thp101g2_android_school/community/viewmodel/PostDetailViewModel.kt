@@ -52,7 +52,7 @@ class PostDetailViewModel : ViewModel() {
                 }
             }
         }
-
+        this.allLikes = replys.toMutableList()
         this.replys.value = newReplys
         this.replyCount.value = newReplys.size
         replyList = newReplys

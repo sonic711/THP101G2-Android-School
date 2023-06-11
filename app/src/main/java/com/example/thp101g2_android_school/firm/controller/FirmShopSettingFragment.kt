@@ -68,17 +68,13 @@ class FirmShopSettingFragment : Fragment() {
                 AlertDialog.Builder(view.context)
                     .setMessage("確定編輯?")
                     .setPositiveButton("是") { _, _ ->
-                        val finished: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
 
-                        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
-                        val FNO = currentFirm?.firmNo
-
-                        requestTask<Unit>("$url/firmData/$FNO", "PUT", viewModel?.firm?.value)
+                        requestTask<Unit>("$url/firmData", "PUT", viewModel?.firm?.value)
                         Navigation.findNavController(view).popBackStack()
-                        finished.value = true
-                        if (finished.value == true) {
-                            Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
-                        }
+
+
+                        Toast.makeText(context, "編輯成功", Toast.LENGTH_SHORT).show()
+
                     }
                     .setNegativeButton("否", null)
                     .setCancelable(false)
@@ -92,7 +88,9 @@ class FirmShopSettingFragment : Fragment() {
             if (result.resultCode == Activity.RESULT_OK) {
                 // data -> intent  data -> uri資源定位的路徑
                 // let -> 當uri不為空職則執行
-                result.data?.data?.let { uri -> binding.ibIconUp.setImageURI(uri) }
+                result.data?.data?.let {
+                        uri -> binding.ibIconUp.setImageURI(uri)
+                }
                 // 直接拿到圖檔本身setImage
                 // 直接拿到圖檔的路徑setImageURI(uri - >相簿裡面的圖檔)
             }

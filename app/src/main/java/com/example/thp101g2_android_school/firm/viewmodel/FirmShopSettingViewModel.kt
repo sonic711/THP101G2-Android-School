@@ -25,7 +25,7 @@ import org.json.JSONObject
  * */
 
 class FirmShopSettingViewModel :ViewModel() {
-    val firm: MutableLiveData<Firm> by lazy { MutableLiveData<Firm>() }
+    val firm: MutableLiveData<Firm> by lazy { MutableLiveData<Firm>(Firm()) }
     val navToLogin: MutableLiveData<Boolean> by lazy { MutableLiveData(false) }
     val newPassword: MutableLiveData<String> by lazy { MutableLiveData() }
     val confirmPassword: MutableLiveData<String> by lazy { MutableLiveData("") }
@@ -58,23 +58,15 @@ class FirmShopSettingViewModel :ViewModel() {
             firm.value = it
         }
     }
-    fun doPUT(){
-        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
-        val FNO = currentFirm?.firmNo
-        val result = requestTask<JSONObject>("$url/firmData/$FNO", "PUT", firm.value)
-        println(result)
-    }
 
-//    fun logout(context: Context) {
-//        AlertDialog.Builder(context)
-//            .setMessage("確定要登出?")
-//            .setPositiveButton("Yes") { _, _ ->
-//                requestTask<Unit>(url + "firmData", "DELETE")
-//                navToLogin.value = true
-//            }
-//            .setNegativeButton("No", null)
-//            .setCancelable(false)
-//            .show()
+
+
+    // 若是使用onClick綁定點及事件可使用此方法
+//    fun doPUT(){
+//        var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
+//        val FNO = currentFirm?.firmNo
+//        val result = requestTask<JSONObject>("$url/firmData/$FNO", "PUT", firm.value)
+//        println(result)
 //    }
 
 }
