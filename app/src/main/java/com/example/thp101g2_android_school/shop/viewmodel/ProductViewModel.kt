@@ -47,7 +47,7 @@ class ProductViewModel : ViewModel() {
         return shoppingCartProducts
     }
 
-    private fun loadProduct() {
+    fun loadProduct() {
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/"
         val type = object : TypeToken<List<Product>>() {}.type
         val list = requestTask<List<Product>>(url, respBodyType = type) ?: return
@@ -62,7 +62,7 @@ class ProductViewModel : ViewModel() {
         this.products.value = this.productList
     }
 
-    private fun loadFavoriteProducts() {
+    fun loadFavoriteProducts() {
         // Implement the logic to load favorite products and update the favoriteProducts LiveData
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/favorite"
         val type = object : TypeToken<List<ShopFavorite>>() {}.type
@@ -75,7 +75,7 @@ class ProductViewModel : ViewModel() {
         favoriteProducts.value = favoriteProductList
     }
 
-    private fun loadShoppingCartProducts() {
+    fun loadShoppingCartProducts() {
         // Implement the logic to load favorite products and update the favoriteProducts LiveData
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/shop/shoppingcart"
         val type = object : TypeToken<List<ShopingCart>>() {}.type

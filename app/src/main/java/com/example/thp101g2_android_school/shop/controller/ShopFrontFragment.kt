@@ -6,16 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopFrontBinding
 import com.example.thp101g2_android_school.shop.model.ShopPage
+import com.example.thp101g2_android_school.shop.viewmodel.ShopFrontViewModel
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ShopFrontFragment : Fragment() {
-
     private lateinit var binding: FragmentShopFrontBinding
+    private val viewModel: ShopFrontViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -38,7 +43,7 @@ class ShopFrontFragment : Fragment() {
             ShopPage(
                 "我的最愛",
                 ContextCompat.getColor(requireContext(), R.color.white),
-                ShopFavoriteFragment()
+                ShopFavoriteFragment(),
             ),
             ShopPage(
                 "我的購物車",
@@ -58,9 +63,47 @@ class ShopFrontFragment : Fragment() {
                 // 設定tab標題文字
                 tab.text = pages[position].title
                 tab.view.setBackgroundColor(pages[position].color)
-            }.attach()
+            }.apply {
+                attach()
+                handleTabLayout(pages)
+            }
         }
 
+    }
+    private fun handleTabLayout(pages: List<ShopPage>) {
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val position = tab?.position ?: return
+                val selectedPage = pages[position]
+
+                // 根据选中的页面执行相应操作
+                when (selectedPage.title) {
+                    "首頁" -> {
+                        binding.shopsearchView.visibility = View.VISIBLE
+                        binding.tvShopTitle.text = ""
+                    }
+                    "我的最愛" -> {
+                        binding.shopsearchView.visibility = View.GONE
+                        binding.tvShopTitle.text = "我的最愛"
+                    }
+                    "我的購物車" -> {
+                        binding.shopsearchView.visibility = View.GONE
+                        binding.tvShopTitle.text = "我的購物車"
+                    }
+                    "我的訂單" -> {
+                        binding.shopsearchView.visibility = View.GONE
+                        binding.tvShopTitle.text = "我的訂單"
+                    }
+                }
+                if (selectedPage.title == "首頁") {
+                    val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
+                    searchView.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
     }
 
     class MyFragmentStateAdapter(activity: ShopFrontFragment, private var pages: List<ShopPage>) :

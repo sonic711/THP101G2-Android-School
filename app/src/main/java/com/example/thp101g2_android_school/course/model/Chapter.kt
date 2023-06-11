@@ -6,8 +6,8 @@ data class Chapter (
     var chapterId: Int? = null,
     var chapterName: String? = "",
     var courseName: String? = "",
-    var courseId: Int,
+    var courseId: Int? = null,
     var video:String? = "",
-    var chapterSequence: Int,
+    var chapterSequence: Int? = null,
     var updateTime: String? = null
     ) : Serializable

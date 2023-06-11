@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thp101g2_android_school.ActivityViewModel
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.community.viewmodel.ComClassViewModel
 import com.example.thp101g2_android_school.databinding.FragmentComAllClassBinding
@@ -14,6 +16,7 @@ import com.example.thp101g2_android_school.databinding.FragmentComAllClassBindin
 class ComAllClassFragment : Fragment() {
 
     private lateinit var binding: FragmentComAllClassBinding
+    private val activityViewModel: ActivityViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +31,7 @@ class ComAllClassFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
-
+            activityViewModel.memberObj.value?.let { viewModel?.getFollowClass(it) }
             parentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             val followList = viewModel?.followList
             viewModel?.parents?.observe(viewLifecycleOwner) { parents ->

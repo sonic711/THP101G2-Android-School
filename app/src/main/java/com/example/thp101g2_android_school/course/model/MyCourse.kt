@@ -6,8 +6,8 @@ data class MyCourse (
     var courseName: String? = "",
     var userId: String? = "",
     var studentCoursesId : Int? = null,
-    var courseId: Int,
-    var memberNo: Int,
+    var courseId: Int? = 1,
+    var memberNo: Int? = 1,
     var coursesProgress: Boolean? = null,
     var image: ByteArray? = null,
     var updateTime: String? = null

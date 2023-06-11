@@ -53,7 +53,7 @@ class CouFavoriteDetailFragment : Fragment() {
 
                     btStartCourse.setOnClickListener {
                         Navigation.findNavController(it)
-                            .navigate(R.id.couClassroomFragment, bundle)
+                            .navigate(R.id.action_couFavoriteDetailFragment_to_couClassroomFragment, bundle)
                     }
                     btDeleteFavorite.setOnClickListener {
                         requestTask<JsonObject>(

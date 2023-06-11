@@ -2,12 +2,16 @@ package com.example.thp101g2_android_school.app
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingConversion
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import java.io.ByteArrayOutputStream
@@ -47,4 +51,14 @@ fun ImageView.getImgBase64(): String?{
 @BindingAdapter("imgBase64AttrChanged")
 fun ImageView.setOnImgBase64AttrChangedListener(listener: InverseBindingListener) {
     addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> listener.onChange() }
+}
+
+@BindingConversion
+fun convertStringToColorDrawable(color: String): ColorDrawable {
+    return ColorDrawable(Color.parseColor(color))
+}
+
+@BindingAdapter("colorHex")
+fun TextView.setColorHex(color: String) {
+    setTextColor(Color.parseColor(color))
 }

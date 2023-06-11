@@ -29,6 +29,7 @@ class ComClassChildAdapter(private val childList: List<ChildItem>, private val f
     }
 
     override fun onBindViewHolder(holder: ChildViewHolder, position: Int) {
+
         val childs = childList[position]
         with(holder) {
             with(itemViewBinding) {

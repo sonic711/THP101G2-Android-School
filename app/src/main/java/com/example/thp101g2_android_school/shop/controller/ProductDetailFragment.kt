@@ -20,6 +20,7 @@ import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopMainViewModel
 import androidx.databinding.BindingAdapter
+import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.JsonObject
 import kotlin.random.Random
 
@@ -48,6 +49,11 @@ class ProductDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+        println(currentMember)
+        val memberno = currentMember?.memberNo
+        println(memberno)
+
         arguments?.let { bundle ->
             bundle.getSerializable("product")?.let {
                 product = it as Product
@@ -101,7 +107,7 @@ class ProductDetailFragment : Fragment() {
                     val randomNumber = Random.nextInt(10000000)
                     val jsonObj = JsonObject()
                     jsonObj.addProperty("shopFavoriteId", randomNumber)
-                    jsonObj.addProperty("memberNo", 1)
+                    jsonObj.addProperty("memberNo", memberno)
                     jsonObj.addProperty("shopProductId", product.shopProductId)
                     val respbody = requestTask<JsonObject>(
                         "$url/shop/favorite",
@@ -125,7 +131,7 @@ class ProductDetailFragment : Fragment() {
                     val randomNumber = Random.nextInt(10000000)
                     val jsonObj = JsonObject()
                     jsonObj.addProperty("shoppingCartId", randomNumber)
-                    jsonObj.addProperty("memberNo", 1)
+                    jsonObj.addProperty("memberNo", memberno)
                     jsonObj.addProperty("shopProductId", product.shopProductId)
                     jsonObj.addProperty("shopOrderCount", product.shopProductCount)
                     val respbody = requestTask<JsonObject>(
