@@ -61,6 +61,8 @@ class FirmProductManagerAdapter(private var productsManager: List<FirmProduct>) 
             bundle.putSerializable("productsManager", productsManager)
 
             itemViewBinding.btProductEdit.setOnClickListener {
+                itemViewBinding.viewModel?.productEdit?.value?.shopProductImgBase64 = null
+                itemViewBinding.viewModel?.productEdit?.value?.shopProductImg = null
                 Navigation.findNavController(it)
                     .navigate(R.id.firmProductEditDetailFragment, bundle)
             }
