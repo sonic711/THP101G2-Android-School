@@ -56,6 +56,9 @@ class ComPostFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         activityViewModel.memberObj.value?.let { viewModel.loadData(it) }
+        if(viewModel.memberImg.value.isNullOrBlank()){
+            binding.imageView.setImageResource(R.drawable.com_user)
+        }
         with(binding) {
             val navController = Navigation.findNavController(requireView())
             val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
