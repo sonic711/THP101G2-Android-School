@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/firmProductManagerFragment"
-        android:icon="@drawable/goodsbar"
+        android:icon="@drawable/baseline_shopping_cart_24"
         android:title="商品管理" />
     <item
         android:id="@+id/firmOrderManagerFragment"
-        android:icon="@drawable/orderbar"
+        android:icon="@drawable/baseline_ordet_item_24"
         android:title="訂單管理" />
     <item
         android:id="@+id/firmMainFragment"
-        android:icon="@drawable/firmhomepage"
+        android:icon="@drawable/baseline_home_24"
         android:title="首頁" />
     <item
         android:id="@+id/firmDataCenterFragment"
-        android:icon="@drawable/databar"
+        android:icon="@drawable/baseline_firm_data__24"
         android:title="數據中心" />
     <item
         android:id="@+id/firmSettingFragment"
-        android:icon="@drawable/firmsettingbar"
+        android:icon="@drawable/baseline_firm_settings_24"
         android:title="設定" />
 </menu>
