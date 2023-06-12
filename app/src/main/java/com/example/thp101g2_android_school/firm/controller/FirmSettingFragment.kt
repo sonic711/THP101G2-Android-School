@@ -52,8 +52,8 @@ class FirmSettingFragment : Fragment() {
                         requestTask<Unit>("$url/firms/$FNO", "DELETE")
                         // TODO 導覽至登入畫面 loginMainFragment
                         Log.d("TAG_","LOGOUT:${Navigation.findNavController(view).currentDestination?.id}")
-                        Navigation.findNavController(view).navigate(R.id.loginFirmFragment)
-
+                        // Navigation.findNavController(view).navigate(R.id.loginFirmFragment)
+                        requireActivity().finish()
 
 
                     }

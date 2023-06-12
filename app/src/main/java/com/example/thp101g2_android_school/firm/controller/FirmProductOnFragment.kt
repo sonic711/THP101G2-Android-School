@@ -57,6 +57,7 @@ class FirmProductOnFragment : Fragment() {
                         val finished: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
                         var currentFirm: Firm? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
                         val FNO = currentFirm?.firmNo
+                        viewModel?.productOn?.value?.shopName = currentFirm?.shopName
                         viewModel?.productOn?.value?.firmNo = "$FNO" // 這裡有問題先寫死
                         requestTask<Unit>("$url/productmanage/$FNO", "POST", viewModel?.productOn?.value)
                         Navigation.findNavController(view).popBackStack()

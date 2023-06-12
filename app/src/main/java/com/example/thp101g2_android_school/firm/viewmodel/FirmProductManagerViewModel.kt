@@ -25,17 +25,39 @@ class FirmProductManagerViewModel : ViewModel() {
     val finished: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
     val firm: MutableLiveData<Firm> by lazy { MutableLiveData<Firm>(Firm()) }
 
+
     fun loadProducts(shopProductId: String) {
         val currentFirm: Firm? =
             requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/firms", "OPTIONS")
             firm.value = currentFirm
-
         productEdit.value?.shopProductId = shopProductId
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/productstatus/${productEdit.value?.shopProductId}"
         val result = requestTask<FirmProduct>(url)
         result?.let {
             productEdit.value = it
         }
+    }
+
+    fun changeStatus(context: Context) {
+        AlertDialog.Builder(context)
+            .setMessage("確定下架?")
+            .setPositiveButton("是") { _, _ ->
+                var currentFirm: Firm? = requestTask(
+                    "http://10.0.2.2:8080/THP101G2-WebServer-School/firms",
+                    "OPTIONS"
+                )
+                val FNO = currentFirm?.firmNo
+                val result = requestTask<Boolean>("$url/productstatus/$FNO", "PUT", productEdit.value)
+                finished.value = result
+                if (finished.value == true) {
+                    Toast.makeText(context, "下架成功", Toast.LENGTH_SHORT).show()
+                }else Toast.makeText(context, "下架失敗", Toast.LENGTH_SHORT).show()
+
+            }
+            .setNegativeButton("否", null)
+            .setCancelable(false)
+            .show()
+
     }
 
     // 若是用onClick點擊事件可綁定此方法
@@ -48,32 +70,4 @@ class FirmProductManagerViewModel : ViewModel() {
 //
 //        finished.value = true
 //    }
-
-    fun changeStatus(context: Context) {
-        AlertDialog.Builder(context)
-            .setMessage("確定下架?")
-            .setPositiveButton("是") { _, _ ->
-                var currentFirm: Firm? = requestTask(
-                    "http://10.0.2.2:8080/THP101G2-WebServer-School/firms",
-                    "OPTIONS"
-                )
-                val FNO = currentFirm?.firmNo
-                requestTask<Unit>("$url/productstatus/$FNO", "PUT", productEdit.value)
-                finished.value = true
-                if (finished.value == true) {
-                    Toast.makeText(context, "下架成功", Toast.LENGTH_SHORT).show()
-                }
-            }
-            .setNegativeButton("否", null)
-            .setCancelable(false)
-            .show()
-
-//        var currentFirm: FirmProduct? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/productstatus", "OPTIONS")
-//        val FNO = currentFirm?.shopProductId
-//        val result = requestTask<JSONObject>("$url/productstatus/$FNO", "PUT", productEdit.value)
-//        println(result)
-//
-//        finished.value = true
-
-    }
 }
