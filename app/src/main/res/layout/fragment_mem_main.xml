@@ -9,7 +9,7 @@
             type="com.example.thp101g2_android_school.member.viewModel.MemberViewModel" />
         <variable
             name="postViewModel"
-            type="com.example.thp101g2_android_school.community.viewmodel.ComPostViewModel" />
+            type="com.example.thp101g2_android_school.member.viewModel.MemPostViewModel" />
     </data>
 
     <LinearLayout

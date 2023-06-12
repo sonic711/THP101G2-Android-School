@@ -33,11 +33,13 @@ class LoginMainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btFirm.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.registerFragment)
+                Navigation.findNavController(it).navigate(R.id.loginFirmFragment)
             }
             btStudent.setOnClickListener {
-                Log.d("test", "123")
-                Navigation.findNavController(it).navigate(R.id.registerFragment)
+                Navigation.findNavController(it).navigate(R.id.loginFragment)
+            }
+            btManager.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.loginManagerFragment)
             }
         }
     }

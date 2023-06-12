@@ -1,7 +1,6 @@
 package com.example.thp101g2_android_school.member.controller
 
 import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,11 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.MainActivity
-import com.example.thp101g2_android_school.member.viewModel.MemApplyToTeacherViewModel
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentMemApplyToTeacherBinding
-import com.example.thp101g2_android_school.databinding.FragmentMemEditPasswordBinding
 import com.example.thp101g2_android_school.member.viewModel.MemSettingViewModel
 import com.google.gson.JsonObject
 

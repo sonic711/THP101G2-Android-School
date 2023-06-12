@@ -63,6 +63,7 @@ class LoginFragment : Fragment() {
                         val respBody =
                             requestTask<Member>(url, "POST", member)
                         if (respBody?.memberNo != null) {
+                            savePreference()
                             val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
                             val requestBody = mapOf(
                                 "type" to "insertForMLR",
@@ -100,6 +101,30 @@ class LoginFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadPreference()
+    }
+
+    private fun savePreference() {
+        requireActivity().getSharedPreferences("memberAccount", Context.MODE_PRIVATE).edit()
+            .putString("memberEmail", binding.viewModel?.member?.value?.memberEmail)
+            .putString("password", binding.viewModel?.member?.value?.password)
+            .apply()
+        Toast.makeText(requireContext(), "data saved", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun loadPreference() {
+        val preferences = requireActivity().getSharedPreferences("memberAccount", Context.MODE_PRIVATE)
+        val memberEmail = preferences.getString("memberEmail", "")
+        if (memberEmail!!.isEmpty()) {
+            return
+        }
+        binding.viewModel?.member?.value?.memberEmail = memberEmail!!
+        binding.viewModel?.member?.value?.password = preferences.getString("password", "")!!
+        Toast.makeText(requireContext(), "load data", Toast.LENGTH_SHORT).show()
     }
 
     private fun inputValid(): Boolean {

@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.example.thp101g2_android_school.member.viewModel.MemOthersHomeViewModel" />
+        <variable
+            name="postViewModel"
+            type="com.example.thp101g2_android_school.member.viewModel.MemPostViewModel" />
     </data>
 
     <LinearLayout
@@ -211,6 +214,7 @@
                         android:orientation="vertical">
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </LinearLayout>

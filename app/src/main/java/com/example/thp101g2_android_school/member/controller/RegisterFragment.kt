@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.R
@@ -16,12 +17,12 @@ import org.mindrot.jbcrypt.BCrypt
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
+    private val viewModel: RegisterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val viewModel: RegisterViewModel by viewModels()
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -34,7 +35,6 @@ class RegisterFragment : Fragment() {
                 if (!inputValid()) {
                     return@setOnClickListener
                 }
-                Log.d("TAG_Register", "Password: ${viewModel!!.member.value!!.password.trim()}")
                 val hashedPassword = hashPassword(viewModel!!.member.value!!.password.trim())
                 val member = Member(
                     nickname = viewModel!!.member.value!!.nickname.trim(),
@@ -42,7 +42,6 @@ class RegisterFragment : Fragment() {
                     memberEmail = viewModel!!.member.value!!.memberEmail.trim(),
                     password = hashedPassword
                 )
-                Log.d("TAG_Register", "hashedPassword: $hashedPassword")
                 val bundle = Bundle()
                 bundle.putSerializable("member", member)
 
