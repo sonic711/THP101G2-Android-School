@@ -21,8 +21,10 @@ import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
 import android.util.Base64
 import com.example.thp101g2_android_school.GooglePayActivity
+import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
+import com.google.firebase.firestore.core.ViewChange
 import com.google.gson.reflect.TypeToken
 
 
@@ -37,6 +39,7 @@ class ShopBuyFragment : Fragment() {
     private var userName = ""
     private var userPhone = ""
     var pointans = 0
+    var ViewChange = false
 
 
     override fun onCreateView(
@@ -358,6 +361,22 @@ class ShopBuyFragment : Fragment() {
 
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        val receivedData = requireActivity().intent
+        val fragmentName = receivedData.getStringExtra("fragment")
+        val viewChange = receivedData.getBooleanExtra("viewchange", false)
+        println(viewChange )
+        if (viewChange) {
+            Navigation.findNavController(binding.btGPay).navigate(R.id.shopOrderListFragment)
+            println("yes")
+        } else {
+            println("no")
+        }
+
+    }
+
     fun convertBytesToBase64(bytes: ByteArray): String {
         return Base64.encodeToString(bytes, Base64.DEFAULT)
     }

@@ -8,6 +8,7 @@
     import android.view.LayoutInflater
     import android.widget.Toast
     import androidx.appcompat.app.AppCompatActivity
+    import androidx.core.content.ContentProviderCompat.requireContext
     import androidx.navigation.NavController
     import androidx.navigation.Navigation
     import androidx.navigation.findNavController
@@ -21,6 +22,7 @@
     import com.google.gson.Gson
     import com.google.gson.JsonObject
     import com.example.thp101g2_android_school.databinding.GooglepayactivitymainBinding
+    import com.example.thp101g2_android_school.shop.controller.ShopBuyFragment
     import com.example.thp101g2_android_school.shop.controller.ShopFrontFragment
     import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
     import com.example.thp101g2_android_school.shop.model.ShopingCart
@@ -49,6 +51,7 @@
         var firmno = 0
         var productimg: ByteArray? = null
         var Count = 0
+        var ViewChange = ""
 
 
         // 測試環境網址
@@ -67,21 +70,6 @@
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-
-            val extras = intent.extras
-            if (extras != null) {
-                val fragmentToShow = extras.getString("fragment")
-
-                if (fragmentToShow == "shopOrderListFragment") {
-                    val navController = findNavController(R.id.nav_host_fragment)
-                    navController.addOnDestinationChangedListener { _, destination, _ ->
-                        if (destination.id == R.id.shopFrontFragment) {
-                            navController.navigate(R.id.shopOrderListFragment)
-                        }
-                    }
-                }
-            }
-
             binding = GooglepayactivitymainBinding.inflate(LayoutInflater.from(this))
             setContentView(binding.root)
 
@@ -308,13 +296,22 @@
                     val text = "支付結束，TapPay回應的結果訊息:\n$resultJson"
                     Log.d(myTag, text)
                     binding.tvResult.text = text
+                    ViewChange = "yes"
 
-//                    navController.navigate(R.id.shopFrontFragment)
                     val intent = Intent(this, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    intent.putExtra("fragment", "shopOrderListFragment")
-                    startActivity(intent)
+                    intent.putExtra("fragment", "shopFrontFragment")
+                    intent.putExtra("viewchange", ViewChange)
+                    startActivityForResult(intent, 1)
                     finish()
+//                    val fragment = ShopFrontFragment()
+//                    val bundle = Bundle()
+//                    bundle.putString("viewchange", ViewChange)
+//                    fragment.arguments = bundle
+//
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.fragment_Container, fragment)
+//                        .commit()
+
 
                 }
             ) { status: Int, reportMsg: String ->

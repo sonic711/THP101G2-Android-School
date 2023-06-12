@@ -41,7 +41,12 @@ class ProductDetailFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         // 呈現標題列
-        (requireActivity() as MainActivity).supportActionBar?.show()
+        (requireActivity() as MainActivity).supportActionBar?.apply {
+            // Show the support action bar if it is hidden
+            show()
+            title = "商品細項頁面"
+            setDisplayHomeAsUpEnabled(true)
+        }
         val viewModel: ShopMainViewModel by viewModels()
         binding = FragmentProductDetailBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -85,7 +90,7 @@ class ProductDetailFragment : Fragment() {
             binding.btnBack.setOnClickListener {
                 Navigation.findNavController(requireView()).navigateUp()
                 val currentFragment =
-                    parentFragmentManager.findFragmentById(R.id.fragmentContainer)
+                    parentFragmentManager.findFragmentById(R.id.fragment_Container)
                 currentFragment?.let {
                     parentFragmentManager.beginTransaction()
                         .remove(it)

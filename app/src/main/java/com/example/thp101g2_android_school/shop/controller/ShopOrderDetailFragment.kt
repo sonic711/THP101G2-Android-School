@@ -20,7 +20,12 @@ class ShopOrderDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (requireActivity() as MainActivity).supportActionBar?.show()
+        (requireActivity() as MainActivity).supportActionBar?.apply {
+            // Show the support action bar if it is hidden
+            show()
+            title = "訂單細項頁面"
+            setDisplayHomeAsUpEnabled(true)
+        }
         val viewModel: ShopOrderListViewModel by viewModels()
         binding = FragmentShopOrderDetailBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel

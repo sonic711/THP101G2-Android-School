@@ -22,7 +22,7 @@
                     android:id="@+id/childCardView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="16dp"
                     android:foreground="?selectableItemBackground"
                     app:cardElevation="1dp"

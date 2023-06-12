@@ -52,19 +52,19 @@ class ShopOrderListFragment : Fragment() {
             }
             }
 
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-                androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return false
-                }
-
-                // 當輸入內容變化時，呼叫search()
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel?.search(newText)
-                    return true
-                }
-
-            })
+//            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+//                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+//                override fun onQueryTextSubmit(query: String?): Boolean {
+//                    return false
+//                }
+//
+//                // 當輸入內容變化時，呼叫search()
+//                override fun onQueryTextChange(newText: String?): Boolean {
+//                    viewModel?.search(newText)
+//                    return true
+//                }
+//
+//            })
         }
     }
 
