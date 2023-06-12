@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -96,6 +97,7 @@ class ProductDetailFragment : Fragment() {
                 productViewModel.onShoppingCartProductClicked(product.shopProductId.toString())
                 if (isFavorite) {
                     // TODO 先寫死會員編號1 假定登入
+                    Toast.makeText(context, "刪除自我的最愛", Toast.LENGTH_SHORT).show()
                     println("PDF最愛刪除一筆")
                     val productId = product.shopProductId
                     val respbody = requestTask<JsonObject>(
@@ -103,6 +105,7 @@ class ProductDetailFragment : Fragment() {
                         "DELETE"
                     )
                 } else {
+                    Toast.makeText(context, "新增至我的最愛", Toast.LENGTH_SHORT).show()
                     println("PDF最愛增加一筆")
                     val randomNumber = Random.nextInt(10000000)
                     val jsonObj = JsonObject()
@@ -120,6 +123,7 @@ class ProductDetailFragment : Fragment() {
             binding.CartToggleButton.setOnClickListener {
                 if (isShoppingCart) {
                     // TODO 先寫死會員編號1 假定登入
+                    Toast.makeText(context, "刪除自我的購物車", Toast.LENGTH_SHORT).show()
                     println("PDF購物車刪除一筆")
                     val productId = product.shopProductId
                     val respbody = requestTask<JsonObject>(
@@ -127,6 +131,7 @@ class ProductDetailFragment : Fragment() {
                         "DELETE"
                     )
                 } else {
+                    Toast.makeText(context, "增加至我的購物車", Toast.LENGTH_SHORT).show()
                     println("PDF購物車增加一筆")
                     val randomNumber = Random.nextInt(10000000)
                     val jsonObj = JsonObject()

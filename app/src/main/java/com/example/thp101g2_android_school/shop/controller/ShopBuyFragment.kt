@@ -33,6 +33,9 @@ class ShopBuyFragment : Fragment() {
     private val ERROR_COLOR = Color.RED
     private var radioButtonSelected = false
     private var radioButtonError = false
+    private var userEmail = ""
+    private var userName = ""
+    private var userPhone = ""
     var pointans = 0
 
 
@@ -54,12 +57,22 @@ class ShopBuyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         /**
-         * TODO 66~71:去拿Member資料
+         * TODO 66~78:去拿Member資料
          */
 
         var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
         println(currentMember)
         val memberno = currentMember?.memberNo
+        if (currentMember != null) {
+            userEmail = currentMember.memberEmail
+        }
+        if (currentMember != null) {
+            userName = currentMember.nickname
+        }
+        if (currentMember != null) {
+            userPhone = currentMember.phoneNumber
+        }
+        println(userEmail)
         println(memberno)
         val memberpoints = currentMember?.rewardPoints
         binding.tvPoints.text = "您的積分總額 : "+memberpoints
@@ -143,7 +156,7 @@ class ShopBuyFragment : Fragment() {
 
                 var hasError = false
 
-                if (name.isEmpty() || name.length < 2) {
+                if (name.isEmpty() || name.length < 2 || name != userName) {
                     // 姓名验证失败，显示错误信息
                     binding.etPersonName.setError("姓名輸入失敗，請至少輸入兩個字元")
                     setErrorState(binding.etPersonName)
@@ -153,7 +166,7 @@ class ShopBuyFragment : Fragment() {
                     clearErrorState(binding.etPersonName)
                 }
 
-                if (email.isEmpty() || !isEmailValid(email)) {
+                if (email.isEmpty() || !isEmailValid(email) || email != userEmail) {
                     // 邮箱验证失败，显示错误信息
                     binding.etEmail.setError("電子郵件驗證失敗")
                     setErrorState(binding.etEmail)
@@ -162,7 +175,7 @@ class ShopBuyFragment : Fragment() {
                     // 验证成功，恢复原始颜色
                     clearErrorState(binding.etEmail)
                 }
-                if (phone.isEmpty() || !isPhoneValid(phone)) {
+                if (phone.isEmpty() || !isPhoneValid(phone) || phone != userPhone) {
                     // 手机号验证失败，显示错误信息
                     binding.etPhone.setError("手機、電話號碼格式不正確")
                     setErrorState(binding.etPhone)
@@ -245,7 +258,7 @@ class ShopBuyFragment : Fragment() {
                 val address = binding.etAddress.text.toString()
                 val phone = binding.etPhone.text.toString()
 
-                if (name.isEmpty() || name.length < 2) {
+                if (name.isEmpty() || name.length < 2 || name != userName) {
                     // 姓名验证失败，显示错误信息
                     binding.etPersonName.setError("姓名輸入失敗，請至少輸入兩個字元")
                     setErrorState(binding.etPersonName)
@@ -255,7 +268,7 @@ class ShopBuyFragment : Fragment() {
                     clearErrorState(binding.etPersonName)
                 }
 
-                if (email.isEmpty() || !isEmailValid(email)) {
+                if (email.isEmpty() || !isEmailValid(email) || email != userEmail) {
                     // 邮箱验证失败，显示错误信息
                     binding.etEmail.setError("電子郵件驗證失敗")
                     setErrorState(binding.etEmail)
@@ -275,7 +288,7 @@ class ShopBuyFragment : Fragment() {
                     clearErrorState(binding.etAddress)
                 }
 
-                if (phone.isEmpty() || !isPhoneValid(phone)) {
+                if (phone.isEmpty() || !isPhoneValid(phone) || phone != userPhone) {
                     // 手机号验证失败，显示错误信息
                     binding.etPhone.setError("手機、電話號碼格式不正確")
                     setErrorState(binding.etPhone)

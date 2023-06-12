@@ -8,6 +8,10 @@
     import android.view.LayoutInflater
     import android.widget.Toast
     import androidx.appcompat.app.AppCompatActivity
+    import androidx.navigation.NavController
+    import androidx.navigation.Navigation
+    import androidx.navigation.findNavController
+    import androidx.navigation.fragment.NavHostFragment
     import com.example.thp101g2_android_school.app.requestTask
     import com.example.thp101g2_android_school.app.url
     import com.google.android.gms.wallet.AutoResolveHelper
@@ -63,6 +67,21 @@
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
+
+            val extras = intent.extras
+            if (extras != null) {
+                val fragmentToShow = extras.getString("fragment")
+
+                if (fragmentToShow == "shopOrderListFragment") {
+                    val navController = findNavController(R.id.nav_host_fragment)
+                    navController.addOnDestinationChangedListener { _, destination, _ ->
+                        if (destination.id == R.id.shopFrontFragment) {
+                            navController.navigate(R.id.shopOrderListFragment)
+                        }
+                    }
+                }
+            }
+
             binding = GooglepayactivitymainBinding.inflate(LayoutInflater.from(this))
             setContentView(binding.root)
 
@@ -290,15 +309,13 @@
                     Log.d(myTag, text)
                     binding.tvResult.text = text
 
-                    MainActivity().supportFragmentManager.beginTransaction().apply {
-                        val fragment = ShopFrontFragment()
-                        val fragmentManager = supportFragmentManager
-                        val transaction = fragmentManager.beginTransaction()
-                        transaction.replace(R.id.fragmentContainer, fragment)
-                        transaction.addToBackStack(null)
-                        transaction.commit()
+//                    navController.navigate(R.id.shopFrontFragment)
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    intent.putExtra("fragment", "shopOrderListFragment")
+                    startActivity(intent)
+                    finish()
 
-                    }
                 }
             ) { status: Int, reportMsg: String ->
                 val text =
@@ -321,7 +338,7 @@
             paymentJO.addProperty("amount", price)
             paymentJO.addProperty("currency", "TWD")
             paymentJO.addProperty("order_number", "SN0001")
-            paymentJO.addProperty("details", "茶葉蛋1顆")
+            paymentJO.addProperty("details", productname)
             val cardHolderJO = JsonObject()
             cardHolderJO.addProperty("name", "Ron")
             cardHolderJO.addProperty("phone_number", "+886912345678")
