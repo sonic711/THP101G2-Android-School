@@ -11,6 +11,7 @@ class ShopOrderList (var shopOrderImage: ByteArray,
                      var shopName: String,
                      var shopRecipient: String,
                      var shopOrderPhone: String,
-                     var shopAddress: String
+                     var shopAddress: String,
+                     var shopOrderCount: Int
                      ):
     Serializable

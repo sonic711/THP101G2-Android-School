@@ -222,13 +222,13 @@
             app:destination="@id/couUploadChapterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/couUploadChapterFragment"
-        android:name="com.example.thp101g2_android_school.course.controller.CouUploadChapterFragment"
-        android:label="fragment_cou_upload_chapter"
-        tools:layout="@layout/fragment_cou_upload_chapter" >
+            android:id="@+id/couUploadChapterFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouUploadChapterFragment"
+            android:label="fragment_cou_upload_chapter"
+            tools:layout="@layout/fragment_cou_upload_chapter" >
         <action
-            android:id="@+id/action_couUploadChapterFragment_to_memOthersHomeFragment"
-            app:destination="@id/memOthersHomeFragment" />
+                android:id="@+id/action_couUploadChapterFragment_to_couTeacherFragment"
+                app:destination="@id/couTeacherFragment" />
     </fragment>
     <fragment
             android:id="@+id/shopBuyFragment"
@@ -329,5 +329,10 @@
     <fragment android:id="@+id/comPostAuthFragment"
               android:name="com.example.thp101g2_android_school.community.controller.ComPostAuthFragment"
               android:label="ComPostAuthFragment"/>
+    <fragment
+            android:id="@+id/couTeacherFragment"
+            android:name="com.example.thp101g2_android_school.course.controller.CouTeacherFragment"
+            android:label="fragment_cou_teacher"
+            tools:layout="@layout/fragment_cou_teacher" />
 
 </navigation>

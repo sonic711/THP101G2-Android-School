@@ -16,15 +16,12 @@ class CouMyCourseViewModel : ViewModel() {
     val mycourses: MutableLiveData<List<MyCourse>> by lazy { MutableLiveData<List<MyCourse>>() }
 
     init {
-        val member: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
-        member?.memberNo
         loadData()
-
     }
 
 
     private fun loadData() {
-        val url = "$url/studentcourses/1"
+        val url = "$url/studentcourses/"
         val type = object : TypeToken<List<MyCourse>>() {}.type
         val list = requestTask<List<MyCourse>>(url, respBodyType = type)
         for (mycourses in list!!){

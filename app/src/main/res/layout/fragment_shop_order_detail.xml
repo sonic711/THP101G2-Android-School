@@ -28,16 +28,26 @@
                 tools:ignore="MissingConstraints" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="381dp"
-                android:layout_height="212dp"
+                android:layout_width="379dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <View
+                    android:id="@+id/borderView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/button_secondary" />
 
                 <ImageView
                     android:id="@+id/ivProduct"
-                    android:layout_width="192dp"
-                    android:layout_height="186dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_marginEnd="200dp"
                     app:imageByteArray="@{viewModel.order.shopOrderImage}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="200dp"
-                    android:text="@{viewModel.order.shopProductName}"
+                    android:text='@{"商品名稱 : \n"+viewModel.order.shopProductName}'
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -63,8 +73,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="200dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@{viewModel.order.shopProductSales}"
+                    android:layout_marginTop="30dp"
+                    android:text='@{"金額 : \n"+viewModel.order.shopProductSales}'
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +89,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="200dp"
                     android:layout_marginTop="30dp"
-                    android:text="@{viewModel.order.shopName}"
+                    android:text='@{"廠商名稱 : \n"+viewModel.order.shopName}'
                     android:textColor="#0000FF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,9 +100,20 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="381dp"
-                android:layout_height="434dp"
+                android:layout_width="379dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/borderView2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_secondary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvOrderId"
@@ -103,7 +124,6 @@
                     android:layout_marginTop="30dp"
                     android:text='@{"訂單編號:\n"+""+viewModel.order.shopOrderId}'
                     android:textSize="24sp"
-                    android:background="@drawable/button_secondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +139,6 @@
                     android:layout_marginTop="30dp"
                     android:text='@{"訂單時間:\n"+""+viewModel.order.shopOrdercreateTime}'
                     android:textSize="24sp"
-                    android:background="@drawable/button_secondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +150,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"購買人:"+""+viewModel.order.shopRecipient}'
+                    android:text='@{"購買人:\n"+""+viewModel.order.shopRecipient}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -145,7 +164,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"手機號碼:"+""+viewModel.order.ShopOrderPhone}'
+                    android:text='@{"手機號碼:\n"+""+viewModel.order.ShopOrderPhone}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
@@ -159,12 +178,25 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="30dp"
-                    android:text='@{"收件人/超商地址:"+""+viewModel.order.ShopAddress}'
+                    android:text='@{"收件人/超商地址:\n"+""+viewModel.order.ShopAddress}'
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.141"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvOrderphone" />
+                <TextView
+                    android:id="@+id/tvBuyCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:text='@{"購買數量:\n"+""+viewModel.order.shopOrderCount}'
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.141"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvOrderuseraddress" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

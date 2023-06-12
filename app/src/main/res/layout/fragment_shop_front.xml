@@ -75,7 +75,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <FrameLayout
-            android:id="@+id/fragmentContainer"
+            android:id="@+id/fragment_Container"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

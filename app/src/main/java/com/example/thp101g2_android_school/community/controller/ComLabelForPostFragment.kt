@@ -23,7 +23,7 @@ class ComLabelForPostFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentComLabelForPostBinding.inflate(inflater, container, false)
         val viewModel: ComLabelForPostViewModel by viewModels()
         binding.viewModel = viewModel
@@ -55,8 +55,8 @@ class ComLabelForPostFragment : Fragment() {
             })
             // 監控ActivityViewModel的標籤集合，只要有改變，就指派給這個viewModel
             // 並更改View的顯示方式
-            activityViewModel?.labelList?.observe(viewLifecycleOwner) {
-                viewModel?.newLabels?.value = activityViewModel.newLabels?.toList()
+            activityViewModel.labelList.observe(viewLifecycleOwner) {
+                viewModel?.newLabels?.value = activityViewModel.newLabels.toList()
                 when (viewModel?.newLabels?.value?.size) {
                     0 -> {
                         binding.tvLabelName1.visibility = View.GONE

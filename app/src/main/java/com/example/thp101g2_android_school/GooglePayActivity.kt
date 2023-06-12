@@ -8,6 +8,11 @@
     import android.view.LayoutInflater
     import android.widget.Toast
     import androidx.appcompat.app.AppCompatActivity
+    import androidx.core.content.ContentProviderCompat.requireContext
+    import androidx.navigation.NavController
+    import androidx.navigation.Navigation
+    import androidx.navigation.findNavController
+    import androidx.navigation.fragment.NavHostFragment
     import com.example.thp101g2_android_school.app.requestTask
     import com.example.thp101g2_android_school.app.url
     import com.google.android.gms.wallet.AutoResolveHelper
@@ -17,6 +22,7 @@
     import com.google.gson.Gson
     import com.google.gson.JsonObject
     import com.example.thp101g2_android_school.databinding.GooglepayactivitymainBinding
+    import com.example.thp101g2_android_school.shop.controller.ShopBuyFragment
     import com.example.thp101g2_android_school.shop.controller.ShopFrontFragment
     import com.example.thp101g2_android_school.shop.model.ShopBuyCalss
     import com.example.thp101g2_android_school.shop.model.ShopingCart
@@ -45,6 +51,7 @@
         var firmno = 0
         var productimg: ByteArray? = null
         var Count = 0
+        var ViewChange = ""
 
 
         // 測試環境網址
@@ -289,16 +296,23 @@
                     val text = "支付結束，TapPay回應的結果訊息:\n$resultJson"
                     Log.d(myTag, text)
                     binding.tvResult.text = text
+                    ViewChange = "yes"
 
-                    MainActivity().supportFragmentManager.beginTransaction().apply {
-                        val fragment = ShopFrontFragment()
-                        val fragmentManager = supportFragmentManager
-                        val transaction = fragmentManager.beginTransaction()
-                        transaction.replace(R.id.fragmentContainer, fragment)
-                        transaction.addToBackStack(null)
-                        transaction.commit()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("fragment", "shopFrontFragment")
+                    intent.putExtra("viewchange", ViewChange)
+                    startActivityForResult(intent, 1)
+                    finish()
+//                    val fragment = ShopFrontFragment()
+//                    val bundle = Bundle()
+//                    bundle.putString("viewchange", ViewChange)
+//                    fragment.arguments = bundle
+//
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.fragment_Container, fragment)
+//                        .commit()
 
-                    }
+
                 }
             ) { status: Int, reportMsg: String ->
                 val text =
@@ -321,7 +335,7 @@
             paymentJO.addProperty("amount", price)
             paymentJO.addProperty("currency", "TWD")
             paymentJO.addProperty("order_number", "SN0001")
-            paymentJO.addProperty("details", "茶葉蛋1顆")
+            paymentJO.addProperty("details", productname)
             val cardHolderJO = JsonObject()
             cardHolderJO.addProperty("name", "Ron")
             cardHolderJO.addProperty("phone_number", "+886912345678")

@@ -8,6 +8,9 @@ import com.google.gson.JsonObject
 
 class RegisterViewModel : ViewModel() {
     val member: MutableLiveData<Member> by lazy { MutableLiveData<Member>(Member()) }
+    val phoneNumber: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val cPassword: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val captcha: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val verificationCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val countdown: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+
 }

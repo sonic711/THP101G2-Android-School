@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -40,7 +41,12 @@ class ProductDetailFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         // 呈現標題列
-        (requireActivity() as MainActivity).supportActionBar?.show()
+        (requireActivity() as MainActivity).supportActionBar?.apply {
+            // Show the support action bar if it is hidden
+            show()
+            title = "商品細項頁面"
+            setDisplayHomeAsUpEnabled(true)
+        }
         val viewModel: ShopMainViewModel by viewModels()
         binding = FragmentProductDetailBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
@@ -84,7 +90,7 @@ class ProductDetailFragment : Fragment() {
             binding.btnBack.setOnClickListener {
                 Navigation.findNavController(requireView()).navigateUp()
                 val currentFragment =
-                    parentFragmentManager.findFragmentById(R.id.fragmentContainer)
+                    parentFragmentManager.findFragmentById(R.id.fragment_Container)
                 currentFragment?.let {
                     parentFragmentManager.beginTransaction()
                         .remove(it)
@@ -96,6 +102,7 @@ class ProductDetailFragment : Fragment() {
                 productViewModel.onShoppingCartProductClicked(product.shopProductId.toString())
                 if (isFavorite) {
                     // TODO 先寫死會員編號1 假定登入
+                    Toast.makeText(context, "刪除自我的最愛", Toast.LENGTH_SHORT).show()
                     println("PDF最愛刪除一筆")
                     val productId = product.shopProductId
                     val respbody = requestTask<JsonObject>(
@@ -103,6 +110,7 @@ class ProductDetailFragment : Fragment() {
                         "DELETE"
                     )
                 } else {
+                    Toast.makeText(context, "新增至我的最愛", Toast.LENGTH_SHORT).show()
                     println("PDF最愛增加一筆")
                     val randomNumber = Random.nextInt(10000000)
                     val jsonObj = JsonObject()
@@ -120,6 +128,7 @@ class ProductDetailFragment : Fragment() {
             binding.CartToggleButton.setOnClickListener {
                 if (isShoppingCart) {
                     // TODO 先寫死會員編號1 假定登入
+                    Toast.makeText(context, "刪除自我的購物車", Toast.LENGTH_SHORT).show()
                     println("PDF購物車刪除一筆")
                     val productId = product.shopProductId
                     val respbody = requestTask<JsonObject>(
@@ -127,6 +136,7 @@ class ProductDetailFragment : Fragment() {
                         "DELETE"
                     )
                 } else {
+                    Toast.makeText(context, "增加至我的購物車", Toast.LENGTH_SHORT).show()
                     println("PDF購物車增加一筆")
                     val randomNumber = Random.nextInt(10000000)
                     val jsonObj = JsonObject()

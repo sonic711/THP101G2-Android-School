@@ -20,11 +20,10 @@
                 android:id="@+id/childCardView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="60dp"
                 android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="100dp"
                 app:cardElevation="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
