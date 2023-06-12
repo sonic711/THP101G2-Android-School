@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.manage.model.CourseReportBean
 import com.example.thp101g2_android_school.manage.model.ManageAccountBean
+import com.example.thp101g2_android_school.manage.model.ManagePerBean
 
 import com.example.thp101g2_android_school.manage.model.Mas
 import com.google.gson.reflect.TypeToken
@@ -14,9 +15,9 @@ import com.google.gson.reflect.TypeToken
  */
 class ManageMasViewModel : ViewModel() {
     // 原始課程列表
-    private var maList = mutableListOf<ManageAccountBean>()
+    private var maList = mutableListOf<ManagePerBean>()
     // 受監控的LiveData，一旦指派新值就會更新課程列表畫面
-    val mas: MutableLiveData<List<ManageAccountBean>> by lazy { MutableLiveData<List<ManageAccountBean>>() }
+    val mas: MutableLiveData<List<ManagePerBean>> by lazy { MutableLiveData<List<ManagePerBean>>() }
 
     init {
         loadMas()
@@ -30,7 +31,7 @@ class ManageMasViewModel : ViewModel() {
         if (newText == null || newText.isEmpty()) {
             mas.value = maList
         } else {
-            val searchMaList = mutableListOf<ManageAccountBean>()
+            val searchMaList = mutableListOf<ManagePerBean>()
             maList.forEach { ma ->
                 if (ma.manageId?.contains(newText, true) == true) {
                     searchMaList.add(ma)
@@ -39,24 +40,22 @@ class ManageMasViewModel : ViewModel() {
             mas.value = searchMaList
         }
     }
-//    private fun loadMas() {
-//
-//        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/course/"
-//        val type = object : TypeToken<List<CourseReportBean>>() {}.type
-//        val list = requestTask<List<CourseReportBean>>(url, respBodyType = type)
-//        for (classes in list!!) {
-//            maList.add(ManageAccountBean())
-//        }
-//        this.maList = maList
-//        this.mas.value = this.maList
-    /** 模擬取得遠端資料 */
     private fun loadMas() {
-        val maList = mutableListOf<ManageAccountBean>()
-        maList.add(ManageAccountBean("123","","",""))
-        maList.add(ManageAccountBean("1233","","",""))
-        maList.add(ManageAccountBean("345","","",""))
 
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/manageper/"
+        val type = object : TypeToken<List<ManagePerBean>>() {}.type
+        val list = requestTask<List<ManagePerBean>>(url, respBodyType = type)
+        maList.addAll(list ?: emptyList())
         this.maList = maList
         this.mas.value = this.maList
+    /** 模擬取得遠端資料 */
+//    private fun loadMas() {
+//        val maList = mutableListOf<ManagePerBean>()
+//        maList.add(ManagePerBean("123",true,"",""))
+//        maList.add(ManagePerBean("1233","","",""))
+//        maList.add(ManagePerBean("345","","",""))
+
+//        this.maList = maList
+//        this.mas.value = this.maList
     }
 }

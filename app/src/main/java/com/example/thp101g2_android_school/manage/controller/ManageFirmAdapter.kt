@@ -8,11 +8,11 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
-import com.example.thp101g2_android_school.databinding.ClassItemViewBinding
+
 import com.example.thp101g2_android_school.databinding.ManageFirmItemViewBinding
-import com.example.thp101g2_android_school.manage.model.Classes
+
 import com.example.thp101g2_android_school.manage.model.Firms
-import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
+
 import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmViewModel
 
 
@@ -49,7 +49,7 @@ class ManageFirmAdapter(private var firms: List<Firms>) :
             // 將欲顯示的class物件指派給LiveData，就會自動更新layout檔案的view顯示
             itemViewBinding.viewModel?.firmo?.value = firms
             val bundle = Bundle()
-            bundle.putSerializable("firm", firms)
+            bundle.putSerializable("firms", firms)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.action_manageFirmFragment_to_manageFirmDetailFragment, bundle)

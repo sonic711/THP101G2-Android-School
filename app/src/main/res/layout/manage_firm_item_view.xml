@@ -26,34 +26,52 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/ivfirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars"
-                app:imageResource="@{viewModel.firmo.firmID}"
-                />
+<!--            <ImageView-->
+<!--                android:id="@+id/ivfirm"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                tools:srcCompat="@tools:sample/avatars"-->
+<!--                app:imageResource="@{viewModel.firmo.shopProductId}"-->
+<!--                />-->
 
             <TextView
-                android:id="@+id/tvComName"
+                android:id="@+id/ID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.firmo.firmphone}"
+                android:text="@{viewModel.firmo.shopProductId}"
                 android:textColor="#0000FF"
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/phones"
+                android:id="@+id/Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="6dp"
-                android:text="@{viewModel.firmo.firmname}"
+                android:text="@{viewModel.firmo.shopProductName}"
+                android:textColor="#0000FF"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/phoness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:text="@{viewModel.firmo.shopProductClass}"
                 android:textColor="#0000FF"
                 android:textSize="22sp" />
 
+            <TextView
+                android:id="@+id/phonesss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:text="@{viewModel.firmo.shopProductPrice}"
+                android:textColor="#0000FF"
+                android:textSize="22sp" />
 
 
         </LinearLayout>

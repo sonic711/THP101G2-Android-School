@@ -17,7 +17,6 @@ import com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel
 
 class ManageComAdapter(private var comms: List<ManageComReportBean>) :
     RecyclerView.Adapter<ManageComAdapter.ComViewHolder>() {
-    @SuppressLint("NotifyDataSetChanged")
     fun updateComments(comms: List<ManageComReportBean>) {
         this.comms = comms
         notifyDataSetChanged()
@@ -40,14 +39,12 @@ class ManageComAdapter(private var comms: List<ManageComReportBean>) :
         return comms.size
     }
 
-        override fun onBindViewHolder(holder: ComViewHolder, position: Int) {
-        val thecomms = comms[position]
+    override fun onBindViewHolder(holder: ManageComAdapter.ComViewHolder, position: Int) {
+        val comm = comms[position]
         with(holder) {
-            // 將欲顯示的class物件指派給LiveData，就會自動更新layout檔案的view顯示
-            itemViewBinding.viewModel?.commo?.value = thecomms
+            itemViewBinding.viewModel?.commo?.value = comm
             val bundle = Bundle()
-            //有發生key不一樣
-            bundle.putSerializable("comm", thecomms)
+            bundle.putSerializable("comms" , comm)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
                     .navigate(R.id.action_manageComFragment_to_manageComDetailFragment, bundle)

@@ -11,5 +11,10 @@ data class ManagePerBean (
     var manageCourse: Boolean? = null,
     var manageMember: Boolean? = null,
     var manageReport: Boolean? = null,
+    var manageAllowId: String? = null,
+    var manageId:String? = null,
+    var manageAc: String? = null,
+    var managePass:String? = null,
+    var manageName:String? = null,
 
 ) : Serializable

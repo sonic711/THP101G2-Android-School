@@ -32,12 +32,11 @@
             android:layout_width="403dp"
             android:layout_height="533dp"
             android:layout_margin="6dp"
-            android:layout_marginTop="66dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Unprocessed"
+            app:layout_constraintTop_toBottomOf="@+id/textView18"
             app:layout_constraintVertical_bias="0.719" />
 
         <ImageView
@@ -52,18 +51,18 @@
 
         <Button
             android:id="@+id/Unprocessed"
-            android:layout_width="133dp"
+            android:layout_width="126dp"
             android:layout_height="44dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:text="@string/txtUnprocessed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <Button
             android:id="@+id/Processed"
-            android:layout_width="133dp"
+            android:layout_width="126dp"
             android:layout_height="44dp"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="@string/memberProcessed"
             app:layout_constraintStart_toEndOf="@+id/Unprocessed"
@@ -71,13 +70,24 @@
 
         <Button
             android:id="@+id/down"
-            android:layout_width="133dp"
+            android:layout_width="126dp"
             android:layout_height="44dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:text="封鎖"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Processed"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="392dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Unprocessed" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -20,79 +20,82 @@
     <!-- 設定 foreground="?selectableItemBackground" 當選項被點擊時會改變背景色 -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="389dp"
+            android:layout_height="149dp">
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/cardView3"-->
-<!--                android:layout_width="66dp"-->
-<!--                android:layout_height="53dp"-->
-<!--                android:layout_margin="4dp"-->
-<!--                android:layout_marginStart="5dp"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:foreground="?selectableItemBackground"-->
-<!--                app:cardBackgroundColor="#DDDDDD"-->
-<!--                app:cardCornerRadius="16dp"-->
-<!--                app:cardElevation="6dp"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent">-->
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/cardView3"-->
+            <!--                android:layout_width="66dp"-->
+            <!--                android:layout_height="53dp"-->
+            <!--                android:layout_margin="4dp"-->
+            <!--                android:layout_marginStart="5dp"-->
+            <!--                android:layout_marginTop="4dp"-->
+            <!--                android:foreground="?selectableItemBackground"-->
+            <!--                app:cardBackgroundColor="#DDDDDD"-->
+            <!--                app:cardCornerRadius="16dp"-->
+            <!--                app:cardElevation="6dp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent">-->
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/ivFriend"-->
-<!--                    android:layout_width="55dp"-->
-<!--                    android:layout_height="39dp"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:src="@drawable/ivy"-->
-<!--                    app:imageResource="@{viewModel.commo.imageId}" />-->
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/ivFriend"-->
+            <!--                    android:layout_width="55dp"-->
+            <!--                    android:layout_height="39dp"-->
+            <!--                    android:layout_marginStart="16dp"-->
+            <!--                    android:layout_marginTop="16dp"-->
+            <!--                    android:src="@drawable/ivy"-->
+            <!--                    app:imageResource="@{viewModel.commo.imageId}" />-->
 
-<!--            </androidx.cardview.widget.CardView>-->
+            <!--            </androidx.cardview.widget.CardView>-->
 
             <TextView
                 android:id="@+id/textView34"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="63dp"
-                android:text="test2"
+                android:layout_width="200dp"
+                android:layout_height="26dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@{viewModel.commo.comPostTitle}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/ccCom"
-                android:layout_width="43dp"
-                android:layout_height="48dp"
+                android:layout_width="160dp"
+                android:layout_height="26dp"
+                android:textColor="@color/black"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="268dp"
-                android:text="@{viewModel.commo.memberNo}"
+                android:layout_marginEnd="4dp"
+                android:text="@{viewModel.commo.comPostTime}"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView34"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/ccComName"
-                android:layout_width="42dp"
-                android:layout_height="39dp"
+                android:layout_width="320dp"
+                android:layout_height="102dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="155dp"
-                android:text="@{viewModel.commo.manageId}"
-                android:textColor="#0000FF"
-                android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="4dp"
+                android:text="@{viewModel.commo.comPostContent}"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ccCom"
+                app:layout_constraintTop_toBottomOf="@+id/ccCom"
+                app:layout_constraintVertical_bias="0.176" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="35dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="104dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="18dp"
-                android:text="test1"
-                app:layout_constraintEnd_toStartOf="@+id/ccComName"
+                android:layout_width="43dp"
+                android:textColor="@color/black"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:text="@{viewModel.commo.memberNo}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ccCom" />
+                app:layout_constraintTop_toBottomOf="@+id/textView34" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

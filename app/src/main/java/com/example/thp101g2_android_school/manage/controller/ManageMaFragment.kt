@@ -18,6 +18,7 @@ import com.example.thp101g2_android_school.databinding.FragmentManageClassBindin
 import com.example.thp101g2_android_school.databinding.FragmentManageMaBinding
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.ManageAccountBean
+import com.example.thp101g2_android_school.manage.model.ManagePerBean
 import com.example.thp101g2_android_school.manage.model.Mas
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMasViewModel
@@ -26,7 +27,7 @@ class ManageMaFragment : Fragment() {
     private lateinit var binding: FragmentManageMaBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ManageMaAdapter
-    private var maList: List<ManageAccountBean> = emptyList()
+    private var maList: List<ManagePerBean> = emptyList()
 
 
     private lateinit var viewModel: ManageMasViewModel
@@ -67,26 +68,26 @@ class ManageMaFragment : Fragment() {
             }
 
         }
-        val searchView = binding.searchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                searchMa(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                searchMa(newText)
-                return true
-            }
-        })
-    }
-
-    private fun searchMa(query: String) {
-        // 根據搜尋條件 query 更新 classList
-        val filteredMa = maList.filter { ma ->
-            (ma.manageId?.toString() == query)
-        }
-        adapter.updateMas(filteredMa)
+//        val searchView = binding.searchView
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//                searchMa(query)
+//                return true
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                searchMa(newText)
+//                return true
+//            }
+//        })
+//    }
+//
+//    private fun searchMa(query: String) {
+//        // 根據搜尋條件 query 更新 classList
+//        val filteredMa = maList.filter { ma ->
+//            (ma.manageId?.toString() == query)
+//        }
+//        adapter.updateMas(filteredMa)
     }
 
 

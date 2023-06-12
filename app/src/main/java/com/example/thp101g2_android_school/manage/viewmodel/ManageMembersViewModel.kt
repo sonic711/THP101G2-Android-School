@@ -42,16 +42,10 @@ class ManageMembersViewModel : ViewModel() {
 
 
     private fun loadMembers() {
-        val url1 = "http://10.0.2.2:8080/THP101G2-WebServer-School/teaapply/another"
-
-
-        val type1 = object : TypeToken<List<SelectMemberBean>>() {}.type
-
-
-        val list1 = requestTask<List<SelectMemberBean>>(url1, respBodyType = type1)
-
-
-        memberList.addAll(list1 ?: emptyList())
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/teaapply/another"
+        val type = object : TypeToken<List<SelectMemberBean>>() {}.type
+        val list = requestTask<List<SelectMemberBean>>(url, respBodyType = type)
+        memberList.addAll(list ?: emptyList())
         this.memberList = memberList
         memberso.value = memberList
 

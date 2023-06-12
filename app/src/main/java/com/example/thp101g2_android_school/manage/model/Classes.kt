@@ -22,9 +22,21 @@ class Members(var imageId: Int,
               var state: Boolean):  Serializable
 //會員
 
-class Firms(var firmID :Int,
-            var Firmname: String,
-            var Firmphone: String):  Serializable
+//data class Firms(
+////            var firmID :Int,
+////            var Firmname: String,
+////            var Firmphone: String,
+//            var shopProductId: String? = null,
+//            var shopProductName: String? = null,
+//            var shopProductPrice: String? = null,
+//            var shopProductSearch: String? = null,
+//            var shopProductClass: String? = null,
+//            var shopProductStatus: String? = null,
+//            var shopName: String? = null,
+//            var firmNo: String? = null,
+//            var firmStatus: Boolean
+//            ):  Serializable
+
 //廠商
 
 class Mas(var manageID :String):  Serializable

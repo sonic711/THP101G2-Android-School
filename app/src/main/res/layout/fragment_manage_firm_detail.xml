@@ -11,22 +11,158 @@
             type="com.example.thp101g2_android_school.manage.viewmodel.ManageFirmViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="16dp">
 
-<!--        <ImageView-->
-<!--            android:id="@+id/ivFriend"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:src="@drawable/ivy"-->
-<!--            app:imageResource="@{viewModel.classo.imageId}" />-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/cvPhone"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="32dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:layout_marginEnd="363dp"-->
+        <!--            app:imageResource="@{viewModel.memberuse.manageComReportId}"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <TextView
+            android:id="@+id/MemberID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="48dp"
+            android:text="商品號"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/CourseId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="48dp"
+            android:text="@{viewModel.firmo.shopProductId}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/MemberID"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            tools:text="Ivy" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="28dp"
+            android:text="商品名"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MemberID" />
+
+        <TextView
+            android:id="@+id/Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:text="@{viewModel.firmo.shopProductPrice}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/className"
+            app:layout_constraintTop_toBottomOf="@+id/className"
+            tools:text="0912345678" />
+
+        <TextView
+            android:id="@+id/className"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="28dp"
+            android:text="@{viewModel.firmo.shopProductName}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/CourseId"
+            app:layout_constraintTop_toBottomOf="@+id/CourseId"
+            tools:text="0912345678" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:text="商品資訊"
+            android:textColor="@color/black"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btfirmGo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background"
+            android:text="商家"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btmemberBlockCheck" />
+
+        <Spinner
+            android:id="@+id/MemberSpinner"
+            android:layout_width="100dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/shopClass"
+            app:layout_constraintStart_toStartOf="@+id/shopClass"
+            app:layout_constraintTop_toBottomOf="@+id/shopClass" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="28dp"
+            android:text="商品價格"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="28dp"
+            android:text="商品狀態"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <Button
+            android:id="@+id/btmemberBlockCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/button_background"
+            android:text="送出"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shopClass" />
+
         <ImageView
-            android:id="@+id/Back"
+            android:id="@+id/BackShop"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
@@ -36,38 +172,40 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/CourseId"
+            android:id="@+id/shopClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.firmo.firmname}"
-            android:textColor="#0000FF"
-            android:textSize="30sp"
-            tools:text="Ivy" />
-
-        <TextView
-            android:id="@+id/className"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.firmo.firmphone}"
-            android:textSize="24sp"
+            android:layout_marginTop="30dp"
+            android:text="@{viewModel.firmo.shopProductClass}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/Price"
+            app:layout_constraintTop_toBottomOf="@+id/Price"
             tools:text="0912345678" />
 
         <TextView
-            android:id="@+id/TvPhone"
+            android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.firmo.firmID}"
-            android:textSize="24sp"
-            tools:text="0912345678" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="28dp"
+            android:text="標籤"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-    </LinearLayout>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvPhone"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:text="@{viewModel.reporto.}"-->
+        <!--            android:textSize="24sp"-->
+        <!--            tools:text="0912345678" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

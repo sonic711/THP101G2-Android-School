@@ -4,7 +4,7 @@ import java.io.Serializable
 import java.sql.Timestamp
 
 data class ManageComReportBean (
-    var manageComReportId: Int? = null,
+    var manageComReport: Int? = null,
     var manageId: String? = null,
     var comPostId: String? = null,
     var memberNo: String? = null,
@@ -20,7 +20,7 @@ data class ManageComReportBean (
     var comPostTitle :String?  = null,
     var comPostContent :String?  = null,
     var comPostTime: String?  = null,
-    var comPostStates: Boolean? = null,
+    var comPostStatus: Boolean? = null,
     var comPostAccessSetting : Boolean? = null,
 
 ) : Serializable

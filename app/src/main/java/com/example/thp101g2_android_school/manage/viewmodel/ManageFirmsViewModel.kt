@@ -33,7 +33,7 @@ class  ManageFirmsViewModel : ViewModel() {
         } else {
             val searchFirmList = mutableListOf<Firms>()
             firmList.forEach { firm ->
-                if (firm.Firmname.contains(newText, true)) {
+                if (firm.shopProductId.toString() == newText) {
                     searchFirmList.add(firm)
                 }
             }
@@ -41,24 +41,22 @@ class  ManageFirmsViewModel : ViewModel() {
         }
     }
 
-//    private fun loadClasses() {
-
-//        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/course/"
-//        val type = object : TypeToken<List<CourseReportBean>>() {}.type
-//        val list = requestTask<List<CourseReportBean>>(url, respBodyType = type)
-//        for (classes in list!!) {
-//            classList.add(CourseReportBean())
-//        }
-//        this.classList = classList
-//        this.classes.value = this.classList
+    private fun loadFirms() {
+        val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/firmdrop/"
+        val type = object : TypeToken<List<Firms>>() {}.type
+        val list = requestTask<List<Firms>>(url, respBodyType = type)
+        //底下可以改list這排刪掉
+            firmList.addAll(list ?: emptyList())
+        this.firmList = firmList
+        firms.value = firmList
         /** 模擬取得遠端資料 */
-        private fun loadFirms() {
-            val firmList = mutableListOf<Firms>()
-            firmList.add(Firms(R.drawable.mary, "1", "2020202"))
-            firmList.add(Firms(R.drawable.mary, "2", "9993333"))
-            firmList.add(Firms(R.drawable.mary, "3", "13155522"))
-
-            this.firmList = firmList
-            this.firms.value = this.firmList
+//        private fun loadFirms() {
+//            val firmList = mutableListOf<Firms>()
+//            firmList.add(Firms(R.drawable.mary, "1", "2020202"))
+//            firmList.add(Firms(R.drawable.mary, "2", "9993333"))
+//            firmList.add(Firms(R.drawable.mary, "3", "13155522"))
+//
+//            this.firmList = firmList
+//            this.firms.value = this.firmList
         }
     }

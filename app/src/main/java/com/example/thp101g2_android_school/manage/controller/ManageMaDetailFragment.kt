@@ -11,6 +11,7 @@ import com.example.thp101g2_android_school.databinding.FragmentManageMaDetailBin
 
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.ManageAccountBean
+import com.example.thp101g2_android_school.manage.model.ManagePerBean
 import com.example.thp101g2_android_school.manage.model.Mas
 import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
@@ -38,7 +39,7 @@ class ManageMaDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let { bundle ->
             bundle.getSerializable("ma")?.let {
-                binding.viewModel?.mao?.value = it as ManageAccountBean
+                binding.viewModel?.mao?.value = it as ManagePerBean
             }
         }
     }

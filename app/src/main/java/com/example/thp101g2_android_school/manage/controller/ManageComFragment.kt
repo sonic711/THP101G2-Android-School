@@ -13,9 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
+import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentManageComBinding
 import com.example.thp101g2_android_school.manage.model.ManageComReportBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel
+import java.lang.reflect.Member
 
 
 class ManageComFragment : Fragment() {
@@ -41,7 +43,6 @@ class ManageComFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 
         // 隱藏標題列
@@ -83,6 +84,4 @@ class ManageComFragment : Fragment() {
             } //同class有問題
             adapter.updateComments(filteredComm)
         }
-
-
     }

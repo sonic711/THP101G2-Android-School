@@ -53,11 +53,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="548dp"
+        android:layout_marginTop="476dp"
         android:layout_marginEnd="159dp"
         android:text="教師申請"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,15 +101,15 @@
         app:layout_constraintStart_toStartOf="@+id/btManageCom"
         app:layout_constraintTop_toBottomOf="@+id/btManageCom" />
 
-    <Button
-        android:id="@+id/btManageReport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="檢舉管理"
-        app:layout_constraintEnd_toEndOf="@+id/btManageMa"
-        app:layout_constraintStart_toStartOf="@+id/btManageMa"
-        app:layout_constraintTop_toBottomOf="@+id/btManageMa" />
+<!--    <Button-->
+<!--        android:id="@+id/btManageReport"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:text="檢舉管理"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/btManageMa"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/btManageMa"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btManageMa" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

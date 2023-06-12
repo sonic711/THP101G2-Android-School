@@ -27,9 +27,22 @@ class ManageMainActivity : AppCompatActivity() {
             binding.bottomNavigationView,
             navHostFragment.navController
         )
-        // 課程當登入後的首頁
-        binding.bottomNavigationView.selectedItemId = R.id.manageHomeFragment
 
+        binding.bottomNavigationView.selectedItemId = R.id.manageHomeFragment
+        val navController = navHostFragment.navController
+
+        // 課程當登入後的首頁
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+                  when (item.itemId) {
+                 R.id.manageHomeFragment -> navController.navigate(R.id.manageHomeFragment)
+                 R.id.manageClassesFragment -> navController.navigate(R.id.manageClassesFragment)
+                 R.id.manageComFragment -> navController.navigate(R.id.manageComFragment)
+                 R.id.manageFirmFragment -> navController.navigate(R.id.manageFirmFragment)
+                 R.id.manageMaFragment -> navController.navigate(R.id.manageMaFragment)
+                 R.id.manageMemberFragment -> navController.navigate(R.id.manageMemberFragment)
+                 R.id.manageReportFragment -> navController.navigate(R.id.manageReportFragment)
+             }
+     true
         }
     }
-
+}

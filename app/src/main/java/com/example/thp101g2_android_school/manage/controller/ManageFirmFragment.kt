@@ -1,6 +1,5 @@
 package com.example.thp101g2_android_school.manage.controller
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,17 +8,11 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.ManageMainActivity
-
-
 import com.example.thp101g2_android_school.databinding.FragmentManageFirmBinding
-
 import com.example.thp101g2_android_school.manage.model.Firms
-
-import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageFirmsViewModel
 
 class ManageFirmFragment : Fragment() {
@@ -81,7 +74,7 @@ class ManageFirmFragment : Fragment() {
     private fun searchFirms(query: String) {
         // 根據搜尋條件 query 更新 firmList
         val filteredFirm = firmList.filter { firms ->
-            firms.Firmname.contains(query, ignoreCase = true)
+            firms.shopProductName.toString() == query
         }
         adapter.updateFirms(filteredFirm)
     }

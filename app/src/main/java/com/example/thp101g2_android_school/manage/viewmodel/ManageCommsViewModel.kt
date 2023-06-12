@@ -47,11 +47,9 @@ class ManageCommsViewModel : ViewModel() {
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/managecomreport/"
         val type = object : TypeToken<List<ManageComReportBean>>() {}.type
         val list = requestTask<List<ManageComReportBean>>(url, respBodyType = type)
-        for (classes in list!!) {
-            commList.add(classes)
-        }
+            commList.addAll(list ?: emptyList())
         this.commList = commList
-        this.comm.value = this.commList
+        comm.value = commList
     }
 }
 

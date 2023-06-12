@@ -12,16 +12,17 @@ import com.example.thp101g2_android_school.databinding.ClassItemViewBinding
 import com.example.thp101g2_android_school.databinding.ManageMaItemViewBinding
 import com.example.thp101g2_android_school.manage.model.Classes
 import com.example.thp101g2_android_school.manage.model.ManageAccountBean
+import com.example.thp101g2_android_school.manage.model.ManagePerBean
 import com.example.thp101g2_android_school.manage.model.Mas
 import com.example.thp101g2_android_school.manage.viewmodel.ManageClassViewModel
 import com.example.thp101g2_android_school.manage.viewmodel.ManageMaViewModel
 
 
-class ManageMaAdapter(private var mas: List<ManageAccountBean>) :
+class ManageMaAdapter(private var mas: List<ManagePerBean>) :
     RecyclerView.Adapter<ManageMaAdapter.MaViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateMas(mas: List<ManageAccountBean>) {
+    fun updateMas(mas: List<ManagePerBean>) {
         this.mas = mas
         notifyDataSetChanged()
     }
@@ -53,7 +54,7 @@ class ManageMaAdapter(private var mas: List<ManageAccountBean>) :
             bundle.putSerializable("ma", mas)
             itemView.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_manageMaFragment_to_manageMaDetailFragment, bundle)
+                    .navigate(R.id.action_manageMaFragment_to_manageMaSettingFragment, bundle)
             }
         }
     }

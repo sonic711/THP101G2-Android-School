@@ -83,7 +83,7 @@ class ManageMemberFragment : Fragment() {
             }
         })
 
-        // 观察 memberso 数据变化
+        // 观察 memberso 数据变化//就是隨時觀察有沒有搜尋 有舊更新畫面
         viewModel.memberso.observe(viewLifecycleOwner) { members ->
             adapter.updateMembers(members)
         }
