@@ -13,6 +13,4 @@ class LoginViewModel : ViewModel() {
     val manageAc: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val managePass: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
-
-
 }

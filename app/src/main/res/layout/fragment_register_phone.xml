@@ -55,12 +55,47 @@
                 android:textColor="@color/black" />
 
             <LinearLayout
+                android:id="@+id/llSentVerification"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvVerificationDescribe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/txtVerificationDescribe"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvPhoneNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.phoneNumber}"
+                    android:textColor="@color/black"
+                    tools:text="09xxxxxxxx" />
+
+                <TextView
+                    android:id="@+id/tvChangePhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="@color/purple_400"
+                    android:text="換一支手機" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/llPhone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="16dp"
@@ -82,6 +117,30 @@
                         android:text="@={viewModel.member.phoneNumber}" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/llVerification"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvVerification"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tvVerification" />
+
+                    <EditText
+                        android:id="@+id/etVerification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/txtVerification"
+                        android:inputType="none|number"
+                        android:text="@={viewModel.verificationCode}" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <Button
@@ -94,6 +153,58 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:backgroundTint="@null" />
+
+            <Button
+                android:id="@+id/btSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_primary"
+                android:text="@string/btSubmit"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/llValidTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvValidityPeriod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/tvValidityPeriod1" />
+
+                <TextView
+                    android:id="@+id/tvSec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="@={viewModel.countdown}"
+                    tools:text="59" />
+
+                <TextView
+                    android:id="@+id/tvValidityPeriod2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txtValidityPeriod2" />
+
+                <TextView
+                    android:id="@+id/tvResent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="@color/gray_500"
+                    android:text="@string/txtResent"
+                    android:enabled="false" />
+            </LinearLayout>
 
         </LinearLayout>
 

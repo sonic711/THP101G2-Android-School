@@ -1,22 +1,21 @@
 package com.example.thp101g2_android_school.member.controller
 
 import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.thp101g2_android_school.MainActivity
-import com.example.thp101g2_android_school.member.viewModel.MemEditPasswordViewModel
-import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentMemEditPasswordBinding
-import com.example.thp101g2_android_school.databinding.FragmentMemEditProfileBinding
 import com.example.thp101g2_android_school.member.viewModel.MemSettingViewModel
 import com.google.gson.JsonObject
+import org.mindrot.jbcrypt.BCrypt
 
 class MemEditPasswordFragment : Fragment() {
     private lateinit var binding: FragmentMemEditPasswordBinding
@@ -47,9 +46,10 @@ class MemEditPasswordFragment : Fragment() {
                 AlertDialog.Builder(view.context)
                     .setMessage("確定更改?")
                     .setPositiveButton("是") {_,_ ->
-                        viewModel?.member?.value?.password = viewModel?.nPassword?.value.toString()
+                        savePreference()
+                        viewModel?.member?.value?.password = hashPassword(viewModel?.nPassword?.value?.trim()!!)
                         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/members"
-                        val respBody = requestTask<JsonObject>(url, "PUT", viewModel!!.member.value!!)
+                        requestTask<JsonObject>(url, "PUT", viewModel!!.member.value!!)
                         Navigation.findNavController(view).popBackStack()
                     }
                     .setNegativeButton("否", null)
@@ -66,10 +66,12 @@ class MemEditPasswordFragment : Fragment() {
             val nPassword = viewModel?.nPassword?.value?.trim()
             val cPassword = viewModel?.cPassword?.value?.trim()
 
-            if (oPassword != viewModel?.member?.value?.password?.trim()) {
+            // viewModel 中的member是從資料庫抓的，其 password 會是  hashcode
+            if (!BCrypt.checkpw(oPassword, viewModel?.member?.value?.password?.trim())) {
                 etOldPW.error = "密碼不正確"
                 valid = false
             }
+
             if (nPassword?.length !in 6..12) {
                 etNewPW.error = "密碼須為6-12字元"
                 valid = false
@@ -80,6 +82,19 @@ class MemEditPasswordFragment : Fragment() {
             }
         }
         return valid
+    }
+
+    private fun savePreference() {
+        requireActivity().getSharedPreferences("memberAccount", Context.MODE_PRIVATE).edit()
+            .putString("password", binding.viewModel?.nPassword?.value?.trim())
+            .apply()
+        Toast.makeText(requireContext(), "data saved", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun hashPassword(password: String): String {
+        val saltRounds = 12 // 顏值得輪數
+        val salt = BCrypt.gensalt(saltRounds) // 生成鹽值
+        return BCrypt.hashpw(password, salt)
     }
 
 }

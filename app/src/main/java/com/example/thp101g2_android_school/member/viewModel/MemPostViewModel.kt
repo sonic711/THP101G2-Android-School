@@ -8,21 +8,16 @@ import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.community.model.Label
 import com.example.thp101g2_android_school.community.model.Post
 import com.example.thp101g2_android_school.community.model.PostBean
+import com.example.thp101g2_android_school.member.model.Member
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MemPostViewModel: ViewModel() {
-
+class MemPostViewModel(): ViewModel() {
     private var postList = mutableListOf<Post>()
 
     val posts: MutableLiveData<List<Post>> by lazy { MutableLiveData<List<Post>>() }
 
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            loadPosts()
-        }
-    }
     /**
      * 如果搜尋條件為空字串，就顯示原始標籤列表；否則就顯示搜尋後結果
      * @param newText 欲搜尋的條件字串
@@ -40,9 +35,9 @@ class MemPostViewModel: ViewModel() {
             posts.postValue(searchLabelList)
         }
     }
-    private fun loadPosts() {
+    fun loadPosts(memberNo: Int) {
 
-        val url = "$url/community/post"
+        val url = "$url/community/mempost/$memberNo"
         val type = object : TypeToken<List<PostBean>>() {}.type
         val list = requestTask<List<PostBean>>(url, respBodyType = type) ?: return
 
