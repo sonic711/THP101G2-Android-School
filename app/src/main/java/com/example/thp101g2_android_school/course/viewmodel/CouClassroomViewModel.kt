@@ -15,27 +15,25 @@ class CouClassroomViewModel : ViewModel() {
     private var roomcoursesList = mutableListOf<Chapter>()
     val roomcourses: MutableLiveData<List<Chapter>> by lazy { MutableLiveData<List<Chapter>>() }
     val coursesProgress: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean> ()}
-    val id: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
+    val courseId: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
 
 
 
     init {
         val member: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
         member?.memberNo
-        loadData()
-
 
     }
-    private fun loadData() {
-        val url = "$url/chapter/1"
+    fun loadData(id: Int) {
+        val url = "$url/chapter/$id"
         val type = object : TypeToken<List<Chapter>>() {}.type
         val list = requestTask<List<Chapter>>(url, respBodyType = type)
+        println(list)
         for (roomcourses in list!!){
             roomcoursesList.add(roomcourses)
         }
         this.roomcoursesList = roomcoursesList
         this.roomcourses.value = this.roomcoursesList
     }
-
 
 }

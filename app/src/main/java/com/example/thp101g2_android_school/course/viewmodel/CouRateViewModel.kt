@@ -14,10 +14,7 @@ class CouRateViewModel : ViewModel() {
    val rates: MutableLiveData<Comment> by lazy { MutableLiveData<Comment>() }
    val point: MutableLiveData<String> by lazy { MutableLiveData<String>() }
    val comment: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-   init {
-      val member: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
-      member?.memberNo
-   }
+
 
 //   private var rateList = mutableListOf<Comment>()
 //

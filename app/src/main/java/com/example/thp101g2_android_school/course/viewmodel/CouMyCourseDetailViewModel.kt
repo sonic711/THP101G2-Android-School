@@ -14,10 +14,7 @@ class CouMyCourseDetailViewModel : ViewModel() {
         "未完成"
     }
 
-    init {
-        val member: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
-        member?.memberNo
-    }
+
 
 //    if (mycourse.value.coursesProgress == true) {
 //        test.value = "已完成"

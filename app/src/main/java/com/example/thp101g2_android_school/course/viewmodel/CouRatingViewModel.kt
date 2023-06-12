@@ -13,8 +13,7 @@ class CouRatingViewModel : ViewModel() {
     val ratings: MutableLiveData<List<Comment>> by lazy { MutableLiveData<List<Comment>>() }
 
 init {
-    val member: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
-    member?.memberNo
+
     loadData()
 
 }

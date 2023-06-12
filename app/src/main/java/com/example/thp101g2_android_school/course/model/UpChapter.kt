@@ -2,7 +2,7 @@ package com.example.thp101g2_android_school.course.model
 
 import java.io.Serializable
 
-data class Chapter (
+data class UpChapter(
     var chapterId: Int? = null,
     var chapterName: String? = "",
     var courseName: String? = "",
@@ -10,4 +10,4 @@ data class Chapter (
     var video:String? = "",
     var chapterSequence: String? = "",
     var updateTime: String? = null
-    ) : Serializable
+) : Serializable

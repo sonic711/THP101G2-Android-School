@@ -6,9 +6,10 @@ data class MyCourse (
     var courseName: String? = "",
     var userId: String? = "",
     var studentCoursesId : Int? = null,
-    var courseId: Int? = 1,
-    var memberNo: Int? = 1,
+    var courseId: Int? = 3,
+    var memberNo: Int? = null,
     var coursesProgress: Boolean? = null,
     var image: ByteArray? = null,
     var updateTime: String? = null
     ) : Serializable
+//COURSEID抓不到需要修正

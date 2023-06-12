@@ -45,6 +45,7 @@ class CouMainViewModel : ViewModel() {
         for (courses in list!!) {
             courseList.add(courses)
         }
+        this.courseList = courseList
         this.courses.value =  this.courseList
     }
 }
