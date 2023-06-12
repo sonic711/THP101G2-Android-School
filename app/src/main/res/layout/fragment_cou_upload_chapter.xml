@@ -18,37 +18,53 @@
 
 
         <EditText
-            android:id="@+id/etName"
+            android:id="@+id/etSequence"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:hint="Enter chapter name"
+            android:layout_marginTop="44dp"
+            android:hint="章節順序"
+            android:text="@={viewModel.no}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/etNo" />
 
         <Button
             android:id="@+id/btUpV"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:text="Upload Video"
+            android:layout_marginTop="36dp"
+            android:text="上傳"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etName" />
+            app:layout_constraintTop_toBottomOf="@+id/etSequence" />
 
         <EditText
-            android:id="@+id/etNumber"
+            android:id="@+id/etNo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
+            android:hint="章節名稱"
+            android:text="@={viewModel.name}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btchoose" />
+
+        <VideoView
+            android:id="@+id/videoView2"
+            android:layout_width="411dp"
+            android:layout_height="187dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btchoose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="選擇影片"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/videoView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

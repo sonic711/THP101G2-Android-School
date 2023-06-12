@@ -1,6 +1,7 @@
 package com.example.thp101g2_android_school.course.controller
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -23,7 +24,9 @@ import com.example.thp101g2_android_school.course.model.Courses
 import com.example.thp101g2_android_school.course.viewmodel.CouRateViewModel
 import com.example.thp101g2_android_school.databinding.FragmentCouRateBinding
 import com.example.thp101g2_android_school.member.model.Member
+import com.example.thp101g2_android_school.point.others.SetAlertDialog
 import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
 import java.io.ByteArrayOutputStream
 
 //之後需要寫把資料傳送到後端
@@ -32,6 +35,7 @@ class CouRateFragment : Fragment() {
     private lateinit var binding: FragmentCouRateBinding
     private val viewModel: CouRateViewModel by viewModels()
     private lateinit var byteArray: ByteArray
+    private lateinit var contextCMT: Context
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +44,7 @@ class CouRateFragment : Fragment() {
         binding = FragmentCouRateBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-
+        contextCMT = requireContext()
         return binding.root
     }
 
@@ -51,15 +55,6 @@ class CouRateFragment : Fragment() {
             }
         }
         with(binding) {
-
-//                btChoose.setOnClickListener {
-//                    val intent = Intent(
-//                        Intent.ACTION_PICK,
-//                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-//                    )
-//                    PictureLauncher.launch(intent)
-//                }
-
             binding.btnSubmit.setOnClickListener {
                 val member: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
                 var memberNo = member?.memberNo
@@ -81,6 +76,18 @@ class CouRateFragment : Fragment() {
                             method = "POST",
                             reqBody = test
                         )
+                        val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
+                        val requestBody = mapOf(
+                            "type" to "insertForCMT",
+                        )
+                        val responseType = object : TypeToken<SetAlertDialog.ApiResponse>() {}.type
+                        val response = requestTask<SetAlertDialog.ApiResponse>(postUrl, "POST",
+                            requestBody, responseType)
+                        if (response != null) {
+                            val daiBiao = SetAlertDialog(contextCMT)
+                            daiBiao.showAlertDialogForCMT(contextCMT)
+                        } else {
+                        }
 
                         Navigation.findNavController(it)
                             .navigate(R.id.action_couRateFragment_to_couRatingFragment)

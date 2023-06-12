@@ -36,12 +36,18 @@ class CouMyCourseSelectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let {bundle ->
             bundle.getSerializable("mycourse")?.let {
+
                 binding.viewModel?.mycourse?.value = it as MyCourse
                 if (it.image != null) {
                     val img = byteArrayToBitmap(it.image!!)
                     binding.ivCourse.setImageBitmap(img)
                 } else {
                     binding.ivCourse.setBackgroundResource(R.drawable.com_user)
+                }
+                binding.viewModel?.mycourse?.value?.courseId?.let { it1 ->
+                    bundle.putInt("id",
+                        it1
+                    )
                 }
             }
                 with(binding){
