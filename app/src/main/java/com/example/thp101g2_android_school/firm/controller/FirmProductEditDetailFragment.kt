@@ -33,6 +33,7 @@ class FirmProductEditDetailFragment : Fragment() {
     private val FirmProductManagerViewModel: FirmProductManagerViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
     var shopProductId = ""
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

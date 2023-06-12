@@ -89,11 +89,7 @@ class ShopBuyFragment : Fragment() {
             val firmno = cartproduct.firmNo
             val productimg = cartproduct.shopProductImage
             var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
-            val name = binding.etPersonName.text.toString()
-            val email = binding.etEmail.text.toString()
-            val address = binding.etAddress.text.toString()
-            val phone = binding.etPhone.text.toString()
-            var hasError = false
+            var hasError: Boolean = false
 
             var Count = cartproduct.shopProductCount - quantity
             println("資料庫要變動的數量 :$Count")
@@ -140,12 +136,6 @@ class ShopBuyFragment : Fragment() {
              */
 
             binding.btGPay.setOnClickListener {
-//                val intent = Intent(requireContext(), GooglePayActivity::class.java)
-//                // 添加要传递的数据到Intent的Extra中
-//                intent.putExtra("cartproduct", cartproduct)
-//                intent.putExtra("quantity", quantity)
-//                // 启动下一个页面
-//                startActivity(intent)
                 val name = binding.etPersonName.text.toString()
                 val email = binding.etEmail.text.toString()
                 val address = binding.etAddress.text.toString()
@@ -204,7 +194,6 @@ class ShopBuyFragment : Fragment() {
                     intent.putExtra("phone",phone)
                     intent.putExtra("productid",productid)
                     intent.putExtra("memberno",memberno)
-                    intent.putExtra("pointquantity",pointquantity)
                     intent.putExtra("productname",productname)
                     intent.putExtra("firmno",firmno)
                     intent.putExtra("productimg",productimg)
@@ -216,29 +205,6 @@ class ShopBuyFragment : Fragment() {
                 }
             }
             binding.btComFirm.setOnClickListener {
-                println(name)
-                println(email)
-                println(address)
-                println(phone)
-                println(productid)
-                println(productname)
-                println(memberno)
-                println(memberpoints)
-                println(productimg)
-                if(cartproduct.firmNo != null && cartproduct.firmNo != 0){
-                    println(firmno)
-                }else{
-                    println("沒有firm")
-                }
-
-                if(productimg.isNotEmpty()){
-                    println("有圖片喔")
-                }else{
-                    println("沒有圖片")
-                }
-                println(pointquantity)
-                println(quantity)
-
                 if (!radioButtonSelected) {
                     radioButtonError = true
                     binding.rbBuyWay.setButtonTintList(ColorStateList.valueOf(Color.RED))
@@ -248,34 +214,36 @@ class ShopBuyFragment : Fragment() {
                 } else {
                     binding.rbBuyWay.setButtonTintList(null)
                     binding.rbBuyWay2.setButtonTintList(null)
+                    hasError = false
                 }
-                if(pointquantity == null){
+                var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
+                hasError = false
+                if (pointquantity == null) {
                     binding.editTextNumber.setError("不可為空")
                     setErrorState(binding.editTextNumber)
                     hasError = true
+                } else if (pointquantity!! > memberpoints!!) {
+                    // 数量超过奖励积分，显示错误信息
+                    binding.editTextNumber.setError("不能超過你擁有的積分")
+                    setErrorState(binding.editTextNumber)
+                    hasError = true
+                } else if (pointquantity!! < price) {
+                    binding.editTextNumber.setError("您的積分不夠支付")
+                    setErrorState(binding.editTextNumber)
+                    hasError = true
+                } else if (pointquantity!! > price) {
+                    Toast.makeText(context, "積分使用過多", Toast.LENGTH_SHORT).show()
+                    pointquantity = price
+                    hasError = true
+                } else {
+                    pointans = memberpoints - pointquantity!!
+                    clearErrorState(binding.editTextNumber)
+                    println(pointans)
                 }
-                if (pointquantity != null && memberpoints != null) {
-                    if (pointquantity!! > memberpoints) {
-                        // 数量超过奖励积分，显示错误信息
-                        binding.editTextNumber.setError("不能超過你擁有的積分")
-                        setErrorState(binding.editTextNumber)
-                        hasError = true
-                    } else if(pointquantity!! < price){
-                        binding.editTextNumber.setError("您的積分不夠支付")
-                        setErrorState(binding.editTextNumber)
-                        hasError = true
-
-                    } else if(pointquantity!! > price){
-                        Toast.makeText(context, "積分使用過多", Toast.LENGTH_SHORT).show()
-                        pointquantity = price
-                        hasError = true
-                    }else
-                    {
-                        pointans = memberpoints - pointquantity!!
-                        clearErrorState(binding.editTextNumber)
-                        println(pointans)
-                    }
-                }
+                val name = binding.etPersonName.text.toString()
+                val email = binding.etEmail.text.toString()
+                val address = binding.etAddress.text.toString()
+                val phone = binding.etPhone.text.toString()
 
                 if (name.isEmpty() || name.length < 2) {
                     // 姓名验证失败，显示错误信息
@@ -339,11 +307,6 @@ class ShopBuyFragment : Fragment() {
                         "POST", reqBody = shopBuy
                     )
                     val jsonObj2 = JsonObject()
-//                    jsonObj2.addProperty("id", productid)
-//                    val respbody2 = requestTask<JsonObject>(
-//                        "$url/shop/buy/",
-//                        "DELETE", jsonObj2
-//                    )
                     val urldelete = "$url/shop/buy/$productid"
                     val respbody2 = requestTask<JsonObject>(urldelete, "DELETE")
 
