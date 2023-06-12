@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentPointBinding
@@ -46,6 +48,14 @@ class PointFragment : Fragment() {
             val pointViewModel: PointViewModel by viewModels()
             pointViewModel.reasons.observe(viewLifecycleOwner) { reasons ->
                 pointAdapter.updateReasons(reasons)
+
+                btBack.setOnClickListener{
+                    findNavController().popBackStack()
+                    Navigation.findNavController(it).navigate(R.id.memMainFragment)
+
+//                    val navController = Navigation.findNavController(requireView())
+//                    navController.popBackStack(R.id.memMainFragment, false)
+                }
             }
 
 
