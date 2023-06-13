@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.databinding.FragmentMemOthersFansBinding
 import com.example.thp101g2_android_school.member.controller.OthersFanAdapter
 import com.example.thp101g2_android_school.member.viewModel.MemOthersHomeViewModel
@@ -30,6 +31,8 @@ class MemOthersFansFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (requireActivity() as MainActivity).supportActionBar?.show()
+        activity?.setTitle("粉絲")
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             Log.d(my_tag, "FansSize: ${viewModel?.fans?.value?.size}")

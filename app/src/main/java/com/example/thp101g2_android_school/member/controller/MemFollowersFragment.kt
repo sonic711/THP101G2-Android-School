@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.databinding.FragmentMemFollowersBinding
 import com.example.thp101g2_android_school.member.viewModel.MemberViewModel
 
@@ -26,6 +27,8 @@ class MemFollowersFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (requireActivity() as MainActivity).supportActionBar?.show()
+        activity?.setTitle("追蹤中")
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.followers?.observe(viewLifecycleOwner) { followers ->

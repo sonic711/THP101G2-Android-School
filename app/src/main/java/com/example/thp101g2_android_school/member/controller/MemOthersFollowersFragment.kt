@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.databinding.FragmentMemOthersFollowersBinding
 import com.example.thp101g2_android_school.member.controller.OthersFollowerAdapter
 import com.example.thp101g2_android_school.member.viewModel.MemOthersHomeViewModel
@@ -30,6 +31,8 @@ class MemOthersFollowersFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (requireActivity() as MainActivity).supportActionBar?.show()
+        activity?.setTitle("追蹤中")
         with(binding) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             Log.d(my_tag, "FollowersSize: ${viewModel?.fans?.value?.size}")
