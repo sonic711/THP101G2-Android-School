@@ -36,7 +36,7 @@ class LoginMainFragment : Fragment() {
                 Navigation.findNavController(it).navigate(R.id.loginFirmFragment)
             }
             btStudent.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.loginFragment)
+                Navigation.findNavController(it).navigate(R.id.registerFragment)
             }
             btManager.setOnClickListener {
                 Navigation.findNavController(it).navigate(R.id.loginManagerFragment)
