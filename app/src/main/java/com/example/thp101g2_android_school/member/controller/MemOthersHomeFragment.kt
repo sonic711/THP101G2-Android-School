@@ -14,6 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.member.viewModel.MemOthersHomeViewModel
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
@@ -42,6 +43,8 @@ class MemOthersHomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (requireActivity() as MainActivity).supportActionBar?.show()
+        activity?.setTitle("個人主頁")
         setupMenu()
         with(binding) {
             arguments?.let {
