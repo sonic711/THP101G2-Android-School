@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,7 @@ import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentManageComBinding
 import com.example.thp101g2_android_school.manage.model.ManageComReportBean
 import com.example.thp101g2_android_school.manage.viewmodel.ManageCommsViewModel
+import com.example.thp101g2_android_school.manage.viewmodel.ManageMembersViewModel
 import java.lang.reflect.Member
 
 
@@ -24,20 +26,23 @@ class ManageComFragment : Fragment() {
     private lateinit var binding: FragmentManageComBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ManageComAdapter
-    private var comList: List<ManageComReportBean> = emptyList()
+    private val viewModel: ManageCommsViewModel by viewModels()
 
-    companion object {
-        fun newInstance() = ManageComFragment()
-    }
+
+//    companion object {
+//        fun newInstance() = ManageComFragment()
+//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         binding = FragmentManageComBinding.inflate(inflater, container, false)
-        val viewModel: ManageCommsViewModel by viewModels()
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        binding.Back.setOnClickListener {
+            Navigation.findNavController(requireView()).navigateUp()
+        }
         return binding.root
     }
 
@@ -45,43 +50,37 @@ class ManageComFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        // 隱藏標題列
-        (requireActivity() as ManageMainActivity).supportActionBar?.hide()
+        recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = ManageComAdapter(emptyList())
+        recyclerView.adapter = adapter
 
-        with(binding) {
-            binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            adapter = ManageComAdapter(comList)
-            binding.viewModel?.comm?.observe(viewLifecycleOwner) {comms ->
-                if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ManageComAdapter(comms)
-                } else {
-                    this@ManageComFragment.adapter.updateComments(comms)
-                }
-            }
-            binding.Back.setOnClickListener {
-                Navigation.findNavController(requireView()).navigateUp()
-            }
+
+        binding.Unprocessed.setOnClickListener {
+            viewModel.filterComByCondition(true)
+            Toast.makeText(view.context,"已下架貼文", Toast.LENGTH_SHORT).show()
         }
 
-        val searchView = binding.searchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.Processed.setOnClickListener {
+            viewModel.filterComByCondition(false)
+        }
+        // 设置搜索功能
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                searchComments(query)
+                viewModel.search(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                searchComments(newText)
+                viewModel.search(newText)
                 return true
             }
         })
-    }
 
-        private fun searchComments(query: String) {
-            // 根據搜尋條件 query 更新 classList
-            val filteredComm = comList.filter { comms ->
-                (comms.comPostId.toString() == query)
-            } //同class有問題
-            adapter.updateComments(filteredComm)
+
+        viewModel.comm.observe(viewLifecycleOwner) { members ->
+        adapter.updateComments(members)
+             }
         }
     }

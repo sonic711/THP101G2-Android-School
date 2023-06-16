@@ -16,12 +16,21 @@ class ManageCommsViewModel : ViewModel() {
     // 原始課程列表
     private var commList = mutableListOf<ManageComReportBean>()
 
+
     // 受監控的LiveData，一旦指派新值就會更新課程列表畫面
     val comm: MutableLiveData<List<ManageComReportBean>> by lazy { MutableLiveData<List<ManageComReportBean>>() }
 
     init {
         loadComments()
     }
+
+    fun filterComByCondition(condition: Boolean) {
+        val filteredMembers = commList.filter { member ->
+            member.comPostStatus == condition
+        }
+        comm.value = filteredMembers
+    }
+
 
     /**
      * 如果搜尋條件為空字串，就顯示原始課程列表；否則就顯示搜尋後結果
@@ -37,7 +46,6 @@ class ManageCommsViewModel : ViewModel() {
                     searchCommList.add(comms)
                 }
             }
-
             comm.value = searchCommList
         }
     }
@@ -47,10 +55,14 @@ class ManageCommsViewModel : ViewModel() {
         val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/managecomreport/"
         val type = object : TypeToken<List<ManageComReportBean>>() {}.type
         val list = requestTask<List<ManageComReportBean>>(url, respBodyType = type)
-            commList.addAll(list ?: emptyList())
+        for (comms in list!!) {
+            commList.add(comms)
+        }
         this.commList = commList
-        comm.value = commList
+        this.comm.value = this.commList
+        println(commList)
     }
+
 }
 
         /** 模擬取得遠端資料 */

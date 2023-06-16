@@ -83,15 +83,15 @@ class ManageHomeFragment : Fragment() {
 //                        .build()
 //                )
 //            }
-            btManageTeaApply.setOnClickListener {
-                findNavController().navigate(
-                    R.id.action_manageHomeFragment_to_manageTeaApplyFragment,
-                    null,
-                    NavOptions.Builder()
-                        .setPopUpTo(R.id.manageHomeFragment, true)
-                        .build()
-                )
-            }
+//            btManageTeaApply.setOnClickListener {
+//                findNavController().navigate(
+//                    R.id.action_manageHomeFragment_to_manageTeaApplyFragment,
+//                    null,
+//                    NavOptions.Builder()
+//                        .setPopUpTo(R.id.manageHomeFragment, true)
+//                        .build()
+//                )
+//            }
 
             return binding.root
         }

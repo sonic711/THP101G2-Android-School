@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,12 +20,9 @@ class ManageFirmFragment : Fragment() {
     private lateinit var binding: FragmentManageFirmBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ManageFirmAdapter
-    private var firmList: List<Firms> = emptyList()
-
-
-    companion object {
-        fun newInstance() = ManageFirmFragment()
-    }
+    private val viewModel: ManageFirmsViewModel by viewModels()
+//    companion object {
+//        fun newInstance() = ManageFirmFragment()}
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +31,6 @@ class ManageFirmFragment : Fragment() {
         binding = FragmentManageFirmBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
         binding.Back.setOnClickListener {
             Navigation.findNavController(requireView()).navigateUp()
         }
@@ -42,40 +39,40 @@ class ManageFirmFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 隱藏標題列
-        (requireActivity() as ManageMainActivity).supportActionBar?.hide()
 
-        with(binding) {
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            adapter = ManageFirmAdapter(firmList)
-            viewModel?.firms?.observe(viewLifecycleOwner) { firms ->
-                if (recyclerView.adapter == null) {
-                    recyclerView.adapter = ManageFirmAdapter(firms)
-                } else {
-                    adapter.updateFirms(firms)
-                }
-            }
+//        (requireActivity() as ManageMainActivity).supportActionBar?.hide()
+
+        // 初始化 RecyclerView 和适配器
+        recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapter = ManageFirmAdapter(emptyList())
+        recyclerView.adapter = adapter
+
+        // 设置按钮点击事件监听
+        //with(binding){}
+        binding.Processed.setOnClickListener {
+            viewModel.filterFirmsByCondition("0")
         }
 
-        val searchView = binding.searchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.Unprocessed.setOnClickListener {
+            viewModel.filterFirmsByCondition("1")
+            Toast.makeText(view.context,"已下架課程", Toast.LENGTH_SHORT).show()
+        }
+        // 设置搜索功能
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-              searchFirms(query)
+                viewModel.search(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-               searchFirms(newText)
+                viewModel.search(newText)
                 return true
             }
         })
-    }
-
-    private fun searchFirms(query: String) {
-        // 根據搜尋條件 query 更新 firmList
-        val filteredFirm = firmList.filter { firms ->
-            firms.shopProductName.toString() == query
+        // 观察 memberso 数据变化//就是隨時觀察有沒有搜尋 有舊更新畫面
+        viewModel.firms.observe(viewLifecycleOwner) { members ->
+            adapter.updateFirms(members)
         }
-        adapter.updateFirms(filteredFirm)
     }
 }

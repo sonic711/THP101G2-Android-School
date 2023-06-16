@@ -47,7 +47,7 @@ class ManageMasViewModel : ViewModel() {
         val list = requestTask<List<ManagePerBean>>(url, respBodyType = type)
         maList.addAll(list ?: emptyList())
         this.maList = maList
-        this.mas.value = this.maList
+        mas.value = maList
     /** 模擬取得遠端資料 */
 //    private fun loadMas() {
 //        val maList = mutableListOf<ManagePerBean>()

@@ -12,8 +12,6 @@ import com.google.gson.reflect.TypeToken
 
 class ManageMembersViewModel : ViewModel() {
     private var memberList = mutableListOf<SelectMemberBean>()
-
-
     val memberso: MutableLiveData<List<SelectMemberBean>> by lazy { MutableLiveData<List<SelectMemberBean>>() }
 
     init {

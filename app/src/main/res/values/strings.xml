@@ -226,4 +226,9 @@
     <string name="TapPay_MerchantName">TW_TAISHIN</string>
     <!-- 商家管理 / 商家設置 / Merchant ID -->
     <string name="TapPay_MerchantID">softfat_TAISHIN</string>
+    <string name="prefix">0</string>
+    <string name="etName">請輸入姓名</string>
+    <string name="etAccount">請輸入帳號</string>
+    <string name="etPassword">請輸入密碼</string>
+    <string name="etManagerName">管理者姓名</string>
 </resources>

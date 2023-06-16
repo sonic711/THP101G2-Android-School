@@ -15,29 +15,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="344dp"
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:iconifiedByDefault="false"
-            android:queryHint="@string/textClassName"
+            android:queryHint="請輸入要找的課程ID"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/Unprocessed"
+            android:layout_width="186dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="下架"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        <Button
+            android:id="@+id/Processed"
+            android:layout_width="186dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="課程"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="403dp"
-            android:layout_height="533dp"
-            android:layout_margin="6dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="611dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18"
-            app:layout_constraintVertical_bias="0.719" />
+            app:layout_constraintTop_toBottomOf="@+id/Unprocessed" />
 
         <ImageView
             android:id="@+id/Back"
@@ -49,45 +68,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/Unprocessed"
-            android:layout_width="126dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/txtUnprocessed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-        <Button
-            android:id="@+id/Processed"
-            android:layout_width="126dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/memberProcessed"
-            app:layout_constraintStart_toEndOf="@+id/Unprocessed"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-        <Button
-            android:id="@+id/down"
-            android:layout_width="126dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:text="封鎖"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Processed"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="392dp"
-            android:layout_height="10dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Unprocessed" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

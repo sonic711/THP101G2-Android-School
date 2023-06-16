@@ -7,24 +7,27 @@ import com.example.thp101g2_android_school.app.url
 import com.example.thp101g2_android_school.manage.model.CourseReportBean
 import com.google.gson.reflect.TypeToken
 
-//import com.example.thp101g2_android_school.manage.model.Classes
 
 /**
  * 好友列表資料處理
  */
 class ManageClassesViewModel : ViewModel() {
-
-//    fun updateCourseReport(courseReportBean: CourseReportBean) {
-//        val i = 5
-//    }
     // 原始課程列表
     private var classList = mutableListOf<CourseReportBean>()
 
     // 受監控的LiveData，一旦指派新值就會更新課程列表畫面
     val classes: MutableLiveData<List<CourseReportBean>> by lazy { MutableLiveData<List<CourseReportBean>>() }
 
+    init {
+        loadClasses()
+    }
 
-
+    fun filterClassesByCondition(condition: Boolean) {
+        val filteredClasses = classList.filter { classes ->
+            classes.manageResult == condition
+        }
+        classes.value = filteredClasses
+    }
 
 
     /**
@@ -44,9 +47,7 @@ class ManageClassesViewModel : ViewModel() {
             classes.value = searchClassList
         }
     }
-    init {
-        loadClasses()
-    }
+
 
     private fun loadClasses() {
 

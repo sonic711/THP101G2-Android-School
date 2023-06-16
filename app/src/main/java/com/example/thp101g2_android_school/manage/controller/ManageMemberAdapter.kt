@@ -48,6 +48,5 @@ class ManageMemberAdapter(private var members:List<SelectMemberBean>):
             }
         }
     }
-
-    }
+}
 

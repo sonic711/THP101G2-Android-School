@@ -11,15 +11,17 @@ import com.example.thp101g2_android_school.databinding.ActivityManageMainBinding
 import com.example.thp101g2_android_school.databinding.FragmentManageHomeBinding
 import com.example.thp101g2_android_school.databinding.FragmentManageMainBinding
 import com.example.thp101g2_android_school.manage.controller.*
+import com.example.thp101g2_android_school.manage.model.Manager
 
 
 class ManageMainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityManageMainBinding
-
+    lateinit var manager: Manager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityManageMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+        manager = intent.getSerializableExtra("type") as Manager
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_manage_fragment) as NavHostFragment
         // 頁面切換可以整合BottomNavigationView功能
@@ -45,4 +47,5 @@ class ManageMainActivity : AppCompatActivity() {
      true
         }
     }
+
 }

@@ -7,5 +7,5 @@ import com.example.thp101g2_android_school.manage.model.ManagePerBean
 import com.example.thp101g2_android_school.manage.model.Mas
 
 class ManageMaViewModel : ViewModel() {
-    val mao: MutableLiveData<ManagePerBean> by lazy { MutableLiveData<ManagePerBean>()  }
+    val mao: MutableLiveData<ManagePerBean> by lazy { MutableLiveData<ManagePerBean>(ManagePerBean())}
 }

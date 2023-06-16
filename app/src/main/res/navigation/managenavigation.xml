@@ -89,6 +89,9 @@
         <action
             android:id="@+id/action_manageComDetailFragment_to_manageHomeFragment"
             app:destination="@id/manageHomeFragment" />
+        <action
+            android:id="@+id/action_manageComDetailFragment_to_manageHomeFragment2"
+            app:destination="@id/manageHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/manageClassDetailFragment"
@@ -156,6 +159,9 @@
         <action
             android:id="@+id/action_manageFirmDetailFragment_to_manageShopDetailFragment2"
             app:destination="@id/manageShopDetailFragment2" />
+        <action
+            android:id="@+id/action_manageFirmDetailFragment_to_manageHomeFragment"
+            app:destination="@id/manageHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/manageStoreAgainFragment"
@@ -166,5 +172,9 @@
         android:id="@+id/manageShopDetailFragment2"
         android:name="com.example.thp101g2_android_school.manage.controller.ManageShopDetailFragment"
         android:label="fragment_manage_shop_detail"
-        tools:layout="@layout/fragment_manage_shop_detail" />
+        tools:layout="@layout/fragment_manage_shop_detail" >
+        <action
+            android:id="@+id/action_manageShopDetailFragment2_to_manageHomeFragment"
+            app:destination="@id/manageHomeFragment" />
+    </fragment>
 </navigation>

@@ -15,14 +15,18 @@ import com.google.gson.reflect.TypeToken
 class  ManageFirmsViewModel : ViewModel() {
     // 原始課程列表
     private var firmList = mutableListOf<Firms>()
-
     // 受監控的LiveData，一旦指派新值就會更新課程列表畫面
     val firms: MutableLiveData<List<Firms>> by lazy { MutableLiveData<List<Firms>>() }
 
     init {
         loadFirms()
     }
-
+    fun filterFirmsByCondition(condition: String?) {
+        val filteredFirms = firmList.filter { firm ->
+            firm.firmStatus == condition
+        }
+        firms.value = filteredFirms
+    }
     /**
      * 如果搜尋條件為空字串，就顯示原始課程列表；否則就顯示搜尋後結果
      * @param newText 欲搜尋的條件字串

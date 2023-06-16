@@ -24,9 +24,9 @@ class ManageMemberFragment : Fragment() {
     private lateinit var adapter: ManageMemberAdapter
     private val viewModel: ManageMembersViewModel by viewModels()
 
-    companion object {
-        fun newInstance() = ManageMemberFragment()
-    }
+//    companion object {
+//        fun newInstance() = ManageMemberFragment()
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +44,7 @@ class ManageMemberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as ManageMainActivity).supportActionBar?.hide()
+//        (requireActivity() as ManageMainActivity).supportActionBar?.hide()
 
         // 初始化 RecyclerView 和适配器
         recyclerView = binding.recyclerView
@@ -56,20 +56,12 @@ class ManageMemberFragment : Fragment() {
         //with(binding){}
         binding.Processed.setOnClickListener {
             viewModel.filterMembersByCondition(true)
-            Toast.makeText(view.context,"已處理會員檢舉",Toast.LENGTH_SHORT).show()
         }
 
         binding.Unprocessed.setOnClickListener {
             viewModel.filterMembersByCondition(false)
-            Toast.makeText(view.context,"未處理會員檢舉",Toast.LENGTH_SHORT).show()
+            Toast.makeText(view.context,"已封鎖會員",Toast.LENGTH_SHORT).show()
         }
-//        該做一個下架或封鎖的
-//        binding.Unprocessed.setOnClickListener {
-//            viewModel.filterMembersByCondition(false)
-//            Toast.makeText(view.context,"封鎖會員",Toast.LENGTH_SHORT).show()
-//        }
-
-
         // 设置搜索功能
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -82,7 +74,6 @@ class ManageMemberFragment : Fragment() {
                 return true
             }
         })
-
         // 观察 memberso 数据变化//就是隨時觀察有沒有搜尋 有舊更新畫面
         viewModel.memberso.observe(viewLifecycleOwner) { members ->
             adapter.updateMembers(members)

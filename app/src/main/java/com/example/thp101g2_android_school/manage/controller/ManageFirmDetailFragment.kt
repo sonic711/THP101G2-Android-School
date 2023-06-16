@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.example.thp101g2_android_school.ManageMainActivity
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.databinding.FragmentManageFirmDetailBinding
 import com.example.thp101g2_android_school.manage.model.Firms
@@ -37,6 +38,7 @@ class ManageFirmDetailFragment : Fragment() {
         binding.BackShop.setOnClickListener {
             Navigation.findNavController(requireView()).navigateUp()
         }
+
         return binding.root
     }
 
@@ -86,21 +88,25 @@ class ManageFirmDetailFragment : Fragment() {
                     "下架" -> {
                         shop.shopProductStatus = selectedOption
                         // TODO viewModel.upadte(selectMemberBean.memberStatus)
-                        shopStatus.addProperty("shopProductStatus", 0)
-                        requestTask<JsonObject>(
-                            "http://10.0.2.2:8080/THP101G2-WebServer-School/firmdrop",
-                            method = "PUT",
-                            reqBody = shopStatus
-                        )
-                    }
-                    "解除" -> {
-                        shop.shopProductStatus = selectedOption
                         shopStatus.addProperty("shopProductStatus", 2)
                         requestTask<JsonObject>(
                             "http://10.0.2.2:8080/THP101G2-WebServer-School/firmdrop",
                             method = "PUT",
                             reqBody = shopStatus
                         )
+                        Navigation.findNavController(it)
+                            .navigate(R.id.action_manageFirmDetailFragment_to_manageHomeFragment)
+                    }
+                    "解除" -> {
+                        shop.shopProductStatus = selectedOption
+                        shopStatus.addProperty("shopProductStatus", 0)
+                        requestTask<JsonObject>(
+                            "http://10.0.2.2:8080/THP101G2-WebServer-School/firmdrop",
+                            method = "PUT",
+                            reqBody = shopStatus
+                        )
+                        Navigation.findNavController(it)
+                            .navigate(R.id.action_manageFirmDetailFragment_to_manageHomeFragment)
                     }
                 }
             } else {

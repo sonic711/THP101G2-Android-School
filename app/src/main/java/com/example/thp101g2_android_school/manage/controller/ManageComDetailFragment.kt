@@ -59,7 +59,7 @@ class ManageComDetailFragment : Fragment() {
 
         // Initialize spinner
         spinner = binding.MemberSpinner
-        val options = listOf("封鎖", "解除")
+        val options = listOf("下架", "解除")
         val spinnerAdapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -89,7 +89,7 @@ class ManageComDetailFragment : Fragment() {
                 val comment = JsonObject()
                 comment.addProperty("comPostId", viewModel.commo.value?.comPostId)
                 when (selectedOption) {
-                    "封鎖" -> {
+                    "下架" -> {
                         // TODO: viewModel.upadte(selectMemberBean.memberStatus)
                         comment.addProperty("comPostStatus", true)
                         requestTask<JsonObject>(
@@ -97,6 +97,9 @@ class ManageComDetailFragment : Fragment() {
                             method = "PUT",
                             reqBody = comment
                         )
+                        Toast.makeText(view?.context,"已將貼文下架", Toast.LENGTH_SHORT).show()
+                        Navigation.findNavController(it)
+                            .navigate(R.id.action_manageComDetailFragment_to_manageHomeFragment)
                     }
                     "解除" -> {
                         comment.addProperty("comPostStatus", false)
@@ -105,6 +108,7 @@ class ManageComDetailFragment : Fragment() {
                             method = "PUT",
                             reqBody = comment
                         )
+                        Toast.makeText(view?.context,"已將貼文解除下架", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "704778464797",
+    "project_id": "fir-fadfb",
+    "storage_bucket": "fir-fadfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704778464797:android:359c4277110dee734860f4",
+        "android_client_info": {
+          "package_name": "com.example.thp101g2_android_school"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZgbnqNx3iOgvVfuwC6BSUNiviXNjuVHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

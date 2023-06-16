@@ -39,9 +39,10 @@ class LoginManagerFragment : Fragment() {
                 val url = "http://10.0.2.2:8080/THP101G2-WebServer-School/managers"
                 val respBody =
                     requestTask<Manager>("$url/$ac/$password")
+                println(respBody)
                 if (respBody?.manageId != null) {
                     val intent = Intent(requireContext(), ManageMainActivity::class.java)
-                    intent.putExtra("type", "manager")
+                    intent.putExtra("type", respBody)
                     startActivity(intent)
                 } else {
                     etManageAc.error = "信箱或密碼錯誤"
@@ -68,6 +69,7 @@ class LoginManagerFragment : Fragment() {
         }
         return valid
     }
+
 
 
 }

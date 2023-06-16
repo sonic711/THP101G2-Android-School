@@ -29,10 +29,11 @@
             android:id="@+id/MemberSpinner"
             android:layout_width="120dp"
             android:layout_height="41dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:gravity="start"
-            app:layout_constraintStart_toStartOf="@+id/editBlockReason"
-            app:layout_constraintTop_toBottomOf="@+id/editBlockReason" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
         <ImageView
             android:id="@+id/Back"
@@ -47,7 +48,7 @@
         <TextView
             android:id="@+id/textTitle"
             android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:padding="16dp"
             android:text="@{viewModel.commo.comPostTitle}"
@@ -57,15 +58,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/editBlockReason"
-            android:layout_width="300dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="2dp"
-            android:hint="@{viewModel.commo.manageReason}"
-            android:padding="16dp"
-            app:layout_constraintStart_toStartOf="@+id/textView21"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+<!--        <TextView-->
+<!--            android:id="@+id/editBlockReason"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="58dp"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:hint="@{viewModel.commo.manageReason}"-->
+<!--            android:padding="16dp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/textView21"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView21" />-->
 
         <Button
             android:id="@+id/btnBlock"
@@ -73,10 +74,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="16dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/button_background"
             android:text="確認"
-            app:layout_constraintEnd_toEndOf="@+id/editBlockReason"
-            app:layout_constraintTop_toBottomOf="@+id/editBlockReason" />
+            app:layout_constraintEnd_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
         <TextView
             android:id="@+id/textView21"

@@ -49,10 +49,12 @@ class ManageMaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 隱藏標題列
-        (requireActivity() as ManageMainActivity).supportActionBar?.hide()
+
+
 
         with(binding) {
+
+            tvManagerName.text = (requireActivity() as ManageMainActivity).manager.manageName
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             adapter = ManageMaAdapter(maList)
             viewModel?.mas?.observe(viewLifecycleOwner) { mas ->

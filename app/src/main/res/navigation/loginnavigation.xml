@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/loginnavigation"
-            app:startDestination="@id/loginMainFragment">
+            app:startDestination="@id/loginManagerFragment">
 
     <fragment android:id="@+id/TLoginMainFragment" android:name="com.example.thp101g2_android_school.TLoginMainFragment"
               android:label="fragment_t_login_main" tools:layout="@layout/fragment_t_login_main"/>
