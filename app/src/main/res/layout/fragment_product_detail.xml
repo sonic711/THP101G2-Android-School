@@ -98,7 +98,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.product.shopName}"
+                android:text='@{"廠商名稱 : "+viewModel.product.shopName}'
                 android:textSize="24sp"
                 tools:text="William" />
             <TextView
@@ -108,7 +108,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.product.shopProductPrice}"
+                android:text='@{"定價(TWD) : "+viewModel.product.shopProductPrice}'
                 android:textSize="24sp"
                 tools:text="300.0" />
             <TextView

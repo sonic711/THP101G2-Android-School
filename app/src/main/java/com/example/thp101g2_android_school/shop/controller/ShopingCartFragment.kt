@@ -8,72 +8,66 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thp101g2_android_school.MainActivity
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.databinding.FragmentShopingCartBinding
+import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ProductViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopFavoriteFgViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartFgViewModel
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 
 class ShopingCartFragment : Fragment() {
-
-    private lateinit var binding: FragmentShopingCartBinding
+    private var cartAdapter: ShopingCartAdapter? = null
+    private lateinit var fragmentShopingCartBinding: FragmentShopingCartBinding // 添加该行
     private val viewModel: ShopingCartFgViewModel by viewModels { requireParentFragment().defaultViewModelProviderFactory }
+    private lateinit var cartproducts: List<ShopingCart>
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        (requireActivity() as MainActivity).supportActionBar?.hide()
+//        binding = FragmentShopingCartBinding.inflate(inflater, container, false)
+//        binding.viewModel = viewModel
+//        return binding.root
         (requireActivity() as MainActivity).supportActionBar?.hide()
-        binding = FragmentShopingCartBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
-        return binding.root
+        fragmentShopingCartBinding = FragmentShopingCartBinding.inflate(inflater, container, false)
+        fragmentShopingCartBinding.viewModel = viewModel // 更新为 fragmentShopingCartBinding
+        cartproducts = emptyList() // 或者根据需要初始化为其他值
+        // ...
+        return fragmentShopingCartBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // TODO 這邊使用viewModel: ShopFavoriteFgViewModel 去使用viewmodel內的方法.loadProduct，可以即時更新我的最愛
         viewModel.loadProduct()
+        cartAdapter = ShopingCartAdapter(cartproducts, fragmentShopingCartBinding)
+        fragmentShopingCartBinding.recyclerView.adapter = cartAdapter
         //這裡註解要問老師關於SearchView的顯示跟關閉
         val searchView = requireActivity().findViewById<SearchView>(R.id.shopsearchView)
-        with(binding) {
+        with(fragmentShopingCartBinding) {
             //沒有layoutManager會沒recyclerview畫面
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel?.cartproducts?.observe(viewLifecycleOwner) { products ->
-                // adapter為null要建立新的adapter
-                val adapter = recyclerView.adapter as ShopingCartAdapter?
-                if (adapter == null) {
-                    recyclerView.adapter = ShopingCartAdapter(products)
+                cartproducts = products
+                if (cartAdapter == null) {
+                    cartAdapter = ShopingCartAdapter(products,fragmentShopingCartBinding)
+                    recyclerView.adapter = cartAdapter
                 } else {
-                    adapter.updateProduct(products)
+                    cartAdapter?.updateProduct(products)
                 }
 
                 if (products.isEmpty()) {
-                    tvSearchnull.visibility = View.VISIBLE // 显示 tvSearchnull
+                    tvSearchnull.visibility = View.VISIBLE
                 } else {
-                    tvSearchnull.visibility = View.GONE // 隐藏 tvSearchnull
+                    tvSearchnull.visibility = View.GONE
                 }
             }
-
-
-
-
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-                androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return false
-                }
-
-                // STEP09-2 當輸入內容變化時，呼叫search()
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    viewModel?.search(newText)
-                    return true
-                }
-
-            })
         }
 
     }
