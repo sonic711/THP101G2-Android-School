@@ -14,15 +14,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thp101g2_android_school.R
 import com.example.thp101g2_android_school.app.requestTask
 import com.example.thp101g2_android_school.app.url
+import com.example.thp101g2_android_school.databinding.FragmentShopBuyBinding
+import com.example.thp101g2_android_school.databinding.FragmentShopingCartBinding
 import com.example.thp101g2_android_school.databinding.FragmentShopingCartItemviewBinding
 import com.example.thp101g2_android_school.member.model.Member
 import com.example.thp101g2_android_school.shop.model.ShopingCart
 import com.example.thp101g2_android_school.shop.viewmodel.ShopingCartViewModel
 import com.google.gson.JsonObject
 
-class ShopingCartAdapter(private var cartproducts: List<ShopingCart>) :
+class ShopingCartAdapter(private var cartproducts: List<ShopingCart>,private val binding: FragmentShopingCartBinding) :
     RecyclerView.Adapter<ShopingCartAdapter.ShopingCartViewHolder>() {
 
+    private var totalPriceResult = 0
+    private val quantityMap = mutableMapOf<Int, Int>()
 
     fun updateProduct(products: List<ShopingCart>) {
         this.cartproducts = products
@@ -52,8 +56,7 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart>) :
     }
 
     override fun onBindViewHolder(holder: ShopingCartViewHolder, position: Int) {
-        var currentMember: Member? =
-            requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+        var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
         println(currentMember)
         val memberno = currentMember?.memberNo
         println(memberno)
@@ -63,47 +66,29 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart>) :
                 itemViewBinding.etAddProduct.setText("0")
                 val bundle = Bundle()
                 itemViewBinding.btnShoppingAdd.setOnClickListener {
-                    val etAddProduct: EditText =
-                        itemViewBinding.root.findViewById(R.id.etAddProduct)
+                    val etAddProduct: EditText = itemViewBinding.root.findViewById(R.id.etAddProduct)
                     val currentValue = etAddProduct.text.toString().toIntOrNull() ?: 0
-                    val newValue = if (currentValue < 99) currentValue + 1 else 99
-                    //若要即時更新 EditText 的內容並限制輸入數字的範圍，可以在 EditText 上設置 TextWatcher 監聽器。這樣當使用者輸入數字時，可以即時更新 EditText 的值並進行相關的邏輯處理。.jerry
-                    itemViewBinding.etAddProduct.addTextChangedListener(object : TextWatcher {
-                        override fun beforeTextChanged(
-                            s: CharSequence?,
-                            start: Int,
-                            count: Int,
-                            after: Int
-                        ) {
-                        }
+                    val newValue = when {
+                        currentValue < 99 -> currentValue + 1
+                        else -> 99
+                    }
+                    quantityMap[position] = newValue
 
-                        override fun onTextChanged(
-                            s: CharSequence?,
-                            start: Int,
-                            before: Int,
-                            count: Int
-                        ) {
-                        }
-
-                        override fun afterTextChanged(s: Editable?) {
-                            val text = s.toString()
-                            val newValue = text.toIntOrNull() ?: 0
-                            val updatedValue = when {
-                                newValue < 0 -> 0
-                                newValue > 99 -> 99
-                                else -> newValue
-                            }
-                            val finalValue =
-                                if (updatedValue > cartproduct.shopProductCount) cartproduct.shopProductCount else updatedValue
-                            if (finalValue != newValue) {
-                                cartproduct.shopProductCount = finalValue
-                                itemViewBinding.etAddProduct.setText(finalValue.toString())
-                            }
-                            itemViewBinding.btBuy.visibility =
-                                if (finalValue != 0) View.VISIBLE else View.GONE
-                        }
-                    })
+                    // 更新 EditText 的值
                     etAddProduct.setText(newValue.toString())
+
+                    // 执行相关逻辑
+                    val updatedValue = when {
+                        newValue < 0 -> 0
+                        newValue > cartproduct.shopProductCount -> cartproduct.shopProductCount
+                        else -> newValue
+                    }
+//                    cartproduct.shopProductCount = updatedValue
+//                    itemViewBinding.btBuy.visibility = if (updatedValue != 0) View.VISIBLE else View.GONE
+//                    val priceResult = updatedValue * cartproduct.shopProductPrice.toInt()
+                    totalPriceResult += cartproduct.shopProductPrice.toInt()
+                    binding.tvPriceResult?.text = totalPriceResult.toString()
+                    println("我是price優 : $totalPriceResult")
                 }
 
 
@@ -115,6 +100,19 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart>) :
                     val currentValue = etAddProduct.text.toString().toIntOrNull() ?: 0
                     val newValue = if (currentValue > 0) currentValue - 1 else 0
                     etAddProduct.setText(newValue.toString())
+                    val updatedValue = when {
+                        newValue > cartproduct.shopProductCount -> cartproduct.shopProductCount
+                        else -> newValue
+                    }
+                    if (currentValue == 0) {
+                        quantityMap.remove(position)
+                        return@setOnClickListener
+                    }
+                    quantityMap[position] = newValue
+//                    val deletedPriceResult = updatedValue * cartproduct.shopProductPrice.toInt()
+                    totalPriceResult -= cartproduct.shopProductPrice.toInt()
+                    binding.tvPriceResult?.text = if (totalPriceResult != 0) totalPriceResult.toString() else ""
+                    println("我是price優 : $totalPriceResult")
                 }
                 bundle.putSerializable("cartproduct", cartproduct)
 
@@ -141,14 +139,15 @@ class ShopingCartAdapter(private var cartproducts: List<ShopingCart>) :
                 }
 
 
-                itemViewBinding.btBuy.setOnClickListener {
+                binding.floatingActionButton.setOnClickListener {
                     val etAddProduct: EditText =
                         itemViewBinding.root.findViewById(R.id.etAddProduct)
                     val quantity = etAddProduct.text.toString().toIntOrNull() ?: 0
 
-                    val bundle = Bundle()
-                    bundle.putInt("quantity", quantity)
-                    bundle.putSerializable("cartproduct", cartproduct)
+                    val bundle = Bundle().apply {
+                        putParcelableArray("cartproduct", cartproducts.toTypedArray())
+                        putIntArray("quantity", quantityMap.toList().sortedBy { it.first }.map { it.second }.toIntArray())
+                    }
 
                     val navController = Navigation.findNavController(itemView)
                     navController.navigate(R.id.action_shopFrontFragment_to_shopBuyFragment, bundle)

@@ -42,17 +42,19 @@
                     android:id="@+id/tvMemberName"
                     app:layout_constraintTop_toTopOf="@+id/childCardView"
                     app:layout_constraintStart_toEndOf="@+id/childCardView"
-                    tools:text="@{viewModel.cartproduct.shopProductName}"
+                    tools:text='@{"商品名稱: " + viewModel.cartproduct.shopProductName}'
                     android:layout_marginStart="10dp"/>
 
                 <TextView
                     android:id="@+id/tvClass"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="70dp"
                     app:layout_constraintStart_toEndOf="@+id/childCardView"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@{viewModel.cartproduct.shopProductPrice}" />
+                    tools:text='@{"商品定價: " + viewModel.cartproduct.shopProductPrice}'
+                    />
 
                 <TextView
                     android:id="@+id/tvDate"
@@ -61,7 +63,7 @@
                     android:layout_marginStart="10dp"
                     app:layout_constraintStart_toEndOf="@+id/childCardView"
                     app:layout_constraintTop_toBottomOf="@+id/tvMemberName"
-                    tools:text="@{viewModel.cartproduct.shopName}" />
+                    tools:text='@{"廠商名稱: " +viewModel.cartproduct.shopName}' />
 
                 <ImageButton
                     android:id="@+id/btnShoppingDelete"

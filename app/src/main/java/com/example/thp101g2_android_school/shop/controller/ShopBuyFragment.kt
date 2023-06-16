@@ -30,7 +30,6 @@ import com.google.gson.reflect.TypeToken
 
 class ShopBuyFragment : Fragment() {
     private lateinit var binding: FragmentShopBuyBinding
-    private lateinit var cartproduct: ShopingCart
     private var quantity = 0
     private val ERROR_COLOR = Color.RED
     private var radioButtonSelected = false
@@ -77,8 +76,7 @@ class ShopBuyFragment : Fragment() {
         }
         println(userEmail)
         println(memberno)
-        val memberpoints = currentMember?.rewardPoints
-        binding.tvPoints.text = "您的積分總額 : "+memberpoints
+
 
 
 
@@ -87,32 +85,47 @@ class ShopBuyFragment : Fragment() {
          */
 
         arguments?.let { bundle ->
-            bundle.getSerializable("cartproduct")?.let {
-                cartproduct = it as ShopingCart
-                binding.viewModel?.cartproduct?.value = cartproduct
-                println("商品數量 :${cartproduct.shopProductCount}" + "     " +"商品ID :${cartproduct.shopProductId}")
-                println("廠商代號 : ${cartproduct.firmNo}")
-                println("商品價格 : ${cartproduct.shopProductPrice}")
-
-
+            val shopCartList = bundle.getParcelableArray("cartproduct")?.let { array ->
+                array.mapNotNull { it as? ShopingCart }
+            } ?: listOf()
+            val amountList = bundle.getIntArray("quantity")?.let { it.toList() } ?: listOf()
+            for ((index, shopCart) in shopCartList.withIndex()) {
+                val amount = amountList[index]
+                println("商品數量 :${shopCart.shopProductCount}" + "     " +"商品ID :${shopCart.shopProductId}")
+                println("廠商代號 : ${shopCart.firmNo}")
+                println("商品價格 : ${shopCart.shopProductPrice}")
+                println("我購買的數量 :$amount")
             }
-            arguments?.let { bundle ->
-                quantity = bundle.getInt("quantity")
-                println("我購買的數量 :$quantity")
-            }
-            val productid = cartproduct.shopProductId.toInt()
-            val productname = cartproduct.shopProductName
-            val firmno = cartproduct.firmNo
-            val productimg = cartproduct.shopProductImage
-            var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
-            var hasError: Boolean = false
+//            bundle.getSerializable("cartproduct")?.let {
+//                cartproduct = it as Array
+//                binding.viewModel?.cartproduct?.value = cartproduct
+//                println("商品數量 :${cartproduct.shopProductCount}" + "     " +"商品ID :${cartproduct.shopProductId}")
+//                println("廠商代號 : ${cartproduct.firmNo}")
+//                println("商品價格 : ${cartproduct.shopProductPrice}")
+//
+//
+//
+//            }
+//            arguments?.let { bundle ->
+//                quantity = bundle.getInt("quantity")
+//                println("我購買的數量 :$quantity")
+//            }
+//            val memberpoints = cartproduct?.rewardPoints
+//            binding.tvPoints.text = "您的積分總額 : "+memberpoints
+//            println(memberpoints)
+//            val productid = cartproduct.shopProductId.toInt()
+//            val productname = cartproduct.shopProductName
+//            val firmno = cartproduct.firmNo
+//            val productimg = cartproduct.shopProductImage
+//            var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
+//            var hasError: Boolean = false
+//
+//            var Count = cartproduct.shopProductCount - quantity
+//            println("資料庫要變動的數量 :$Count")
+//            val price = cartproduct.shopProductPrice.toInt() * quantity
+//            println("我的購買金額: $price")
 
-            var Count = cartproduct.shopProductCount - quantity
-            println("資料庫要變動的數量 :$Count")
-            val price = cartproduct.shopProductPrice.toInt() * quantity
-            println("我的購買金額: $price")
-
-            binding.tvBuyPrice.text = "總金額 : ${price}"
+//            binding.tvBuyPrice.text = "總金額 : ${price}"
 
 
 
@@ -151,213 +164,213 @@ class ShopBuyFragment : Fragment() {
              * TODO 跳轉googlepay頁面
              */
 
-            binding.btGPay.setOnClickListener {
-                val name = binding.etPersonName.text.toString()
-                val email = binding.etEmail.text.toString()
-                val address = binding.etAddress.text.toString()
-                val phone = binding.etPhone.text.toString()
-
-                var hasError = false
-
-                if (name.isEmpty() || name.length < 2 || name != userName) {
-                    // 姓名验证失败，显示错误信息
-                    binding.etPersonName.setError("姓名輸入失敗，請至少輸入兩個字元")
-                    setErrorState(binding.etPersonName)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etPersonName)
-                }
-
-                if (email.isEmpty() || !isEmailValid(email) || email != userEmail) {
-                    // 邮箱验证失败，显示错误信息
-                    binding.etEmail.setError("電子郵件驗證失敗")
-                    setErrorState(binding.etEmail)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etEmail)
-                }
-                if (phone.isEmpty() || !isPhoneValid(phone) || phone != userPhone) {
-                    // 手机号验证失败，显示错误信息
-                    binding.etPhone.setError("手機、電話號碼格式不正確")
-                    setErrorState(binding.etPhone)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etPhone)
-                }
-
-                if (address.isEmpty() || !isAddressValid(address)) {
-                    // 地址验证失败，显示错误信息
-                    binding.etAddress.setError("地址格式不正確，請重新輸入")
-                    setErrorState(binding.etAddress)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etAddress)
-                }
-
-                if (!hasError) {
-                    val intent = Intent(requireContext(), GooglePayActivity::class.java)
-                    // 添加要传递的数据到Intent的Extra中
-                    intent.putExtra("cartproduct", cartproduct)
-                    intent.putExtra("quantity", quantity)
-                    intent.putExtra("price",price)
-                    intent.putExtra("name",name)
-                    intent.putExtra("email",email)
-                    intent.putExtra("address",address)
-                    intent.putExtra("phone",phone)
-                    intent.putExtra("productid",productid)
-                    intent.putExtra("memberno",memberno)
-                    intent.putExtra("productname",productname)
-                    intent.putExtra("firmno",firmno)
-                    intent.putExtra("productimg",productimg)
-                    intent.putExtra("count",Count)
-                    // 启动下一个页面
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(context, "付款失敗", Toast.LENGTH_SHORT).show()
-                }
-            }
-            binding.btComFirm.setOnClickListener {
-                if (!radioButtonSelected) {
-                    radioButtonError = true
-                    binding.rbBuyWay.setButtonTintList(ColorStateList.valueOf(Color.RED))
-                    binding.rbBuyWay2.setButtonTintList(ColorStateList.valueOf(Color.RED))
-                    Toast.makeText(context, "请选择一种付款方式", Toast.LENGTH_SHORT).show()
-                    hasError = true
-                } else {
-                    binding.rbBuyWay.setButtonTintList(null)
-                    binding.rbBuyWay2.setButtonTintList(null)
-                    hasError = false
-                }
-                var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
-                hasError = false
-                if (pointquantity == null) {
-                    binding.editTextNumber.setError("不可為空")
-                    setErrorState(binding.editTextNumber)
-                    hasError = true
-                } else if (pointquantity!! > memberpoints!!) {
-                    // 数量超过奖励积分，显示错误信息
-                    binding.editTextNumber.setError("不能超過你擁有的積分")
-                    setErrorState(binding.editTextNumber)
-                    hasError = true
-                } else if (pointquantity!! < price) {
-                    binding.editTextNumber.setError("您的積分不夠支付")
-                    setErrorState(binding.editTextNumber)
-                    hasError = true
-                } else if (pointquantity!! > price) {
-                    Toast.makeText(context, "積分使用過多", Toast.LENGTH_SHORT).show()
-                    pointquantity = price
-                    hasError = true
-                } else {
-                    pointans = memberpoints - pointquantity!!
-                    clearErrorState(binding.editTextNumber)
-                    println(pointans)
-                }
-                val name = binding.etPersonName.text.toString()
-                val email = binding.etEmail.text.toString()
-                val address = binding.etAddress.text.toString()
-                val phone = binding.etPhone.text.toString()
-
-                if (name.isEmpty() || name.length < 2 || name != userName) {
-                    // 姓名验证失败，显示错误信息
-                    binding.etPersonName.setError("姓名輸入失敗，請至少輸入兩個字元")
-                    setErrorState(binding.etPersonName)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etPersonName)
-                }
-
-                if (email.isEmpty() || !isEmailValid(email) || email != userEmail) {
-                    // 邮箱验证失败，显示错误信息
-                    binding.etEmail.setError("電子郵件驗證失敗")
-                    setErrorState(binding.etEmail)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etEmail)
-                }
-
-                if (address.isEmpty() || !isAddressValid(address)) {
-                    // 地址验证失败，显示错误信息
-                    binding.etAddress.setError("地址格式不正確，請重新輸入")
-                    setErrorState(binding.etAddress)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etAddress)
-                }
-
-                if (phone.isEmpty() || !isPhoneValid(phone) || phone != userPhone) {
-                    // 手机号验证失败，显示错误信息
-                    binding.etPhone.setError("手機、電話號碼格式不正確")
-                    setErrorState(binding.etPhone)
-                    hasError = true
-                } else {
-                    // 验证成功，恢复原始颜色
-                    clearErrorState(binding.etPhone)
-                }
-
-                if (!hasError) {
-                        Toast.makeText(context, "付款成功", Toast.LENGTH_SHORT).show()
-                    println("Order增加一筆")
-                    val shopBuy = ShopBuyCalss(
-                        shopProductId = productid,
-                        memberNo = memberno,
-                        shopAddress = address,
-                        shopRecipient = name,
-                        shopOrderPhone = phone,
-                        shopPointDiscount = pointquantity,
-                        shopProductSales = price,
-                        shopProductName = productname,
-                        firmNo = firmno,
-                        shopOrderCount = quantity,
-                        shopOrderImage = productimg
-                    )
-
-                    val respbody = requestTask<JsonObject>(
-                        "$url/shop/buy/",
-                        "POST", reqBody = shopBuy
-                    )
-                    val jsonObj2 = JsonObject()
-                    val urldelete = "$url/shop/buy/$productid"
-                    val respbody2 = requestTask<JsonObject>(urldelete, "DELETE")
-
-                    val jsonObj3 = JsonObject()
-                    jsonObj3.addProperty("shopProductCount", Count)
-                    jsonObj3.addProperty("shopProductId", productid)
-                    val respbody3 = requestTask<JsonObject>(
-                        "$url/shop/buy/",
-                        "PUT", jsonObj3
-                    )
-                    val jsonObj4 = JsonObject()
-                    jsonObj4.addProperty("rewardPoints", pointans)
-                    jsonObj4.addProperty("memberNo", memberno)
-                    val respbody4 = requestTask<JsonObject>(
-                        "$url/shop/buy/point",
-                        "PUT", jsonObj4
-                    )
-                    /**
-                     *  TDOO 以下是積分折抵後的積分使用狀況後端更新.Ian //278~289行
-                     */
-                    val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
-                    val requestBody = mapOf(
-                        "type" to "insertForSO",
-                    )
-                    val responseType = object : TypeToken<JsonObject>() {}.type
-                    val response = requestTask<JsonObject>(
-                        postUrl, "POST",
-                        requestBody, responseType)
-
-                    Navigation.findNavController(requireView()).navigateUp()
-
-                } else {
-                        Toast.makeText(context, "付款失敗", Toast.LENGTH_SHORT).show()
-                }
-            }
+//            binding.btGPay.setOnClickListener {
+//                val name = binding.etPersonName.text.toString()
+//                val email = binding.etEmail.text.toString()
+//                val address = binding.etAddress.text.toString()
+//                val phone = binding.etPhone.text.toString()
+//
+//                var hasError = false
+//
+//                if (name.isEmpty() || name.length < 2 || name != userName) {
+//                    // 姓名验证失败，显示错误信息
+//                    binding.etPersonName.setError("姓名輸入失敗，請至少輸入兩個字元")
+//                    setErrorState(binding.etPersonName)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etPersonName)
+//                }
+//
+//                if (email.isEmpty() || !isEmailValid(email) || email != userEmail) {
+//                    // 邮箱验证失败，显示错误信息
+//                    binding.etEmail.setError("電子郵件驗證失敗")
+//                    setErrorState(binding.etEmail)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etEmail)
+//                }
+//                if (phone.isEmpty() || !isPhoneValid(phone) || phone != userPhone) {
+//                    // 手机号验证失败，显示错误信息
+//                    binding.etPhone.setError("手機、電話號碼格式不正確")
+//                    setErrorState(binding.etPhone)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etPhone)
+//                }
+//
+//                if (address.isEmpty() || !isAddressValid(address)) {
+//                    // 地址验证失败，显示错误信息
+//                    binding.etAddress.setError("地址格式不正確，請重新輸入")
+//                    setErrorState(binding.etAddress)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etAddress)
+//                }
+//
+//                if (!hasError) {
+//                    val intent = Intent(requireContext(), GooglePayActivity::class.java)
+//                    // 添加要传递的数据到Intent的Extra中
+//                    intent.putExtra("cartproduct", cartproduct as java.io.Serializable)
+//                    intent.putExtra("quantity", quantity)
+//                    intent.putExtra("price",price)
+//                    intent.putExtra("name",name)
+//                    intent.putExtra("email",email)
+//                    intent.putExtra("address",address)
+//                    intent.putExtra("phone",phone)
+//                    intent.putExtra("productid",productid)
+//                    intent.putExtra("memberno",memberno)
+//                    intent.putExtra("productname",productname)
+//                    intent.putExtra("firmno",firmno)
+//                    intent.putExtra("productimg",productimg)
+//                    intent.putExtra("count",Count)
+//                    // 启动下一个页面
+//                    startActivity(intent)
+//                } else {
+//                    Toast.makeText(context, "付款失敗", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//            binding.btComFirm.setOnClickListener {
+//                if (!radioButtonSelected) {
+//                    radioButtonError = true
+//                    binding.rbBuyWay.setButtonTintList(ColorStateList.valueOf(Color.RED))
+//                    binding.rbBuyWay2.setButtonTintList(ColorStateList.valueOf(Color.RED))
+//                    Toast.makeText(context, "请选择一种付款方式", Toast.LENGTH_SHORT).show()
+//                    hasError = true
+//                } else {
+//                    binding.rbBuyWay.setButtonTintList(null)
+//                    binding.rbBuyWay2.setButtonTintList(null)
+//                    hasError = false
+//                }
+//                var pointquantity = binding.editTextNumber.text.toString().toIntOrNull()
+//                hasError = false
+//                if (pointquantity == null) {
+//                    binding.editTextNumber.setError("不可為空")
+//                    setErrorState(binding.editTextNumber)
+//                    hasError = true
+//                } else if (pointquantity!! > memberpoints!!) {
+//                    // 数量超过奖励积分，显示错误信息
+//                    binding.editTextNumber.setError("不能超過你擁有的積分")
+//                    setErrorState(binding.editTextNumber)
+//                    hasError = true
+//                } else if (pointquantity!! < price) {
+//                    binding.editTextNumber.setError("您的積分不夠支付")
+//                    setErrorState(binding.editTextNumber)
+//                    hasError = true
+//                } else if (pointquantity!! > price) {
+//                    Toast.makeText(context, "積分使用過多", Toast.LENGTH_SHORT).show()
+//                    pointquantity = price
+//                    hasError = true
+//                } else {
+//                    pointans = memberpoints - pointquantity!!
+//                    clearErrorState(binding.editTextNumber)
+//                    println(pointans)
+//                }
+//                val name = binding.etPersonName.text.toString()
+//                val email = binding.etEmail.text.toString()
+//                val address = binding.etAddress.text.toString()
+//                val phone = binding.etPhone.text.toString()
+//
+//                if (name.isEmpty() || name.length < 2 || name != userName) {
+//                    // 姓名验证失败，显示错误信息
+//                    binding.etPersonName.setError("姓名輸入失敗，請至少輸入兩個字元")
+//                    setErrorState(binding.etPersonName)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etPersonName)
+//                }
+//
+//                if (email.isEmpty() || !isEmailValid(email) || email != userEmail) {
+//                    // 邮箱验证失败，显示错误信息
+//                    binding.etEmail.setError("電子郵件驗證失敗")
+//                    setErrorState(binding.etEmail)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etEmail)
+//                }
+//
+//                if (address.isEmpty() || !isAddressValid(address)) {
+//                    // 地址验证失败，显示错误信息
+//                    binding.etAddress.setError("地址格式不正確，請重新輸入")
+//                    setErrorState(binding.etAddress)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etAddress)
+//                }
+//
+//                if (phone.isEmpty() || !isPhoneValid(phone) || phone != userPhone) {
+//                    // 手机号验证失败，显示错误信息
+//                    binding.etPhone.setError("手機、電話號碼格式不正確")
+//                    setErrorState(binding.etPhone)
+//                    hasError = true
+//                } else {
+//                    // 验证成功，恢复原始颜色
+//                    clearErrorState(binding.etPhone)
+//                }
+//
+//                if (!hasError) {
+//                        Toast.makeText(context, "付款成功", Toast.LENGTH_SHORT).show()
+//                    println("Order增加一筆")
+//                    val shopBuy = ShopBuyCalss(
+//                        shopProductId = productid,
+//                        memberNo = memberno,
+//                        shopAddress = address,
+//                        shopRecipient = name,
+//                        shopOrderPhone = phone,
+//                        shopPointDiscount = pointquantity,
+//                        shopProductSales = price,
+//                        shopProductName = productname,
+//                        firmNo = firmno,
+//                        shopOrderCount = quantity,
+//                        shopOrderImage = productimg
+//                    )
+//
+//                    val respbody = requestTask<JsonObject>(
+//                        "$url/shop/buy/",
+//                        "POST", reqBody = shopBuy
+//                    )
+//                    val jsonObj2 = JsonObject()
+//                    val urldelete = "$url/shop/buy/$productid"
+//                    val respbody2 = requestTask<JsonObject>(urldelete, "DELETE")
+//
+//                    val jsonObj3 = JsonObject()
+//                    jsonObj3.addProperty("shopProductCount", Count)
+//                    jsonObj3.addProperty("shopProductId", productid)
+//                    val respbody3 = requestTask<JsonObject>(
+//                        "$url/shop/buy/",
+//                        "PUT", jsonObj3
+//                    )
+//                    val jsonObj4 = JsonObject()
+//                    jsonObj4.addProperty("rewardPoints", pointans)
+//                    jsonObj4.addProperty("memberNo", memberno)
+//                    val respbody4 = requestTask<JsonObject>(
+//                        "$url/shop/buy/point",
+//                        "PUT", jsonObj4
+//                    )
+//                    /**
+//                     *  TDOO 以下是積分折抵後的積分使用狀況後端更新.Ian //278~289行
+//                     */
+//                    val postUrl = "http://10.0.2.2:8080/THP101G2-WebServer-School/point"
+//                    val requestBody = mapOf(
+//                        "type" to "insertForSO",
+//                    )
+//                    val responseType = object : TypeToken<JsonObject>() {}.type
+//                    val response = requestTask<JsonObject>(
+//                        postUrl, "POST",
+//                        requestBody, responseType)
+//
+//                    Navigation.findNavController(requireView()).navigateUp()
+//
+//                } else {
+//                        Toast.makeText(context, "付款失敗", Toast.LENGTH_SHORT).show()
+//                }
+//            }
 
         }
     }
