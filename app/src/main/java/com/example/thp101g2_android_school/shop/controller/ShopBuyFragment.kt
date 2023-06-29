@@ -62,8 +62,12 @@ class ShopBuyFragment : Fragment() {
          * TODO 66~78:去拿Member資料
          */
 
-        var currentMember: Member? = requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
+        var currentMember: Member? =
+            requestTask("http://10.0.2.2:8080/THP101G2-WebServer-School/members", "OPTIONS")
         println(currentMember)
+        val points = currentMember?.rewardPoints
+        println("擁有積分: " + points)
+        binding.tvPoints.text = "您的積分總額 : " + points
         val memberno = currentMember?.memberNo
         if (currentMember != null) {
             userEmail = currentMember.memberEmail
@@ -78,8 +82,6 @@ class ShopBuyFragment : Fragment() {
         println(memberno)
 
 
-
-
         /**
          * TODO 將cartproduct.shopProductCount的資料和後端做比對，使用者只能買到商品最大數量。
          */
@@ -91,7 +93,7 @@ class ShopBuyFragment : Fragment() {
             val amountList = bundle.getIntArray("quantity")?.let { it.toList() } ?: listOf()
             for ((index, shopCart) in shopCartList.withIndex()) {
                 val amount = amountList[index]
-                println("商品數量 :${shopCart.shopProductCount}" + "     " +"商品ID :${shopCart.shopProductId}")
+                println("商品數量 :${shopCart.shopProductCount}" + "     " + "商品ID :${shopCart.shopProductId}")
                 println("廠商代號 : ${shopCart.firmNo}")
                 println("商品價格 : ${shopCart.shopProductPrice}")
                 println("我購買的數量 :$amount")
@@ -126,7 +128,6 @@ class ShopBuyFragment : Fragment() {
 //            println("我的購買金額: $price")
 
 //            binding.tvBuyPrice.text = "總金額 : ${price}"
-
 
 
             binding.btnBack.setOnClickListener {
@@ -380,7 +381,7 @@ class ShopBuyFragment : Fragment() {
         val receivedData = requireActivity().intent
         val fragmentName = receivedData.getStringExtra("fragment")
         val viewChange = receivedData.getBooleanExtra("viewchange", false)
-        println(viewChange )
+        println(viewChange)
         if (viewChange) {
             Navigation.findNavController(binding.btGPay).navigate(R.id.shopOrderListFragment)
             println("yes")
